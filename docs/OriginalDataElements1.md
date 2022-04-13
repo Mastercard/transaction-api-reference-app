@@ -1,19 +1,15 @@
 
 
-# TransactionIdentification8
+# OriginalDataElements1
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**lclDtTm** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**trnsmssnDtTm** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**sysTracAudtNb** | **String** |  | 
+**lclDtTm** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **rtrvlRefNb** | **String** |  | 
 **lifeCyclSpprt** | [**LifeCyclSpprtEnum**](#LifeCyclSpprtEnum) |  |  [optional]
 **lifeCyclTracIdData** | [**TransactionLifeCycleIdentification1**](TransactionLifeCycleIdentification1.md) |  |  [optional]
-**cardIssrRefData** | **String** |  |  [optional]
-**orgnlDataElmts** | [**OriginalDataElements1**](OriginalDataElements1.md) |  |  [optional]
 
 
 

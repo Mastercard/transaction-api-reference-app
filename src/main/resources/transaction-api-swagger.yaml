@@ -4,15 +4,14 @@ info:
   description: Transaction API
   contact:
     name: API Support
-    email: apisupport@mastercard.com
     url: https://developer.mastercard.com/support
-  version: 0.0.2
+    email: apisupport@mastercard.com
+  version: 0.0.1
 servers:
-  - url: https://api.mastercard.com/transaction-api
-    description: Production server
-  - url: https://sandbox.api.mastercard.com/transaction-api
+  - url: https://sandbox.api.mastercard.com/transaction-api/
     description: Sandbox server
-    variables: {}
+  - url: https://api.mastercard.com/transaction-api/
+    description: Production server
 tags:
   - name: transaction-api
     description: Transaction Api Controller Endpoints
@@ -22,8 +21,8 @@ paths:
       tags:
         - transaction-api
       summary: Send an ISO20022 initiation authorisation request
-      description: Endpoint to send an ISO20022 initiation authorisation request to
-      operationId: initiateAuthorisation
+      description: Endpoint to send an ISO20022 initiation authorisation request
+      operationId: processAuthorisation
       requestBody:
         $ref: '#/components/requestBodies/AuthorisationInitiation'
       responses:
@@ -57,11 +56,6 @@ components:
           type: string
           xml:
             name: AcctId
-    AddendumData1:
-      type: object
-      properties:
-        instlmt:
-          $ref: '#/components/schemas/Instalment3'
     AdditionalAmounts1:
       required:
         - amt
@@ -163,176 +157,6 @@ components:
           type: string
           xml:
             name: Ctry
-    AlgorithmIdentification12:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - MGF_1
-        param:
-          $ref: '#/components/schemas/Parameter5'
-    AlgorithmIdentification18:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - MGF_1
-        param:
-          $ref: '#/components/schemas/Parameter9'
-    AlgorithmIdentification19:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - ERSA
-            - RSAO
-        param:
-          $ref: '#/components/schemas/Parameter10'
-    AlgorithmIdentification20:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - ECC_1
-            - ECC_2
-            - ECC_3
-            - ECC_4
-            - ECC_5
-            - ECP_2
-            - ECP_3
-            - ECP_5
-            - ERS_1
-            - ERS_2
-            - ERS_3
-            - RPSS
-        param:
-          $ref: '#/components/schemas/Parameter11'
-    AlgorithmIdentification21:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - HS_01
-            - HS_25
-            - HS_38
-            - HS_51
-            - SH_31
-            - SH_32
-            - SH_33
-            - SH_35
-            - SHK_1
-            - SHK_2
-    AlgorithmIdentification22:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - CCA_1
-            - CCA_2
-            - CCA_3
-            - CM_31
-            - CM_32
-            - CM_33
-            - CMA_1
-            - CMA_2
-            - CMA_5
-            - CMA_9
-            - MACC
-            - MCC_1
-            - MCCS
-            - MCS_3
-        param:
-          $ref: '#/components/schemas/Parameter7'
-    AlgorithmIdentification23:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - DA_12
-            - DA_19
-            - DA_25
-            - DKP_9
-            - E_36_C
-            - E_36_R
-            - E_3_DC
-            - E_3_DR
-            - EA_2_C
-            - EA_2_R
-            - EA_5_C
-            - EA_5_R
-            - EA_9_C
-            - EA_9_R
-            - N_108
-            - SD_5_C
-            - UKA_1
-            - UKPT
-        param:
-          $ref: '#/components/schemas/Parameter12'
-    AlgorithmIdentification24:
-      required:
-        - algo
-      type: object
-      properties:
-        algo:
-          type: string
-          xml:
-            name: Algo
-          enum:
-            - DA_12
-            - DA_19
-            - DA_25
-            - DKP_9
-            - E_36_C
-            - E_36_R
-            - E_3_DC
-            - E_3_DR
-            - EA_2_C
-            - EA_2_R
-            - EA_5_C
-            - EA_5_R
-            - EA_9_C
-            - EA_9_R
-            - N_108
-            - SD_5_C
-            - UKA_1
-            - UKPT
-        param:
-          $ref: '#/components/schemas/Parameter12'
     Amount14:
       required:
         - amt
@@ -385,36 +209,6 @@ components:
           type: boolean
           xml:
             name: Sgn
-    AuthenticatedData5:
-      required:
-        - mac
-        - ncpsltdCntt
-        - rcpt
-      type: object
-      properties:
-        vrsn:
-          type: number
-          xml:
-            name: Vrsn
-        rcpt:
-          type: array
-          xml:
-            name: Rcpt
-          items:
-            $ref: '#/components/schemas/Recipient6Choice'
-        ncpsltdCntt:
-          $ref: '#/components/schemas/EncapsulatedContent3'
-        mac:
-          type: array
-          xml:
-            name: MAC
-          items:
-            type: string
-            format: byte
-            xml:
-              name: MAC
-        macalgo:
-          $ref: '#/components/schemas/AlgorithmIdentification22'
     AuthorisationInitiation1:
       required:
         - cntxt
@@ -428,8 +222,6 @@ components:
           $ref: '#/components/schemas/Context1'
         tx:
           $ref: '#/components/schemas/Transaction77'
-        adddmData:
-          $ref: '#/components/schemas/AddendumData1'
         prcgRslt:
           $ref: '#/components/schemas/ProcessingResult1'
         iccrltdData:
@@ -547,6 +339,10 @@ components:
           type: string
           xml:
             name: CardPdctTp
+        addtlCardData:
+          type: string
+          xml:
+            name: AddtlCardData
     CardProgramme1:
       type: object
       properties:
@@ -622,59 +418,6 @@ components:
           type: string
           xml:
             name: OthrCpblty
-    CertificateIssuer1:
-      required:
-        - rltvDstngshdNm
-      type: object
-      properties:
-        rltvDstngshdNm:
-          type: array
-          xml:
-            name: RltvDstngshdNm
-          items:
-            $ref: '#/components/schemas/RelativeDistinguishedName1'
-    CommunicationCharacteristics3:
-      required:
-        - comTp
-        - rmotPty
-      type: object
-      properties:
-        comTp:
-          type: string
-          xml:
-            name: ComTp
-          enum:
-            - BLTH
-            - ETHR
-            - GPRS
-            - GSMF
-            - PSTN
-            - RS_23
-            - USBD
-            - USBH
-            - WIFI
-            - WT_2_G
-            - WT_3_G
-            - WT_4_G
-            - WT_5_G
-        rmotPty:
-          type: array
-          xml:
-            name: RmotPty
-          items:
-            type: string
-            xml:
-              name: RmotPty
-            enum:
-              - ACQR
-              - ITAG
-              - PCPT
-              - SALE
-              - TMGT
-        actv:
-          type: boolean
-          xml:
-            name: Actv
     Contact1:
       type: object
       properties:
@@ -698,29 +441,6 @@ components:
           type: string
           xml:
             name: BizEmailAdr
-    ContentInformationType19:
-      required:
-        - cnttTp
-      type: object
-      properties:
-        cnttTp:
-          type: string
-          xml:
-            name: CnttTp
-          enum:
-            - AUTH
-            - DATA
-            - DGST
-            - EVLP
-            - SIGN
-        envlpdData:
-          $ref: '#/components/schemas/EnvelopedData5'
-        authntcdData:
-          $ref: '#/components/schemas/AuthenticatedData5'
-        sgndData:
-          $ref: '#/components/schemas/SignedData5'
-        dgstdData:
-          $ref: '#/components/schemas/DigestedData5'
     Context1:
       required:
         - ptOfSvcCntxt
@@ -769,93 +489,6 @@ components:
           type: string
           xml:
             name: IdVal
-    CryptographicKey13:
-      required:
-        - id
-        - vrsn
-      type: object
-      properties:
-        id:
-          type: string
-          xml:
-            name: Id
-        addtlId:
-          type: array
-          xml:
-            name: AddtlId
-          items:
-            type: string
-            format: byte
-            xml:
-              name: AddtlId
-        vrsn:
-          type: string
-          xml:
-            name: Vrsn
-        tp:
-          type: string
-          xml:
-            name: Tp
-          enum:
-            - AES_2
-            - AES_5
-            - AES_9
-            - DKP_9
-            - EDE_3
-            - EDE_4
-        fctn:
-          type: array
-          xml:
-            name: Fctn
-          items:
-            type: string
-            xml:
-              name: Fctn
-            enum:
-              - DCPT
-              - DDEC
-              - DENC
-              - ENCR
-              - KEYD
-              - KEYG
-              - KEYI
-              - KEYX
-              - MACG
-              - MACV
-              - PIND
-              - PINE
-              - PINV
-              - SIGG
-              - SUGV
-              - TRNI
-              - TRNX
-        actvtnDt:
-          type: string
-          format: date-time
-          xml:
-            name: ActvtnDt
-        deactvtnDt:
-          type: string
-          format: date-time
-          xml:
-            name: DeactvtnDt
-        keyVal:
-          $ref: '#/components/schemas/ContentInformationType19'
-        keyChckVal:
-          type: array
-          xml:
-            name: KeyChckVal
-          items:
-            type: string
-            format: byte
-            xml:
-              name: KeyChckVal
-        addtlMgmtInf:
-          type: array
-          xml:
-            name: AddtlMgmtInf
-          items:
-            $ref: '#/components/schemas/GenericInformation1'
     Customer3:
       type: object
       properties:
@@ -898,14 +531,7 @@ components:
           enum:
             - CSHB
             - DCCF
-            - DONN
-            - EXTR
-            - FORX
-            - GRTY
-            - OTHN
-            - OTHP
             - SRCH
-            - TAXT
         othrTp:
           type: string
           xml:
@@ -931,100 +557,6 @@ components:
             - PECR
             - SECR
             - TBLT
-    DigestedData5:
-      required:
-        - dgst
-        - dgstAlgo
-        - ncpsltdCntt
-      type: object
-      properties:
-        vrsn:
-          type: number
-          xml:
-            name: Vrsn
-        dgstAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification21'
-        ncpsltdCntt:
-          $ref: '#/components/schemas/EncapsulatedContent3'
-        dgst:
-          type: array
-          xml:
-            name: Dgst
-          items:
-            type: string
-            format: byte
-            xml:
-              name: Dgst
-    EncapsulatedContent3:
-      required:
-        - cnttTp
-      type: object
-      properties:
-        cnttTp:
-          type: string
-          xml:
-            name: CnttTp
-          enum:
-            - AUTH
-            - DATA
-            - DGST
-            - EVLP
-            - SIGN
-        cntt:
-          type: array
-          xml:
-            name: Cntt
-          items:
-            type: string
-            format: byte
-            xml:
-              name: MAC
-    EncryptedContent4:
-      required:
-        - cnttTp
-        - ncrptdData
-      type: object
-      properties:
-        cnttTp:
-          type: string
-          xml:
-            name: CnttTp
-          enum:
-            - AUTH
-            - DATA
-            - DGST
-            - EVLP
-            - SIGN
-        cnttNcrptnAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification24'
-        ncrptdData:
-          type: array
-          xml:
-            name: NcrptdData
-          items:
-            type: string
-            format: byte
-            xml:
-              name: NcrptdData
-    EnvelopedData5:
-      required:
-        - rcpt
-      type: object
-      properties:
-        vrsn:
-          type: number
-          xml:
-            name: Vrsn
-        orgtrInf:
-          $ref: '#/components/schemas/OriginatorInformation1'
-        rcpt:
-          type: array
-          xml:
-            name: Rcpt
-          items:
-            $ref: '#/components/schemas/Recipient6Choice'
-        ncrptdCntt:
-          $ref: '#/components/schemas/EncryptedContent4'
     Environment1:
       required:
         - acqrr
@@ -1034,8 +566,6 @@ components:
         acqrr:
           $ref: '#/components/schemas/PartyIdentification197'
         sndr:
-          $ref: '#/components/schemas/PartyIdentification197'
-        rcvr:
           $ref: '#/components/schemas/PartyIdentification197'
         accptr:
           $ref: '#/components/schemas/PartyIdentification203'
@@ -1130,59 +660,6 @@ components:
           type: string
           xml:
             name: ShrtNm
-    GenericIdentification48:
-      required:
-        - id
-        - issr
-        - vrsn
-      type: object
-      properties:
-        id:
-          type: string
-          xml:
-            name: Id
-        vrsn:
-          type: string
-          xml:
-            name: Vrsn
-        issr:
-          type: string
-          xml:
-            name: Issr
-    GenericInformation1:
-      required:
-        - nm
-      type: object
-      properties:
-        nm:
-          type: string
-          xml:
-            name: Nm
-        val:
-          type: string
-          xml:
-            name: Val
-    GracePeriod1:
-      required:
-        - tm
-        - unitTp
-      type: object
-      properties:
-        tm:
-          type: string
-          xml:
-            name: Tm
-        unitTp:
-          type: string
-          xml:
-            name: UnitTp
-          enum:
-            - DAYS
-            - MNTH
-            - OTHN
-            - OTHP
-            - PMTS
-            - WEKS
     Header42:
       required:
         - creDtTm
@@ -1219,203 +696,29 @@ components:
             name: TracData
           items:
             $ref: '#/components/schemas/AdditionalData1'
-    Instalment3:
+    OriginalDataElements1:
+      required:
+        - rtrvlRefNb
       type: object
       properties:
-        pmtSeqNb:
-          type: number
+        lclDtTm:
+          type: string
+          format: date-time
           xml:
-            name: PmtSeqNb
-        plan:
-          type: array
-          xml:
-            name: Plan
-          items:
-            $ref: '#/components/schemas/Plan1'
-    InstalmentAmountDetails1:
-      type: object
-      properties:
-        tp:
+            name: LclDtTm
+        rtrvlRefNb:
           type: string
           xml:
-            name: Tp
+            name: RtrvlRefNb
+        lifeCyclSpprt:
+          type: string
+          xml:
+            name: LifeCyclSpprt
           enum:
-            - AFCO
-            - EXPN
-            - FEES
-            - FUNA
-            - INSU
-            - OTHC
-            - OTHN
-            - OTHP
-            - RQST
-            - TAXX
-        othrTp:
-          type: string
-          xml:
-            name: OthrTp
-        amt:
-          $ref: '#/components/schemas/Amount5'
-        pctg:
-          type: number
-          xml:
-            name: Pctg
-    InterestRateDetails1:
-      required:
-        - prd
-        - rate
-      type: object
-      properties:
-        prd:
-          type: string
-          xml:
-            name: Prd
-          enum:
-            - ANNU
-            - MNTH
-        rate:
-          type: number
-          xml:
-            name: Rate
-    IssuerAndSerialNumber1:
-      required:
-        - issr
-        - srlNb
-      type: object
-      properties:
-        issr:
-          $ref: '#/components/schemas/CertificateIssuer1'
-        srlNb:
-          type: array
-          xml:
-            name: SrlNb
-          items:
-            type: string
-            format: byte
-            xml:
-              name: SrlNb
-    KEK5:
-      required:
-        - keyNcrptnAlgo
-        - ncrptdKey
-      type: object
-      properties:
-        vrsn:
-          type: number
-          xml:
-            name: Vrsn
-        keyNcrptnAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification23'
-        ncrptdKey:
-          type: array
-          xml:
-            name: NcrptdKey
-          items:
-            type: string
-            format: byte
-            xml:
-              name: InitlstnVctr
-        kekid:
-          $ref: '#/components/schemas/KEKIdentifier2'
-    KEKIdentifier2:
-      required:
-        - keyId
-        - keyVrsn
-      type: object
-      properties:
-        keyId:
-          type: string
-          xml:
-            name: KeyId
-        keyVrsn:
-          type: string
-          xml:
-            name: KeyVrsn
-        seqNb:
-          type: number
-          xml:
-            name: SeqNb
-        derivtnId:
-          type: array
-          xml:
-            name: DerivtnId
-          items:
-            type: string
-            format: byte
-            xml:
-              name: InitlstnVctr
-    KeyTransport5:
-      required:
-        - keyNcrptnAlgo
-        - ncrptdKey
-        - rcptId
-      type: object
-      properties:
-        vrsn:
-          type: number
-          xml:
-            name: Vrsn
-        rcptId:
-          $ref: '#/components/schemas/Recipient5Choice'
-        keyNcrptnAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification19'
-        ncrptdKey:
-          type: array
-          xml:
-            name: NcrptdKey
-          items:
-            type: string
-            format: byte
-            xml:
-              name: NcrptdKey
-    MemoryCharacteristics1:
-      required:
-        - freeSz
-        - id
-        - ttlSz
-        - unit
-      type: object
-      properties:
-        id:
-          type: string
-          xml:
-            name: Id
-        ttlSz:
-          type: number
-          xml:
-            name: TtlSz
-        freeSz:
-          type: number
-          xml:
-            name: FreeSz
-        unit:
-          type: string
-          xml:
-            name: Unit
-          enum:
-            - BYTE
-            - EXAB
-            - GIGA
-            - KILO
-            - MEGA
-            - PETA
-            - TERA
-    OriginatorInformation1:
-      type: object
-      properties:
-        cert:
-          type: array
-          xml:
-            name: Cert
-          items:
-            type: array
-            xml:
-              name: Cert
-            items:
-              type: string
-              format: byte
-              xml:
-                name: AddtlId
+            - AUTH
+            - FINC
+        lifeCyclTracIdData:
+          $ref: '#/components/schemas/TransactionLifeCycleIdentification1'
     PINData1:
       required:
         - ncrptdPINBlck
@@ -1455,144 +758,6 @@ components:
             name: NcrptdPINBlck
         pinblckFrmt:
           type: string
-    Parameter10:
-      type: object
-      properties:
-        ncrptnFrmt:
-          type: string
-          xml:
-            name: NcrptnFrmt
-          enum:
-            - I_238
-            - TR_31
-            - TR_34
-        dgstAlgo:
-          type: string
-          xml:
-            name: DgstAlgo
-          enum:
-            - HS_01
-            - HS_25
-            - HS_38
-            - HS_51
-            - SH_31
-            - SH_32
-            - SH_33
-            - SH_35
-            - SHK_1
-            - SHK_2
-        mskGnrtrAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification18'
-    Parameter11:
-      required:
-        - dgstAlgo
-        - mskGnrtrAlgo
-        - saltLngth
-      type: object
-      properties:
-        dgstAlgo:
-          type: string
-          xml:
-            name: DgstAlgo
-          enum:
-            - HS_01
-            - HS_25
-            - HS_38
-            - HS_51
-            - SH_31
-            - SH_32
-            - SH_33
-            - SH_35
-            - SHK_1
-            - SHK_2
-        mskGnrtrAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification12'
-        saltLngth:
-          type: number
-          xml:
-            name: SaltLngth
-        trlrFld:
-          type: number
-          xml:
-            name: TrlrFld
-    Parameter12:
-      type: object
-      properties:
-        ncrptnFrmt:
-          type: string
-          xml:
-            name: NcrptnFrmt
-          enum:
-            - I_238
-            - TR_31
-            - TR_34
-        initlstnVctr:
-          type: array
-          xml:
-            name: InitlstnVctr
-          items:
-            type: string
-            format: byte
-            xml:
-              name: InitlstnVctr
-        bpddg:
-          type: string
-          enum:
-            - LNGT
-            - NUL_8
-            - NULG
-            - "NULL"
-            - RAND
-    Parameter5:
-      type: object
-      properties:
-        dgstAlgo:
-          type: string
-          xml:
-            name: DgstAlgo
-          enum:
-            - HS_01
-            - HS_25
-            - HS_38
-            - HS_51
-    Parameter7:
-      type: object
-      properties:
-        initlstnVctr:
-          type: array
-          xml:
-            name: InitlstnVctr
-          items:
-            type: string
-            format: byte
-            xml:
-              name: MAC
-        bpddg:
-          type: string
-          enum:
-            - LNGT
-            - NUL_8
-            - NULG
-            - "NULL"
-            - RAND
-    Parameter9:
-      type: object
-      properties:
-        dgstAlgo:
-          type: string
-          xml:
-            name: DgstAlgo
-          enum:
-            - HS_01
-            - HS_25
-            - HS_38
-            - HS_51
-            - SH_31
-            - SH_32
-            - SH_33
-            - SH_35
-            - SHK_1
-            - SHK_2
     PartyIdentification197:
       required:
         - id
@@ -1667,12 +832,6 @@ components:
             name: AddtlData
           items:
             $ref: '#/components/schemas/AdditionalData1'
-        spnsrdMrchnt:
-          type: array
-          xml:
-            name: SpnsrdMrchnt
-          items:
-            $ref: '#/components/schemas/SponsoredMerchant1'
         urladr:
           type: string
     PartyIdentification211:
@@ -1680,206 +839,6 @@ components:
       properties:
         cstmr:
           $ref: '#/components/schemas/Customer3'
-    Plan1:
-      type: object
-      properties:
-        instlmtPmtTp:
-          type: string
-          xml:
-            name: InstlmtPmtTp
-        intrstRate:
-          type: array
-          xml:
-            name: IntrstRate
-          items:
-            $ref: '#/components/schemas/InterestRateDetails1'
-        frstPmtDt:
-          type: string
-          format: date-time
-          xml:
-            name: FrstPmtDt
-        frstAmt:
-          type: number
-          xml:
-            name: FrstAmt
-        sbsqntAmt:
-          type: number
-          xml:
-            name: SbsqntAmt
-        ttlNbOfPmts:
-          type: number
-          xml:
-            name: TtlNbOfPmts
-        instlmtCcy:
-          type: string
-          xml:
-            name: InstlmtCcy
-        gracePrd:
-          $ref: '#/components/schemas/GracePeriod1'
-        amtDtls:
-          type: array
-          xml:
-            name: AmtDtls
-          items:
-            $ref: '#/components/schemas/InstalmentAmountDetails1'
-        grdTtlAmt:
-          type: number
-          xml:
-            name: GrdTtlAmt
-    PointOfInteractionComponent8:
-      required:
-        - id
-        - tp
-      type: object
-      properties:
-        tp:
-          type: string
-          xml:
-            name: Tp
-          enum:
-            - APLI
-            - APPR
-            - AQPP
-            - CRTF
-            - DRVR
-            - DVCE
-            - EMVK
-            - EMVO
-            - MDWR
-            - MRPR
-            - OPST
-            - SACP
-            - SAPR
-            - SCPR
-            - SECM
-            - SERV
-            - TERM
-            - TLPR
-            - TMSP
-        id:
-          $ref: '#/components/schemas/PointOfInteractionComponentIdentification1'
-        sts:
-          $ref: '#/components/schemas/PointOfInteractionComponentStatus3'
-        stdCmplc:
-          type: array
-          xml:
-            name: StdCmplc
-          items:
-            $ref: '#/components/schemas/GenericIdentification48'
-        chrtcs:
-          $ref: '#/components/schemas/PointOfInteractionComponentCharacteristics4'
-        assmnt:
-          type: array
-          xml:
-            name: Assmnt
-          items:
-            $ref: '#/components/schemas/PointOfInteractionComponentAssessment1'
-    PointOfInteractionComponentAssessment1:
-      required:
-        - assgnr
-        - nb
-        - tp
-      type: object
-      properties:
-        tp:
-          type: string
-          xml:
-            name: Tp
-          enum:
-            - APPL
-            - CERT
-            - EVAL
-        assgnr:
-          type: array
-          xml:
-            name: Assgnr
-          items:
-            type: string
-            xml:
-              name: Assgnr
-        dlvryDt:
-          type: string
-          format: date-time
-          xml:
-            name: DlvryDt
-        xprtnDt:
-          type: string
-          format: date-time
-          xml:
-            name: XprtnDt
-        nb:
-          type: string
-          xml:
-            name: Nb
-    PointOfInteractionComponentCharacteristics4:
-      type: object
-      properties:
-        mmry:
-          type: array
-          xml:
-            name: Mmry
-          items:
-            $ref: '#/components/schemas/MemoryCharacteristics1'
-        com:
-          type: array
-          xml:
-            name: Com
-          items:
-            $ref: '#/components/schemas/CommunicationCharacteristics3'
-        sctyAccsMdls:
-          type: number
-          xml:
-            name: SctyAccsMdls
-        sbcbrIdntyMdls:
-          type: number
-          xml:
-            name: SbcbrIdntyMdls
-        sctyElmt:
-          type: array
-          xml:
-            name: SctyElmt
-          items:
-            $ref: '#/components/schemas/CryptographicKey13'
-    PointOfInteractionComponentIdentification1:
-      type: object
-      properties:
-        itmNb:
-          type: string
-          xml:
-            name: ItmNb
-        prvdrId:
-          type: string
-          xml:
-            name: PrvdrId
-        id:
-          type: string
-          xml:
-            name: Id
-        srlNb:
-          type: string
-          xml:
-            name: SrlNb
-    PointOfInteractionComponentStatus3:
-      type: object
-      properties:
-        vrsnNb:
-          type: string
-          xml:
-            name: VrsnNb
-        sts:
-          type: string
-          xml:
-            name: Sts
-          enum:
-            - DACT
-            - OPER
-            - OUTD
-            - WAIT
-        xpryDt:
-          type: string
-          format: date-time
-          xml:
-            name: XpryDt
     PointOfServiceContext1:
       required:
         - cardDataNtryMd
@@ -1951,42 +910,6 @@ components:
       properties:
         orgnlRsltData:
           $ref: '#/components/schemas/ResultData1'
-    Recipient5Choice:
-      type: object
-      properties:
-        issrAndSrlNb:
-          $ref: '#/components/schemas/IssuerAndSerialNumber1'
-        keyIdr:
-          $ref: '#/components/schemas/KEKIdentifier2'
-    Recipient6Choice:
-      type: object
-      properties:
-        keyTrnsprt:
-          $ref: '#/components/schemas/KeyTransport5'
-        kek:
-          $ref: '#/components/schemas/KEK5'
-        keyIdr:
-          $ref: '#/components/schemas/KEKIdentifier2'
-    RelativeDistinguishedName1:
-      required:
-        - attrTp
-        - attrVal
-      type: object
-      properties:
-        attrTp:
-          type: string
-          xml:
-            name: AttrTp
-          enum:
-            - CATT
-            - CNAT
-            - LATT
-            - OATT
-            - OUAT
-        attrVal:
-          type: string
-          xml:
-            name: AttrVal
     ResultData1:
       required:
         - rsltDtls
@@ -2039,21 +962,6 @@ components:
             name: AddtlRskData
           items:
             $ref: '#/components/schemas/AdditionalRiskData1'
-    RiskAssessmentDataEntityProvider1:
-      type: object
-      properties:
-        tp:
-          type: string
-          xml:
-            name: Tp
-          enum:
-            - ACCP
-            - ACQR
-            - AGNT
-            - ISUR
-            - OTHN
-            - OTHP
-            - WLPR
     RiskContext1:
       type: object
       properties:
@@ -2075,8 +983,6 @@ components:
         - val
       type: object
       properties:
-        ntty:
-          $ref: '#/components/schemas/RiskAssessmentDataEntityProvider1'
         tp:
           type: string
           xml:
@@ -2139,72 +1045,6 @@ components:
           format: date-time
           xml:
             name: SttlmDt
-    SignedData5:
-      type: object
-      properties:
-        vrsn:
-          type: number
-          xml:
-            name: Vrsn
-        dgstAlgo:
-          type: array
-          xml:
-            name: DgstAlgo
-          items:
-            $ref: '#/components/schemas/AlgorithmIdentification21'
-        ncpsltdCntt:
-          $ref: '#/components/schemas/EncapsulatedContent3'
-        cert:
-          type: array
-          xml:
-            name: Cert
-          items:
-            type: array
-            xml:
-              name: Cert
-            items:
-              type: string
-              format: byte
-              xml:
-                name: MAC
-        sgnr:
-          type: array
-          xml:
-            name: Sgnr
-          items:
-            $ref: '#/components/schemas/Signer4'
-    Signer4:
-      required:
-        - dgstAlgo
-        - sgntr
-        - sgntrAlgo
-      type: object
-      properties:
-        vrsn:
-          type: number
-          xml:
-            name: Vrsn
-        sgnrId:
-          $ref: '#/components/schemas/Recipient5Choice'
-        dgstAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification21'
-        sgndAttrbts:
-          type: array
-          xml:
-            name: SgndAttrbts
-          items:
-            $ref: '#/components/schemas/GenericInformation1'
-        sgntrAlgo:
-          $ref: '#/components/schemas/AlgorithmIdentification20'
-        sgntr:
-          type: array
-          xml:
-            name: Sgntr
-          items:
-            type: string
-            format: byte
-            xml:
-              name: Sgntr
     SpecialConditions1:
       type: object
       properties:
@@ -2240,17 +1080,6 @@ components:
             name: Dtl
           items:
             $ref: '#/components/schemas/SpecialProgrammeDetails1'
-    SponsoredMerchant1:
-      required:
-        - id
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/PartyIdentification197'
-        cmonNm:
-          type: string
-          xml:
-            name: CmonNm
     Terminal1:
       required:
         - termnlId
@@ -2290,10 +1119,6 @@ components:
           type: boolean
           xml:
             name: OnBrdInd
-        poicmpnt:
-          type: array
-          items:
-            $ref: '#/components/schemas/PointOfInteractionComponent8'
     TerminalIdentification1:
       required:
         - id
@@ -2314,6 +1139,10 @@ components:
           type: string
           xml:
             name: PmtTkn
+        tknXpryDt:
+          type: string
+          xml:
+            name: TknXpryDt
         tknRqstrId:
           type: string
           xml:
@@ -2333,10 +1162,6 @@ components:
           type: string
           xml:
             name: TxtVal
-        hexBinryVal:
-          type: string
-          xml:
-            name: HexBinryVal
     Transaction77:
       required:
         - txAmts
@@ -2544,6 +1369,8 @@ components:
           type: string
           xml:
             name: CardIssrRefData
+        orgnlDataElmts:
+          $ref: '#/components/schemas/OriginalDataElements1'
     TransactionLifeCycleIdentification1:
       required:
         - id
@@ -2890,6 +1717,8 @@ components:
           $ref: '#/components/schemas/Terminal2'
         card:
           $ref: '#/components/schemas/CardData4'
+        wllt:
+          $ref: '#/components/schemas/Wallet1'
         tkn:
           $ref: '#/components/schemas/Token1'
     ProcessingResult2:
@@ -2983,6 +1812,12 @@ components:
           $ref: '#/components/schemas/AccountDetails2'
         acctTo:
           $ref: '#/components/schemas/AccountDetails2'
+        addtlData:
+          type: array
+          xml:
+            name: AddtlData
+          items:
+            $ref: '#/components/schemas/AdditionalData1'
     TransactionContext3:
       type: object
       properties:

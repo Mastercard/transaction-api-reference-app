@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **trck2** | [**Track2Data1Choice**](Track2Data1Choice.md) |  |  [optional]
 **pmtAcctRef** | **String** |  |  [optional]
 **cardPdctTp** | **String** |  |  [optional]
+**addtlCardData** | **String** |  |  [optional]
 
 
 

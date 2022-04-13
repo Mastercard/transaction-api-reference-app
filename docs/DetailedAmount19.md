@@ -19,14 +19,7 @@ Name | Value
 ---- | -----
 CSHB | &quot;CSHB&quot;
 DCCF | &quot;DCCF&quot;
-DONN | &quot;DONN&quot;
-EXTR | &quot;EXTR&quot;
-FORX | &quot;FORX&quot;
-GRTY | &quot;GRTY&quot;
-OTHN | &quot;OTHN&quot;
-OTHP | &quot;OTHP&quot;
 SRCH | &quot;SRCH&quot;
-TAXT | &quot;TAXT&quot;
 
 
 

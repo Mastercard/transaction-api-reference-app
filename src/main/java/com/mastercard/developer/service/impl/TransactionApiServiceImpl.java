@@ -28,7 +28,7 @@ public class TransactionApiServiceImpl implements TransactionApiService {
     public AuthorisationResponseV02 initiateAuthorisation(AuthorisationInitiationV02 authorisationRequest) throws ServiceException {
         try {
             log.info("<-- CALLING TRANSACTION API ENDPOINT -->");
-            AuthorisationResponseV02 transactionApiResponse = transactionApiApi.initiateAuthorisation(authorisationRequest);
+            AuthorisationResponseV02 transactionApiResponse = transactionApiApi.processAuthorisation(authorisationRequest);
             Assertions.assertNotNull(transactionApiResponse, "Missing object 'transactionApiResponse' when calling servicesPost(Async)");
             log.info("<-- TRANSACTION API RESPONDED SUCCESSFULLY -->");
             return transactionApiResponse;

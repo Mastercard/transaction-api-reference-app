@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **acctBal** | [**List&lt;AccountBalance1&gt;**](AccountBalance1.md) |  |  [optional]
 **acctFr** | [**AccountDetails2**](AccountDetails2.md) |  |  [optional]
 **acctTo** | [**AccountDetails2**](AccountDetails2.md) |  |  [optional]
+**addtlData** | [**List&lt;AdditionalData1&gt;**](AdditionalData1.md) |  |  [optional]
 
 
 

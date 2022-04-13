@@ -1,19 +1,19 @@
 # TransactionApiApi
 
-All URIs are relative to *https://api.mastercard.com/transaction-api*
+All URIs are relative to *https://sandbox.api.mastercard.com/transaction-api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**initiateAuthorisation**](TransactionApiApi.md#initiateAuthorisation) | **POST** /cain-authorisation-requests | Send an ISO20022 initiation authorisation request
+[**processAuthorisation**](TransactionApiApi.md#processAuthorisation) | **POST** /cain-authorisation-requests | Send an ISO20022 initiation authorisation request
 
 
-<a name="initiateAuthorisation"></a>
-# **initiateAuthorisation**
-> AuthorisationResponseV02 initiateAuthorisation(authorisationInitiationV02)
+<a name="processAuthorisation"></a>
+# **processAuthorisation**
+> AuthorisationResponseV02 processAuthorisation(authorisationInitiationV02)
 
 Send an ISO20022 initiation authorisation request
 
-Endpoint to send an ISO20022 initiation authorisation request to
+Endpoint to send an ISO20022 initiation authorisation request
 
 ### Example
 ```java
@@ -27,15 +27,15 @@ import org.openapitools.client.api.TransactionApiApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mastercard.com/transaction-api");
+    defaultClient.setBasePath("https://sandbox.api.mastercard.com/transaction-api");
 
     TransactionApiApi apiInstance = new TransactionApiApi(defaultClient);
     AuthorisationInitiationV02 authorisationInitiationV02 = new AuthorisationInitiationV02(); // AuthorisationInitiationV02 | A JSON object containing AuthorisationInitiationV02 Information
     try {
-      AuthorisationResponseV02 result = apiInstance.initiateAuthorisation(authorisationInitiationV02);
+      AuthorisationResponseV02 result = apiInstance.processAuthorisation(authorisationInitiationV02);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling TransactionApiApi#initiateAuthorisation");
+      System.err.println("Exception when calling TransactionApiApi#processAuthorisation");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

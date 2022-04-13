@@ -7,7 +7,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **txtVal** | **String** |  |  [optional]
-**hexBinryVal** | **String** |  |  [optional]
 
 
 

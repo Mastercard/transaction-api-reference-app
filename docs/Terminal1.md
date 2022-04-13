@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **termnlIntgtn** | [**TermnlIntgtnEnum**](#TermnlIntgtnEnum) |  |  [optional]
 **offPrmissInd** | **Boolean** |  |  [optional]
 **onBrdInd** | **Boolean** |  |  [optional]
-**poicmpnt** | [**List&lt;PointOfInteractionComponent8&gt;**](PointOfInteractionComponent8.md) |  |  [optional]
 
 
 

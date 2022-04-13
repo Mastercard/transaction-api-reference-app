@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **acqrr** | [**PartyIdentification197**](PartyIdentification197.md) |  | 
 **sndr** | [**PartyIdentification197**](PartyIdentification197.md) |  |  [optional]
-**rcvr** | [**PartyIdentification197**](PartyIdentification197.md) |  |  [optional]
 **accptr** | [**PartyIdentification203**](PartyIdentification203.md) |  |  [optional]
 **pyer** | [**PartyIdentification211**](PartyIdentification211.md) |  |  [optional]
 **pyee** | [**PartyIdentification211**](PartyIdentification211.md) |  |  [optional]

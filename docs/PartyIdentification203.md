@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **addtlCtctInf** | **String** |  |  [optional]
 **taxRegnId** | **String** |  |  [optional]
 **addtlData** | [**List&lt;AdditionalData1&gt;**](AdditionalData1.md) |  |  [optional]
-**spnsrdMrchnt** | [**List&lt;SponsoredMerchant1&gt;**](SponsoredMerchant1.md) |  |  [optional]
 **urladr** | **String** |  |  [optional]
 
 
