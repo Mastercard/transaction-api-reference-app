@@ -1,0 +1,1905 @@
+openapi: 3.0.1
+info:
+  title: Transaction API
+  description: Transaction API
+  contact:
+    name: API Support
+    url: https://developer.mastercard.com/support
+    email: apisupport@mastercard.com
+  version: 0.0.1
+servers:
+  - url: https://sandbox.api.mastercard.com/transaction-api/
+    description: Sandbox server
+  - url: https://api.mastercard.com/transaction-api/
+    description: Production server
+tags:
+  - name: transaction-api
+    description: Transaction Api Controller Endpoints
+paths:
+  /cain-authorisation-requests:
+    post:
+      tags:
+        - transaction-api
+      summary: Send an ISO20022 initiation authorisation request
+      description: Endpoint to send an ISO20022 initiation authorisation request
+      operationId: processAuthorisation
+      requestBody:
+        $ref: '#/components/requestBodies/AuthorisationInitiation'
+      responses:
+        "200":
+          $ref: '#/components/responses/Successful'
+components:
+  requestBodies:
+    AuthorisationInitiation:
+      description: A JSON object containing AuthorisationInitiationV02 Information
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuthorisationInitiationV02'
+  responses:
+    Successful:
+      description: Successful Authorisation responses
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuthorisationResponseV02'
+  schemas:
+    AccountDetails2:
+      type: object
+      properties:
+        acctTp:
+          type: string
+          xml:
+            name: AcctTp
+        acctId:
+          type: string
+          xml:
+            name: AcctId
+    AdditionalAmounts1:
+      required:
+        - amt
+        - tp
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - AMTH
+            - AMTN
+            - AMTQ
+            - AMTX
+            - ANTA
+            - CUAT
+            - DCNT
+            - ISCF
+            - MAXI
+            - OTHN
+            - OTHP
+            - PDCC
+            - RQCH
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+        amt:
+          $ref: '#/components/schemas/Amount14'
+    AdditionalData1:
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+        val:
+          type: string
+          xml:
+            name: Val
+    AdditionalRiskData1:
+      required:
+        - tp
+        - val
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+        val:
+          type: string
+          xml:
+            name: Val
+    AdditionalService1:
+      required:
+        - tp
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - CACT
+            - CSHB
+            - DCCV
+            - INTP
+            - INTT
+            - LOYT
+            - OTHN
+            - OTHP
+            - PRST
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+    Address1:
+      type: object
+      properties:
+        adrLine1:
+          type: string
+          xml:
+            name: AdrLine1
+        pstlCd:
+          type: string
+          xml:
+            name: PstlCd
+        twnNm:
+          type: string
+          xml:
+            name: TwnNm
+        ctrySubDvsnMjr:
+          type: string
+          xml:
+            name: CtrySubDvsnMjr
+        ctry:
+          type: string
+          xml:
+            name: Ctry
+    Amount14:
+      required:
+        - amt
+      type: object
+      properties:
+        amt:
+          type: number
+          xml:
+            name: Amt
+        ccy:
+          type: string
+          xml:
+            name: Ccy
+        sgn:
+          type: boolean
+          xml:
+            name: Sgn
+    Amount4:
+      required:
+        - amt
+      type: object
+      properties:
+        amt:
+          type: number
+          xml:
+            name: Amt
+        ccy:
+          type: string
+          xml:
+            name: Ccy
+        xchgRate:
+          type: number
+          xml:
+            name: XchgRate
+        qtnDt:
+          type: string
+          format: date-time
+          xml:
+            name: QtnDt
+    Amount5:
+      required:
+        - amt
+      type: object
+      properties:
+        amt:
+          type: number
+          xml:
+            name: Amt
+        sgn:
+          type: boolean
+          xml:
+            name: Sgn
+    AuthorisationInitiation1:
+      required:
+        - cntxt
+        - envt
+        - tx
+      type: object
+      properties:
+        envt:
+          $ref: '#/components/schemas/Environment1'
+        cntxt:
+          $ref: '#/components/schemas/Context1'
+        tx:
+          $ref: '#/components/schemas/Transaction77'
+        prcgRslt:
+          $ref: '#/components/schemas/ProcessingResult1'
+        iccrltdData:
+          type: string
+    AuthorisationInitiationV02:
+      required:
+        - body
+        - hdr
+      type: object
+      properties:
+        hdr:
+          $ref: '#/components/schemas/Header42'
+        body:
+          $ref: '#/components/schemas/AuthorisationInitiation1'
+    Capabilities1:
+      type: object
+      properties:
+        cardRdngCpblty:
+          type: array
+          xml:
+            name: CardRdngCpblty
+          items:
+            type: string
+            xml:
+              name: CardRdngCpblty
+            enum:
+              - CDFL
+              - ICCY
+              - ICPY
+              - KEEN
+              - MGST
+              - MICR
+              - MLEY
+              - MSIP
+              - OCRR
+              - OPTC
+              - OTHN
+              - OTHP
+              - RFID
+              - UNSP
+        othrCardRdngCpblties:
+          type: array
+          xml:
+            name: OthrCardRdngCpblties
+          items:
+            type: string
+            xml:
+              name: OthrCardRdngCpblties
+        cardWrtgCpblties:
+          type: array
+          xml:
+            name: CardWrtgCpblties
+          items:
+            type: string
+            xml:
+              name: CardWrtgCpblties
+            enum:
+              - ICCY
+              - ICPY
+              - MGST
+              - MSIP
+              - OTHN
+              - OTHP
+              - UNSP
+        othrCardWrtgCpblties:
+          type: array
+          xml:
+            name: OthrCardWrtgCpblties
+          items:
+            type: string
+            xml:
+              name: OthrCardWrtgCpblties
+        cardCaptrCpbl:
+          type: boolean
+          xml:
+            name: CardCaptrCpbl
+        crdhldrVrfctnCpblty:
+          type: array
+          xml:
+            name: CrdhldrVrfctnCpblty
+          items:
+            $ref: '#/components/schemas/CardholderVerificationCapabilities1'
+        pinlngthCpblties:
+          type: number
+        pinpadInprtv:
+          type: boolean
+    CardData1:
+      required:
+        - pan
+      type: object
+      properties:
+        pan:
+          type: string
+          xml:
+            name: PAN
+        cardSeqNb:
+          type: string
+          xml:
+            name: CardSeqNb
+        xpryDt:
+          type: string
+          xml:
+            name: XpryDt
+        trck1:
+          type: string
+          xml:
+            name: Trck1
+        trck2:
+          $ref: '#/components/schemas/Track2Data1Choice'
+        pmtAcctRef:
+          type: string
+          xml:
+            name: PmtAcctRef
+        cardPdctTp:
+          type: string
+          xml:
+            name: CardPdctTp
+        addtlCardData:
+          type: string
+          xml:
+            name: AddtlCardData
+    CardProgramme1:
+      type: object
+      properties:
+        cardPrgrmmApld:
+          $ref: '#/components/schemas/CardProgrammeMode1'
+    CardProgrammeMode1:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          xml:
+            name: Id
+    Cardholder15:
+      type: object
+      properties:
+        crdhldrNm:
+          $ref: '#/components/schemas/CardholderName1'
+        id:
+          type: array
+          xml:
+            name: Id
+          items:
+            $ref: '#/components/schemas/Credentials1'
+        adr:
+          $ref: '#/components/schemas/Address1'
+        ctctInf:
+          $ref: '#/components/schemas/Contact1'
+    CardholderName1:
+      type: object
+      properties:
+        gvnNm:
+          type: string
+          xml:
+            name: GvnNm
+        mddlInitls:
+          type: string
+          xml:
+            name: MddlInitls
+        lastNm:
+          type: string
+          xml:
+            name: LastNm
+    CardholderVerificationCapabilities1:
+      required:
+        - cpblty
+      type: object
+      properties:
+        cpblty:
+          type: string
+          xml:
+            name: Cpblty
+          enum:
+            - APKI
+            - FBIG
+            - FBIO
+            - FCPN
+            - FDSG
+            - FEPN
+            - NBIO
+            - NOOP
+            - NOPN
+            - NOVF
+            - NPIN
+            - OTHN
+            - OTHP
+            - PKIS
+            - SIGN
+            - UNSP
+            - VORN
+        othrCpblty:
+          type: string
+          xml:
+            name: OthrCpblty
+    Contact1:
+      type: object
+      properties:
+        homePhneNb:
+          type: string
+          xml:
+            name: HomePhneNb
+        bizPhneNb:
+          type: string
+          xml:
+            name: BizPhneNb
+        mobPhneNb:
+          type: string
+          xml:
+            name: MobPhneNb
+        prsnlEmailAdr:
+          type: string
+          xml:
+            name: PrsnlEmailAdr
+        bizEmailAdr:
+          type: string
+          xml:
+            name: BizEmailAdr
+    Context1:
+      required:
+        - ptOfSvcCntxt
+        - txCntxt
+      type: object
+      properties:
+        ptOfSvcCntxt:
+          $ref: '#/components/schemas/PointOfServiceContext1'
+        txCntxt:
+          $ref: '#/components/schemas/TransactionContext1'
+        vrfctn:
+          type: array
+          xml:
+            name: Vrfctn
+          items:
+            $ref: '#/components/schemas/Verification1'
+        rskCntxt:
+          type: array
+          xml:
+            name: RskCntxt
+          items:
+            $ref: '#/components/schemas/RiskContext1'
+        saleCntxt:
+          $ref: '#/components/schemas/SaleContext7'
+    Credentials1:
+      required:
+        - idCd
+        - idVal
+      type: object
+      properties:
+        idCd:
+          type: string
+          xml:
+            name: IdCd
+          enum:
+            - ARNB
+            - DRID
+            - EMAL
+            - NTID
+            - OTHN
+            - OTHP
+            - PASS
+            - PHNB
+            - SSYN
+        idVal:
+          type: string
+          xml:
+            name: IdVal
+    Customer3:
+      type: object
+      properties:
+        cstmrId:
+          type: string
+          xml:
+            name: CstmrId
+        nm:
+          type: string
+          xml:
+            name: Nm
+        adr:
+          $ref: '#/components/schemas/Address1'
+        crdntls:
+          type: array
+          xml:
+            name: Crdntls
+          items:
+            $ref: '#/components/schemas/Credentials1'
+        dtOfBirth:
+          type: string
+          format: date-time
+          xml:
+            name: DtOfBirth
+    CustomerDevice2:
+      type: object
+      properties:
+        dvc:
+          $ref: '#/components/schemas/Device1'
+    DetailedAmount19:
+      required:
+        - amt
+        - tp
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - CSHB
+            - DCCF
+            - SRCH
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+        amt:
+          $ref: '#/components/schemas/Amount5'
+        crdhldrBllgAmt:
+          $ref: '#/components/schemas/Amount5'
+    Device1:
+      required:
+        - tp
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - MOBL
+            - NSCR
+            - OTHN
+            - OTHP
+            - PECR
+            - SECR
+            - TBLT
+    Environment1:
+      required:
+        - acqrr
+        - card
+      type: object
+      properties:
+        acqrr:
+          $ref: '#/components/schemas/PartyIdentification197'
+        sndr:
+          $ref: '#/components/schemas/PartyIdentification197'
+        accptr:
+          $ref: '#/components/schemas/PartyIdentification203'
+        pyer:
+          $ref: '#/components/schemas/PartyIdentification211'
+        pyee:
+          $ref: '#/components/schemas/PartyIdentification211'
+        termnl:
+          $ref: '#/components/schemas/Terminal1'
+        card:
+          $ref: '#/components/schemas/CardData1'
+        cstmrDvc:
+          $ref: '#/components/schemas/CustomerDevice2'
+        wllt:
+          $ref: '#/components/schemas/Wallet1'
+        tkn:
+          $ref: '#/components/schemas/Token1'
+        crdhldr:
+          $ref: '#/components/schemas/Cardholder15'
+    FundingService1:
+      type: object
+      properties:
+        fndgSvc:
+          $ref: '#/components/schemas/TransferService1'
+        fndgSrc:
+          $ref: '#/components/schemas/FundingSource2'
+    FundingSource2:
+      type: object
+      properties:
+        srcTp:
+          type: string
+          xml:
+            name: SrcTp
+          enum:
+            - CASH
+            - CDBT
+            - CHQE
+            - CRDT
+            - CURR
+            - DBAC
+            - EPRS
+            - LCDT
+            - LOYL
+            - OTHN
+            - OTHP
+            - PRPD
+            - SVNG
+            - UVRL
+        othrSrcTp:
+          type: string
+          xml:
+            name: OthrSrcTp
+    GenericIdentification172:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          xml:
+            name: Id
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - ACQP
+            - ACQR
+            - AGNT
+            - CISP
+            - CISS
+            - OTHN
+            - OTHP
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+        assgnr:
+          type: string
+          xml:
+            name: Assgnr
+          enum:
+            - ACQR
+            - AGNT
+            - CISS
+            - CSCH
+        ctry:
+          type: string
+          xml:
+            name: Ctry
+        shrtNm:
+          type: string
+          xml:
+            name: ShrtNm
+    Header42:
+      required:
+        - creDtTm
+        - initgPty
+        - msgFctn
+        - prtcolVrsn
+      type: object
+      properties:
+        msgFctn:
+          type: string
+          xml:
+            name: MsgFctn
+          enum:
+            - ADVC
+            - REQU
+        prtcolVrsn:
+          type: string
+          xml:
+            name: PrtcolVrsn
+        xchgId:
+          type: string
+          xml:
+            name: XchgId
+        creDtTm:
+          type: string
+          format: date-time
+          xml:
+            name: CreDtTm
+        initgPty:
+          $ref: '#/components/schemas/GenericIdentification172'
+        tracData:
+          type: array
+          xml:
+            name: TracData
+          items:
+            $ref: '#/components/schemas/AdditionalData1'
+    OriginalDataElements1:
+      required:
+        - rtrvlRefNb
+      type: object
+      properties:
+        lclDtTm:
+          type: string
+          format: date-time
+          xml:
+            name: LclDtTm
+        rtrvlRefNb:
+          type: string
+          xml:
+            name: RtrvlRefNb
+        lifeCyclSpprt:
+          type: string
+          xml:
+            name: LifeCyclSpprt
+          enum:
+            - AUTH
+            - FINC
+        lifeCyclTracIdData:
+          $ref: '#/components/schemas/TransactionLifeCycleIdentification1'
+    PINData1:
+      required:
+        - ncrptdPINBlck
+      type: object
+      properties:
+        ctrl:
+          type: string
+          xml:
+            name: Ctrl
+        keySetIdr:
+          type: string
+          xml:
+            name: KeySetIdr
+        drvdInf:
+          type: string
+          xml:
+            name: DrvdInf
+        algo:
+          type: string
+          xml:
+            name: Algo
+        keyLngth:
+          type: string
+          xml:
+            name: KeyLngth
+        keyPrtcn:
+          type: string
+          xml:
+            name: KeyPrtcn
+        keyIndx:
+          type: string
+          xml:
+            name: KeyIndx
+        ncrptdPINBlck:
+          type: string
+          xml:
+            name: NcrptdPINBlck
+        pinblckFrmt:
+          type: string
+    PartyIdentification197:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          xml:
+            name: Id
+        addtlId:
+          type: string
+          xml:
+            name: AddtlId
+    PartyIdentification200:
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - ACCP
+            - ACQR
+            - AGNT
+            - ISUR
+            - OTHN
+            - OTHP
+            - WLPR
+    PartyIdentification203:
+      required:
+        - id
+        - nmAndLctn
+      type: object
+      properties:
+        id:
+          type: string
+          xml:
+            name: Id
+        addtlId:
+          type: string
+          xml:
+            name: AddtlId
+        nmAndLctn:
+          type: string
+          xml:
+            name: NmAndLctn
+        adr:
+          $ref: '#/components/schemas/Address1'
+        email:
+          type: string
+          xml:
+            name: Email
+        phneNb:
+          type: string
+          xml:
+            name: PhneNb
+        cstmrSvc:
+          type: string
+          xml:
+            name: CstmrSvc
+        addtlCtctInf:
+          type: string
+          xml:
+            name: AddtlCtctInf
+        taxRegnId:
+          type: string
+          xml:
+            name: TaxRegnId
+        addtlData:
+          type: array
+          xml:
+            name: AddtlData
+          items:
+            $ref: '#/components/schemas/AdditionalData1'
+        urladr:
+          type: string
+    PartyIdentification211:
+      type: object
+      properties:
+        cstmr:
+          $ref: '#/components/schemas/Customer3'
+    PointOfServiceContext1:
+      required:
+        - cardDataNtryMd
+      type: object
+      properties:
+        cardPres:
+          type: boolean
+          xml:
+            name: CardPres
+        crdhldrPres:
+          type: boolean
+          xml:
+            name: CrdhldrPres
+        crdhldrActvtd:
+          type: boolean
+          xml:
+            name: CrdhldrActvtd
+        trnspndrInittd:
+          type: boolean
+          xml:
+            name: TrnspndrInittd
+        attnddInd:
+          type: boolean
+          xml:
+            name: AttnddInd
+        uattnddLvlCtgy:
+          type: string
+          xml:
+            name: UattnddLvlCtgy
+        prtlApprvlSpprtd:
+          type: boolean
+          xml:
+            name: PrtlApprvlSpprtd
+        cardDataNtryMd:
+          type: string
+          xml:
+            name: CardDataNtryMd
+          enum:
+            - CDFL
+            - ICCY
+            - ICPY
+            - KEEN
+            - MGST
+            - MICR
+            - MLEY
+            - MSIP
+            - OCRR
+            - OPTC
+            - OTHN
+            - OTHP
+            - RFID
+            - UNSP
+        othrCardDataNtryMd:
+          type: string
+          xml:
+            name: OthrCardDataNtryMd
+        spclConds:
+          type: array
+          xml:
+            name: SpclConds
+          items:
+            $ref: '#/components/schemas/SpecialConditions1'
+        ecomrcInd:
+          type: boolean
+        motoind:
+          type: boolean
+    ProcessingResult1:
+      type: object
+      properties:
+        orgnlRsltData:
+          $ref: '#/components/schemas/ResultData1'
+    ResultData1:
+      required:
+        - rsltDtls
+      type: object
+      properties:
+        rslt:
+          type: string
+          xml:
+            name: Rslt
+          enum:
+            - OTHN
+            - OTHP
+            - PRCS
+            - REJT
+            - TECH
+            - UNPR
+            - UNRV
+        othrRslt:
+          type: string
+          xml:
+            name: OthrRslt
+        rsltDtls:
+          type: string
+          xml:
+            name: RsltDtls
+    RiskAssessment1:
+      type: object
+      properties:
+        rskAssmntNtty:
+          $ref: '#/components/schemas/PartyIdentification200'
+        rskAssmntTp:
+          type: string
+          xml:
+            name: RskAssmntTp
+        rsn:
+          type: array
+          xml:
+            name: Rsn
+          items:
+            type: string
+            xml:
+              name: Rsn
+        rslt:
+          type: string
+          xml:
+            name: Rslt
+        addtlRskData:
+          type: array
+          xml:
+            name: AddtlRskData
+          items:
+            $ref: '#/components/schemas/AdditionalRiskData1'
+    RiskContext1:
+      type: object
+      properties:
+        rskInptData:
+          type: array
+          xml:
+            name: RskInptData
+          items:
+            $ref: '#/components/schemas/RiskInputData1'
+        rskAssmnt:
+          type: array
+          xml:
+            name: RskAssmnt
+          items:
+            $ref: '#/components/schemas/RiskAssessment1'
+    RiskInputData1:
+      required:
+        - tp
+        - val
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+        val:
+          type: string
+          xml:
+            name: Val
+    SaleContext7:
+      type: object
+      properties:
+        saleId:
+          type: string
+          xml:
+            name: SaleId
+        saleRefId:
+          type: string
+          xml:
+            name: SaleRefId
+        saleRefNb:
+          type: string
+          xml:
+            name: SaleRefNb
+        goodsAndSvcsTp:
+          type: string
+          xml:
+            name: GoodsAndSvcsTp
+          enum:
+            - ELEC
+            - ELPH
+            - PHYS
+        goodAndSvcsSubTp:
+          type: string
+          xml:
+            name: GoodAndSvcsSubTp
+          enum:
+            - CRCU
+            - FORX
+            - OTHN
+            - OTHP
+            - SECS
+        goodAndSvcsOthrSubTp:
+          type: string
+          xml:
+            name: GoodAndSvcsOthrSubTp
+        spltPmtInd:
+          type: boolean
+          xml:
+            name: SpltPmtInd
+    SettlementService1:
+      type: object
+      properties:
+        sttlmSvcDts:
+          $ref: '#/components/schemas/SettlementServiceDate1'
+    SettlementServiceDate1:
+      type: object
+      properties:
+        sttlmDt:
+          type: string
+          format: date-time
+          xml:
+            name: SttlmDt
+    SpecialConditions1:
+      type: object
+      properties:
+        id:
+          type: string
+          xml:
+            name: Id
+        val:
+          type: string
+          xml:
+            name: Val
+    SpecialProgrammeDetails1:
+      type: object
+      properties:
+        nm:
+          type: string
+          xml:
+            name: Nm
+        val:
+          type: string
+          xml:
+            name: Val
+    SpecialProgrammeQualification1:
+      type: object
+      properties:
+        prgrmm:
+          type: string
+          xml:
+            name: Prgrmm
+        dtl:
+          type: array
+          xml:
+            name: Dtl
+          items:
+            $ref: '#/components/schemas/SpecialProgrammeDetails1'
+    Terminal1:
+      required:
+        - termnlId
+      type: object
+      properties:
+        termnlId:
+          $ref: '#/components/schemas/TerminalIdentification1'
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - ATMT
+            - MPOS
+            - OTHN
+            - OTHP
+            - POST
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+        cpblties:
+          $ref: '#/components/schemas/Capabilities1'
+        termnlIntgtn:
+          type: string
+          xml:
+            name: TermnlIntgtn
+          enum:
+            - MPOI
+            - MSLE
+            - SSLE
+        offPrmissInd:
+          type: boolean
+          xml:
+            name: OffPrmissInd
+        onBrdInd:
+          type: boolean
+          xml:
+            name: OnBrdInd
+    TerminalIdentification1:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          xml:
+            name: Id
+        ctry:
+          type: string
+          xml:
+            name: Ctry
+    Token1:
+      type: object
+      properties:
+        pmtTkn:
+          type: string
+          xml:
+            name: PmtTkn
+        tknXpryDt:
+          type: string
+          xml:
+            name: TknXpryDt
+        tknRqstrId:
+          type: string
+          xml:
+            name: TknRqstrId
+        tknAssrncMtd:
+          type: string
+          xml:
+            name: TknAssrncMtd
+        tknInittdInd:
+          type: boolean
+          xml:
+            name: TknInittdInd
+    Track2Data1Choice:
+      type: object
+      properties:
+        txtVal:
+          type: string
+          xml:
+            name: TxtVal
+    Transaction77:
+      required:
+        - txAmts
+        - txId
+        - txTp
+      type: object
+      properties:
+        txTp:
+          type: string
+          xml:
+            name: TxTp
+        txSubTp:
+          type: string
+          xml:
+            name: TxSubTp
+        addtlSvc:
+          type: array
+          xml:
+            name: AddtlSvc
+          items:
+            $ref: '#/components/schemas/AdditionalService1'
+        txAttr:
+          type: string
+          xml:
+            name: TxAttr
+          enum:
+            - AGGR
+            - CADB
+            - CPLT
+            - DBRP
+            - DFRD
+            - FRCP
+            - INCR
+            - INST
+            - OTHN
+            - OTHP
+            - PACP
+            - PAUT
+            - PPYT
+            - RCPT
+            - SUBR
+            - TPUP
+        othrTxAttr:
+          type: string
+          xml:
+            name: OthrTxAttr
+        altrnMsgRsn:
+          type: array
+          xml:
+            name: AltrnMsgRsn
+          items:
+            type: string
+            xml:
+              name: AltrnMsgRsn
+        preAuthstnTmLmt:
+          type: string
+          xml:
+            name: PreAuthstnTmLmt
+        spclPrgrmmQlfctn:
+          type: array
+          xml:
+            name: SpclPrgrmmQlfctn
+          items:
+            $ref: '#/components/schemas/SpecialProgrammeQualification1'
+        txId:
+          $ref: '#/components/schemas/TransactionIdentification8'
+        txAmts:
+          $ref: '#/components/schemas/TransactionAmounts1'
+        addtlAmts:
+          type: array
+          xml:
+            name: AddtlAmts
+          items:
+            $ref: '#/components/schemas/AdditionalAmounts1'
+        fndsSvcs:
+          $ref: '#/components/schemas/FundingService1'
+        acctFr:
+          $ref: '#/components/schemas/AccountDetails2'
+        acctTo:
+          $ref: '#/components/schemas/AccountDetails2'
+        txDesc:
+          type: string
+          xml:
+            name: TxDesc
+        addtlData:
+          type: array
+          xml:
+            name: AddtlData
+          items:
+            $ref: '#/components/schemas/AdditionalData1'
+    TransactionAmount1:
+      required:
+        - amt
+        - ccy
+      type: object
+      properties:
+        amt:
+          type: number
+          xml:
+            name: Amt
+        ccy:
+          type: string
+          xml:
+            name: Ccy
+    TransactionAmounts1:
+      type: object
+      properties:
+        amtQlfr:
+          type: string
+          xml:
+            name: AmtQlfr
+          enum:
+            - ACTL
+            - DFLT
+            - DPST
+            - ESTM
+            - MAXI
+            - PRXY
+            - RESD
+        txAmt:
+          $ref: '#/components/schemas/TransactionAmount1'
+        crdhldrBllgAmt:
+          $ref: '#/components/schemas/Amount4'
+        rcncltnAmt:
+          $ref: '#/components/schemas/Amount4'
+        dtldAmt:
+          type: array
+          xml:
+            name: DtldAmt
+          items:
+            $ref: '#/components/schemas/DetailedAmount19'
+    TransactionContext1:
+      required:
+        - mrchntCtgyCd
+      type: object
+      properties:
+        mrchntCtgyCd:
+          type: string
+          xml:
+            name: MrchntCtgyCd
+        mrchntCtgySpcfcData:
+          type: string
+          xml:
+            name: MrchntCtgySpcfcData
+        cstmrCnsnt:
+          type: boolean
+          xml:
+            name: CstmrCnsnt
+        mgntcStrpFllbckInd:
+          type: boolean
+          xml:
+            name: MgntcStrpFllbckInd
+        fnlAuthstnInd:
+          type: boolean
+          xml:
+            name: FnlAuthstnInd
+        txInitr:
+          type: string
+          xml:
+            name: TxInitr
+          enum:
+            - CUST
+            - MERC
+        cardPrgrmm:
+          $ref: '#/components/schemas/CardProgramme1'
+        sttlmSvc:
+          $ref: '#/components/schemas/SettlementService1'
+        iccfllbckInd:
+          type: boolean
+    TransactionIdentification8:
+      required:
+        - lclDtTm
+        - rtrvlRefNb
+        - sysTracAudtNb
+      type: object
+      properties:
+        lclDtTm:
+          type: string
+          format: date-time
+          xml:
+            name: LclDtTm
+        trnsmssnDtTm:
+          type: string
+          format: date-time
+          xml:
+            name: TrnsmssnDtTm
+        sysTracAudtNb:
+          type: string
+          xml:
+            name: SysTracAudtNb
+        rtrvlRefNb:
+          type: string
+          xml:
+            name: RtrvlRefNb
+        lifeCyclSpprt:
+          type: string
+          xml:
+            name: LifeCyclSpprt
+          enum:
+            - AUTH
+            - FINC
+        lifeCyclTracIdData:
+          $ref: '#/components/schemas/TransactionLifeCycleIdentification1'
+        cardIssrRefData:
+          type: string
+          xml:
+            name: CardIssrRefData
+        orgnlDataElmts:
+          $ref: '#/components/schemas/OriginalDataElements1'
+    TransactionLifeCycleIdentification1:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          xml:
+            name: Id
+        authstnSeqNb:
+          type: string
+          xml:
+            name: AuthstnSeqNb
+    TransferService1:
+      type: object
+      properties:
+        ref:
+          type: string
+          xml:
+            name: Ref
+        bizPurp:
+          type: string
+          xml:
+            name: BizPurp
+        desc:
+          type: string
+          xml:
+            name: Desc
+    Verification1:
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - ADDB
+            - ADDS
+            - ADVF
+            - APKI
+            - ARNB
+            - ARPC
+            - ARQC
+            - ATCC
+            - BIOM
+            - BTHD
+            - CDHI
+            - CHDN
+            - CHSA
+            - CPSG
+            - CRYP
+            - CSCV
+            - CSEC
+            - CUID
+            - DRLN
+            - DRVI
+            - EMAL
+            - EMIN
+            - EMRN
+            - FBIG
+            - FBIO
+            - FCPN
+            - FPIN
+            - IDCN
+            - MANU
+            - MOBL
+            - NBIG
+            - NPIN
+            - NVSC
+            - OCHI
+            - OFPE
+            - OLDA
+            - OLDS
+            - OTHN
+            - OTHP
+            - OTPW
+            - PASN
+            - PCDV
+            - PHOM
+            - PKIS
+            - PLOB
+            - PPSG
+            - PSVE
+            - PSWD
+            - PWOR
+            - QWAC
+            - SCNL
+            - SCRT
+            - SHAF
+            - SHAT
+            - SSNB
+            - THDS
+            - TOKA
+            - TOKN
+            - TOKP
+            - TXIN
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+        vrfctnInf:
+          type: array
+          xml:
+            name: VrfctnInf
+          items:
+            $ref: '#/components/schemas/VerificationInformation1'
+        vrfctnRslt:
+          type: array
+          xml:
+            name: VrfctnRslt
+          items:
+            $ref: '#/components/schemas/VerificationResult1'
+    VerificationInformation1:
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+        val:
+          $ref: '#/components/schemas/VerificationValue1Choice'
+    VerificationResult1:
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+        ntty:
+          type: string
+          xml:
+            name: Ntty
+          enum:
+            - ACQR
+            - AGNT
+            - ISSR
+            - MERC
+            - OTHN
+            - OTHP
+        rslt:
+          type: string
+          xml:
+            name: Rslt
+          enum:
+            - ERRR
+            - FAIL
+            - FUTA
+            - MISS
+            - NOVF
+            - OTHN
+            - OTHP
+            - PART
+            - SUCC
+        rsltDtls:
+          type: array
+          xml:
+            name: RsltDtls
+          items:
+            $ref: '#/components/schemas/AdditionalData1'
+    VerificationValue1Choice:
+      type: object
+      properties:
+        txtVal:
+          type: string
+          xml:
+            name: TxtVal
+        pindata:
+          $ref: '#/components/schemas/PINData1'
+    Wallet1:
+      type: object
+      properties:
+        prvdr:
+          $ref: '#/components/schemas/PartyIdentification197'
+    AccountBalance1:
+      required:
+        - acctTp
+      type: object
+      properties:
+        acctTp:
+          type: string
+          xml:
+            name: AcctTp
+        bal:
+          type: array
+          xml:
+            name: Bal
+          items:
+            $ref: '#/components/schemas/Balance15'
+    AdditionalInformation20:
+      required:
+        - val
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+        val:
+          type: string
+          xml:
+            name: Val
+    ApprovalData1:
+      type: object
+      properties:
+        apprvlNtty:
+          $ref: '#/components/schemas/ApprovalEntity1'
+        apprvlCd:
+          type: string
+          xml:
+            name: ApprvlCd
+    ApprovalEntity1:
+      required:
+        - tp
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - ACCP
+            - ACQR
+            - AGNT
+            - CISS
+            - DLIS
+            - ICCA
+            - OTHN
+            - OTHP
+    AuthorisationResponse1:
+      required:
+        - envt
+        - prcgRslt
+        - tx
+      type: object
+      properties:
+        envt:
+          $ref: '#/components/schemas/Environment2'
+        cntxt:
+          $ref: '#/components/schemas/Context2'
+        tx:
+          $ref: '#/components/schemas/Transaction78'
+        prcgRslt:
+          $ref: '#/components/schemas/ProcessingResult2'
+        iccrltdData:
+          type: string
+    AuthorisationResponseV02:
+      required:
+        - body
+        - hdr
+      type: object
+      properties:
+        hdr:
+          $ref: '#/components/schemas/Header42'
+        body:
+          $ref: '#/components/schemas/AuthorisationResponse1'
+    Balance15:
+      required:
+        - amt
+        - tp
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - AMOH
+            - AMTD
+            - AMTO
+            - AVLB
+            - CLRI
+            - CRDL
+            - LDGR
+            - OTHN
+            - OTHP
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+        amt:
+          type: number
+          xml:
+            name: Amt
+        ccy:
+          type: string
+          xml:
+            name: Ccy
+        sgn:
+          type: boolean
+          xml:
+            name: Sgn
+    CardData4:
+      type: object
+      properties:
+        pan:
+          type: string
+          xml:
+            name: PAN
+        cardSeqNb:
+          type: string
+          xml:
+            name: CardSeqNb
+        pmtAcctRef:
+          type: string
+          xml:
+            name: PmtAcctRef
+        cardCtryCd:
+          type: string
+          xml:
+            name: CardCtryCd
+        cardPdctTp:
+          type: string
+          xml:
+            name: CardPdctTp
+        panacctRg:
+          type: string
+        panfourLastDgts:
+          type: string
+    Context2:
+      type: object
+      properties:
+        txCntxt:
+          $ref: '#/components/schemas/TransactionContext3'
+        vrfctn:
+          type: array
+          xml:
+            name: Vrfctn
+          items:
+            $ref: '#/components/schemas/Verification2'
+        rskCntxt:
+          $ref: '#/components/schemas/RiskContext1'
+    Environment2:
+      required:
+        - acqrr
+      type: object
+      properties:
+        acqrr:
+          $ref: '#/components/schemas/PartyIdentification197'
+        sndr:
+          $ref: '#/components/schemas/PartyIdentification197'
+        accptr:
+          $ref: '#/components/schemas/PartyIdentification197'
+        termnl:
+          $ref: '#/components/schemas/Terminal2'
+        card:
+          $ref: '#/components/schemas/CardData4'
+        wllt:
+          $ref: '#/components/schemas/Wallet1'
+        tkn:
+          $ref: '#/components/schemas/Token1'
+    ProcessingResult2:
+      type: object
+      properties:
+        apprvlData:
+          $ref: '#/components/schemas/ApprovalData1'
+        rsltData:
+          $ref: '#/components/schemas/ResultData1'
+        addtlInf:
+          type: array
+          xml:
+            name: AddtlInf
+          items:
+            $ref: '#/components/schemas/AdditionalInformation20'
+    SettlementService2:
+      type: object
+      properties:
+        sttlmSvcDts:
+          $ref: '#/components/schemas/SettlementServiceDate1'
+    Terminal2:
+      required:
+        - termnlId
+      type: object
+      properties:
+        termnlId:
+          $ref: '#/components/schemas/TerminalIdentification1'
+    Transaction78:
+      required:
+        - txAmts
+        - txId
+        - txTp
+      type: object
+      properties:
+        txTp:
+          type: string
+          xml:
+            name: TxTp
+        txSubTp:
+          type: string
+          xml:
+            name: TxSubTp
+        txAttr:
+          type: string
+          xml:
+            name: TxAttr
+          enum:
+            - AGGR
+            - CADB
+            - CPLT
+            - DBRP
+            - DFRD
+            - FRCP
+            - INCR
+            - INST
+            - OTHN
+            - OTHP
+            - PACP
+            - PAUT
+            - PPYT
+            - RCPT
+            - SUBR
+            - TPUP
+        othrTxAttr:
+          type: string
+          xml:
+            name: OthrTxAttr
+        spclPrgrmmQlfctn:
+          type: array
+          xml:
+            name: SpclPrgrmmQlfctn
+          items:
+            $ref: '#/components/schemas/SpecialProgrammeQualification1'
+        txId:
+          $ref: '#/components/schemas/TransactionIdentification8'
+        txAmts:
+          $ref: '#/components/schemas/TransactionAmounts1'
+        addtlAmts:
+          type: array
+          xml:
+            name: AddtlAmts
+          items:
+            $ref: '#/components/schemas/AdditionalAmounts1'
+        acctBal:
+          type: array
+          xml:
+            name: AcctBal
+          items:
+            $ref: '#/components/schemas/AccountBalance1'
+        acctFr:
+          $ref: '#/components/schemas/AccountDetails2'
+        acctTo:
+          $ref: '#/components/schemas/AccountDetails2'
+        addtlData:
+          type: array
+          xml:
+            name: AddtlData
+          items:
+            $ref: '#/components/schemas/AdditionalData1'
+    TransactionContext3:
+      type: object
+      properties:
+        cardPrgrmmApld:
+          $ref: '#/components/schemas/CardProgrammeMode1'
+        sttlmSvc:
+          $ref: '#/components/schemas/SettlementService2'
+    Verification2:
+      type: object
+      properties:
+        tp:
+          type: string
+          xml:
+            name: Tp
+          enum:
+            - ADDB
+            - ADDS
+            - ADVF
+            - APKI
+            - ARNB
+            - ARPC
+            - ARQC
+            - ATCC
+            - BIOM
+            - BTHD
+            - CDHI
+            - CHDN
+            - CHSA
+            - CPSG
+            - CRYP
+            - CSCV
+            - CSEC
+            - CUID
+            - DRLN
+            - DRVI
+            - EMAL
+            - EMIN
+            - EMRN
+            - FBIG
+            - FBIO
+            - FCPN
+            - FPIN
+            - IDCN
+            - MANU
+            - MOBL
+            - NBIG
+            - NPIN
+            - NVSC
+            - OCHI
+            - OFPE
+            - OLDA
+            - OLDS
+            - OTHN
+            - OTHP
+            - OTPW
+            - PASN
+            - PCDV
+            - PHOM
+            - PKIS
+            - PLOB
+            - PPSG
+            - PSVE
+            - PSWD
+            - PWOR
+            - QWAC
+            - SCNL
+            - SCRT
+            - SHAF
+            - SHAT
+            - SSNB
+            - THDS
+            - TOKA
+            - TOKN
+            - TOKP
+            - TXIN
+        othrTp:
+          type: string
+          xml:
+            name: OthrTp
+        vrfctnRslt:
+          type: array
+          xml:
+            name: VrfctnRslt
+          items:
+            $ref: '#/components/schemas/VerificationResult1'
