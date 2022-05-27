@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class ApiClientConfigurationTest {
 
+  public static final String PKCS_12 = "PKCS12";
   private String basePath = "https://sandbox.api.mastercard.com/direct-service-api";
   // Insert MC developer project consumer key into string below
   private String consumerKey = "";
@@ -21,6 +22,7 @@ public class ApiClientConfigurationTest {
   @Test
   public void apiClientTest() {
     MastercardProperties mastercardProperties = new MastercardProperties();
+    mastercardProperties.setFormat(PKCS_12);
     mastercardProperties.setKeyFile(keyFile);
     mastercardProperties.setBasePath(basePath);
     mastercardProperties.setConsumerKey(consumerKey);

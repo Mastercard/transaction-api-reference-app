@@ -11,6 +11,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @ConfigurationProperties(prefix = "mastercard.api")
 public class MastercardProperties {
+  private String format;
+
   private String basePath;
 
   private String consumerKey;

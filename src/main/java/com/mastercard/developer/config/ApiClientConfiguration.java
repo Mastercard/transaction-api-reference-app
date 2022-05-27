@@ -43,7 +43,7 @@ public class ApiClientConfiguration {
     client.setDebugging(true);
     client.setReadTimeout(40000);
 
-    KeyStore pkcs12KeyStore = KeyStore.getInstance("PKCS12");
+    KeyStore pkcs12KeyStore = KeyStore.getInstance(mcProperties.getFormat());
     pkcs12KeyStore.load(new FileInputStream(mcProperties.getKeyFile()), mcProperties.getKeystorePassword().toCharArray());
 
     KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
