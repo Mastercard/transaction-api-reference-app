@@ -1,95 +1,87 @@
 {
-  "hdr":{
-    "msgFctn":"REQU",
-    "prtcolVrsn":"1.0",
-    "xchgId":"1234567890",
-    "creDtTm": "2022-01-26T07:35:13.980Z"
+  "hdr": {
+    "msgFctn": "REQU",
+    "creDtTm": "2022-04-12T15:24:16.545Z"
   },
-  "body":{
-    "envt":{
-      "acqrr":{
-        "id":"999080"
+  "body": {
+    "envt": {
+      "acqrr": {
+        "id": "001727"
       },
-      "termnl":{
-        "termnlId":{
-          "ctry":"USA"
+      "accptr": {
+        "id": "0011011001001  "
+      },
+      "termnl": {
+        "termnlId": {
+          "ctry": "840"
         },
-        "cpblties":{
-          "cardRdngCpblty":[
+        "tp": "MPOS",
+        "cpblties": {
+          "cardRdngCpblty": [
             "UNSP"
           ],
-          "cardCaptrCpbl":false,
-          "crdhldrVrfctnCpblty":[
+          "cardCaptrCpbl": true,
+          "crdhldrVrfctnCpblty": [
             {
-              "cpblty":"UNSP"
+              "cpblty": "NOOP"
             }
           ]
         },
-        "offPrmissInd":true
+        "offPrmissInd": true
       },
-      "card":{
-        "pAN":"5661350122004029",
-        "xpryDt": "2401"
+      "card": {
+        "pAN": "5460126267022775"
       }
     },
-    "cntxt":{
-      "ptOfSvcCntxt":{
-        "cardPres":false,
-        "crdhldrPres":false,
-        "crdhldrActvtd":true,
-        "trnspndrInittd":false,
-        "attnddInd":false,
-        "eComrcInd":true,
-        "cardDataNtryMd":"OTHP",
-        "uattnddLvlCtgy":"6"
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "cardPres": true,
+        "crdhldrPres": true,
+        "attnddInd": true,
+        "cardDataNtryMd": "UNSP",
+        "eComrcInd": true
       },
-      "txCntxt":{
-        "mrchntCtgyCd":"5411",
-        "mrchntCtgySpcfcData":"T"
+      "txCntxt": {
+        "mrchntCtgyCd": "7992",
+        "mrchntCtgySpcfcData": "T"
       },
-      "vrfctn":[
+      "rskCntxt": [
         {
-          "tp":"THDS",
-          "vrfctnInf":[
+          "rskAssmnt": [
             {
-              "tp":"electronic_commerce_indicators",
-              "val":{
-                "txtVal":"210"
-              }
-            }
-          ]
-        }
-      ],
-      "rskCntxt":[
-        {
-          "rskInptData":[
-            {
-              "tp":"POS_Transaction_Security",
-              "val":"0"
+              "rskAssmntNtty": {
+                "tp": "ACCP"
+              },
+              "addtlRskData": [
+                {
+                  "tp": "pos_transaction_security",
+                  "val": "0"
+                }
+              ]
             }
           ]
         }
       ]
     },
-    "tx":{
-      "txTp":"00",
-      "txAttr":"OTHP",
-      "preAuthstnTmLmt":"000000",
-      "txId":{
-        "trnsmssnDtTm":"2022-01-26T07:35:13.980Z",
-        "sysTracAudtNb":"123456"
+    "tx": {
+      "txTp": "PRCH",
+      "txAttr": "PAUT",
+      "preAuthstnTmLmt": "00",
+      "txId": {
+        "sysTracAudtNb": "123456",
+        "trnsmssnDtTm": "2022-05-12T15:24:16.545Z"
       },
-      "txAmts":{
-        "txAmt":{
-          "amt":11.00,
-          "ccy":"100"
+      "txAmts": {
+        "txAmt": {
+          "amt": 1134,
+          "ccy": "_840"
         }
       },
-      "acctFr":{
-        "acctTp":"00"
+      "acctFr": {
+        "acctTp": "DFLT"
       },
-      "acctTo":{
-        "acctTp":"00"
+      "acctTo": {
+        "acctTp": "DFLT"
       }
     }
   }

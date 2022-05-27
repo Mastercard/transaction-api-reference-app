@@ -1,0 +1,29 @@
+
+
+# MsgfinancialinitiationIdentification2Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"IDENTIFICATION2_CODE_UNSPECIFIED"`)
+
+* `ARNB` (value: `"IDENTIFICATION2_CODE_ARNB"`)
+
+* `DRID` (value: `"IDENTIFICATION2_CODE_DRID"`)
+
+* `EMAL` (value: `"IDENTIFICATION2_CODE_EMAL"`)
+
+* `NTID` (value: `"IDENTIFICATION2_CODE_NTID"`)
+
+* `OTHN` (value: `"IDENTIFICATION2_CODE_OTHN"`)
+
+* `OTHP` (value: `"IDENTIFICATION2_CODE_OTHP"`)
+
+* `PASS` (value: `"IDENTIFICATION2_CODE_PASS"`)
+
+* `PHNB` (value: `"IDENTIFICATION2_CODE_PHNB"`)
+
+* `SSYN` (value: `"IDENTIFICATION2_CODE_SSYN"`)
+
+
+

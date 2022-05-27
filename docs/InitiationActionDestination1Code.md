@@ -1,0 +1,23 @@
+
+
+# InitiationActionDestination1Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"ACTION_DESTINATION1_CODE_UNSPECIFIED"`)
+
+* `FILE` (value: `"ACTION_DESTINATION1_CODE_FILE"`)
+
+* `MOBL` (value: `"ACTION_DESTINATION1_CODE_MOBL"`)
+
+* `OTHN` (value: `"ACTION_DESTINATION1_CODE_OTHN"`)
+
+* `OTHP` (value: `"ACTION_DESTINATION1_CODE_OTHP"`)
+
+* `PECR` (value: `"ACTION_DESTINATION1_CODE_PECR"`)
+
+* `POFS` (value: `"ACTION_DESTINATION1_CODE_POFS"`)
+
+
+

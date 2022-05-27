@@ -4,7 +4,7 @@ import com.mastercard.developer.example.TransactionApiExample;
 import com.mastercard.developer.exception.ServiceException;
 import com.mastercard.developer.service.TransactionApiService;
 import lombok.extern.slf4j.Slf4j;
-import org.openapitools.client.model.AuthorisationResponseV02;
+import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +35,7 @@ public class ServicesExecutor {
      *
      * @return An instance of AuthorisationResponseV02
      */
-    private AuthorisationResponseV02 initiateAuthorisation() throws ServiceException {
+    private ResponseAuthorisationResponseV02 initiateAuthorisation() throws ServiceException {
         return transactioApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest());
     }
 

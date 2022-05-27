@@ -1,0 +1,27 @@
+
+
+# InitiationTelephonyCallType1Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"TELEPHONY_CALL_TYPE1_CODE_UNSPECIFIED"`)
+
+* `ICPC` (value: `"TELEPHONY_CALL_TYPE1_CODE_ICPC"`)
+
+* `OGPC` (value: `"TELEPHONY_CALL_TYPE1_CODE_OGPC"`)
+
+* `OTCL` (value: `"TELEPHONY_CALL_TYPE1_CODE_OTCL"`)
+
+* `OTHN` (value: `"TELEPHONY_CALL_TYPE1_CODE_OTHN"`)
+
+* `OTHP` (value: `"TELEPHONY_CALL_TYPE1_CODE_OTHP"`)
+
+* `PAGE` (value: `"TELEPHONY_CALL_TYPE1_CODE_PAGE"`)
+
+* `TFPC` (value: `"TELEPHONY_CALL_TYPE1_CODE_TFPC"`)
+
+* `VCML` (value: `"TELEPHONY_CALL_TYPE1_CODE_VCML"`)
+
+
+
