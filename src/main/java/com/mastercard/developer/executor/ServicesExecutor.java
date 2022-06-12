@@ -33,10 +33,9 @@ public class ServicesExecutor {
      * USE CASE 1: AUTHORISATION
      * User performs an API request with a combination of fields from different use cases below to execute multiple use cases simultaneously.
      *
-     * @return An instance of AuthorisationResponseV02
      */
-    private ResponseAuthorisationResponseV02 initiateAuthorisation() throws ServiceException {
-        return transactioApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest());
+    private void initiateAuthorisation() throws ServiceException {
+        log.info(transactioApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest()).toString());
     }
 
 }

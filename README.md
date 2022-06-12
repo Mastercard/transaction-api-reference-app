@@ -37,33 +37,71 @@ This application illustrates connecting to the Mastercard Transaction API. To ca
 * [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
 * Set up the `JAVA_HOME` environment variable to match the location of your Java installation.
 
+## Before You Start - Getting MTLS Client Certificates for Your Project
+The client authentication side of MTLS protocol involves a client certificate and a private key, known as a key pair. To use the key pair with Mastercard APIs, you will need to perform onboarding steps detailed here.
+
+### Client Certificates and Environments
+There are two different types of MTLS client certificates, depending on the stage of your project:
+
+1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (*mtf.services.mastercard.com)
+2. Production MLTS certificates, which allow an application to access the Production environment (*services.mastercard.com)
+*Domain/Server URL may vary depending on the API. Please check the API Reference section of the service documentation for the correct Server URL.
+
+### Creating and Renewing Client Certificate
+The [Key Management Portal (KMP)](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp) is an application available in [Mastercard Connect](https://www.mastercardconnect.com/). KMP is a self-service portal for Mastercard customers, which allows them to request and exchange keys and certificates with Mastercard.
+
+The portal provides guided workflows to create and manage requests for key and certificate exchange, as well as an inventory of all PKI for Business Partners keys and certificates that have been exchanged between Mastercard and customers using KMP.
+
+Access the Key Management Portal application on [Mastercard Connect](https://www.mastercardconnect.com/) to obtain MTLS client certificates. You can access the user guide within the KMP application for instructions on how to use the application.
+
+### Download the appropriate Client Certificate
+Once you are notified that your Certificate Request is signed, you can access the client certificate in KMP.
+
+When accessing your certificate, you will see an option to download the certificate. Ensure that the following options are selected:
+
+1. Format PKCS #8
+2. Uncheck “Include Root Chain”
+The certificate will be available to download. Save it to a safe location so that it can be uploaded it to your project in Mastercard Developers or used within your client run command.
+
 ### Configuration <a name="configuration"></a>
-* Create an account at [Mastercard Developers](https://developer.mastercard.com/account/sign-up).
-* Create a new project and add `Transaction API` to your project.
-* Configure project and download signing key. It will download the zip file.
-* Select `.p12` files from zip and copy it to `src/main/resources` in the project folder.
+With the PKCS12 file downloaded from [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp) configure the properties for your client as explained below - 
 * Open `${project.basedir}/src/main/resources/application.properties` and configure below parameters.
 
-  >**mastercard.api.base-path=https://sandbox.api.mastercard.com/transaction-api/services**, it's a static field and will be used as a host to make API calls.
-
-  **Below properties will be required for authentication of API calls.**
+  **Below properties will be required for authentication of API calls. You can modify them or add the appropriate values to the `run command` as environment variables**
 
   >**mastercard.api.key-file=**, this refers to .p12 file found in the signing key. Please place .p12 file at src\main\resources in the project folder and add classpath for .p12 file.
+  
+  >**mastercard.api.format=**, for .p12 files this is "PKCS12" (without quotes)
+  
+  >**mastercard.api.keystore-alias=**, this is the default value of key alias. If it is modified, use what was identified when creating CSR on [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp)
 
-  >**mastercard.api.consumer-key=**, this refers to your consumer key. Copy it from "Keys" section on your project page in [Mastercard Developers](https://developer.mastercard.com/dashboard)
-
-  >**mastercard.api.keystore-alias=keyalias**, this is the default value of key alias. If it is modified, use the updated one from keys section in [Mastercard Developers](https://developer.mastercard.com/dashboard).
-
-  >**mastercard.api.keystore-password=keystorepassword**, this is the default value of key alias. If it is modified, use the updated one from keys section in [Mastercard Developers](https://developer.mastercard.com/dashboard).
+  >**mastercard.api.keystore-password=**, this is the default value of key alias. If it is modified, use what was identified when creating CSR on [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp)
 ### Converting JKS to PKCS12
-
+If you've downloaded a `.jks` file, convert that to `.p12` using the following command (provide input where necessary)
 ```bash
-keytool -importkeystore -srckeystore stage.transaction-api-client.mastercard.int.jks \
--destkeystore stage.transaction-api-client.mastercard.int.p12 \
+keytool -importkeystore -srckeystore <jks file location> \
+-destkeystore <pkcs12 file location> \
 -srcstoretype JKS \
 -deststoretype PKCS12 \
--deststorepass Mastercard123!
+-deststorepass <keystore password>
 ```
+
+### Build and Execute <a name="build-and-execute"></a>
+Once you’ve added the correct properties, we can build the application. We can do this by navigating to the project’s base directory from the terminal and running the following command:
+
+`mvn clean install`
+
+When the project builds successfully you can then run the following command to start the project:
+
+```bash
+KEYFILE=my-keystore.p12 \
+FORMAT=PKCS12 \
+ALIAS=my-alias \
+PASSWORD=my-keystore-password \
+java -jar target/transaction-api-reference-1.0.0.jar
+```
+*** Note: the default environment is - `https://mtf.services-asn.mastercard.com` ***
+
 ### Integrating with OpenAPI Generator <a name="integrating-with-openapi-generator"></a>
 [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) generates API client libraries from [OpenAPI Specs](https://github.com/OAI/OpenAPI-Specification).
 It provides generators and library templates for supporting multiple languages and frameworks.
@@ -114,14 +152,6 @@ Now that you have all the dependencies you need, you can generate the sources. T
 `Using Terminal`
 * Navigate to the root directory of the project within a terminal window and execute `mvn clean compile` command.
 
-### Build and Execute <a name="build-and-execute"></a>
-Once you’ve added the correct properties, we can build the application. We can do this by navigating to the project’s base directory from the terminal and running the following command:
-
-`mvn clean install`
-
-When the project builds successfully you can then run the following command to start the project:
-
-`java -jar target/transaction-api-reference-1.0.0.jar`
 
 ## Use Cases <a name="use-cases"></a>
 > Case 1: [AUTHORISATION](https://developer.mastercard.com/transaction-api/documentation/parameters/authorisation/)
