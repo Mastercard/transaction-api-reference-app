@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServicesExecutor {
 
-    private TransactionApiService transactioApiService;
+    private final TransactionApiService transactioApiService;
 
     @Autowired
     public ServicesExecutor(TransactionApiService transactioApiService) {

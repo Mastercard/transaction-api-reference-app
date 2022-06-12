@@ -49,11 +49,6 @@
             <version>${oauth1-signer.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mastercard.developer</groupId>
-            <artifactId>oauth1-signer</artifactId>
-            <version>${oauth1-signer.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>

@@ -1,8 +1,5 @@
 package com.mastercard.developer.config;
 
-import com.mastercard.developer.interceptors.OkHttpOAuth1Interceptor;
-import com.mastercard.developer.utils.AuthenticationUtils;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.*;
@@ -32,20 +29,24 @@ public class ApiClientConfiguration {
    * It loads the .p12 key, correctly sets the base path, and loads other properties
    * for making requests.
    *
-   * @param mcProperties - MC Developer properties set in the application.properties file
+   * @param mcProperties - MC Developer properties set in the application-stage.properties file
    * @return ApiClient
    */
   @Bean
   public ApiClient apiClient(@Autowired MastercardProperties mcProperties)
           throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, KeyStoreException, KeyManagementException {
     ApiClient client = new ApiClient();
+    OkHttpClient.Builder httpClientBuilder = client.getHttpClient().newBuilder();
+    // Configure the Mastercard service URL
     client.setBasePath(mcProperties.getBasePath());
     client.setDebugging(true);
     client.setReadTimeout(40000);
 
+    // Load your client certificate
     KeyStore pkcs12KeyStore = KeyStore.getInstance(mcProperties.getFormat());
     pkcs12KeyStore.load(new FileInputStream(mcProperties.getKeyFile()), mcProperties.getKeystorePassword().toCharArray());
 
+    // Configure a secure socket
     KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
     keyManagerFactory.init(pkcs12KeyStore, mcProperties.getKeystorePassword().toCharArray());
 
@@ -56,11 +57,10 @@ public class ApiClientConfiguration {
     sslContext.init(keyManagerFactory.getKeyManagers(), null, new SecureRandom());
 
     client.setHttpClient(
-            client.getHttpClient().newBuilder()
-                    .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustManagerFactory.getTrustManagers()[0])
-                    .build()
+      httpClientBuilder
+        .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustManagerFactory.getTrustManagers()[0])
+        .build()
     );
-
     return client;
   }
 

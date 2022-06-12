@@ -38,7 +38,7 @@ public class MastercardPropertiesTest {
   public void initializeTest() {
     MastercardProperties properties = new MastercardProperties();
     Exception exception = assertThrows(ServiceException.class, properties::initialize);
-    assertEquals(".p12 file or consumerKey does not exist, please add details in application.properties", exception.getMessage());
+    assertEquals(".p12 file or consumerKey does not exist, please add details in application-stage.properties", exception.getMessage());
   }
 
 }

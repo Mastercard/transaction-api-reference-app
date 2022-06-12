@@ -27,8 +27,7 @@ public class TransactionApiExample {
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         try {
-            InitiationAuthorisationInitiationV02 authorisationInitiationV02 = objectMapper.readValue(requestStream, InitiationAuthorisationInitiationV02.class);
-            return authorisationInitiationV02;
+            return objectMapper.readValue(requestStream, InitiationAuthorisationInitiationV02.class);
         } catch (IOException e) {
             throw new ServiceException(e);
         }

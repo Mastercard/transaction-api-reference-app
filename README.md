@@ -55,7 +55,15 @@ This application illustrates connecting to the Mastercard Transaction API. To ca
   >**mastercard.api.keystore-alias=keyalias**, this is the default value of key alias. If it is modified, use the updated one from keys section in [Mastercard Developers](https://developer.mastercard.com/dashboard).
 
   >**mastercard.api.keystore-password=keystorepassword**, this is the default value of key alias. If it is modified, use the updated one from keys section in [Mastercard Developers](https://developer.mastercard.com/dashboard).
+### Converting JKS to PKCS12
 
+```bash
+keytool -importkeystore -srckeystore stage.transaction-api-client.mastercard.int.jks \
+-destkeystore stage.transaction-api-client.mastercard.int.p12 \
+-srcstoretype JKS \
+-deststoretype PKCS12 \
+-deststorepass Mastercard123!
+```
 ### Integrating with OpenAPI Generator <a name="integrating-with-openapi-generator"></a>
 [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) generates API client libraries from [OpenAPI Specs](https://github.com/OAI/OpenAPI-Specification).
 It provides generators and library templates for supporting multiple languages and frameworks.
