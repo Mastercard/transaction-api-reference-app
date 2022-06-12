@@ -29,7 +29,7 @@ public class ApiClientConfiguration {
    * It loads the .p12 key, correctly sets the base path, and loads other properties
    * for making requests.
    *
-   * @param mcProperties - MC Developer properties set in the application-stage.properties file
+   * @param mcProperties - MC Developer properties set in the application.properties file
    * @return ApiClient
    */
   @Bean

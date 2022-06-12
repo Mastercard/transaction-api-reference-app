@@ -26,7 +26,7 @@ public class MastercardProperties {
   @PostConstruct
   public void initialize() throws ServiceException {
     if (null == keyFile && StringUtils.isEmpty(consumerKey)) {
-      throw new ServiceException(".p12 file or consumerKey does not exist, please add details in application-stage.properties");
+      throw new ServiceException(".p12 file or consumerKey does not exist, please add details in application.properties");
     }
   }
 
