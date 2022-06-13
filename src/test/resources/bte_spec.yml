@@ -1,0 +1,18 @@
+workflow: pcf_workflow
+release:
+  spring_boot:
+    - gitrepo: https://globalrepository.mclocal.int/stash/scm/mcnenas/transaction-api-reference-application.git
+      branch: master
+      apphost_name: mc-ne-nas-transactionapi-ref-app
+      cn_name: mc-ne-nas-transactionapi-ref-app
+      maven_version: '6'
+      artifactory_creds: mc_ne_dev_auto
+      artifactory_deploy: true
+      sonar_quality_gate:
+        project_key: MC-NE-NAS-TAPI-Ref-App
+        project_name: NextEdge NetworkAccessServices transaction-api-reference-application
+        gate_id: SES Level 1 Quality
+  notifications:
+    email:
+      address_list:
+        - NOF-BIZOPS-JENKINS-NOTIFICATIONS@mastercard.com, Message_Handlers@mastercard.com

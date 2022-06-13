@@ -34,8 +34,10 @@ public class ServicesExecutor {
      * User performs an API request with a combination of fields from different use cases below to execute multiple use cases simultaneously.
      *
      */
-    private void initiateAuthorisation() throws ServiceException {
-        log.info(transactioApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest()).toString());
+    private ResponseAuthorisationResponseV02 initiateAuthorisation() throws ServiceException {
+        ResponseAuthorisationResponseV02 response = transactioApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest());
+        log.info(response.toString());
+        return response;
     }
 
 }
