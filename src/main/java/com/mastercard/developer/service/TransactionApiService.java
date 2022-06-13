@@ -1,8 +1,8 @@
 package com.mastercard.developer.service;
 
 import com.mastercard.developer.exception.ServiceException;
-import org.openapitools.client.model.AuthorisationInitiationV02;
-import org.openapitools.client.model.AuthorisationResponseV02;
+import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 
 public interface TransactionApiService {
     /**
@@ -15,6 +15,6 @@ public interface TransactionApiService {
      * @param authorisationRequest AuthorisationInitiationV02
      * @return An instance of AuthorisationResponseV02
      */
-    AuthorisationResponseV02 initiateAuthorisation(AuthorisationInitiationV02 authorisationRequest)
+    ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest)
             throws ServiceException;
 }

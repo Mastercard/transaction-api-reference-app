@@ -1,0 +1,39 @@
+
+
+# MsgfinancialinitiationCardDataReading7Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"CARD_DATA_READING7_CODE_UNSPECIFIED"`)
+
+* `CDFL` (value: `"CARD_DATA_READING7_CODE_CDFL"`)
+
+* `ICCY` (value: `"CARD_DATA_READING7_CODE_ICCY"`)
+
+* `ICPY` (value: `"CARD_DATA_READING7_CODE_ICPY"`)
+
+* `KEEN` (value: `"CARD_DATA_READING7_CODE_KEEN"`)
+
+* `MGST` (value: `"CARD_DATA_READING7_CODE_MGST"`)
+
+* `MICR` (value: `"CARD_DATA_READING7_CODE_MICR"`)
+
+* `MLEY` (value: `"CARD_DATA_READING7_CODE_MLEY"`)
+
+* `MSIP` (value: `"CARD_DATA_READING7_CODE_MSIP"`)
+
+* `OCRR` (value: `"CARD_DATA_READING7_CODE_OCRR"`)
+
+* `OPTC` (value: `"CARD_DATA_READING7_CODE_OPTC"`)
+
+* `OTHN` (value: `"CARD_DATA_READING7_CODE_OTHN"`)
+
+* `OTHP` (value: `"CARD_DATA_READING7_CODE_OTHP"`)
+
+* `RFID` (value: `"CARD_DATA_READING7_CODE_RFID"`)
+
+* `UNSP` (value: `"CARD_DATA_READING7_CODE_UNSP"`)
+
+
+

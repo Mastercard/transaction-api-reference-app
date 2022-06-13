@@ -11,6 +11,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @ConfigurationProperties(prefix = "mastercard.api")
 public class MastercardProperties {
+  private String format;
+
   private String basePath;
 
   private String consumerKey;
@@ -23,7 +25,7 @@ public class MastercardProperties {
 
   @PostConstruct
   public void initialize() throws ServiceException {
-    if (null == keyFile || StringUtils.isEmpty(consumerKey)) {
+    if (null == keyFile && StringUtils.isEmpty(consumerKey)) {
       throw new ServiceException(".p12 file or consumerKey does not exist, please add details in application.properties");
     }
   }

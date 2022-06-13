@@ -1,0 +1,21 @@
+
+
+# MsgfinancialinitiationMessageFunction16Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"MESSAGE_FUNCTION16_CODE_UNSPECIFIED"`)
+
+* `ADVC` (value: `"MESSAGE_FUNCTION16_CODE_ADVC"`)
+
+* `CAAD` (value: `"MESSAGE_FUNCTION16_CODE_CAAD"`)
+
+* `CANO` (value: `"MESSAGE_FUNCTION16_CODE_CANO"`)
+
+* `NOTI` (value: `"MESSAGE_FUNCTION16_CODE_NOTI"`)
+
+* `REQU` (value: `"MESSAGE_FUNCTION16_CODE_REQU"`)
+
+
+

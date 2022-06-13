@@ -1,0 +1,25 @@
+
+
+# MsgfinancialinitiationCustomerDeviceType1Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED"`)
+
+* `MOBL` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_MOBL"`)
+
+* `NSCR` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_NSCR"`)
+
+* `OTHN` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_OTHN"`)
+
+* `OTHP` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_OTHP"`)
+
+* `PECR` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_PECR"`)
+
+* `SECR` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_SECR"`)
+
+* `TBLT` (value: `"CUSTOMER_DEVICE_TYPE1_CODE_TBLT"`)
+
+
+

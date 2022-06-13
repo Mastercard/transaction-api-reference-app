@@ -1,0 +1,17 @@
+
+
+# ResponseFleetServiceType1Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"FLEET_SERVICE_TYPE1_CODE_UNSPECIFIED"`)
+
+* `FLSV` (value: `"FLEET_SERVICE_TYPE1_CODE_FLSV"`)
+
+* `HSDI` (value: `"FLEET_SERVICE_TYPE1_CODE_HSDI"`)
+
+* `SLSV` (value: `"FLEET_SERVICE_TYPE1_CODE_SLSV"`)
+
+
+

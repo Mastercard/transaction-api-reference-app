@@ -11,8 +11,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiResponse;
-import org.openapitools.client.model.AuthorisationResponseV02;
-import org.openapitools.client.model.Header42;
+import org.openapitools.client.model.MsgauthorisationresponseMessageFunction16Code;
+import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -39,11 +39,11 @@ class TransactionApiServiceImplTest {
     void testInitiateAuthorisation() throws Exception {
         when(apiClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(201, new HashMap<>(), MockTransactionApiResponse.getMockAuthrisationResponse()));
 
-        AuthorisationResponseV02 authorisationResponseV02 = transactionApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest());
+        ResponseAuthorisationResponseV02 authorisationResponseV02 = transactionApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest());
 
         verify(apiClient, atMostOnce()).buildCall(anyString(), anyString(), anyList(), anyList(), any(), anyMap(), anyMap(), anyMap(), any(), any());
         verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));
 
-        assertAll(() -> assertNotNull(authorisationResponseV02), () -> assertEquals(Header42.MsgFctnEnum.ADVC, authorisationResponseV02.getHdr().getMsgFctn()), () -> assertEquals(MockTransactionApiResponse.PAN, authorisationResponseV02.getBody().getEnvt().getCard().getPan()));
+        assertAll(() -> assertNotNull(authorisationResponseV02), () -> assertEquals(MsgauthorisationresponseMessageFunction16Code.ADVC, authorisationResponseV02.getHdr().getMsgFctn()), () -> assertEquals(MockTransactionApiResponse.PAN, authorisationResponseV02.getBody().getEnvt().getCard().getpAN()));
     }
 }

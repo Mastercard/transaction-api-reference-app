@@ -1,0 +1,23 @@
+
+
+# MsgfinancialresponseVerificationEntity1Code
+
+## Enum
+
+
+* `UNSPECIFIED` (value: `"VERIFICATION_ENTITY1_CODE_UNSPECIFIED"`)
+
+* `ACQR` (value: `"VERIFICATION_ENTITY1_CODE_ACQR"`)
+
+* `AGNT` (value: `"VERIFICATION_ENTITY1_CODE_AGNT"`)
+
+* `ISSR` (value: `"VERIFICATION_ENTITY1_CODE_ISSR"`)
+
+* `MERC` (value: `"VERIFICATION_ENTITY1_CODE_MERC"`)
+
+* `OTHN` (value: `"VERIFICATION_ENTITY1_CODE_OTHN"`)
+
+* `OTHP` (value: `"VERIFICATION_ENTITY1_CODE_OTHP"`)
+
+
+
