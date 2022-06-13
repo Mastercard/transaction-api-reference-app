@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.mastercard.develope</groupId>
+    <groupId>com.mastercard.developer</groupId>
     <artifactId>transaction-api-reference-application</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOTS</version>
 
     <properties>
         <java.version>1.8</java.version>
