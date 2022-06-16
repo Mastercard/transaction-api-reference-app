@@ -16,6 +16,7 @@ import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -39,7 +40,7 @@ class TransactionApiServiceImplTest {
     void testInitiateAuthorisation() throws Exception {
         when(apiClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(201, new HashMap<>(), MockTransactionApiResponse.getMockAuthrisationResponse()));
 
-        ResponseAuthorisationResponseV02 authorisationResponseV02 = transactionApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest());
+        ResponseAuthorisationResponseV02 authorisationResponseV02 = transactionApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest(), UUID.randomUUID().toString());
 
         verify(apiClient, atMostOnce()).buildCall(anyString(), anyString(), anyList(), anyList(), any(), anyMap(), anyMap(), anyMap(), any(), any());
         verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));

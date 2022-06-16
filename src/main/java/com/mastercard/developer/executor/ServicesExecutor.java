@@ -8,6 +8,8 @@ import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Slf4j
 @Component
 public class ServicesExecutor {
@@ -22,9 +24,10 @@ public class ServicesExecutor {
     public void execute() throws ServiceException {
         log.info("<<<---- TRANSACTION API EXECUTION STARTED ---->>>");
 
-        log.info("<-- SENDING AUTHORISATION REQUEST -->");
-        initiateAuthorisation();
-        log.info("<-- COMPLETED AUTHORISATION REQUEST -->");
+        String correlationId = UUID.randomUUID().toString();
+        log.info(correlationId+": <-- SENDING AUTHORISATION REQUEST -->");
+        initiateAuthorisation(correlationId);
+        log.info(correlationId+": <-- COMPLETED AUTHORISATION REQUEST -->");
 
         log.info("<<<---- TRANSACTION API EXECUTION COMPLETED ---->>>");
     }
@@ -33,10 +36,10 @@ public class ServicesExecutor {
      * USE CASE 1: AUTHORISATION
      * User performs an API request with a combination of fields from different use cases below to execute multiple use cases simultaneously.
      *
+     * @param correlationId
      */
-    private ResponseAuthorisationResponseV02 initiateAuthorisation() throws ServiceException {
-        ResponseAuthorisationResponseV02 response = transactioApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest());
-        log.info(response.toString());
+    private ResponseAuthorisationResponseV02 initiateAuthorisation(String correlationId) throws ServiceException {
+        ResponseAuthorisationResponseV02 response = transactioApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest(), correlationId);
         return response;
     }
 

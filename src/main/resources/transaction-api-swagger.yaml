@@ -20,6 +20,12 @@ paths:
     post:
       description: Process the authorisation requests
       operationId: TransactionApi_processAuthorisationRequest
+      parameters:
+        - in: header
+          name: x-mc-correlation-id
+          schema:
+            type: string
+          description: Numeric ID of the user to get
       requestBody:
         content:
           application/json:

@@ -12,6 +12,8 @@ import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class TransactionApiServiceImpl implements TransactionApiService {
@@ -25,15 +27,16 @@ public class TransactionApiServiceImpl implements TransactionApiService {
     }
 
     @Override
-    public ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest) throws ServiceException {
+    public ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest, String xMcCorrelationId) throws ServiceException {
         try {
-            log.info("<-- CALLING TRANSACTION API ENDPOINT -->");
-            ResponseAuthorisationResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessAuthorisationRequest(authorisationRequest);
+            log.info(xMcCorrelationId + ": <-- CALLING TRANSACTION API ENDPOINT -->");
+            ResponseAuthorisationResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessAuthorisationRequest(authorisationRequest, xMcCorrelationId);
             Assertions.assertNotNull(transactionApiResponse, "Missing object 'transactionApiResponse' when calling servicesPost(Async)");
-            log.info("<-- TRANSACTION API RESPONDED SUCCESSFULLY -->");
+            log.info(xMcCorrelationId + ": <-- TRANSACTION API RESPONDED SUCCESSFULLY -->");
             return transactionApiResponse;
         } catch (ApiException e) {
-            log.error("<<-- TRANSACTION API FAILED -->>");
+            log.error(xMcCorrelationId + ": <<-- TRANSACTION API FAILED -->>");
+            log.error(xMcCorrelationId + ": Response: " + e.getResponseBody());
             throw new ServiceException(e);
         }
     }
