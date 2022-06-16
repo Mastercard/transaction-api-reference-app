@@ -36,7 +36,7 @@ public class TransactionApiServiceImpl implements TransactionApiService {
             return transactionApiResponse;
         } catch (ApiException e) {
             log.error(xMcCorrelationId + ": <<-- TRANSACTION API FAILED -->>");
-            log.error(xMcCorrelationId + ": Response: " + e.getResponseBody());
+            log.error(xMcCorrelationId + ": ResponseCode: " + e.getCode()+" Response: " + e.getResponseBody());
             throw new ServiceException(e);
         }
     }
