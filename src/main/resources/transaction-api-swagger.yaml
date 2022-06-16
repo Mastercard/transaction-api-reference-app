@@ -25,7 +25,7 @@ paths:
           name: x-mc-correlation-id
           schema:
             type: string
-          description: Numeric ID of the user to get
+          description: Unique Correlation ID of the request
       requestBody:
         content:
           application/json:
