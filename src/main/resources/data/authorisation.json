@@ -1,6 +1,6 @@
 {
   "hdr": {
-    "msgFctn": "REQU",
+    "msgFctn": "MESSAGE_FUNCTION16_CODE_REQU",
     "creDtTm": "2022-04-12T15:24:16.545Z"
   },
   "body": {
@@ -15,15 +15,15 @@
         "termnlId": {
           "ctry": "840"
         },
-        "tp": "MPOS",
+        "tp": "TERMINAL_TYPE1_CODE_MPOS",
         "cpblties": {
           "cardRdngCpblty": [
-            "UNSP"
+            "CARD_DATA_READING7_CODE_UNSP"
           ],
           "cardCaptrCpbl": true,
           "crdhldrVrfctnCpblty": [
             {
-              "cpblty": "NOOP"
+              "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOOP"
             }
           ]
         },
@@ -38,7 +38,7 @@
         "cardPres": true,
         "crdhldrPres": true,
         "attnddInd": true,
-        "cardDataNtryMd": "UNSP",
+        "cardDataNtryMd": "CARD_DATA_READING7_CODE_UNSP",
         "eComrcInd": true
       },
       "txCntxt": {
@@ -50,7 +50,7 @@
           "rskAssmnt": [
             {
               "rskAssmntNtty": {
-                "tp": "ACCP"
+                "tp": "PARTY_TYPE28_CODE_ACCP"
               },
               "addtlRskData": [
                 {
@@ -65,7 +65,7 @@
     },
     "tx": {
       "txTp": "PRCH",
-      "txAttr": "PAUT",
+      "txAttr": "TRANSACTION_ATTRIBUTE1_CODE_PAUT",
       "preAuthstnTmLmt": "00",
       "txId": {
         "sysTracAudtNb": "123456",
@@ -74,7 +74,7 @@
       "txAmts": {
         "txAmt": {
           "amt": 1134,
-          "ccy": "_840"
+          "ccy": "I_S_O3_NUMERIC_CURRENCY_CODE_840"
         }
       },
       "acctFr": {

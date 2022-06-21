@@ -1,5 +1,6 @@
 package com.mastercard.developer.executor;
 
+import com.mastercard.developer.config.MastercardProperties;
 import com.mastercard.developer.example.TransactionApiExample;
 import com.mastercard.developer.exception.ServiceException;
 import com.mastercard.developer.service.TransactionApiService;
@@ -15,19 +16,27 @@ import java.util.UUID;
 public class ServicesExecutor {
 
     private final TransactionApiService transactioApiService;
+    private final MastercardProperties mcProperties;
 
     @Autowired
-    public ServicesExecutor(TransactionApiService transactioApiService) {
+    public ServicesExecutor(TransactionApiService transactioApiService, MastercardProperties mcProperties) {
         this.transactioApiService = transactioApiService;
+        this.mcProperties = mcProperties;
     }
 
     public void execute() throws ServiceException {
-        log.info("<<<---- TRANSACTION API EXECUTION STARTED ---->>>");
+
+        if(mcProperties.isHealthEnable()){
+            String healthCorrelationId = UUID.randomUUID().toString();
+            log.info(healthCorrelationId + ": <<<---- TRANSACTION API HEALTH CHECK ---->>>");
+            transactioApiService.health(healthCorrelationId);
+            log.info(healthCorrelationId + ": <<<---- TRANSACTION API EXECUTION STARTED ---->>>");
+        }
 
         String correlationId = UUID.randomUUID().toString();
-        log.info(correlationId+": <-- SENDING AUTHORISATION REQUEST -->");
+        log.info(correlationId + ": <-- SENDING AUTHORISATION REQUEST -->");
         initiateAuthorisation(correlationId);
-        log.info(correlationId+": <-- COMPLETED AUTHORISATION REQUEST -->");
+        log.info(correlationId + ": <-- COMPLETED AUTHORISATION REQUEST -->");
 
         log.info("<<<---- TRANSACTION API EXECUTION COMPLETED ---->>>");
     }
