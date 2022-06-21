@@ -41,6 +41,8 @@ public class ApiClientConfiguration {
     client.setBasePath(mcProperties.getBasePath());
     client.setDebugging(true);
     client.setReadTimeout(40000);
+    client.addDefaultHeader("x-openapi-clientid", "ref-app");
+    client.addDefaultHeader("x-openapi-keyid", "ref-app-key");
 
     // Load your client certificate
     KeyStore pkcs12KeyStore = KeyStore.getInstance(mcProperties.getFormat());

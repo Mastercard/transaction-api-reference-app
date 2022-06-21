@@ -13,8 +13,9 @@ public interface TransactionApiService {
      * Error Response: 4XX or 5XX
      *
      * @param authorisationRequest AuthorisationInitiationV02
+     * @param xMcCorrelationId String
      * @return An instance of AuthorisationResponseV02
      */
-    ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest)
+    ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest, String xMcCorrelationId)
             throws ServiceException;
 }

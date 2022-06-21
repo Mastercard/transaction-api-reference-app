@@ -28,7 +28,7 @@ public class ServicesExecutorTest {
 
     @Test
     public void executeTest() throws ServiceException {
-        given(transactionApiService.initiateAuthorisation(any())).willReturn(responseV02);
+        given(transactionApiService.initiateAuthorisation(any(), any())).willReturn(responseV02);
         servicesExecutor.execute();
     }
 }
