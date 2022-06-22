@@ -10,11 +10,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 
-import java.time.OffsetDateTime;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ServicesExecutorTest {
@@ -34,7 +32,17 @@ public class ServicesExecutorTest {
     @Test
     public void executeTest() throws ServiceException {
         given(transactionApiService.initiateAuthorisation(any(), any())).willReturn(responseV02);
+        servicesExecutor.execute();
+        verify(transactionApiService, times(0)).health(any());
+        verify(transactionApiService, times(1)).initiateAuthorisation(any(), any());
+    }
+
+    @Test
+    public void executeTestWithHealth() throws ServiceException {
+        given(transactionApiService.initiateAuthorisation(any(), any())).willReturn(responseV02);
         when(mcProperties.isHealthEnable()).thenReturn(true);
         servicesExecutor.execute();
+        verify(transactionApiService, times(1)).health(any());
+        verify(transactionApiService, times(1)).initiateAuthorisation(any(), any());
     }
 }
