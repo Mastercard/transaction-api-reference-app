@@ -12,8 +12,6 @@ import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Slf4j
 @Service
 public class TransactionApiServiceImpl implements TransactionApiService {
@@ -27,6 +25,19 @@ public class TransactionApiServiceImpl implements TransactionApiService {
     }
 
     @Override
+    public String health(String xMcCorrelationId) throws ServiceException {
+        try {
+            String healthResponse = transactionApiApi.transactionApiActuatorHealth(xMcCorrelationId);
+            log.info(xMcCorrelationId + ": <-- TRANSACTION API HEALTH CALL SUCCESSFUL -->" + healthResponse);
+            return healthResponse;
+        } catch (ApiException e) {
+            log.info(xMcCorrelationId + ":  <-- TRANSACTION API HEALTH CALL ERROR -->");
+            log.error(xMcCorrelationId + ": ResponseCode: " + e.getCode() + " Response: " + e.getResponseBody());
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest, String xMcCorrelationId) throws ServiceException {
         try {
             log.info(xMcCorrelationId + ": <-- CALLING TRANSACTION API ENDPOINT -->");
@@ -36,7 +47,7 @@ public class TransactionApiServiceImpl implements TransactionApiService {
             return transactionApiResponse;
         } catch (ApiException e) {
             log.error(xMcCorrelationId + ": <<-- TRANSACTION API FAILED -->>");
-            log.error(xMcCorrelationId + ": ResponseCode: " + e.getCode()+" Response: " + e.getResponseBody());
+            log.error(xMcCorrelationId + ": ResponseCode: " + e.getCode() + " Response: " + e.getResponseBody());
             throw new ServiceException(e);
         }
     }

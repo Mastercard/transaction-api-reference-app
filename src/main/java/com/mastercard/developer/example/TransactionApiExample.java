@@ -1,5 +1,6 @@
 package com.mastercard.developer.example;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -26,6 +27,7 @@ public class TransactionApiExample {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        objectMapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
         try {
             return objectMapper.readValue(requestStream, InitiationAuthorisationInitiationV02.class);
         } catch (IOException e) {
