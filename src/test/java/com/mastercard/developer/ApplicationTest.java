@@ -29,6 +29,15 @@ class ApplicationTest {
     }
 
     @Test
+    void testScheduleRun() throws ServiceException {
+        doNothing().when(servicesExecutor).execute();
+
+        application.scheduleExecution();
+
+        verify(servicesExecutor, atMostOnce()).execute();
+    }
+
+    @Test
     void test1Run() throws Exception {
         String MESSAGE = "size must be 6 bytes";
         doThrow(new ServiceException(MESSAGE)).when(servicesExecutor).execute();

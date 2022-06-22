@@ -20,4 +20,8 @@ public class MockTransactionApiResponse {
         authorisationResponseV02.setBody(authorisationResponse1);
         return authorisationResponseV02;
     }
+
+    public static String getMockHealthResponse() {
+        return "{\"status\": \"up\"}";
+    }
 }
