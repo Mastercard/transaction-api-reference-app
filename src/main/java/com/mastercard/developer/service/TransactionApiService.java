@@ -5,19 +5,6 @@ import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 
 public interface TransactionApiService {
-
-    /**
-     * initiate health check
-     * URL: /actuator/health
-     * Method: GET
-     * Success Response: 200
-     * Error Response: 4XX or 5XX
-     *
-     * @param xMcCorrelationId String
-     * @return status as string
-     */
-    String health(String xMcCorrelationId) throws ServiceException;
-
     /**
      * initiateAuthorisation processes the authorisation request and returns the authorisation response
      * URL: /cain-authorisation-requests
@@ -26,10 +13,8 @@ public interface TransactionApiService {
      * Error Response: 4XX or 5XX
      *
      * @param authorisationRequest AuthorisationInitiationV02
-     * @param xMcCorrelationId String
      * @return An instance of AuthorisationResponseV02
      */
-    ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest, String xMcCorrelationId)
+    ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest)
             throws ServiceException;
-
 }

@@ -23,8 +23,6 @@ public class MastercardProperties {
 
   private String keyFile;
 
-  private boolean healthEnable;
-
   @PostConstruct
   public void initialize() throws ServiceException {
     if (null == keyFile && StringUtils.isEmpty(consumerKey)) {
