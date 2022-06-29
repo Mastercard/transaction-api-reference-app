@@ -6,14 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @Slf4j
-@EnableScheduling
-@EnableAsync
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
@@ -25,21 +20,12 @@ public class Application implements CommandLineRunner {
     }
 
     public static void main(String... args) {
-        SpringApplication.run(Application.class, args);
+        ConfigurableApplicationContext appContext = SpringApplication.run(Application.class, args);
+        appContext.close();
     }
 
     @Override
     public void run(String... args) {
-        execute();
-    }
-
-    @Async
-    @Scheduled(cron = "${scheduler-cron}")
-    public void scheduleExecution() {
-        execute();
-    }
-
-    private void execute() {
         try {
             servicesExecutor.execute();
         } catch (Exception ex) {

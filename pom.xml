@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.mastercard.nextedge.networkaccessservices</groupId>
+    <groupId>com.mastercard.developer</groupId>
     <artifactId>transaction-api-reference-application</artifactId>
     <version>1.0.1</version>
 
