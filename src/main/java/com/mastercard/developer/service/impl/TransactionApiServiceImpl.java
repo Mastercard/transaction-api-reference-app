@@ -25,29 +25,15 @@ public class TransactionApiServiceImpl implements TransactionApiService {
     }
 
     @Override
-    public String health(String xMcCorrelationId) throws ServiceException {
+    public ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest) throws ServiceException {
         try {
-            String healthResponse = transactionApiApi.transactionApiActuatorHealth(xMcCorrelationId);
-            log.info(xMcCorrelationId + ": <-- TRANSACTION API HEALTH CALL SUCCESSFUL -->" + healthResponse);
-            return healthResponse;
-        } catch (ApiException e) {
-            log.info(xMcCorrelationId + ":  <-- TRANSACTION API HEALTH CALL ERROR -->");
-            log.error(xMcCorrelationId + ": ResponseCode: " + e.getCode() + " Response: " + e.getResponseBody());
-            throw new ServiceException(e);
-        }
-    }
-
-    @Override
-    public ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest, String xMcCorrelationId) throws ServiceException {
-        try {
-            log.info(xMcCorrelationId + ": <-- CALLING TRANSACTION API ENDPOINT -->");
-            ResponseAuthorisationResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessAuthorisationRequest(authorisationRequest, xMcCorrelationId);
+            log.info("<-- CALLING TRANSACTION API ENDPOINT -->");
+            ResponseAuthorisationResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessAuthorisationRequest(authorisationRequest);
             Assertions.assertNotNull(transactionApiResponse, "Missing object 'transactionApiResponse' when calling servicesPost(Async)");
-            log.info(xMcCorrelationId + ": <-- TRANSACTION API RESPONDED SUCCESSFULLY -->");
+            log.info("<-- TRANSACTION API RESPONDED SUCCESSFULLY -->");
             return transactionApiResponse;
         } catch (ApiException e) {
-            log.error(xMcCorrelationId + ": <<-- TRANSACTION API FAILED -->>");
-            log.error(xMcCorrelationId + ": ResponseCode: " + e.getCode() + " Response: " + e.getResponseBody());
+            log.error("<<-- TRANSACTION API FAILED -->>");
             throw new ServiceException(e);
         }
     }
