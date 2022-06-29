@@ -16,10 +16,36 @@ tags:
   - description: Transaction Api Endpoints
     name: TransactionApi
 paths:
+  /actuator/health:
+    get:
+      description: Process the health check
+      operationId: TransactionApi_actuatorHealth
+      parameters:
+        - in: header
+          name: x-mc-correlation-id
+          schema:
+            type: string
+          description: Unique Correlation ID of the request
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: A successful response.
+      summary: Health check
+      tags:
+        - TransactionApi
   /cain-authorisation-requests:
     post:
       description: Process the authorisation requests
       operationId: TransactionApi_processAuthorisationRequest
+      parameters:
+        - in: header
+          name: x-mc-correlation-id
+          schema:
+            type: string
+          description: Unique Correlation ID of the request
       requestBody:
         content:
           application/json:

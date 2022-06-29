@@ -5,6 +5,19 @@ import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 
 public interface TransactionApiService {
+
+    /**
+     * initiate health check
+     * URL: /actuator/health
+     * Method: GET
+     * Success Response: 200
+     * Error Response: 4XX or 5XX
+     *
+     * @param xMcCorrelationId String
+     * @return status as string
+     */
+    String health(String xMcCorrelationId) throws ServiceException;
+
     /**
      * initiateAuthorisation processes the authorisation request and returns the authorisation response
      * URL: /cain-authorisation-requests

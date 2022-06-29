@@ -1,11 +1,9 @@
 package com.mastercard.developer.config;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import com.mastercard.developer.exception.ServiceException;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MastercardPropertiesTest {
 
@@ -25,6 +23,7 @@ public class MastercardPropertiesTest {
     properties.setKeystoreAlias(keyStoreAlias);
     properties.setKeystorePassword(keyStorePassword);
     properties.setKeyFile(keyFile);
+    properties.setHealthEnable(true);
 
     assertNotNull(properties);
     assertEquals(basePath, properties.getBasePath());
@@ -32,6 +31,7 @@ public class MastercardPropertiesTest {
     assertEquals(keyStoreAlias, properties.getKeystoreAlias());
     assertEquals(keyStorePassword, properties.getKeystorePassword());
     assertEquals(keyFile, properties.getKeyFile());
+    assertTrue(properties.isHealthEnable());
   }
 
   @Test
