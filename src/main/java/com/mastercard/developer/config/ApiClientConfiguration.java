@@ -25,7 +25,7 @@ public class ApiClientConfiguration {
 
     /**
      * This method generates creates and configures an API client for the Mastercard Transaction API.
-     * It loads the .p12 key, correctly sets the base path, and loads other properties
+     * It loads the .p12 or .jks key, correctly sets the base path, and loads other properties
      * for making requests.
      *
      * @param mcProperties - MC Developer properties set in the application.properties file
@@ -38,19 +38,16 @@ public class ApiClientConfiguration {
         OkHttpClient.Builder httpClientBuilder = client.getHttpClient().newBuilder();
         // Configure the Mastercard service URL
         client.setBasePath(mcProperties.getBasePath());
-        client.setDebugging(true);
-        client.setReadTimeout(40000);
-
         // Load your client certificate
-        KeyStore pkcs12KeyStore = KeyStore.getInstance(mcProperties.getFormat());
-        pkcs12KeyStore.load(new FileInputStream(mcProperties.getKeyFile()), mcProperties.getKeystorePassword().toCharArray());
+        KeyStore keyStore = KeyStore.getInstance(mcProperties.getFormat());
+        keyStore.load(new FileInputStream(mcProperties.getKeyFile()), mcProperties.getKeystorePassword().toCharArray());
 
         // Configure a secure socket
         KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-        keyManagerFactory.init(pkcs12KeyStore, mcProperties.getKeystorePassword().toCharArray());
+        keyManagerFactory.init(keyStore, mcProperties.getKeystorePassword().toCharArray());
 
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-        trustManagerFactory.init(pkcs12KeyStore);
+        trustManagerFactory.init(keyStore);
 
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(keyManagerFactory.getKeyManagers(), null, new SecureRandom());

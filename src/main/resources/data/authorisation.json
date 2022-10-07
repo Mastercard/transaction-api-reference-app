@@ -1,87 +1,109 @@
 {
   "hdr": {
     "msgFctn": "MESSAGE_FUNCTION16_CODE_REQU",
-    "creDtTm": "2022-04-12T15:24:16.545Z"
+    "prtcolVrsn": "00.00.00",
+    "creDtTm": "2022-09-23T09:19:40Z",
+    "initgPty": {
+      "id": "782817"
+    }
   },
   "body": {
     "envt": {
       "acqrr": {
-        "id": "001727"
+        "id": "782817"
+      },
+      "sndr": {
+        "id": "123456"
       },
       "accptr": {
-        "id": "0011011001001  "
+        "id": "ZUFoFAf",
+        "nmAndLctn": "n0",
+        "adr": {
+          "pstlCd": "84247056",
+          "twnNm": "A",
+          "ctry": "5"
+        }
       },
       "termnl": {
         "termnlId": {
+          "id": "840",
           "ctry": "840"
         },
-        "tp": "TERMINAL_TYPE1_CODE_MPOS",
+        "tp": "TERMINAL_TYPE1_CODE_POST",
         "cpblties": {
           "cardRdngCpblty": [
-            "CARD_DATA_READING7_CODE_UNSP"
+            "CARD_DATA_READING7_CODE_KEEN"
           ],
-          "cardCaptrCpbl": true,
+          "cardCaptrCpbl": false,
           "crdhldrVrfctnCpblty": [
             {
-              "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOOP"
+              "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP"
             }
           ]
         },
-        "offPrmissInd": true
+        "offPrmissInd": false
       },
       "card": {
-        "pAN": "5460126267022775"
+        "pan": "5005202019400536",
+        "xpryDt": "2304"
       }
     },
     "cntxt": {
       "ptOfSvcCntxt": {
-        "cardPres": true,
-        "crdhldrPres": true,
+        "cardPres": false,
+        "crdhldrPres": false,
         "attnddInd": true,
+        "eComrcInd": false,
+        "motoInd": true,
+        "prtlApprvlSpprtd": false,
         "cardDataNtryMd": "CARD_DATA_READING7_CODE_UNSP",
-        "eComrcInd": true
+        "othrCardDataNtryMd": "KEEN",
+        "spclConds": [
+          {
+            "id": "mail_facsimile",
+            "val": "2"
+          }
+        ]
       },
       "txCntxt": {
-        "mrchntCtgyCd": "7992",
-        "mrchntCtgySpcfcData": "T"
+        "mrchntCtgyCd": "5311",
+        "mrchntCtgySpcfcData": "T",
+        "iccFllbckInd": false,
+        "fnlAuthstnInd": false
       },
       "rskCntxt": [
         {
-          "rskAssmnt": [
+          "rskInptData": [
             {
-              "rskAssmntNtty": {
-                "tp": "PARTY_TYPE28_CODE_ACCP"
-              },
-              "addtlRskData": [
-                {
-                  "tp": "pos_transaction_security",
-                  "val": "0"
-                }
-              ]
+              "tp": "pos_transaction_security",
+              "val": "0"
             }
           ]
         }
       ]
     },
     "tx": {
-      "txTp": "PRCH",
-      "txAttr": "TRANSACTION_ATTRIBUTE1_CODE_PAUT",
+      "txTp": "00",
+      "txAttr": "TRANSACTION_ATTRIBUTE1_CODE_OTHP",
+      "othrTxAttr": "first_presentment",
       "preAuthstnTmLmt": "00",
       "txId": {
-        "sysTracAudtNb": "123456",
-        "trnsmssnDtTm": "2022-05-12T15:24:16.545Z"
+        "lclDtTm": "2022-09-23T09:19:40Z",
+        "trnsmssnDtTm": "2022-09-23T09:19:40Z",
+        "sysTracAudtNb": "091940",
+        "rtrvlRefNb": "E2i"
       },
       "txAmts": {
         "txAmt": {
-          "amt": 1134,
-          "ccy": "I_S_O3_NUMERIC_CURRENCY_CODE_840"
+          "amt": "11.99",
+          "ccy": "840"
         }
       },
       "acctFr": {
-        "acctTp": "DFLT"
+        "acctTp": "00"
       },
       "acctTo": {
-        "acctTp": "DFLT"
+        "acctTp": "00"
       }
     }
   }

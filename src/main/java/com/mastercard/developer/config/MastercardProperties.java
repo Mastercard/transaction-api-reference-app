@@ -1,33 +1,27 @@
 package com.mastercard.developer.config;
 
 import com.mastercard.developer.exception.ServiceException;
-import javax.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.annotation.PostConstruct;
 
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "mastercard.api")
 public class MastercardProperties {
-  private String format;
+    public static final String MISSING_KEY_ERROR = "Key file does not exist, please add details in application.properties";
+    private String format;
+    private String basePath;
+    private String keystorePassword;
+    private String keyFile;
 
-  private String basePath;
-
-  private String consumerKey;
-
-  private String keystoreAlias;
-
-  private String keystorePassword;
-
-  private String keyFile;
-
-  @PostConstruct
-  public void initialize() throws ServiceException {
-    if (null == keyFile && StringUtils.isEmpty(consumerKey)) {
-      throw new ServiceException(".p12 file or consumerKey does not exist, please add details in application.properties");
+    @PostConstruct
+    public void initialize() throws ServiceException {
+        if (null == keyFile) {
+            throw new ServiceException(MISSING_KEY_ERROR);
+        }
     }
-  }
 
 }

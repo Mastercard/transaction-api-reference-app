@@ -8,7 +8,9 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.TransactionApiApi;
 import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.InitiationReversalInitiationV02;
 import org.openapitools.client.model.ResponseAuthorisationResponseV02;
+import org.openapitools.client.model.ResponseReversalResponseV02;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TransactionApiServiceImpl implements TransactionApiService {
 
-    private TransactionApiApi transactionApiApi;
+    private final TransactionApiApi transactionApiApi;
 
     @Autowired
     public TransactionApiServiceImpl(ApiClient apiClient) {
@@ -27,13 +29,30 @@ public class TransactionApiServiceImpl implements TransactionApiService {
     @Override
     public ResponseAuthorisationResponseV02 initiateAuthorisation(InitiationAuthorisationInitiationV02 authorisationRequest) throws ServiceException {
         try {
-            log.info("<-- CALLING TRANSACTION API ENDPOINT -->");
+            log.info("<-- CALLING TRANSACTION API AUTHORISATION ENDPOINT -->");
             ResponseAuthorisationResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessAuthorisationRequest(authorisationRequest);
             Assertions.assertNotNull(transactionApiResponse, "Missing object 'transactionApiResponse' when calling servicesPost(Async)");
-            log.info("<-- TRANSACTION API RESPONDED SUCCESSFULLY -->");
+            log.info("<-- TRANSACTION API RESPONDED SUCCESSFULLY FOR AUTHORISATION REQUEST-->");
             return transactionApiResponse;
         } catch (ApiException e) {
-            log.error("<<-- TRANSACTION API FAILED -->>");
+            log.error("<<-- TRANSACTION API FAILED FOR AUTHORISATION REQUEST-->>");
+            log.error(e.getResponseBody());
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public ResponseReversalResponseV02 initiateReversal(InitiationReversalInitiationV02 reversalRequest) throws ServiceException {
+        long startTime = System.currentTimeMillis();
+        try {
+            log.info("CALLING TRANSACTION API REVERSAL ENDPOINT");
+            ResponseReversalResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessReversalRequest(reversalRequest);
+            Assertions.assertNotNull(transactionApiResponse, "Missing object 'transactionApiResponse' when calling servicesPost(Async)");
+            log.info("TRANSACTION API RESPONDED SUCCESSFULLY FOR REVERSAL REQUEST");
+            return transactionApiResponse;
+        } catch (ApiException e) {
+            log.error("TRANSACTION API FAILED FOR REVERSAL REQUEST");
+            log.error(e.getResponseBody());
             throw new ServiceException(e);
         }
     }
