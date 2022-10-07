@@ -1,0 +1,85 @@
+{
+  "hdr": {
+    "msgFctn": "MESSAGE_FUNCTION16_CODE_REQU",
+    "creDtTm": "2022-04-12T15:25:16.545Z"
+  },
+  "body": {
+    "envt": {
+      "acqrr": {
+        "id": "001727"
+      },
+      "accptr": {
+        "id": "0011011001001  "
+      },
+      "termnl": {
+        "termnlId": {
+          "ctry": "840"
+        }
+      },
+      "card": {
+        "pan": "5460126238793041"
+      }
+    },
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "cardPres": true,
+        "crdhldrPres": true,
+        "attnddInd": true,
+        "eComrcInd": true,
+        "cardDataNtryMd": "CARD_DATA_READING7_CODE_CDFL"
+      }
+    },
+    "tx": {
+      "txTp": "PRCH",
+      "txAttr": "TRANSACTION_ATTRIBUTE1_CODE_PAUT",
+      "preAuthstnTmLmt": "00",
+      "txId": {
+        "trnsmssnDtTm": "2022-04-12T15:25:16.545Z",
+        "sysTracAudtNb": "789100",
+        "rtrvlRefNb": "123456",
+        "lifeCyclTracIdData": {
+          "id": "123456"
+        },
+        "orgnlDataElmts": {
+          "msgClss": "MESSAGE_CLASS1_CODE_AUTH",
+          "acqrrId": "001727",
+          "sndrId": "001727",
+          "lclDtTm": "2022-04-12T15:25:16.545Z",
+          "trnsmssnDtTm": "2022-04-12T15:25:16.545Z",
+          "sysTracAudtNb": "123456",
+          "rtrvlRefNb": "123456"
+        }
+      },
+      "txAmts": {
+        "txAmt": {
+          "amt": 11,
+          "ccy": "I_S_O3_NUMERIC_CURRENCY_CODE_840"
+        }
+      },
+      "acctFr": {
+        "acctTp": "DFLT"
+      },
+      "acctTo": {
+        "acctTp": "DFLT"
+      },
+      "addtlData": [
+        {
+          "tp": "tcc",
+          "val": "T"
+        },
+        {
+          "tp": "card_capture_capable",
+          "val": "0"
+        }
+      ]
+    },
+    "prcgRslt": {
+      "apprvlData": {
+        "apprvlCd": ""
+      },
+      "orgnlRsltData": {
+        "rsltDtls": "RESPONSE8_CODE_PRCS"
+      }
+    }
+  }
+}

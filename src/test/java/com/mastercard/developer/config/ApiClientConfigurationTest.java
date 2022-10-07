@@ -1,37 +1,31 @@
 package com.mastercard.developer.config;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @ExtendWith(MockitoExtension.class)
 public class ApiClientConfigurationTest {
 
-  public static final String PKCS_12 = "PKCS12";
-  private String basePath = "https://sandbox.api.mastercard.com/direct-service-api";
-  // Insert MC developer project consumer key into string below
-  private String consumerKey = "";
-  private String keyStoreAlias = "keyalias";
-  private String keyStorePassword = "keystorepassword";
-  // Insert path to MC developer project .p12 file into string below
-  private String keyFile = "keyFilePath";
+    public static final String PKCS_12 = "PKCS12";
+    private final String basePath = "https://sandbox.api.mastercard.com/direct-service-api";
+    private final String keyStorePassword = "keystorepassword";
+    private final String keyFile = "keyFilePath";
 
-  @Test
-  public void apiClientTest() {
-    MastercardProperties mastercardProperties = new MastercardProperties();
-    mastercardProperties.setFormat(PKCS_12);
-    mastercardProperties.setKeyFile(keyFile);
-    mastercardProperties.setBasePath(basePath);
-    mastercardProperties.setConsumerKey(consumerKey);
-    mastercardProperties.setKeystoreAlias(keyStoreAlias);
-    mastercardProperties.setKeystorePassword(keyStorePassword);
+    @Test
+    public void apiClientTest() {
+        MastercardProperties mastercardProperties = new MastercardProperties();
+        mastercardProperties.setFormat(PKCS_12);
+        mastercardProperties.setKeyFile(keyFile);
+        mastercardProperties.setBasePath(basePath);
+        mastercardProperties.setKeystorePassword(keyStorePassword);
 
-    ApiClientConfiguration apiClientConfiguration = new ApiClientConfiguration();
-    Exception exception = Assertions.assertThrows(Exception.class, () -> apiClientConfiguration.apiClient(mastercardProperties));
-    assertNotNull(exception.getMessage());
-  }
+        ApiClientConfiguration apiClientConfiguration = new ApiClientConfiguration();
+        Exception exception = Assertions.assertThrows(Exception.class, () -> apiClientConfiguration.apiClient(mastercardProperties));
+        assertNotNull(exception.getMessage());
+    }
 
 }

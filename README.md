@@ -26,8 +26,7 @@ This application illustrates connecting to the Mastercard Transaction API. To ca
 * [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
 
 ### References <a name="references"></a>
-* [Mastercard’s OAuth Signer library](https://github.com/Mastercard/oauth1-signer-java)
-* [Using OAuth 1.0a to Access Mastercard APIs](https://developer.mastercard.com/platform/documentation/using-oauth-1a-to-access-mastercard-apis/)
+* [Using MTLS to access Mastercard APIs](https://developer.mastercard.com/platform/documentation/security-and-authentication/using-mtls-to-access-mastercard-apis/)
 
 ## Usage <a name="usage"></a>
 ### Prerequisites <a name="prerequisites"></a>
@@ -73,11 +72,10 @@ With the PKCS12 file downloaded from [KMP](https://www.mastercardconnect.com/-/s
   
   >**mastercard.api.format=**, for .p12 files this is "PKCS12" (without quotes)
   
-  >**mastercard.api.keystore-alias=**, this is the default value of key alias. If it is modified, use what was identified when creating CSR on [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp)
-
   >**mastercard.api.keystore-password=**, this is the default value of key alias. If it is modified, use what was identified when creating CSR on [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp)
-### Converting JKS to PKCS12
-If you've downloaded a `.jks` file, convert that to `.p12` using the following command (provide input where necessary)
+### Working with JKS instead of PKCS12
+* If you received different format of key file change the property **mastercard.api.format** accordingly. For example provide **mastercard.api.format=JKS** if you received JKS file.
+* Alternatively you can convert that to `.p12` using the following command (provide input where necessary)
 ```bash
 keytool -importkeystore -srckeystore <jks file location> \
 -destkeystore <pkcs12 file location> \
@@ -95,8 +93,6 @@ When the project builds successfully you can then run the following command to s
 
 ```bash
 KEYFILE=my-keystore.p12 \
-FORMAT=PKCS12 \
-ALIAS=my-alias \
 PASSWORD=my-keystore-password \
 java -jar target/transaction-api-reference-1.0.0.jar
 ```
@@ -160,7 +156,15 @@ Now that you have all the dependencies you need, you can generate the sources. T
 
   | URL | Method | Request | Response |
   | :-- | :----- | :------ | :------- |
-  | `/cain-authorisation-requests` | POST | [AuthorisationInitiationV02](docs/AuthorisationInitiationV02.md) | [AuthorisationResponseV02](docs/AuthorisationResponseV02.md) |
+  | `/cain-authorisation-requests` | POST | [AuthorisationInitiationV02](docs/InitiationAuthorisationInitiationV02.md) | [AuthorisationResponseV02](docs/ResponseAuthorisationResponseV02.md) |
+
+> Case 2: [REVERSAL](https://developer.mastercard.com/transaction-api/documentation/parameters/reversal/)
+- User performs an API call with an reversal request. Multiple use cases can be executed simultaneously.
+- Refer to model classes for field level information.
+
+  | URL | Method | Request | Response |
+  | :-- | :----- | :------ | :------- |
+  | `/cain-reversal-requests` | POST | [ReversalInitiationV02](docs/InitiationReversalInitiationV02.md) | [ReversalResponseV02](docs/ResponseReversalResponseV02.md) |
 
 ## API Reference <a name="api-reference"></a>
 To develop a client application that consumes a RESTful Transaction API with Spring Boot, refer to the [API Reference](https://developer.mastercard.com/transaction-api/documentation/api-reference/) page.

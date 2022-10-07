@@ -12,7 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-    private ServicesExecutor servicesExecutor;
+    private final ServicesExecutor servicesExecutor;
 
     @Autowired
     public Application(ServicesExecutor servicesExecutor) {
