@@ -28,7 +28,7 @@ public class MastercardPropertiesTest {
     public void initializeTest() {
         MastercardProperties properties = new MastercardProperties();
         Exception exception = assertThrows(ServiceException.class, properties::initialize);
-        assertEquals("Key file does not exist, please add details in application.properties", exception.getMessage());
+        assertEquals(MastercardProperties.MISSING_KEY_ERROR, exception.getMessage());
     }
 
 }
