@@ -5,9 +5,9 @@
 ## Table of Contents
 - [Project Overview](#overview)
     * [Compatibility](#compatibility)
-    * [References](#references)
 - [Usage](#usage)
     * [Prerequisites](#prerequisites)
+    * [Security & Authentication](#references)
     * [Configuration](#configuration)
     * [Integrating with OpenAPI Generator](#integrating-with-openapi-generator)
     * [Build and Execute](#build-and-execute)
@@ -19,14 +19,10 @@
 - [Support](#support)
 
 ## Project Overview <a name="overview"></a>
-This is a reference application to demonstrate how the Mastercard Transaction API for Acquirers can be used for the supported operations. Please see here for details on the API: [Mastercard Developers](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/).
-This application illustrates connecting to the Mastercard Transaction API. To call this API, a valid _Client Certificate_ file must be acquired and access provisioned as explained later in this documentation.
+This is a reference application to demonstrate how the Mastercard Transaction API for Acquirers can be used for the supported operations. Please see here for details on the API: [Mastercard Developers](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/). To call this API, a valid _Client Certificate_ file must be acquired and access provisioned as explained later in this documentation.
 
 ### Compatibility <a name="compatibility"></a>
 * [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
-
-### References <a name="references"></a>
-* [Using MTLS to access Mastercard APIs](https://developer.mastercard.com/platform/documentation/security-and-authentication/using-mtls-to-access-mastercard-apis/)
 
 ## Usage <a name="usage"></a>
 ### Prerequisites <a name="prerequisites"></a>
@@ -36,14 +32,17 @@ This application illustrates connecting to the Mastercard Transaction API. To ca
 * [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
 * Set up the `JAVA_HOME` environment variable to match the location of your Java installation.
 
+### Security & Authentication <a name="references"></a>
+* [Using MTLS to access Mastercard APIs](https://developer.mastercard.com/platform/documentation/security-and-authentication/using-mtls-to-access-mastercard-apis/)
+
 ## Before You Start - Getting MTLS Client Certificates for Your Project
 The client authentication side of MTLS protocol involves a client certificate and a private key, known as a key pair. To use the key pair with Mastercard APIs, you will need to perform onboarding steps detailed here.
 
 ### Client Certificates and Environments
 There are two different types of MTLS client certificates, depending on the stage of your project:
 
-1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (*mtf.services.mastercard.com)
-2. Production MLTS certificates, which allow an application to access the Production environment (*services.mastercard.com)
+1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (*mtf.services.mastercard.com & *mtf.services-asn.mastercard.com/)
+2. Production MLTS certificates, which allow an application to access the Production environment (*services.mastercard.com & *services-asn.mastercard.com)
 *Domain/Server URL may vary depending on the API. Please check the API Reference section of the service documentation for the correct Server URL.
 
 ### Creating and Renewing Client Certificate
@@ -51,7 +50,10 @@ The [Key Management Portal (KMP)](https://www.mastercardconnect.com/-/store-plus
 
 The portal provides guided workflows to create and manage requests for key and certificate exchange, as well as an inventory of all PKI for Business Partners keys and certificates that have been exchanged between Mastercard and customers using KMP.
 
-Access the Key Management Portal application on [Mastercard Connect](https://www.mastercardconnect.com/) to obtain MTLS client certificates. You can access the user guide within the KMP application for instructions on how to use the application.
+Access the Key Management Portal application on [Mastercard Connect](https://www.mastercardconnect.com/) to obtain MTLS client certificates. You can access the user guide within the KMP application for instructions on how to use the application
+
+#### Step-by-Step Guide on Requesting a Certificate
+Visit the [Mastercard Transaction APIs for Acquirers Tutorials & Guides](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/tutorial/tutorials-and-guides/) for a step-by-step guide on requesting an MTLS Certificate
 
 ### Download the appropriate Client Certificate
 Once you are notified that your Certificate Request is signed, you can access the client certificate in KMP.
@@ -107,74 +109,32 @@ See also:
 * [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
 * [CONFIG OPTIONS for java](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/java.md)
 
-#### OpenAPI Generator Plugin Configuration
-```xml
-<!-- https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin -->
-<plugin>
-    <groupId>org.openapitools</groupId>
-    <artifactId>openapi-generator-maven-plugin</artifactId>
-    <version>${openapi-generator.version}</version>
-    <executions>
-        <execution>
-            <goals>
-                <goal>generate</goal>
-            </goals>
-            <configuration>
-                <inputSpec>${project.basedir}/src/main/resources/transaction-api-swagger.yaml</inputSpec>
-                <generatorName>java</generatorName>
-                <library>okhttp-gson</library>
-                <generateApiTests>false</generateApiTests>
-                <generateModelTests>false</generateModelTests>
-                <configOptions>
-                    <sourceFolder>src/gen/java/main</sourceFolder>
-                    <dateLibrary>java8</dateLibrary>
-                </configOptions>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-```
-
-#### Generating The API Client Sources
-Now that you have all the dependencies you need, you can generate the sources. To do this, use one of the following two methods:
-
-`Using IDE`
-* **Method 1**<br/>
-  In IntelliJ IDEA, open the Maven window **(View > Tool Windows > Maven)**. Click the icons `Reimport All Maven Projects` and `Generate Sources and Update Folders for All Projects`
-
-* **Method 2**<br/>
-  In the same menu, navigate to the commands **({Project name} > Lifecycle)**, select `clean` and `compile` then click the icon `Run Maven Build`.
-
-`Using Terminal`
-* Navigate to the root directory of the project within a terminal window and execute `mvn clean compile` command.
-
-
 ## Use Cases <a name="use-cases"></a>
-> Case 1: [AUTHORISATION](https://developer.mastercard.com/transaction-api/documentation/parameters/authorisation/)
+> Case 1: [AUTHORISATION](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/use-cases/acquirer-authorization/)
 - User performs an API call with an authorisation request. Multiple use cases can be executed simultaneously.
 - Refer to model classes for field level information.
 
-  | URL | Method | Request | Response |
-  | :-- | :----- | :------ | :------- |
-  | `/cain-authorisation-requests` | POST | [AuthorisationInitiationV02](docs/InitiationAuthorisationInitiationV02.md) | [AuthorisationResponseV02](docs/ResponseAuthorisationResponseV02.md) |
+  | URL     | Method    | Request |  Response |
+  | --------|---------|-------|-------|
+  | `/cain-authorisation-requests`  | POST   | [AuthorisationInitiationV02](docs/InitiationAuthorisationInitiationV02.md)    | [AuthorisationResponseV02](docs/ResponseAuthorisationResponseV02.md) |
 
-> Case 2: [REVERSAL](https://developer.mastercard.com/transaction-api/documentation/parameters/reversal/)
+> Case 2: [REVERSAL](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/use-cases/acquirer-reversal/)
 - User performs an API call with an reversal request. Multiple use cases can be executed simultaneously.
 - Refer to model classes for field level information.
 
-  | URL | Method | Request | Response |
-  | :-- | :----- | :------ | :------- |
+  | URL     | Method    | Request |  Response |
+  | --------|---------|-------|-------|
   | `/cain-reversal-requests` | POST | [ReversalInitiationV02](docs/InitiationReversalInitiationV02.md) | [ReversalResponseV02](docs/ResponseReversalResponseV02.md) |
 
 ## API Reference <a name="api-reference"></a>
-To develop a client application that consumes a RESTful Transaction API with Spring Boot, refer to the [API Reference](https://developer.mastercard.com/transaction-api/documentation/api-reference/) page.
+To develop a client application that consumes a RESTful Transaction API with Spring Boot, refer to the [API Reference](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/) page.
 
 ### Request Examples <a name="request-examples"></a>
-To learn which fields are required for each use case request, refer to the documentation below.
+To learn which fields are required to make a request, refer to the example below.
 
-| API Request Type | Endpoint | HTTP Method | Description |
-| :-- | :------- | :---------- | :---------- |
-| [AuthorisationInitiationV02](https://developer.mastercard.com/transaction-api/documentation/parameters/AuthorisationInitiationV02/) | `/cain-authorisation-requests` | POST | User performs an API call with an authorisation request. Multiple use cases can be executed simultaneously. |
+| API Request Payload | Endpoint | HTTP Method | API Response Payload |
+| --------|---------|-------|-------|
+| [AuthorisationInitiationV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-authorization/#request) | `/cain-authorisation-requests` | POST | [AuthorisationResponseV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-authorization/#response). |
 
 
 You can change the default input passed to APIs, modify values in following files:
