@@ -1,9 +1,9 @@
-# Reference Implementation for Mastercard Transaction API
+# Reference Implementation for Mastercard Transaction APIs for Acquirers
 
 [![](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Mastercard/transaction-api-reference/blob/master/LICENSE)
 
 ## Table of Contents
-- [Overview](#overview)
+- [Project Overview](#overview)
     * [Compatibility](#compatibility)
     * [References](#references)
 - [Usage](#usage)
@@ -15,12 +15,12 @@
 - [API Reference](#api-reference)
     * [Request Examples](#request-examples)
     * [Recommendation](#recommendation)
-- [Support](#support)
 - [License](#license)
+- [Support](#support)
 
-## Overview <a name="overview"></a>
-This is a reference application to demonstrate how the Mastercard Transaction API can be used for the supported operations. Please see here for details on the API: [Mastercard Developers](https://developer.mastercard.com/transaction-apis/documentation/).
-This application illustrates connecting to the Mastercard Transaction API. To call these APIs, the consumer key and .p12 files are required from your [Mastercard Developers](https://developer.mastercard.com/dashboard) project.
+## Project Overview <a name="overview"></a>
+This is a reference application to demonstrate how the Mastercard Transaction API for Acquirers can be used for the supported operations. Please see here for details on the API: [Mastercard Developers](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/).
+This application illustrates connecting to the Mastercard Transaction API. To call this API, a valid _Client Certificate_ file must be acquired and access provisioned as explained later in this documentation.
 
 ### Compatibility <a name="compatibility"></a>
 * [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
@@ -187,7 +187,7 @@ It is recommended to create an instance of `ApiClient` per thread in a multi-thr
 If you would like further information, please send an email to apisupport@mastercard.com.
 
 ## License <a name="license"></a>
-Copyright 2020 Mastercard
+Copyright 2022 Mastercard
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
