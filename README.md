@@ -71,7 +71,10 @@ With the PKCS12 file downloaded from [KMP](https://www.mastercardconnect.com/-/s
 
   **Below properties will be required for authentication of API calls. You can modify them or add the appropriate values to the `run command` as environment variables**
 
-  >**mastercard.api.key-file=**, this refers to .p12 file found in the signing key. Please place .p12 file at src\main\resources in the project folder and add classpath for .p12 file.
+  >**mastercard.api.key-file=**, this refers to .p12 file found in the signing key. Please place .p12 file at src\main\resources\certs\ in the project folder and add classpath for .p12 file. 
+  > If the certificate is not present, you will receive this error:
+  > ```markdown
+  > java.io.FileNotFoundException: src/main/resources/certs/certificate.p12 (No such file or directory)
   
   >**mastercard.api.format=**, for .p12 files this is "PKCS12" (without quotes)
   
