@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class TransactionApiServiceImpl implements TransactionApiService {
 
     private final TransactionApiApi transactionApiApi;
+    private static final String MISSING_OBJECT_MESSAGE = "Missing object 'transactionApiResponse' when calling servicesPost(Async)";
 
     @Autowired
     public TransactionApiServiceImpl(ApiClient apiClient) {
@@ -31,7 +32,9 @@ public class TransactionApiServiceImpl implements TransactionApiService {
         try {
             log.info("<-- CALLING TRANSACTION API AUTHORISATION ENDPOINT -->");
             ResponseAuthorisationResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessAuthorisationRequest(authorisationRequest);
-            Assertions.assertNotNull(transactionApiResponse, "Missing object 'transactionApiResponse' when calling servicesPost(Async)");
+            if (transactionApiResponse == null) {
+                log.error(MISSING_OBJECT_MESSAGE);
+            }
             log.info("<-- TRANSACTION API RESPONDED SUCCESSFULLY FOR AUTHORISATION REQUEST-->");
             return transactionApiResponse;
         } catch (ApiException e) {
@@ -43,11 +46,12 @@ public class TransactionApiServiceImpl implements TransactionApiService {
 
     @Override
     public ResponseReversalResponseV02 initiateReversal(InitiationReversalInitiationV02 reversalRequest) throws ServiceException {
-        long startTime = System.currentTimeMillis();
         try {
             log.info("CALLING TRANSACTION API REVERSAL ENDPOINT");
             ResponseReversalResponseV02 transactionApiResponse = transactionApiApi.transactionApiProcessReversalRequest(reversalRequest);
-            Assertions.assertNotNull(transactionApiResponse, "Missing object 'transactionApiResponse' when calling servicesPost(Async)");
+            if (transactionApiResponse == null) {
+                log.error(MISSING_OBJECT_MESSAGE);
+            }
             log.info("TRANSACTION API RESPONDED SUCCESSFULLY FOR REVERSAL REQUEST");
             return transactionApiResponse;
         } catch (ApiException e) {

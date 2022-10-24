@@ -9,13 +9,14 @@
     * [Prerequisites](#prerequisites)
     * [Security & Authentication](#references)
     * [Configuration](#configuration)
-    * [Integrating with OpenAPI Generator](#integrating-with-openapi-generator)
     * [Build and Execute](#build-and-execute)
 - [Use Cases](#use-cases)
 - [API Reference](#api-reference)
     * [Request Examples](#request-examples)
     * [Recommendation](#recommendation)
 - [License](#license)
+- [About This Project](#about-this-project)
+  * [Integrating with OpenAPI Generator](#integrating-with-openapi-generator)
 - [Support](#support)
 
 ## Project Overview <a name="overview"></a>
@@ -100,10 +101,6 @@ java -jar target/transaction-api-reference-1.0.0.jar
 ```
 *** Note: the default environment is - `https://mtf.services-asn.mastercard.com` ***
 
-### Integrating with OpenAPI Generator <a name="integrating-with-openapi-generator"></a>
-[OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) generates API client libraries from [OpenAPI Specs](https://github.com/OAI/OpenAPI-Specification).
-It provides generators and library templates for supporting multiple languages and frameworks.
-
 See also:
 * [OpenAPI Generator (maven Plugin)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin)
 * [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
@@ -142,6 +139,13 @@ You can change the default input passed to APIs, modify values in following file
 
 ### Recommendation <a name="recommendation"></a>
 It is recommended to create an instance of `ApiClient` per thread in a multi-threaded environment to avoid any potential issues.
+
+## About this Project <a name="about-this-project"></a>
+This project was created using the `OpenAPI Generator` for generating API client & SDK libraries, server stubs, documentation and configuration.
+
+### Integrating with OpenAPI Generator <a name="integrating-with-openapi-generator"></a>
+[OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) generates API client libraries from [OpenAPI Specs](https://github.com/OAI/OpenAPI-Specification).
+It provides generators and library templates for supporting multiple languages and frameworks.
 
 ## Support <a name="support"></a>
 If you would like further information, please send an email to apisupport@mastercard.com.
