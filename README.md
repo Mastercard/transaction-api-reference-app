@@ -27,7 +27,7 @@ This is a reference application to demonstrate how the Mastercard Transaction AP
 
 ## Usage <a name="usage"></a>
 ### Prerequisites <a name="prerequisites"></a>
-* [Mastercard Developers Account](https://developer.mastercard.com/dashboard) with access to the Mastercard Transaction API
+* [Mastercard Developers Account](https://developer.mastercard.com/dashboard) with access to the Mastercard Transaction API for Acquirers
 * A text editor or IDE
 * [Spring Boot 2.2+](https://spring.io/projects/spring-boot)
 * [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
@@ -51,10 +51,10 @@ The [Key Management Portal (KMP)](https://www.mastercardconnect.com/-/store-plus
 
 The portal provides guided workflows to create and manage requests for key and certificate exchange, as well as an inventory of all PKI for Business Partners keys and certificates that have been exchanged between Mastercard and customers using KMP.
 
-Access the Key Management Portal application on [Mastercard Connect](https://www.mastercardconnect.com/) to obtain MTLS client certificates. You can access the user guide within the KMP application for instructions on how to use the application
+Access the Key Management Portal application on [Mastercard Connect](https://www.mastercardconnect.com/) to obtain MTLS client certificates. You can access the user guide within the KMP application for instructions on how to use the application.
 
 #### Step-by-Step Guide on Requesting a Certificate
-Visit the [Mastercard Transaction APIs for Acquirers Tutorials & Guides](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/tutorial/tutorials-and-guides/) for a step-by-step guide on requesting an MTLS Certificate
+Visit the [Mastercard Transaction APIs for Acquirers Tutorials & Guides](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/tutorial/tutorials-and-guides/) for a step-by-step guide on requesting an MTLS Certificate.
 
 ### Download the appropriate Client Certificate
 Once you are notified that your Certificate Request is signed, you can access the client certificate in KMP.
@@ -63,7 +63,7 @@ When accessing your certificate, you will see an option to download the certific
 
 1. Format PKCS #8
 2. Uncheck “Include Root Chain”
-The certificate will be available to download. Save it to a safe location so that it can be uploaded it to your project in Mastercard Developers or used within your client's run command.
+The certificate will be available to download. Save it to a safe location so that it can be uploaded to your project in Mastercard Developers or used within your client's run command.
 
 ### Configuration <a name="configuration"></a>
 With the PKCS12 file downloaded from [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp) configure the properties for your client as explained below - 
@@ -81,7 +81,7 @@ With the PKCS12 file downloaded from [KMP](https://www.mastercardconnect.com/-/s
   >**mastercard.api.keystore-password=**, this is the default value of the key alias. If it is modified, use what was identified when creating CSR on [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp)
 ### Working with JKS instead of PKCS12
 * If you received a different format of key file change the property **mastercard.api.format** accordingly. For example provide **mastercard.api.format=JKS** if you received the JKS file.
-* Alternatively you can convert that to `.p12` using the following command (provide input where necessary)
+* Alternatively you can convert that to `.p12` using the following command (provide input where necessary).
 ```bash
 keytool -importkeystore -srckeystore <jks file location> \
 -destkeystore <pkcs12 file location> \
