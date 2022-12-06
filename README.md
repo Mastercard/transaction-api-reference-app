@@ -1,6 +1,11 @@
 # Reference Implementation for Mastercard Transaction APIs for Acquirers
 
 [![](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Mastercard/transaction-api-reference/blob/master/LICENSE)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_transaction-api-reference-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Mastercard_transaction-api-reference-app)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_transaction-api-reference-app&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Mastercard_transaction-api-reference-app)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_transaction-api-reference-app&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Mastercard_transaction-api-reference-app)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_transaction-api-reference-app&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Mastercard_transaction-api-reference-app)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Mastercard_transaction-api-reference-app&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Mastercard_transaction-api-reference-app)
 
 ## Table of Contents
 - [Project Overview](#overview)
