@@ -3,12 +3,13 @@
 # MsgreversalresponsePartyIdentification197
 
 Identification of a party.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**id** | **String** | Identification of the party. |  [optional]
-**addtlId** | **String** | Additional identification of the party. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**id** | **String** | The identifier assigned by Mastercard to the Party. |  [optional] |
+|**addtlId** | **String** | An additional identifier of the Party, such as a processor&#39;s pseudo ICA. |  [optional] |
 
 
 

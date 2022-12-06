@@ -3,16 +3,17 @@
 # MsgreversalresponseHeader42
 
 Set of characteristics related to the protocol.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**msgFctn** | [**MsgreversalresponseMessageFunction16Code**](MsgreversalresponseMessageFunction16Code.md) |  |  [optional]
-**prtcolVrsn** | **String** | Version of the acquirer to issuer protocol specifications. |  [optional]
-**xchgId** | **String** | Unique identification of an exchange of messages between two parties. |  [optional]
-**creDtTm** | **String** | Date and time at which the message was sent. |  [optional]
-**initgPty** | [**MsgreversalresponseGenericIdentification172**](MsgreversalresponseGenericIdentification172.md) |  |  [optional]
-**tracData** | [**List&lt;MsgreversalresponseAdditionalData1&gt;**](MsgreversalresponseAdditionalData1.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**msgFctn** | **MsgreversalresponseMessageFunction16Code** |  |  [optional] |
+|**prtcolVrsn** | **String** | The version of the Mastercard Switch Platform Specifications. |  [optional] |
+|**xchgId** | **String** | The identifier of a set of messages exchanged between two parties, usually an Acquirer and an Issuer. |  [optional] |
+|**creDtTm** | **String** | The date and time the message was created. |  [optional] |
+|**initgPty** | [**MsgreversalresponseGenericIdentification172**](MsgreversalresponseGenericIdentification172.md) |  |  [optional] |
+|**tracData** | [**List&lt;MsgreversalresponseAdditionalData1&gt;**](MsgreversalresponseAdditionalData1.md) | Private-use data defined by the message originator to be returned unaltered in any subsequent message.  The data is sent in a name-value pair: Trace Data Name and Trace Data Value. |  [optional] |
 
 
 

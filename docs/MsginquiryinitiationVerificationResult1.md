@@ -2,15 +2,13 @@
 
 # MsginquiryinitiationVerificationResult1
 
+Result of verifications performed prior or after the transaction.  ISO 8583:93 bit 39 ISO 8583:2003 bit 39 & 49-72
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tp** | **String** | Type of the verification or authentication. |  [optional]
-**ntty** | [**MsginquiryinitiationVerificationEntity1Code**](MsginquiryinitiationVerificationEntity1Code.md) |  |  [optional]
-**rslt** | [**MsginquiryinitiationVerification2Code**](MsginquiryinitiationVerification2Code.md) |  |  [optional]
-**othrRslt** | **String** | Additional result of the verification, for instance for electronic commerce. |  [optional]
-**rsltDtls** | [**List&lt;MsginquiryinitiationAdditionalData1&gt;**](MsginquiryinitiationAdditionalData1.md) | Details of the result. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**rsltDtls** | [**List&lt;MsginquiryinitiationAdditionalData1&gt;**](MsginquiryinitiationAdditionalData1.md) | Details of the result. |  [optional] |
 
 
 

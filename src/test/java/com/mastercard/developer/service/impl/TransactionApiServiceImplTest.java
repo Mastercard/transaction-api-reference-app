@@ -11,10 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiResponse;
-import org.openapitools.client.model.MsgauthorisationresponseMessageFunction16Code;
-import org.openapitools.client.model.MsgreversalresponseMessageFunction16Code;
-import org.openapitools.client.model.ResponseAuthorisationResponseV02;
-import org.openapitools.client.model.ResponseReversalResponseV02;
+import org.openapitools.client.model.*;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -59,5 +56,17 @@ class TransactionApiServiceImplTest {
         verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));
 
         assertAll(() -> assertNotNull(reversalResponseV02), () -> assertEquals(MsgreversalresponseMessageFunction16Code.ADVC, reversalResponseV02.getHdr().getMsgFctn()), () -> assertEquals("100", reversalResponseV02.getBody().getTx().getTxAmts().getTxAmt().getAmt()));
+    }
+
+    @Test
+    void testInitiateInquiry() throws Exception {
+        when(apiClient.execute(any(Call.class), any(Type.class))).thenReturn(new ApiResponse<>(201, new HashMap<>(), MockTransactionApiResponse.getMockInquiryResponse()));
+
+        ResponseInquiryResponseV01 inquiryResponseV01 = transactionApiService.initiateInquiry(TransactionApiExample.buildInquiryRequest());
+
+        verify(apiClient, atMostOnce()).buildCall(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any());
+        verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));
+
+        assertAll(() -> assertNotNull(inquiryResponseV01), () -> assertEquals(MockTransactionApiResponse.PAN, inquiryResponseV01.getBody().getEnvt().getCard().getPan()));
     }
 }

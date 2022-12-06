@@ -1,0 +1,73 @@
+{
+  "hdr": {
+    "msgFctn": "MESSAGE_FUNCTION17_CODE_REQU",
+    "creDtTm": "2022-04-12T15:24:16.545Z"
+  },
+  "body": {
+    "envt": {
+      "acqrr": {
+        "id": "001727"
+      },
+      "accptr": {
+        "id": "0011011001001  "
+      },
+      "termnl": {
+        "termnlId": {
+          "ctry": "840"
+        },
+        "tp": "TERMINAL_TYPE1_CODE_UNSPECIFIED",
+        "cpblties": {
+          "cardRdngCpblty": [
+            "CARD_DATA_READING7_CODE_UNSP"
+          ],
+          "cardCaptrCpbl": true,
+          "crdhldrVrfctnCpblty": [
+            {
+              "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED"
+            }
+          ]
+        },
+        "offPrmissInd": true
+      },
+      "card": {
+        "pan": "5460126267022775"
+      }
+    },
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "cardPres": true,
+        "crdhldrPres": true,
+        "attnddInd": true,
+        "cardDataNtryMd": "CARD_DATA_READING7_CODE_UNSP",
+        "eComrcInd": true
+      },
+      "txCntxt": {
+        "mrchntCtgyCd": "7992",
+        "mrchntCtgySpcfcData": "T"
+      },
+      "rskCntxt":
+      {
+        "rskAssmnt": [
+          {
+            "rskAssmntNtty": {
+              "tp": "PARTY_TYPE28_CODE_ACCP"
+            },
+            "addtlRskData": [
+              {
+                "tp": "pos_transaction_security",
+                "val": "0"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "tx": {
+      "txTp": "00",
+      "txId": {
+        "sysTracAudtNb": "123456",
+        "trnsmssnDtTm": "2022-05-12T15:24:16.545Z"
+      }
+    }
+  }
+}

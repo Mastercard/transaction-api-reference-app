@@ -2,12 +2,13 @@
 
 # MsginquiryinitiationTrack2Data1Choice
 
+ISO track 2 issued from the magnetic stripe card or from the ICC if the magnetic stripe was not read. The format  conforms to ISO 7813, removing beginning and ending sentinels and longitudinal redundancy check characters.   ISO 8583 bit 35
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**txtVal** | **String** | Value of track 2 data expressed in text form. |  [optional]
-**hexBinryVal** | **String** | Value of track 2 data expressed in a hex binary form.  Binary, length of 19 with maximum 37 hexadecimal text characters.  When an odd number of hexadecimal text characters is present, a zero must be appended to the end of the string to pad to an even number of hexadecimal text characters. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**txtVal** | **String** | Value of track 2 data expressed in text form. |  [optional] |
 
 
 

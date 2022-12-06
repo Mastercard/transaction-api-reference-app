@@ -3,12 +3,13 @@
 # InitiationECommerceData1
 
 Contains electronic commerce data.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tp** | **String** | Type of the ecommerce data (for example ,ECI level, downgrade reason, etc). |  [optional]
-**val** | **String** | Value related to a specific ecommerce type. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**tp** | **String** | A free text field for labeling the Ecommerce Data given in the Risk Data Field Value. |  [optional] |
+|**val** | **String** | A free text field for the ECommerce Data Value that is labeled by the Ecommerce Data Name. |  [optional] |
 
 
 

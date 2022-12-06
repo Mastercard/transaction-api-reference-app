@@ -1,3 +1,4 @@
+---
 openapi: 3.0.1
 info:
   contact:
@@ -6,7 +7,7 @@ info:
     url: https://developer.mastercard.com/support
   description: transaction api spec
   title: Transaction API
-  version: 0.0.6
+  version: 1.1.3
 servers:
   - url: https://mtf.services-asn.mastercard.com/transaction-api
     description: Sandbox server
@@ -28,6 +29,20 @@ paths:
         "400":
           $ref: '#/components/responses/InvalidRequest'
       summary: Authorisation request
+      tags:
+        - TransactionApi
+  /cain-inquiry-requests:
+    post:
+      description: Process the inquiries request
+      operationId: TransactionApi_processInquriyRequest
+      requestBody:
+        $ref: '#/components/requestBodies/InquiryInitiationV01'
+      responses:
+        "200":
+          $ref: '#/components/responses/InquiryResponseV01'
+        "400":
+          $ref: '#/components/responses/InvalidRequest'
+      summary: Inquiry request
       tags:
         - TransactionApi
   /cain-reversal-requests:
@@ -117,6 +132,22 @@ components:
         body:
           $ref: '#/components/schemas/initiationAuthorisationInitiation1'
       type: object
+    initiationContext5:
+      description: Context in which the card payment transaction is performed.
+      properties:
+        ptOfSvcCntxt:
+          $ref: '#/components/schemas/msginquiryinitiationPointOfServiceContext1'
+        txCntxt:
+          $ref: '#/components/schemas/msginquiryinitiationTransactionContext1'
+        vrfctn:
+          description: Method and data intended to be used for this transaction in
+            order to authenticate or verify the cardholder or his card.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationVerification1'
+          type: array
+        rskCntxt:
+          $ref: '#/components/schemas/msginquiryinitiationRiskContext1'
+      type: object
     initiationContext7:
       description: Context in which the card payment transaction is performed.
       properties:
@@ -124,6 +155,32 @@ components:
           $ref: '#/components/schemas/initiationPointOfServiceContext2'
         txCntxt:
           $ref: '#/components/schemas/initiationTransactionContext4'
+      type: object
+    initiationDetailAmount2Code:
+      default: DETAIL_AMOUNT2_CODE_UNSPECIFIED
+      description: |-
+        Type of detail amount.
+
+         - DETAIL_AMOUNT2_CODE_UNSPECIFIED: Default
+         - DETAIL_AMOUNT2_CODE_OTHN: Other type of amount defined at national level
+         - DETAIL_AMOUNT2_CODE_OTHP: Other type of amount defined at private level
+         - DETAIL_AMOUNT2_CODE_SRCH: Fee charged by the acceptor for the transaction.
+      enum:
+        - DETAIL_AMOUNT2_CODE_UNSPECIFIED
+        - DETAIL_AMOUNT2_CODE_OTHN
+        - DETAIL_AMOUNT2_CODE_OTHP
+        - DETAIL_AMOUNT2_CODE_SRCH
+      type: string
+    initiationDetailedAmount20:
+      description: Breakdown of the transaction amount.
+      properties:
+        tp:
+          $ref: '#/components/schemas/initiationDetailAmount2Code'
+        othrTp:
+          description: Additional information to specify the type of amount.
+          type: string
+        amt:
+          $ref: '#/components/schemas/msginquiryinitiationAmount5'
       type: object
     initiationECommerceData1:
       description: Contains electronic commerce data.
@@ -138,6 +195,30 @@ components:
           description: A free text field for the ECommerce Data Value that is labeled
             by the Ecommerce Data Name.
           example: 1
+      type: object
+    initiationEnvironment12:
+      description: Environment of the transaction for Inquiry.
+      properties:
+        acqrr:
+          $ref: '#/components/schemas/msginquiryinitiationPartyIdentification197'
+        sndr:
+          $ref: '#/components/schemas/msginquiryinitiationPartyIdentification197'
+        rcvr:
+          $ref: '#/components/schemas/msginquiryinitiationPartyIdentification197'
+        accptr:
+          $ref: '#/components/schemas/msginquiryinitiationPartyIdentification203'
+        termnl:
+          $ref: '#/components/schemas/msginquiryinitiationTerminal1'
+        card:
+          $ref: '#/components/schemas/msginquiryinitiationCardData1'
+        cstmrDvc:
+          $ref: '#/components/schemas/msginquiryinitiationCustomerDevice2'
+        wllt:
+          $ref: '#/components/schemas/msginquiryinitiationWallet1'
+        tkn:
+          $ref: '#/components/schemas/msginquiryinitiationToken1'
+        crdhldr:
+          $ref: '#/components/schemas/msginquiryinitiationCardholder15'
       type: object
     initiationEnvironment13:
       description: Environment of the transaction.
@@ -195,6 +276,32 @@ components:
         - GOODS_AND_SERVICES_SUB_TYPE1_CODE_OTHP
         - GOODS_AND_SERVICES_SUB_TYPE1_CODE_SECS
       type: string
+    initiationInquiryInitiation1:
+      description: Information related to the inquiry initiation message.
+      properties:
+        envt:
+          $ref: '#/components/schemas/initiationEnvironment12'
+        cntxt:
+          $ref: '#/components/schemas/initiationContext5'
+        tx:
+          $ref: '#/components/schemas/initiationTransaction105'
+        prcgRslt:
+          $ref: '#/components/schemas/inquiryinitiationProcessingResult5'
+        iccRltdData:
+          type: string
+          description: Data related to an integrated circuit card application embedded
+            in the payment card of the cardholder.  ISO 8583 bit 55
+      type: object
+    initiationInquiryInitiationV01:
+      description: The InquiryInitiation message is sent by an acquirer or agent to
+        an issuer to request information related to the card (e.g. about a cardholder,
+        the availability of funds, etc.).
+      properties:
+        hdr:
+          $ref: '#/components/schemas/inquiryinitiationHeader39'
+        body:
+          $ref: '#/components/schemas/initiationInquiryInitiation1'
+      type: object
     initiationPointOfServiceContext2:
       description: Context of the transaction at the point of service.
       properties:
@@ -396,6 +503,75 @@ components:
         - SECURITY_CHARACTERISTICS1_CODE_PRVN
         - SECURITY_CHARACTERISTICS1_CODE_STAM
       type: string
+    initiationTransaction105:
+      properties:
+        txTp:
+          type: string
+          description: Type of transaction associated with the main service. ISO 8583:87/93/2003
+            bit 3
+        txSubTp:
+          type: string
+          description: Provides further granularity of purpose of TransactionType
+        addtlSvc:
+          description: Additional functions or services to be performed in conjunction
+            with the transaction.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalService1'
+          type: array
+        msgRsn:
+          description: Reason to send the message. ISO 8583:93/2003 bit 25.  The ISO
+            8583 maintenance agency (MA) manages this code list.
+          items:
+            type: string
+          type: array
+        altrnMsgRsn:
+          description: Supports message reason codes that are not defined  in external
+            code list.
+          type: string
+        spclPrgrmmQlfctn:
+          description: Data to qualify for incentive or other related programmes.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationSpecialProgrammeQualification1'
+          type: array
+        txId:
+          $ref: '#/components/schemas/inquiryinitiationTransactionIdentification11'
+        txCcy:
+          type: string
+          description: Transaction currency of the acceptor. ISO 4217
+        dtldAmt:
+          description: Further details of some or all amounts in the transaction amount.  The
+            detailed amount is used to calculate the reconciliation amount for messages
+            in which the transaction amount is absent.
+          items:
+            $ref: '#/components/schemas/initiationDetailedAmount20'
+          type: array
+        rcncltnAmt:
+          $ref: '#/components/schemas/msginquiryinitiationAmount4'
+        addtlAmts:
+          items:
+            $ref: '#/components/schemas/inquiryinitiationAdditionalAmounts2'
+          type: array
+          description: Amounts that are not part of the transaction amount and not
+            included in reconciliation.  ISO 8583 bit 54
+        addtlFees:
+          description: Fees not included in the transaction amount but included in
+            the settlement.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalFee1'
+          type: array
+        acctFr:
+          $ref: '#/components/schemas/msginquiryinitiationAccountDetails2'
+        txDesc:
+          description: Transaction data related to programmes and services, content
+            and format based on bilateral agreements.
+          type: string
+        addtlData:
+          description: Contains additional data.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalData1'
+          type: array
+      type: object
+      description: Inquiry transaction
     initiationTransactionContext4:
       properties:
         mrchntCtgyCd:
@@ -422,6 +598,276 @@ components:
           example: 2022-02-22
       type: object
       description: Context of the card payment transaction
+    inquiryinitiationAdditionalAmounts2:
+      description: Limits and amounts not part of the transaction amount.
+      properties:
+        tp:
+          $ref: '#/components/schemas/inquiryinitiationTypeOfAmount17Code'
+        othrTp:
+          description: Other type of amount.
+          type: string
+        amt:
+          $ref: '#/components/schemas/msginquiryinitiationAmount14'
+      type: object
+    inquiryinitiationHeader39:
+      description: Set of characteristics related to the protocol.
+      properties:
+        msgFctn:
+          $ref: '#/components/schemas/inquiryinitiationMessageFunction17Code'
+        prtcolVrsn:
+          description: Version of the acquirer to issuer protocol specifications.
+          type: string
+        xchgId:
+          description: Unique identification of an exchange of messages between two
+            parties.
+          type: string
+        creDtTm:
+          description: Date and time at which the message was sent.
+          type: string
+        initgPty:
+          $ref: '#/components/schemas/msginquiryinitiationGenericIdentification172'
+        tracData:
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalData1'
+          type: array
+          description: Information sent in the request message to be returned in the
+            response one, for instance to help in the retrieval of the context of
+            the exchange.  ISO 8583:93/2003 bit 59
+      type: object
+    inquiryinitiationMessageFunction17Code:
+      default: MESSAGE_FUNCTION17_CODE_UNSPECIFIED
+      description: |-
+        - MESSAGE_FUNCTION17_CODE_UNSPECIFIED: Default
+         - MESSAGE_FUNCTION17_CODE_REQU: Message function is a request.
+      enum:
+        - MESSAGE_FUNCTION17_CODE_UNSPECIFIED
+        - MESSAGE_FUNCTION17_CODE_REQU
+      type: string
+    inquiryinitiationProcessingResult5:
+      description: Outcome of the processing of the transaction.
+      properties:
+        rsltData:
+          $ref: '#/components/schemas/msginquiryinitiationResultData1'
+      type: object
+    inquiryinitiationTransactionIdentification11:
+      description: Identification of the transaction for network management.
+      properties:
+        lclDtTm:
+          type: string
+          description: Local date and time the transaction takes place at the card
+            acceptor location.  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003 bit 12
+        trnsmssnDtTm:
+          type: string
+          description: Date and time expressed in UTC of the message as sent by the
+            initiator. ISO 8583 bit 7
+        sysTracAudtNb:
+          description: Number assigned by a transaction originator to assist in identifying
+            a transaction uniquely. The trace number remains unchanged for all messages
+            within a two-message exchange (for example, request/repeat and response).  ISO
+            8583 bit 11.
+          type: string
+        rtrvlRefNb:
+          type: string
+          description: Reference supplied by the system retaining the original source
+            information and used to assist in locating that information or a copy
+            thereof. ISO 8583 bit 37
+        lifeCyclSpprtInd:
+          description: Indicate the point in the transaction lifecycle at which the
+            lifecycle identifier was assigned.
+          type: string
+        lifeCyclTracIdData:
+          $ref: '#/components/schemas/msginquiryinitiationTransactionLifeCycleIdentification1'
+        acqrrRefNb:
+          type: string
+          description: Data supplied by an acquirer to assist in identifying a transaction
+            (for example, for researching retrievals and chargebacks). ISO 8583:2003
+            bit 31
+        cardIssrRefData:
+          description: Data supplied by a card issuer in an authorisation response,
+            financial response message or in a chargeback transaction that the acquirer
+            may be required to provide in subsequent transactions. ISO 8583:1993 and
+            ISO 8583:2003 bit 95.
+          type: string
+      type: object
+    inquiryinitiationTypeOfAmount17Code:
+      default: TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
+      description: |-
+        - TYPE_OF_AMOUNT17_CODE_UNSPECIFIED: Default
+         - TYPE_OF_AMOUNT17_CODE_OTHP: Other type of amount defined at private level.
+      enum:
+        - TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
+        - TYPE_OF_AMOUNT17_CODE_OTHP
+      type: string
+    inquiryresponseAdditionalAmounts2:
+      description: Limits and amounts not part of the transaction amount.
+      properties:
+        tp:
+          $ref: '#/components/schemas/inquiryresponseTypeOfAmount17Code'
+        othrTp:
+          description: Other type of amount.
+          type: string
+        amt:
+          $ref: '#/components/schemas/msginquiryresponseAmount14'
+        labl:
+          description: Short description of the additional amount.
+          type: string
+      type: object
+    inquiryresponseAddress1:
+      description: Structured postal address.
+      properties:
+        adrLine1:
+          description: First line of information that locates and identifies a specific
+            address, as defined by postal services.
+          type: string
+        pstlCd:
+          description: Identifier consisting of a group of letters and/or numbers
+            that is added to a postal address to assist the sorting of mail.
+          type: string
+        twnNm:
+          description: Name of a built-up area, with defined boundaries, and a local
+            government.
+          type: string
+        ctrySubDvsnMjr:
+          description: Identifies a major subdivision of a country, for instance state,
+            province.
+          type: string
+        ctry:
+          description: Nation with its own government occupying a particular territory.
+          type: string
+      type: object
+    inquiryresponseHeader39:
+      description: Set of characteristics related to the protocol.
+      properties:
+        msgFctn:
+          $ref: '#/components/schemas/inquiryresponseMessageFunction17Code'
+        prtcolVrsn:
+          description: Version of the acquirer to issuer protocol specifications.
+          type: string
+        xchgId:
+          description: Unique identification of an exchange of messages between two
+            parties.
+          type: string
+        creDtTm:
+          description: Date and time at which the message was sent.
+          type: string
+        initgPty:
+          $ref: '#/components/schemas/msginquiryresponseGenericIdentification172'
+        tracData:
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalData1'
+          type: array
+          description: Information sent in the request message to be returned in the
+            response one, for instance to help in the retrieval of the context of
+            the exchange.  ISO 8583:93/2003 bit 59
+      type: object
+    inquiryresponseMessageFunction17Code:
+      default: MESSAGE_FUNCTION17_CODE_UNSPECIFIED
+      description: |-
+        - MESSAGE_FUNCTION17_CODE_UNSPECIFIED: Default
+         - MESSAGE_FUNCTION17_CODE_REQU: Message function is a request.
+      enum:
+        - MESSAGE_FUNCTION17_CODE_UNSPECIFIED
+        - MESSAGE_FUNCTION17_CODE_REQU
+      type: string
+    inquiryresponsePartyIdentification203:
+      description: Identification of a party.
+      properties:
+        id:
+          type: string
+          description: Identification of the acceptor. ISO 8583 bit 42
+        nmAndLctn:
+          type: string
+          description: Name and location of acceptor.  ISO 8583:87/93 bit 43 & 8583:2003
+            bit 43-71 (when used for Acceptor name and location)
+        adr:
+          $ref: '#/components/schemas/inquiryresponseAddress1'
+        addtlData:
+          description: Contains additional data.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalData1'
+          type: array
+        spnsrdMrchnt:
+          description: Sponsored merchant is a merchant that uses the payment services
+            of another entity that acts as the card acceptor.
+          items:
+            $ref: '#/components/schemas/inquiryresponseSponsoredMerchant1'
+          type: array
+      type: object
+    inquiryresponseProcessingResult5:
+      description: Outcome of the processing of the transaction.
+      properties:
+        rsltData:
+          $ref: '#/components/schemas/msginquiryresponseResultData1'
+        addtlInf:
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalInformation20'
+          type: array
+          description: Additional information relevant for the destination.  ISO 8583
+            bit 44
+      type: object
+    inquiryresponseSponsoredMerchant1:
+      description: Merchant using the payment services of the card acceptor. The sponsored
+        merchant is not acting as the card acceptor; the latter remaining the only
+        party liable for the transaction vis-�-vis the acquirer.
+      properties:
+        id:
+          $ref: '#/components/schemas/msginquiryresponsePartyIdentification197'
+        adr:
+          $ref: '#/components/schemas/inquiryresponseAddress1'
+      type: object
+    inquiryresponseTransactionIdentification11:
+      description: Identification of the transaction for network management.
+      properties:
+        lclDtTm:
+          type: string
+          description: Local date and time the transaction takes place at the card
+            acceptor location.  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003 bit 12
+        trnsmssnDtTm:
+          type: string
+          description: Date and time expressed in UTC of the message as sent by the
+            initiator. ISO 8583 bit 7
+        sysTracAudtNb:
+          description: Number assigned by a transaction originator to assist in identifying
+            a transaction uniquely. The trace number remains unchanged for all messages
+            within a two-message exchange (for example, request/repeat and response).  ISO
+            8583 bit 11.
+          type: string
+        rtrvlRefNb:
+          type: string
+          description: Reference supplied by the system retaining the original source
+            information and used to assist in locating that information or a copy
+            thereof. ISO 8583 bit 37
+        lifeCyclSpprtInd:
+          description: Indicate the point in the transaction lifecycle at which the
+            lifecycle identifier was assigned.
+          type: string
+        lifeCyclTracIdData:
+          $ref: '#/components/schemas/msginquiryresponseTransactionLifeCycleIdentification1'
+        acqrrRefData:
+          type: string
+          description: Data supplied by an acquirer in an authorisation or financial
+            request, advice or notification that may be required to be provided in
+            a subsequent transaction.  ISO 8583:93 bit 31
+        cardIssrRefData:
+          description: Data supplied by a card issuer in an authorisation response,
+            financial response message or in a chargeback transaction that the acquirer
+            may be required to provide in subsequent transactions. ISO 8583:1993 and
+            ISO 8583:2003 bit 95.
+          type: string
+      type: object
+    inquiryresponseTypeOfAmount17Code:
+      default: TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
+      description: |-
+        - TYPE_OF_AMOUNT17_CODE_UNSPECIFIED: Default
+         - TYPE_OF_AMOUNT17_CODE_ANTA: Amount anticipated for the transaction
+         - TYPE_OF_AMOUNT17_CODE_ISCF: Fee applied by the card issuer to the cardholder.
+         - TYPE_OF_AMOUNT17_CODE_OTHP: Other type of amount defined at private level.
+      enum:
+        - TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
+        - TYPE_OF_AMOUNT17_CODE_ANTA
+        - TYPE_OF_AMOUNT17_CODE_ISCF
+        - TYPE_OF_AMOUNT17_CODE_OTHP
+      type: string
     msgauthorisationinitiationAccountDetails2:
       properties:
         acctTp:
@@ -2226,17 +2672,6 @@ components:
       type: object
     msgauthorisationresponseAccountBalance1:
       description: Balance of the account involved in the card transaction.
-      example:
-        acctTp: acctTp
-        bal:
-          - othrTp: othrTp
-            ccy: ccy
-            amt: amt
-            sgn: true
-          - othrTp: othrTp
-            ccy: ccy
-            amt: amt
-            sgn: true
       properties:
         acctTp:
           description: A code identifying a classification of the account for which
@@ -2251,9 +2686,6 @@ components:
           type: array
       type: object
     msgauthorisationresponseAccountDetails2:
-      example:
-        acctTp: acctTp
-        acctId: acctId
       properties:
         acctTp:
           type: string
@@ -2267,12 +2699,6 @@ components:
       type: object
       description: Details of a bank account
     msgauthorisationresponseAdditionalAmounts1:
-      example:
-        othrTp: othrTp
-        amt:
-          ccy: ccy
-          amt: amt
-          sgn: true
       properties:
         tp:
           $ref: '#/components/schemas/msgauthorisationresponseTypeOfAmount12Code'
@@ -2288,9 +2714,6 @@ components:
       description: Amounts that are not part of the transaction amount and not included
         in reconciliation.  ISO 8583 bit 54
     msgauthorisationresponseAdditionalData1:
-      example:
-        val: val
-        tp: tp
       properties:
         tp:
           type: string
@@ -2308,17 +2731,6 @@ components:
         8583:93/2003 bit 59
     msgauthorisationresponseAdditionalFee1:
       description: Fees not included in the transaction.
-      example:
-        feePrgm: feePrgm
-        othrTp: othrTp
-        amt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
-          sgn: true
-        feeDscrptr: feeDscrptr
-        labl: labl
       properties:
         tp:
           $ref: '#/components/schemas/msgauthorisationresponseTypeOfAmount10Code'
@@ -2343,9 +2755,6 @@ components:
       type: object
     msgauthorisationresponseAdditionalInformation20:
       description: Additional information relevant to the destination.
-      example:
-        val: val
-        tp: tp
       properties:
         tp:
           type: string
@@ -2360,9 +2769,6 @@ components:
       type: object
     msgauthorisationresponseAdditionalRiskData1:
       description: Additional risk data associated with the transaction.
-      example:
-        val: val
-        tp: tp
       properties:
         tp:
           type: string
@@ -2377,11 +2783,6 @@ components:
       type: object
     msgauthorisationresponseAmount4:
       description: Amount, currency, exchange rate and quotation date.
-      example:
-        qtnDt: qtnDt
-        ccy: ccy
-        amt: amt
-        xchgRate: xchgRate
       properties:
         amt:
           type: string
@@ -2406,9 +2807,6 @@ components:
           example: 2022-04-12T15:24:16.545z
       type: object
     msgauthorisationresponseAmount5:
-      example:
-        amt: amt
-        sgn: true
       properties:
         amt:
           type: string
@@ -2423,10 +2821,6 @@ components:
       type: object
       description: Signed amount in a given numeric currency
     msgauthorisationresponseAmount14:
-      example:
-        ccy: ccy
-        amt: amt
-        sgn: true
       properties:
         amt:
           type: string
@@ -2446,10 +2840,6 @@ components:
       description: Signed amount in a given currency
     msgauthorisationresponseApprovalData1:
       description: Data pertaining to the approval of the transaction.
-      example:
-        apprvlCd: apprvlCd
-        apprvlNtty:
-          id: id
       properties:
         apprvlNtty:
           $ref: '#/components/schemas/msgauthorisationresponseApprovalEntity1'
@@ -2462,8 +2852,6 @@ components:
     msgauthorisationresponseApprovalEntity1:
       description: Entity that has delivered or declined the card payment authorisation
         (the party may be unidentified).
-      example:
-        id: id
       properties:
         id:
           type: string
@@ -2474,11 +2862,6 @@ components:
       type: object
     msgauthorisationresponseBalance15:
       description: Card account balance.
-      example:
-        othrTp: othrTp
-        ccy: ccy
-        amt: amt
-        sgn: true
       properties:
         tp:
           $ref: '#/components/schemas/msgauthorisationresponseBalanceType14Code'
@@ -2533,14 +2916,6 @@ components:
     msgauthorisationresponseCardData4:
       description: Non-protected sensitive data associated with the card or payment
         token performing the transaction.
-      example:
-        pmtAcctRef: pmtAcctRef
-        cardSeqNb: cardSeqNb
-        panAcctRg: panAcctRg
-        panFourLastDgts: panFourLastDgts
-        pan: pan
-        cardPdctTp: cardPdctTp
-        cardCtryCd: cardCtryCd
       properties:
         pan:
           type: string
@@ -2577,8 +2952,6 @@ components:
           example: MCS
       type: object
     msgauthorisationresponseCardProgrammeMode1:
-      example:
-        id: id
       properties:
         id:
           type: string
@@ -2590,66 +2963,6 @@ components:
         8583:87 bit 24
     msgauthorisationresponseContext2:
       description: Context in which the card payment transaction is performed.
-      example:
-        vrfctn:
-          - vrfctnRslt:
-              - rsltDtls:
-                  - val: val
-                    tp: tp
-                  - val: val
-                    tp: tp
-              - rsltDtls:
-                  - val: val
-                    tp: tp
-                  - val: val
-                    tp: tp
-          - vrfctnRslt:
-              - rsltDtls:
-                  - val: val
-                    tp: tp
-                  - val: val
-                    tp: tp
-              - rsltDtls:
-                  - val: val
-                    tp: tp
-                  - val: val
-                    tp: tp
-        rskCntxt:
-          rskAssmnt:
-            - rskAssmntTp: rskAssmntTp
-              rskAssmntNtty:
-                othrTp: othrTp
-              rsn:
-                - rsn
-                - rsn
-              rslt: rslt
-              addtlRskData:
-                - val: val
-                  tp: tp
-                - val: val
-                  tp: tp
-            - rskAssmntTp: rskAssmntTp
-              rskAssmntNtty:
-                othrTp: othrTp
-              rsn:
-                - rsn
-                - rsn
-              rslt: rslt
-              addtlRskData:
-                - val: val
-                  tp: tp
-                - val: val
-                  tp: tp
-        txCntxt:
-          cardPrgrmmApld:
-            id: id
-          sttlmSvc:
-            sttlmSvcApld:
-              shrtNm: shrtNm
-              id: id
-              tp: tp
-            sttlmSvcDts:
-              sttlmDt: sttlmDt
       properties:
         txCntxt:
           $ref: '#/components/schemas/msgauthorisationresponseTransactionContext3'
@@ -2693,14 +3006,6 @@ components:
       type: string
     msgauthorisationresponseDetailedAmount19:
       description: Breakdown of the transaction amount.
-      example:
-        othrTp: othrTp
-        amt:
-          amt: amt
-          sgn: true
-        crdhldrBllgAmt:
-          amt: amt
-          sgn: true
       properties:
         tp:
           $ref: '#/components/schemas/msgauthorisationresponseDetailAmount1Code'
@@ -2717,12 +3022,6 @@ components:
       type: object
     msgauthorisationresponseFeeAmount2:
       description: Amount, currency, exchange rate and quotation date, sign and label.
-      example:
-        qtnDt: qtnDt
-        ccy: ccy
-        amt: amt
-        xchgRate: xchgRate
-        sgn: true
       properties:
         amt:
           type: string
@@ -2750,8 +3049,6 @@ components:
       type: object
     msgauthorisationresponseGenericIdentification172:
       description: Identification of an entity.
-      example:
-        id: id
       properties:
         id:
           type: string
@@ -2760,17 +3057,6 @@ components:
       type: object
     msgauthorisationresponseHeader42:
       description: Set of characteristics related to the protocol.
-      example:
-        tracData:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
-        prtcolVrsn: prtcolVrsn
-        initgPty:
-          id: id
-        xchgId: xchgId
-        creDtTm: creDtTm
       properties:
         msgFctn:
           $ref: '#/components/schemas/msgauthorisationresponseMessageFunction16Code'
@@ -2823,9 +3109,6 @@ components:
       type: string
     msgauthorisationresponsePartyIdentification197:
       description: Identification of a party.
-      example:
-        id: id
-        addtlId: addtlId
       properties:
         id:
           type: string
@@ -2839,8 +3122,6 @@ components:
       type: object
     msgauthorisationresponsePartyIdentification200:
       description: Identification of a party.
-      example:
-        othrTp: othrTp
       properties:
         tp:
           $ref: '#/components/schemas/msgauthorisationresponsePartyType28Code'
@@ -2914,23 +3195,6 @@ components:
       type: string
     msgauthorisationresponseProcessingResult2:
       description: Outcome of the processing of the authorisation.
-      example:
-        rsltData:
-          rsltDtls: rsltDtls
-          addtlRsltInf:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-        addtlInf:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
-        apprvlData:
-          apprvlCd: apprvlCd
-          apprvlNtty:
-            id: id
       properties:
         apprvlData:
           $ref: '#/components/schemas/msgauthorisationresponseApprovalData1'
@@ -2944,13 +3208,6 @@ components:
       type: object
     msgauthorisationresponseResultData1:
       description: Result of the processing.
-      example:
-        rsltDtls: rsltDtls
-        addtlRsltInf:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
       properties:
         rsltDtls:
           type: string
@@ -2968,19 +3225,6 @@ components:
     msgauthorisationresponseRiskAssessment1:
       description: Indicates to the card issuer the level of risk associated with
         the transaction.
-      example:
-        rskAssmntTp: rskAssmntTp
-        rskAssmntNtty:
-          othrTp: othrTp
-        rsn:
-          - rsn
-          - rsn
-        rslt: rslt
-        addtlRskData:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
       properties:
         rskAssmntNtty:
           $ref: '#/components/schemas/msgauthorisationresponsePartyIdentification200'
@@ -3007,32 +3251,6 @@ components:
       type: object
     msgauthorisationresponseRiskContext1:
       description: Context of risk associated with the transaction.
-      example:
-        rskAssmnt:
-          - rskAssmntTp: rskAssmntTp
-            rskAssmntNtty:
-              othrTp: othrTp
-            rsn:
-              - rsn
-              - rsn
-            rslt: rslt
-            addtlRskData:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-          - rskAssmntTp: rskAssmntTp
-            rskAssmntNtty:
-              othrTp: othrTp
-            rsn:
-              - rsn
-              - rsn
-            rslt: rslt
-            addtlRskData:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
       properties:
         rskAssmnt:
           description: Indicates to the card issuer the level of risk associated with
@@ -3043,13 +3261,6 @@ components:
       type: object
     msgauthorisationresponseSettlementService2:
       description: Attributes of a settlement service.
-      example:
-        sttlmSvcApld:
-          shrtNm: shrtNm
-          id: id
-          tp: tp
-        sttlmSvcDts:
-          sttlmDt: sttlmDt
       properties:
         sttlmSvcApld:
           $ref: '#/components/schemas/msgauthorisationresponseSettlementServiceMode1'
@@ -3058,8 +3269,6 @@ components:
       type: object
     msgauthorisationresponseSettlementServiceDate1:
       description: Date related to the settlement of the transaction.
-      example:
-        sttlmDt: sttlmDt
       properties:
         sttlmDt:
           type: string
@@ -3069,10 +3278,6 @@ components:
       type: object
     msgauthorisationresponseSettlementServiceMode1:
       description: Settlement service for specific settlement types of requirements.
-      example:
-        shrtNm: shrtNm
-        id: id
-        tp: tp
       properties:
         tp:
           type: string
@@ -3092,9 +3297,6 @@ components:
       type: object
     msgauthorisationresponseSpecialProgrammeDetails1:
       description: Name and value associated with a special programme.
-      example:
-        val: val
-        nm: nm
       properties:
         nm:
           type: string
@@ -3109,13 +3311,6 @@ components:
       type: object
     msgauthorisationresponseSpecialProgrammeQualification1:
       description: Data to qualify for incentive or other related programmes.
-      example:
-        prgrmm: prgrmm
-        dtl:
-          - val: val
-            nm: nm
-          - val: val
-            nm: nm
       properties:
         prgrmm:
           type: string
@@ -3130,10 +3325,6 @@ components:
           type: array
       type: object
     msgauthorisationresponseTerminal2:
-      example:
-        termnlId:
-          ctry: ctry
-          id: id
       properties:
         termnlId:
           $ref: '#/components/schemas/msgauthorisationresponseTerminalIdentification1'
@@ -3141,9 +3332,6 @@ components:
       description: Payment terminal or ATM performing the transaction
     msgauthorisationresponseTerminalIdentification1:
       description: Identification of the terminal performing the transaction.
-      example:
-        ctry: ctry
-        id: id
       properties:
         id:
           type: string
@@ -3158,12 +3346,6 @@ components:
       type: object
     msgauthorisationresponseToken1:
       description: Unencrypted sensitive data of a token.
-      example:
-        tknXpryDt: tknXpryDt
-        tknInittdInd: true
-        pmtTkn: pmtTkn
-        tknRqstrId: tknRqstrId
-        tknAssrncMtd: tknAssrncMtd
       properties:
         pmtTkn:
           type: string
@@ -3193,9 +3375,6 @@ components:
       type: object
     msgauthorisationresponseTransactionAmount1:
       description: Actual amount of the transaction.
-      example:
-        ccy: ccy
-        amt: amt
       properties:
         amt:
           type: string
@@ -3210,35 +3389,6 @@ components:
       type: object
     msgauthorisationresponseTransactionAmounts1:
       description: Amounts of the card transaction.
-      example:
-        dtldAmt:
-          - othrTp: othrTp
-            amt:
-              amt: amt
-              sgn: true
-            crdhldrBllgAmt:
-              amt: amt
-              sgn: true
-          - othrTp: othrTp
-            amt:
-              amt: amt
-              sgn: true
-            crdhldrBllgAmt:
-              amt: amt
-              sgn: true
-        crdhldrBllgAmt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
-        txAmt:
-          ccy: ccy
-          amt: amt
-        rcncltnAmt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
       properties:
         amtQlfr:
           $ref: '#/components/schemas/msgauthorisationresponseTypeOfAmount11Code'
@@ -3297,16 +3447,6 @@ components:
         - TRANSACTION_ATTRIBUTE1_CODE_TPUP
       type: string
     msgauthorisationresponseTransactionContext3:
-      example:
-        cardPrgrmmApld:
-          id: id
-        sttlmSvc:
-          sttlmSvcApld:
-            shrtNm: shrtNm
-            id: id
-            tp: tp
-          sttlmSvcDts:
-            sttlmDt: sttlmDt
       properties:
         cardPrgrmmApld:
           $ref: '#/components/schemas/msgauthorisationresponseCardProgrammeMode1'
@@ -3315,16 +3455,6 @@ components:
       type: object
       description: Context of the card payment transaction
     msgauthorisationresponseTransactionIdentification8:
-      example:
-        sysTracAudtNb: sysTracAudtNb
-        trnsmssnDtTm: trnsmssnDtTm
-        rtrvlRefNb: rtrvlRefNb
-        cardIssrRefData: cardIssrRefData
-        lclDtTm: lclDtTm
-        lifeCyclTracIdData:
-          authstnSeqNb: authstnSeqNb
-          id: id
-        acqrrRefData: acqrrRefData
       properties:
         lclDtTm:
           type: string
@@ -3366,9 +3496,6 @@ components:
       type: object
       description: Identification of the transaction
     msgauthorisationresponseTransactionLifeCycleIdentification1:
-      example:
-        authstnSeqNb: authstnSeqNb
-        id: id
       properties:
         id:
           type: string
@@ -3450,18 +3577,6 @@ components:
     msgauthorisationresponseVerification2:
       description: Method and data intended to be verified as well as the related
         results.
-      example:
-        vrfctnRslt:
-          - rsltDtls:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-          - rsltDtls:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
       properties:
         vrfctnRslt:
           description: Result of verifications performed prior or after the transaction.
@@ -3470,12 +3585,6 @@ components:
           type: array
       type: object
     msgauthorisationresponseVerificationResult1:
-      example:
-        rsltDtls:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
       properties:
         rsltDtls:
           description: 'Additional data about the Verification Result. The data is
@@ -3490,13 +3599,1530 @@ components:
     msgauthorisationresponseWallet1:
       description: Container for tenders used by the customer to perform the payment
         transaction.
-      example:
-        prvdr:
-          id: id
-          addtlId: addtlId
       properties:
         prvdr:
           $ref: '#/components/schemas/msgauthorisationresponsePartyIdentification197'
+      type: object
+    msginquiryinitiationAccountDetails2:
+      properties:
+        acctTp:
+          type: string
+          description: Type of cardholder account used for the transaction.  See ISO
+            8583 bit 3, Account type codes
+        acctId:
+          type: string
+          description: Identification of an account.  ISO 8583 bit 102 or bit 103
+      type: object
+      description: Details of a bank account
+    msginquiryinitiationAdditionalData1:
+      properties:
+        tp:
+          description: Type of information.
+          type: string
+        val:
+          description: Value of a specific type of data.
+          type: string
+      type: object
+      description: Information sent in the request message to be returned in the response
+        one, for instance to help in the retrieval of the context of the exchange.  ISO
+        8583:93/2003 bit 59
+    msginquiryinitiationAdditionalFee1:
+      description: Fees not included in the transaction.
+      properties:
+        tp:
+          $ref: '#/components/schemas/msginquiryinitiationTypeOfAmount10Code'
+        othrTp:
+          description: Additional information to specify the type of amount of fee.
+          type: string
+        feePrgm:
+          description: Identification of fee program.
+          type: string
+        feeDscrptr:
+          description: Identification of specific fee.
+          type: string
+        amt:
+          $ref: '#/components/schemas/msginquiryinitiationFeeAmount2'
+        labl:
+          description: Short description of the fee amount.
+          type: string
+      type: object
+    msginquiryinitiationAdditionalRiskData1:
+      description: Additional risk data associated with the transaction.
+      properties:
+        tp:
+          description: Identification of the additional risk data type related to
+            the transaction.
+          type: string
+        val:
+          description: Data value of the additional risk data associated with the
+            transaction.
+          type: string
+      type: object
+    msginquiryinitiationAdditionalService1:
+      description: Additional functions or services to be performed in conjunction
+        with the transaction.
+      properties:
+        tp:
+          $ref: '#/components/schemas/msginquiryinitiationAdditionalServiceType1Code'
+        othrTp:
+          description: Other additional service applied to the transaction.
+          type: string
+      type: object
+    msginquiryinitiationAdditionalServiceType1Code:
+      default: ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
+      description: |-
+        Type of additional service.
+
+         - ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED: Default
+         - ADDITIONAL_SERVICE_TYPE1_CODE_DCCV: Dynamic Currency Conversion (DCC)
+         - ADDITIONAL_SERVICE_TYPE1_CODE_OTHP: Other type of additional service at private level
+      enum:
+        - ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
+        - ADDITIONAL_SERVICE_TYPE1_CODE_DCCV
+        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHP
+      type: string
+    msginquiryinitiationAddress1:
+      description: Structured postal address.
+      properties:
+        adrLine1:
+          description: First line of information that locates and identifies a specific
+            address, as defined by postal services.
+          type: string
+        pstlCd:
+          description: Identifier consisting of a group of letters and/or numbers
+            that is added to a postal address to assist the sorting of mail.
+          type: string
+        twnNm:
+          description: Name of a built-up area, with defined boundaries, and a local
+            government.
+          type: string
+        ctrySubDvsnMjr:
+          description: Identifies a major subdivision of a country, for instance state,
+            province.
+          type: string
+        ctry:
+          description: Nation with its own government occupying a particular territory.
+          type: string
+      type: object
+    msginquiryinitiationAmount4:
+      description: Amount, currency, exchange rate and quotation date.
+      properties:
+        amt:
+          description: Amount exclusive of currency.
+          type: string
+        ccy:
+          description: Currency code associated with the applicable type of amount.  ISO
+            4217 "Codes for the representation of currencies and funds".
+          type: string
+        xchgRate:
+          description: The factor used in the conversion from one amount to another
+            amount.
+          type: string
+        qtnDt:
+          description: Date and time at which the exchange rate has been quoted.
+          type: string
+      type: object
+    msginquiryinitiationAmount5:
+      properties:
+        amt:
+          description: Amount value.
+          type: string
+        sgn:
+          description: Sign of the amount.
+          type: boolean
+      type: object
+      description: Signed amount in a given numeric currency
+    msginquiryinitiationAmount14:
+      properties:
+        amt:
+          description: Amount value.
+          type: string
+        ccy:
+          description: Currency code associated with the applicable type of amount.  ISO
+            4217 "Codes for the representation of currencies and funds".
+          type: string
+        sgn:
+          description: Sign of the amount.
+          type: boolean
+      type: object
+      description: Signed amount in a given currency
+    msginquiryinitiationCapabilities1:
+      description: Capabilities of the terminal.
+      properties:
+        cardRdngCpblty:
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationCardDataReading7Code'
+          type: array
+          description: Card reading capabilities of the terminal performing the transaction.
+            ISO 8583:93 bit 22-2; ISO 8583:2003 bit 27-1
+        othrCardRdngCpblties:
+          description: Other types of card reading capabilities.
+          items:
+            type: string
+          type: array
+        cardWrtgCpblties:
+          description: Card writing or output capabilities of the terminal performing
+            the transaction. ISO 8583:93 bit 22-10, ISO 8583:2003 bit 27-8_9.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationCardDataWriting1Code'
+          type: array
+        othrCardWrtgCpblties:
+          description: Other card writing or output capabilities of the terminal performing
+            the transaction.
+          items:
+            type: string
+          type: array
+        pinLngthCpblties:
+          description: Maximum number of digits that the Point of Interaction is able
+            to accept when the cardholder enters its PIN.  ISO 8583:87 bit 26, ISO
+            8583:93 bit 22-12, ISO 8583:2003 bit 27-11.
+          type: string
+        pinPadInprtv:
+          description: 'PIN pad is inoperative.  Default: False - PIN pad is operative
+            or not applicable. True: PIN pas is inoperative.'
+          type: boolean
+        cardCaptrCpbl:
+          description: 'Indicates whether the terminal can capture cards or not. True:
+            The terminal is able to capture cards False: The terminal is not able
+            to capture cards.  ISO 8583:87 bit 25, ISO 8583:93 bit 22-3, ISO 8583:2003
+            bit 27-10.'
+          type: boolean
+        crdhldrVrfctnCpblty:
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationCardholderVerificationCapabilities1'
+          type: array
+          description: Cardholder verification capabilities performing the transaction
+            at the point of service. ISO 8583:93 bit 22-2, ISO 8583:2003 bit 27-2
+      type: object
+    msginquiryinitiationCardData1:
+      description: Non-protected sensitive data associated with the card or payment
+        token performing the transaction.
+      properties:
+        pan:
+          type: string
+          description: Primary Account Number (PAN) of the card or a surrogate of
+            the PAN such as a payment token. ISO 8583 bit 2
+        prtctdPANInd:
+          type: boolean
+          description: 'To indicate whether the PAN is using ProtectedData for encryption
+            or not. False: The PAN is used in plain text True: The PAN is encrypted
+            by using ProtectedData Default: False'
+        cardSeqNb:
+          type: string
+          description: Distinguishes between instances of the same payment card. ISO
+            8583 bit 23
+        xpryDt:
+          description: Expiry date of the card or payment token.  ISO 8583 bit 14.
+          type: string
+        svcCd:
+          description: Service attached to the card as defined in ISO 7813.  ISO 8583
+            bit 40.
+          type: string
+        trck1:
+          type: string
+          description: ISO track 1 issued from the magnetic stripe card or from the
+            ICC if the magnetic stripe was not read. The format conforms to ISO 7813,
+            removing beginning and ending sentinels and longitudinal redundancy check
+            characters.   ISO 8583 bit 45
+        trck2:
+          $ref: '#/components/schemas/msginquiryinitiationTrack2Data1Choice'
+        pmtAcctRef:
+          type: string
+          description: Unique non-financial reference assigned to a given PAN. May
+            be used to link the transaction activity to that PAN.  ISO 8583:87 bit
+            56 (TLV tag 01/dataset 71) ISO 8583:93 bit 112 (TLV tag 01/dataset 71)
+            ISO 8583:2003 bit 51 (TLV tag 01/dataset 71)
+        cardCtryCd:
+          type: string
+          description: Country code assigned to the card by the card issuer. ISO 8583
+            bit 20
+        cardPdctTp:
+          description: Type of card product.
+          type: string
+        addtlCardData:
+          description: Additional card issuer specific data.
+          type: string
+      type: object
+    msginquiryinitiationCardDataReading7Code:
+      default: CARD_DATA_READING7_CODE_UNSPECIFIED
+      description: |-
+        - CARD_DATA_READING7_CODE_UNSPECIFIED: Default
+         - CARD_DATA_READING7_CODE_CDFL: Card information are stored on a file.
+         - CARD_DATA_READING7_CODE_ICCY: ICC contact capability
+         - CARD_DATA_READING7_CODE_ICPY: ICC contactless proximity
+         - CARD_DATA_READING7_CODE_KEEN: Key entered.
+         - CARD_DATA_READING7_CODE_MGST: Magnetic stripe.
+         - CARD_DATA_READING7_CODE_MICR: Recognition of magnetic ink characters
+         - CARD_DATA_READING7_CODE_MLEY: Manual, no terminal used.
+         - CARD_DATA_READING7_CODE_MSIP: Magstripe image contactless proximity
+         - CARD_DATA_READING7_CODE_OCRR: OCR either at time of transaction or after the event.
+         - CARD_DATA_READING7_CODE_OPTC: Optical coded reading capabilities (e.g. barcode, QR code, etc.)
+         - CARD_DATA_READING7_CODE_OTHN: Other national capability type assigned at national level.
+         - CARD_DATA_READING7_CODE_OTHP: Other card reading capability assigned on a private basis.
+         - CARD_DATA_READING7_CODE_RFID: Radio Frequency Identification tag capabilities.
+         - CARD_DATA_READING7_CODE_UNSP: Unspecified capability.
+      enum:
+        - CARD_DATA_READING7_CODE_UNSPECIFIED
+        - CARD_DATA_READING7_CODE_CDFL
+        - CARD_DATA_READING7_CODE_ICCY
+        - CARD_DATA_READING7_CODE_ICPY
+        - CARD_DATA_READING7_CODE_KEEN
+        - CARD_DATA_READING7_CODE_MGST
+        - CARD_DATA_READING7_CODE_MICR
+        - CARD_DATA_READING7_CODE_MLEY
+        - CARD_DATA_READING7_CODE_MSIP
+        - CARD_DATA_READING7_CODE_OCRR
+        - CARD_DATA_READING7_CODE_OPTC
+        - CARD_DATA_READING7_CODE_OTHN
+        - CARD_DATA_READING7_CODE_OTHP
+        - CARD_DATA_READING7_CODE_RFID
+        - CARD_DATA_READING7_CODE_UNSP
+      type: string
+    msginquiryinitiationCardDataWriting1Code:
+      default: CARD_DATA_WRITING1_CODE_UNSPECIFIED
+      description: |-
+        - CARD_DATA_WRITING1_CODE_UNSPECIFIED: Default
+         - CARD_DATA_WRITING1_CODE_ICCY: ICC contact capability
+         - CARD_DATA_WRITING1_CODE_ICPY: ICC contactless proximity
+         - CARD_DATA_WRITING1_CODE_MGST: Magnetic stripe.
+         - CARD_DATA_WRITING1_CODE_MSIP: Magstripe image contactless proximity
+         - CARD_DATA_WRITING1_CODE_OTHN: Other national capability type assigned at national level.
+         - CARD_DATA_WRITING1_CODE_OTHP: Other card reading capability assigned on a private basis.
+         - CARD_DATA_WRITING1_CODE_UNSP: Unspecified capability.
+      enum:
+        - CARD_DATA_WRITING1_CODE_UNSPECIFIED
+        - CARD_DATA_WRITING1_CODE_ICCY
+        - CARD_DATA_WRITING1_CODE_ICPY
+        - CARD_DATA_WRITING1_CODE_MGST
+        - CARD_DATA_WRITING1_CODE_MSIP
+        - CARD_DATA_WRITING1_CODE_OTHN
+        - CARD_DATA_WRITING1_CODE_OTHP
+        - CARD_DATA_WRITING1_CODE_UNSP
+      type: string
+    msginquiryinitiationCardProgramme1:
+      description: Card programme or brand related to the transaction.
+      properties:
+        cardPrgrmmApld:
+          $ref: '#/components/schemas/msginquiryinitiationCardProgrammeMode1'
+      type: object
+    msginquiryinitiationCardProgrammeMode1:
+      properties:
+        id:
+          description: Identification of the card programme or brand.
+          type: string
+      type: object
+      description: Card programme or brand actually applied to the transaction.  ISO
+        8583:87 bit 24
+    msginquiryinitiationCardholder15:
+      description: Unprotected sensitive detailed information about the cardholder.
+      properties:
+        crdhldrNm:
+          $ref: '#/components/schemas/msginquiryinitiationCardholderName1'
+        id:
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationCredentials1'
+          type: array
+          description: Identification of the cardholder.  ISO 8583:87 bit 56 (TLV
+            tag 03/dataset 73) ISO 8583:93 bit 112 (TLV tag 03/dataset 73) ISO 8583:2003
+            bit 51 (TLV tag 03/dataset 73)
+        adr:
+          $ref: '#/components/schemas/msginquiryinitiationAddress1'
+        ctctInf:
+          $ref: '#/components/schemas/msginquiryinitiationContact1'
+      type: object
+    msginquiryinitiationCardholderName1:
+      description: Complete name of the cardholder.
+      properties:
+        gvnNm:
+          description: First name of the cardholder.
+          type: string
+        mddlInitls:
+          description: Middle initials present in the name of a person.
+          type: string
+        lastNm:
+          description: Family name of the cardholder.
+          type: string
+      type: object
+    msginquiryinitiationCardholderVerificationCapabilities1:
+      properties:
+        cpblty:
+          $ref: '#/components/schemas/msginquiryinitiationCardholderVerificationCapability5Code'
+        othrCpblty:
+          description: Other types of cardholder verification capabilities.
+          type: string
+      type: object
+      description: Cardholder verification capabilities performing the transaction
+        at the point of service.  ISO 8583:87 bit 22-3, ISO 8583;93 bit 22-2, ISO
+        8583:2003 bit 27-2
+    msginquiryinitiationCardholderVerificationCapability5Code:
+      default: CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
+      description: |-
+        Capability of verifying the cardholder's identity or authenticity.
+
+         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED: Default
+         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOPN: Device has no pin entry capability.
+         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NPIN: Online PIN (Personal Identification Number).
+         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_OTHP: Other type of cardholder verification defined in a private manner.
+         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP: Cardholder verification capability unspecified.
+      enum:
+        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
+        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOPN
+        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NPIN
+        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_OTHP
+        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP
+      type: string
+    msginquiryinitiationContact1:
+      description: Contact person details.
+      properties:
+        homePhneNb:
+          description: Home phone number of contact.
+          type: string
+        bizPhneNb:
+          description: Business phone number of contact.
+          type: string
+        mobPhneNb:
+          description: Mobile phone number of contact.
+          type: string
+        prsnlEmailAdr:
+          description: Personal email address of contact.
+          type: string
+        bizEmailAdr:
+          description: Business email address of contact.
+          type: string
+      type: object
+    msginquiryinitiationCredentials1:
+      description: Contains credential information.
+      properties:
+        idCd:
+          $ref: '#/components/schemas/msginquiryinitiationIdentification2Code'
+        idVal:
+          description: Value of identification.
+          type: string
+      type: object
+    msginquiryinitiationCustomerDevice2:
+      description: Details of the customer device.
+      properties:
+        dvc:
+          $ref: '#/components/schemas/msginquiryinitiationDevice1'
+      type: object
+    msginquiryinitiationCustomerDeviceType1Code:
+      default: CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
+      description: |-
+        Type of customer device.
+
+         - CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED: Default
+         - CUSTOMER_DEVICE_TYPE1_CODE_MOBL: Mobile phone
+         - CUSTOMER_DEVICE_TYPE1_CODE_NSCR: Non-secure card reader attached to the customer device.
+         - CUSTOMER_DEVICE_TYPE1_CODE_OTHP: Other device defined in a private way.
+         - CUSTOMER_DEVICE_TYPE1_CODE_PECR: Personal computer
+         - CUSTOMER_DEVICE_TYPE1_CODE_SECR: Secure card reader attached to the customer device
+         - CUSTOMER_DEVICE_TYPE1_CODE_TBLT: Tablet
+      enum:
+        - CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
+        - CUSTOMER_DEVICE_TYPE1_CODE_MOBL
+        - CUSTOMER_DEVICE_TYPE1_CODE_NSCR
+        - CUSTOMER_DEVICE_TYPE1_CODE_OTHP
+        - CUSTOMER_DEVICE_TYPE1_CODE_PECR
+        - CUSTOMER_DEVICE_TYPE1_CODE_SECR
+        - CUSTOMER_DEVICE_TYPE1_CODE_TBLT
+      type: string
+    msginquiryinitiationDevice1:
+      description: Identification of the customer device.
+      properties:
+        tp:
+          $ref: '#/components/schemas/msginquiryinitiationCustomerDeviceType1Code'
+      type: object
+    msginquiryinitiationFeeAmount2:
+      description: Amount, currency, exchange rate and quotation date, sign and label.
+      properties:
+        amt:
+          type: string
+          description: Amount exclusive of currency.  ISO 8583:87 bit 8, 28, 29, 30
+            & 31 ISO 8583:93/2003 bit 8 & 46
+        ccy:
+          description: Currency for the type of amount.
+          type: string
+        xchgRate:
+          type: string
+          description: Exchange rate of the currency code associated with the amount.  ISO
+            8583 bit 9 (for use with reconciliation/settlement amount) ISO 8583 bit
+            10 (for use with cardholder billing amount)
+        qtnDt:
+          description: Date and time at which the exchange rate has been quoted.
+          type: string
+        sgn:
+          description: 'Indicates whether the amount value is positive or negative.  Negative:
+            the receiver of the message owes the fee to the sender. Positive: the
+            sender of the message owes the fee to the receiver.'
+          type: boolean
+      type: object
+    msginquiryinitiationGenericIdentification172:
+      description: Identification of an entity.
+      properties:
+        id:
+          description: Identification of the entity.
+          type: string
+      type: object
+    msginquiryinitiationIdentification2Code:
+      default: IDENTIFICATION2_CODE_UNSPECIFIED
+      description: |-
+        Identification of an individual.
+
+         - IDENTIFICATION2_CODE_UNSPECIFIED: Default
+         - IDENTIFICATION2_CODE_ARNB: Alien registration number.
+         - IDENTIFICATION2_CODE_DRID: Driver licence identification.
+         - IDENTIFICATION2_CODE_EMAL: E-mail.
+         - IDENTIFICATION2_CODE_NTID: National identification.
+         - IDENTIFICATION2_CODE_OTHP: Other identification provided at private level.
+         - IDENTIFICATION2_CODE_PASS: Passport number.
+         - IDENTIFICATION2_CODE_PHNB: Phone number.
+         - IDENTIFICATION2_CODE_SSYN: Social security number.
+      enum:
+        - IDENTIFICATION2_CODE_UNSPECIFIED
+        - IDENTIFICATION2_CODE_ARNB
+        - IDENTIFICATION2_CODE_DRID
+        - IDENTIFICATION2_CODE_EMAL
+        - IDENTIFICATION2_CODE_NTID
+        - IDENTIFICATION2_CODE_OTHP
+        - IDENTIFICATION2_CODE_PASS
+        - IDENTIFICATION2_CODE_PHNB
+        - IDENTIFICATION2_CODE_SSYN
+      type: string
+    msginquiryinitiationPartyIdentification197:
+      description: Identification of a party.
+      properties:
+        id:
+          description: Identification of the party.
+          type: string
+        addtlId:
+          description: Additional identification of the party.
+          type: string
+      type: object
+    msginquiryinitiationPartyIdentification200:
+      description: Identification of a party.
+      properties:
+        tp:
+          $ref: '#/components/schemas/msginquiryinitiationPartyType28Code'
+      type: object
+    msginquiryinitiationPartyIdentification203:
+      description: Identification of a party.
+      properties:
+        id:
+          type: string
+          description: Identification of the acceptor. ISO 8583 bit 42
+        addtlId:
+          description: Additional identification assigned by an agent to an acceptor.
+          type: string
+        nmAndLctn:
+          type: string
+          description: Name and location of acceptor.  ISO 8583:87/93 bit 43 & 8583:2003
+            bit 43-71 (when used for Acceptor name and location)
+        adr:
+          $ref: '#/components/schemas/msginquiryinitiationAddress1'
+        email:
+          type: string
+          description: Electronic mail address.  ISO 8583:2003 bit 43-71 (when used
+            for Acceptor email address)
+        urlAdr:
+          type: string
+          description: Universal Resource Locator (URL) address.  ISO 8583:2003 bit
+            43-71 (when used for Acceptor URL)
+        phneNb:
+          type: string
+          description: Collection of information that identifies  a phone number as
+            defined by telecom services.  ISO 8583:2003 bit 43-71 (when used for Acceptor
+            phone number)
+        cstmrSvc:
+          type: string
+          description: Phone number of the customer service.  ISO 8583:2003 bit 43-71
+            (when used for Acceptor customer service phone number)
+        addtlCtctInf:
+          type: string
+          description: Additional information used to facilitate contact with the
+            card acceptor, for instance sales agent name, dispute manager name.  ISO
+            8583:2003 bit 43-71 (when used for Acceptor additional contact information)
+        taxRegnId:
+          description: Identification of a party by its tax registration number.
+          type: string
+        addtlData:
+          description: Contains additional data.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalData1'
+          type: array
+        spnsrdMrchnt:
+          description: Sponsored merchant is a merchant that uses the payment services
+            of another entity that acts as the card acceptor.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationSponsoredMerchant1'
+          type: array
+      type: object
+    msginquiryinitiationPartyType28Code:
+      default: PARTY_TYPE28_CODE_UNSPECIFIED
+      description: |-
+        Type of entity involved in a card payment transaction.
+
+         - PARTY_TYPE28_CODE_UNSPECIFIED: Default
+         - PARTY_TYPE28_CODE_ACCP: Card acceptor, party accepting the card and presenting transaction data to the acquirer.
+         - PARTY_TYPE28_CODE_ACQR: Entity acquiring card transactions.
+         - PARTY_TYPE28_CODE_AGNT: Entity providing card payment processing services acting as an intermediary between an acquirer and an issuer.
+         - PARTY_TYPE28_CODE_ISUR: Issuer is the entitled party.
+         - PARTY_TYPE28_CODE_OTHP: Other card payment entity type defined at private level
+         - PARTY_TYPE28_CODE_WLPR: Provider of an electronic wallet
+      enum:
+        - PARTY_TYPE28_CODE_UNSPECIFIED
+        - PARTY_TYPE28_CODE_ACCP
+        - PARTY_TYPE28_CODE_ACQR
+        - PARTY_TYPE28_CODE_AGNT
+        - PARTY_TYPE28_CODE_ISUR
+        - PARTY_TYPE28_CODE_OTHP
+        - PARTY_TYPE28_CODE_WLPR
+      type: string
+    msginquiryinitiationPointOfServiceContext1:
+      description: Contains point of interaction information specific to a given transaction
+        that may change from transaction to transaction.
+      properties:
+        cardPres:
+          description: 'Indicates whether the transaction has been initiated by a
+            card physically present or not.  True: Card physically present during
+            the transaction False: Card physically absent during the transaction.  ISO
+            8583:87 bit 25, ISO 8583:93 bit 22-6.'
+          type: boolean
+        crdhldrPres:
+          type: boolean
+          description: 'Indicates whether the transaction has been initiated in presence
+            of the cardholder or not.  True: Cardholder present during the transaction
+            False: Cardholder absent during the transaction.  ISO 8583:87 bit 25,
+            ISO 8583:93 bit 22-5'
+        crdhldrActvtd:
+          type: boolean
+          description: 'Indicates whether the automated device was operated solely
+            by the cardholder or not (for example, vending machine, automated fuel
+            dispenser, ATM, kiosk, etc.).  True: Device operated solely by the cardholder
+            False: Device not operated solely by the cardholder.  ISO 8583:2003 bit
+            22-3'
+        trnspndrInittd:
+          description: 'Transaction initiated through a transponder or not. True:
+            Transaction initiated through a transponder. False: Transaction not initiated
+            through a transponder.'
+          type: boolean
+        attnddInd:
+          type: boolean
+          description: 'Card acceptor representative in attendance at the point of
+            service during the transaction. When an acceptor�s terminal is semi-attended
+            (for example, multiple terminals supervised by a single clerk), it will
+            be identified as �attended�.  True: Attended transaction at the terminal
+            False: Non-attended transaction at the terminal'
+        uattnddLvlCtgy:
+          description: Transaction category level on an unattended terminal.
+          type: string
+        eComrcInd:
+          type: boolean
+          description: 'Indicates whether the point of service is an e-commerce one
+            or not: True: e-commerce False: non e-commerce Default: False  ISO 8583:2003
+            bit 22-3'
+        motoInd:
+          type: boolean
+          description: 'Indicates whether the context of the point of service is a
+            MOTO one or not. True: MOTO False: non-MOTO Default: False  ISO 8583:2003
+            bit 25 ISO 8583:2003 bit 22-5 ISO 8583:2003 bit 22-3'
+        prtlApprvlSpprtd:
+          type: boolean
+          description: 'Indicates whether the point of service supports partial approval
+            or not. True: partial approval is supported False: partial approval is
+            not supported'
+        cardDataNtryMd:
+          $ref: '#/components/schemas/msginquiryinitiationCardDataReading7Code'
+        othrCardDataNtryMd:
+          description: Other type of card data entry mode.
+          type: string
+        storgLctn:
+          description: Storage location of payment credential (for example, Acceptor
+            or third party wallet).
+          type: string
+        spclConds:
+          description: Data used to assign specific conditions at the card acceptor
+            location and decided by bilateral agreements.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationSpecialConditions1'
+          type: array
+      type: object
+    msginquiryinitiationPriority3Code:
+      default: PRIORITY3_CODE_UNSPECIFIED
+      description: |-
+        Specifies the priority level of an event.
+
+         - PRIORITY3_CODE_UNSPECIFIED: Default
+         - PRIORITY3_CODE_HIGH: Priority level is high.
+         - PRIORITY3_CODE_NORM: Priority level is normal.
+         - PRIORITY3_CODE_URGT: Priority level is urgent (highest priority possible).
+      enum:
+        - PRIORITY3_CODE_UNSPECIFIED
+        - PRIORITY3_CODE_HIGH
+        - PRIORITY3_CODE_NORM
+        - PRIORITY3_CODE_URGT
+      type: string
+    msginquiryinitiationResultData1:
+      description: Result of the processing.
+      properties:
+        rsltDtls:
+          type: string
+          description: Detailed results of the processing.  ISO 8583:1987 bit 39,
+            response code list
+        addtlRsltInf:
+          description: Additional result information to be conveyed.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalData1'
+          type: array
+      type: object
+    msginquiryinitiationRiskAssessment1:
+      description: Indicates to the card issuer the level of risk associated with
+        the transaction.
+      properties:
+        rskAssmntNtty:
+          $ref: '#/components/schemas/msginquiryinitiationPartyIdentification200'
+        rskAssmntTp:
+          description: Type of risk assessment.
+          type: string
+        rsn:
+          description: Reason for indicating a certain level of risk for the transaction.
+          items:
+            type: string
+          type: array
+        rslt:
+          description: Risk assessment result.
+          type: string
+        addtlRskData:
+          description: Additional risk data associated with the transaction.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalRiskData1'
+          type: array
+      type: object
+    msginquiryinitiationRiskContext1:
+      description: Context of risk associated with the transaction.
+      properties:
+        rskInptData:
+          description: Input data to be considered in a risk assessment.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationRiskInputData1'
+          type: array
+        rskAssmnt:
+          description: Indicates to the card issuer the level of risk associated with
+            the transaction.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationRiskAssessment1'
+          type: array
+      type: object
+    msginquiryinitiationRiskInputData1:
+      description: Input data to be considered in a risk assessment.
+      properties:
+        tp:
+          description: Identifies the type of risk assessment associated with the
+            input data in the message.
+          type: string
+        val:
+          description: Value of input data for risk assessment.
+          type: string
+      type: object
+    msginquiryinitiationSettlementService1:
+      description: Type of settlement service for specific services requiring settlement.
+      properties:
+        sttlmSvcApld:
+          $ref: '#/components/schemas/msginquiryinitiationSettlementServiceMode1'
+        sttlmSvcDts:
+          $ref: '#/components/schemas/msginquiryinitiationSettlementServiceDate1'
+      type: object
+    msginquiryinitiationSettlementServiceDate1:
+      description: Date related to the settlement of the transaction.
+      properties:
+        sttlmDt:
+          description: Actual date of settlement. ISO 8583 bit 15.
+          type: string
+        sttlmPrd:
+          description: Identifies the settlement period, cycle or group. May contain
+            settlement frequency or the identification of specific settlement period.
+            For example, daily, monthly or settlementperiod123acd.
+          type: string
+      type: object
+    msginquiryinitiationSettlementServiceMode1:
+      description: Settlement service for specific settlement types of requirements.
+      properties:
+        tp:
+          description: Type of settlement service.
+          type: string
+        id:
+          description: Identification of settlement service.
+          type: string
+        shrtNm:
+          description: Short name of the Settlement Service.
+          type: string
+        sttlmPrty:
+          $ref: '#/components/schemas/msginquiryinitiationPriority3Code'
+      type: object
+    msginquiryinitiationSpecialConditions1:
+      description: Data used to assign specific conditions such as liability shift
+        or preferential interchange fees.
+      properties:
+        id:
+          description: Identification of the special condition.
+          type: string
+        val:
+          description: Level of the condition.
+          type: string
+      type: object
+    msginquiryinitiationSpecialProgrammeDetails1:
+      description: Name and value associated with a special programme.
+      properties:
+        nm:
+          description: Name of the special programme detail.
+          type: string
+        val:
+          description: Special programme detail value.
+          type: string
+      type: object
+    msginquiryinitiationSpecialProgrammeQualification1:
+      description: Data to qualify for incentive or other related programmes.
+      properties:
+        prgrmm:
+          description: Name of special programme.
+          type: string
+        dtl:
+          description: Name and value associated with a special programme.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationSpecialProgrammeDetails1'
+          type: array
+      type: object
+    msginquiryinitiationSponsoredMerchant1:
+      description: Merchant using the payment services of the card acceptor. The sponsored
+        merchant is not acting as the card acceptor; the latter remaining the only
+        party liable for the transaction vis-�-vis the acquirer.
+      properties:
+        id:
+          $ref: '#/components/schemas/msginquiryinitiationPartyIdentification197'
+        cmonNm:
+          description: Contains the full name of the sponsored merchant.
+          type: string
+      type: object
+    msginquiryinitiationTerminal1:
+      properties:
+        termnlId:
+          $ref: '#/components/schemas/msginquiryinitiationTerminalIdentification1'
+        tp:
+          $ref: '#/components/schemas/msginquiryinitiationTerminalType1Code'
+        othrTp:
+          description: Other type of terminal.
+          type: string
+        cpblties:
+          $ref: '#/components/schemas/msginquiryinitiationCapabilities1'
+        termnlIntgtn:
+          $ref: '#/components/schemas/msginquiryinitiationTerminalIntegrationCategory1Code'
+        offPrmissInd:
+          description: 'Indicates whether the terminal is operated on- or off-premises
+            at the point of service. True: The terminal is operated off premises.
+            False: The terminal is operated on premises.'
+          type: boolean
+        onBrdInd:
+          description: 'Indicates whether the transaction was performed on board.  True:
+            The terminal is located on board. False: The terminal is not located on
+            board.'
+          type: boolean
+      type: object
+      description: Payment terminal or ATM performing the transaction
+    msginquiryinitiationTerminalIdentification1:
+      description: Identification of the terminal performing the transaction.
+      properties:
+        id:
+          type: string
+          description: Identification of the terminal.  ISO 8583 bit 41
+        ctry:
+          description: Country of the terminal.
+          type: string
+      type: object
+    msginquiryinitiationTerminalIntegrationCategory1Code:
+      default: TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED
+      description: |-
+        Terminal category code of the place where the merchant actually performed the transaction.
+
+         - TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED: Default
+         - TERMINAL_INTEGRATION_CATEGORY1_CODE_MPOI: Multiple terminals linked to a unique sale terminal.
+         - TERMINAL_INTEGRATION_CATEGORY1_CODE_MSLE: Terminal serving multiple sale terminals.
+         - TERMINAL_INTEGRATION_CATEGORY1_CODE_SSLE: Terminal linked to a unique sale terminal.
+      enum:
+        - TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED
+        - TERMINAL_INTEGRATION_CATEGORY1_CODE_MPOI
+        - TERMINAL_INTEGRATION_CATEGORY1_CODE_MSLE
+        - TERMINAL_INTEGRATION_CATEGORY1_CODE_SSLE
+      type: string
+    msginquiryinitiationTerminalType1Code:
+      default: TERMINAL_TYPE1_CODE_UNSPECIFIED
+      description: |-
+        Type of terminal to perform the transaction.
+
+         - TERMINAL_TYPE1_CODE_UNSPECIFIED: Default
+         - TERMINAL_TYPE1_CODE_ATMT: Automated Teller Machine
+         - TERMINAL_TYPE1_CODE_OTHP: Other private type of terminal.
+         - TERMINAL_TYPE1_CODE_POST: Point of Sale terminal.
+      enum:
+        - TERMINAL_TYPE1_CODE_UNSPECIFIED
+        - TERMINAL_TYPE1_CODE_ATMT
+        - TERMINAL_TYPE1_CODE_OTHP
+        - TERMINAL_TYPE1_CODE_POST
+      type: string
+    msginquiryinitiationToken1:
+      description: Unencrypted sensitive data of a token.
+      properties:
+        pmtTkn:
+          description: Surrogate value of the PAN.
+          type: string
+        tknXpryDt:
+          description: Expiry date of the payment token. ISO 8583 bit 14.
+          type: string
+        tknRqstrId:
+          description: Identification of a party requesting a token.
+          type: string
+        tknAssrncMtd:
+          description: Value that allows a Token Service Provider to indicate the
+            identification and verification performed representing the binding of
+            the payment token to the underlying PAN and cardholder.
+          type: string
+        tknInittdInd:
+          description: Original transaction was initiated by Token.
+          type: boolean
+      type: object
+    msginquiryinitiationTrack2Data1Choice:
+      properties:
+        txtVal:
+          description: Value of track 2 data expressed in text form.
+          type: string
+      type: object
+      description: ISO track 2 issued from the magnetic stripe card or from the ICC
+        if the magnetic stripe was not read. The format  conforms to ISO 7813, removing
+        beginning and ending sentinels and longitudinal redundancy check characters.   ISO
+        8583 bit 35
+    msginquiryinitiationTransactionContext1:
+      description: Context of the card payment transaction.
+      properties:
+        mrchntCtgyCd:
+          description: Category code related to the type of services or goods the
+            merchant provides for the transaction.
+          type: string
+        mrchntCtgySpcfcData:
+          description: Further details about the merchant that is used in with the
+            merchant category code (MCC) for the particular purchase.
+          type: string
+        cstmrCnsnt:
+          type: boolean
+          description: 'Notifies the express consent of the customer for a given service
+            (used in DCC, funds transfers, money lending, etc.).  True: Explicit customer
+            consent obtained False: Implicit customer consent obtained'
+        iccFllbckInd:
+          type: boolean
+          description: 'Indicates a chip data fallback. True: Fallback False: No fallback
+            Default: False'
+        mgntcStrpFllbckInd:
+          type: boolean
+          description: 'Indicates a magnetic stripe fallback. True: Fallback False:
+            No fallback Default: False'
+        fnlAuthstnInd:
+          description: Identifies final authorisation messages for the purpose of
+            managing open-to buy or available balance.
+          type: boolean
+        txInitr:
+          $ref: '#/components/schemas/msginquiryinitiationTransactionInitiator1Code'
+        cardPrgrmm:
+          $ref: '#/components/schemas/msginquiryinitiationCardProgramme1'
+        sttlmSvc:
+          $ref: '#/components/schemas/msginquiryinitiationSettlementService1'
+      type: object
+    msginquiryinitiationTransactionInitiator1Code:
+      default: TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
+      description: |-
+        Identifies the transaction initiator.
+
+         - TRANSACTION_INITIATOR1_CODE_UNSPECIFIED: Default
+         - TRANSACTION_INITIATOR1_CODE_CUST: Customer initiated transaction.
+         - TRANSACTION_INITIATOR1_CODE_MERC: Merchant initiated transaction.
+      enum:
+        - TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
+        - TRANSACTION_INITIATOR1_CODE_CUST
+        - TRANSACTION_INITIATOR1_CODE_MERC
+      type: string
+    msginquiryinitiationTransactionLifeCycleIdentification1:
+      properties:
+        id:
+          description: Unique transaction identifier.
+          type: string
+        authstnSeqNb:
+          description: Contains authorisation sequence number.
+          type: string
+      type: object
+      description: Unique global identification structure used to match transactions
+        throughout their lifecycle (for example, authorisation to financial, financial
+        to chargebacks, etc.). It shall contain the same value in all messages throughout
+        a transaction's lifecycle. ISO 8583:2003 bit 21
+    msginquiryinitiationTypeOfAmount10Code:
+      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      description: |-
+        Type or class of amount.
+
+         - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default
+         - TYPE_OF_AMOUNT10_CODE_FEEA: International service assessment fees.
+         - TYPE_OF_AMOUNT10_CODE_FEEP: Processing fees.
+         - TYPE_OF_AMOUNT10_CODE_INTC: Interchange fee.
+         - TYPE_OF_AMOUNT10_CODE_OTHP: Other type of amount defined at private level.
+      enum:
+        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+        - TYPE_OF_AMOUNT10_CODE_FEEA
+        - TYPE_OF_AMOUNT10_CODE_FEEP
+        - TYPE_OF_AMOUNT10_CODE_INTC
+        - TYPE_OF_AMOUNT10_CODE_OTHP
+      type: string
+    msginquiryinitiationVerification1:
+      description: Contain validation result and/or data to be validated.
+      properties:
+        vrfctnInf:
+          description: Contains verification or authentication data.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationVerificationInformation1'
+          type: array
+        vrfctnRslt:
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationVerificationResult1'
+          type: array
+          description: Result of verifications performed prior or after the transaction.  ISO
+            8583:93 bit 39 ISO 8583:2003 bit 39 & 49-72
+      type: object
+    msginquiryinitiationVerificationInformation1:
+      description: Contains verification or authentication data.
+      properties:
+        tp:
+          type: string
+          description: Type of the verification or authentication.  ISO 8583:2003
+            bit 34
+        val:
+          $ref: '#/components/schemas/msginquiryinitiationVerificationValue1Choice'
+      type: object
+    msginquiryinitiationVerificationResult1:
+      properties:
+        rsltDtls:
+          description: Details of the result.
+          items:
+            $ref: '#/components/schemas/msginquiryinitiationAdditionalData1'
+          type: array
+      type: object
+      description: Result of verifications performed prior or after the transaction.  ISO
+        8583:93 bit 39 ISO 8583:2003 bit 39 & 49-72
+    msginquiryinitiationVerificationValue1Choice:
+      description: Contains the data to be authenticated or verified.
+      properties:
+        txtVal:
+          description: Value of the data expressed in text form.
+          type: string
+        binryVal:
+          description: Value of the data expressed in BASE-64 encoded binary form.
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      type: object
+    msginquiryinitiationWallet1:
+      description: Container for tenders used by the customer to perform the payment
+        transaction.
+      properties:
+        prvdr:
+          $ref: '#/components/schemas/msginquiryinitiationPartyIdentification197'
+      type: object
+    msginquiryresponseAccountBalance1:
+      description: Balance of the account involved in the card transaction.
+      properties:
+        acctTp:
+          type: string
+          description: Account for which a balance is sought.  See ISO 8583 bit 54,
+            Account type codes
+        bal:
+          description: Balance of the account.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseBalance15'
+          type: array
+      type: object
+    msginquiryresponseAccountDetails2:
+      properties:
+        acctTp:
+          type: string
+          description: Type of cardholder account used for the transaction.  See ISO
+            8583 bit 3, Account type codes
+        acctId:
+          type: string
+          description: Identification of an account.  ISO 8583 bit 102 or bit 103
+      type: object
+      description: Details of a bank account
+    msginquiryresponseAdditionalData1:
+      properties:
+        tp:
+          description: Type of information.
+          type: string
+        val:
+          description: Value of a specific type of data.
+          type: string
+      type: object
+      description: Information sent in the request message to be returned in the response
+        one, for instance to help in the retrieval of the context of the exchange.  ISO
+        8583:93/2003 bit 59
+    msginquiryresponseAdditionalFee1:
+      description: Fees not included in the transaction.
+      properties:
+        tp:
+          $ref: '#/components/schemas/msginquiryresponseTypeOfAmount10Code'
+        othrTp:
+          description: Additional information to specify the type of amount of fee.
+          type: string
+        feePrgm:
+          description: Identification of fee program.
+          type: string
+        feeDscrptr:
+          description: Identification of specific fee.
+          type: string
+        amt:
+          $ref: '#/components/schemas/msginquiryresponseFeeAmount2'
+        labl:
+          description: Short description of the fee amount.
+          type: string
+      type: object
+    msginquiryresponseAdditionalInformation20:
+      description: Additional information relevant to the destination.
+      properties:
+        tp:
+          description: Defines the type of the value.
+          type: string
+        val:
+          description: Content of or reference to the message.
+          type: string
+      type: object
+    msginquiryresponseAdditionalRiskData1:
+      description: Additional risk data associated with the transaction.
+      properties:
+        tp:
+          description: Identification of the additional risk data type related to
+            the transaction.
+          type: string
+        val:
+          description: Data value of the additional risk data associated with the
+            transaction.
+          type: string
+      type: object
+    msginquiryresponseAmount4:
+      description: Amount, currency, exchange rate and quotation date.
+      properties:
+        amt:
+          description: Amount exclusive of currency.
+          type: string
+        ccy:
+          description: Currency code associated with the applicable type of amount.  ISO
+            4217 "Codes for the representation of currencies and funds".
+          type: string
+        xchgRate:
+          description: The factor used in the conversion from one amount to another
+            amount.
+          type: string
+        qtnDt:
+          description: Date and time at which the exchange rate has been quoted.
+          type: string
+      type: object
+    msginquiryresponseAmount14:
+      properties:
+        amt:
+          description: Amount value.
+          type: string
+        ccy:
+          description: Currency code associated with the applicable type of amount.  ISO
+            4217 "Codes for the representation of currencies and funds".
+          type: string
+        sgn:
+          description: Sign of the amount.
+          type: boolean
+      type: object
+      description: Signed amount in a given currency
+    msginquiryresponseBalance15:
+      description: Card account balance.
+      properties:
+        tp:
+          $ref: '#/components/schemas/msginquiryresponseBalanceType14Code'
+        othrTp:
+          description: Other card account balance type.
+          type: string
+        amt:
+          description: Amount value.
+          type: string
+        ccy:
+          type: string
+          description: Currency of the account
+        sgn:
+          description: Indicates whether the value of the balance id positive or negative.
+          type: boolean
+      type: object
+    msginquiryresponseBalanceType14Code:
+      default: BALANCE_TYPE14_CODE_UNSPECIFIED
+      description: |-
+        Type of balance.
+
+         - BALANCE_TYPE14_CODE_UNSPECIFIED: Default
+         - BALANCE_TYPE14_CODE_AMOH: Amount put on hold.
+         - BALANCE_TYPE14_CODE_AMTD: Amount of money due.
+         - BALANCE_TYPE14_CODE_AMTO: Amount of money owed
+         - BALANCE_TYPE14_CODE_CLRI: Cleared items balance.
+         - BALANCE_TYPE14_CODE_CRDL: Credit line available.
+         - BALANCE_TYPE14_CODE_LDGR: Ledger balance refers to posted transactions (e.g. limit authorisation amount - posted transactions).
+         - BALANCE_TYPE14_CODE_OTHP: Other type of balance defined at private level.
+      enum:
+        - BALANCE_TYPE14_CODE_UNSPECIFIED
+        - BALANCE_TYPE14_CODE_AMOH
+        - BALANCE_TYPE14_CODE_AMTD
+        - BALANCE_TYPE14_CODE_AMTO
+        - BALANCE_TYPE14_CODE_CLRI
+        - BALANCE_TYPE14_CODE_CRDL
+        - BALANCE_TYPE14_CODE_LDGR
+        - BALANCE_TYPE14_CODE_OTHP
+      type: string
+    msginquiryresponseCardData4:
+      description: Non-protected sensitive data associated with the card or payment
+        token performing the transaction.
+      properties:
+        pan:
+          type: string
+          description: Primary Account Number (PAN) of the card or a surrogate of
+            the PAN such as a payment token. ISO 8583 bit 2
+        cardSeqNb:
+          type: string
+          description: Distinguishes between instances of the same payment card. ISO
+            8583 bit 23
+        pmtAcctRef:
+          type: string
+          description: Unique non-financial reference assigned to a given PAN. May
+            be used to link the transaction activity to that PAN.  ISO 8583:87 bit
+            56 (TLV tag 01/dataset 71) ISO 8583:93 bit 112 (TLV tag 01/dataset 71)
+            ISO 8583:2003 bit 51 (TLV tag 01/dataset 71)
+        panAcctRg:
+          description: Leading digits of the PAN that identifies the card portfolio
+            (for example, Issuer Identification Number). This data should not to be
+            presented to the card acceptor or its environment. (for example, acquirer
+            should not to send or make available to merchant).
+          type: string
+        panFourLastDgts:
+          description: Last four digits of the PAN.
+          type: string
+        cardCtryCd:
+          type: string
+          description: Country code assigned to the card by the card issuer. ISO 8583
+            bit 20
+        cardPdctTp:
+          description: Type of card product.
+          type: string
+      type: object
+    msginquiryresponseCardProgrammeMode1:
+      properties:
+        id:
+          description: Identification of the card programme or brand.
+          type: string
+      type: object
+      description: Card programme or brand actually applied to the transaction.  ISO
+        8583:87 bit 24
+    msginquiryresponseContext2:
+      description: Context in which the card payment transaction is performed.
+      properties:
+        txCntxt:
+          $ref: '#/components/schemas/msginquiryresponseTransactionContext3'
+        vrfctn:
+          description: Method and data intended to be used for this transaction in
+            order to authenticate or verify  the cardholder or his card.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseVerification2'
+          type: array
+        rskCntxt:
+          $ref: '#/components/schemas/msginquiryresponseRiskContext1'
+      type: object
+    msginquiryresponseFeeAmount2:
+      description: Amount, currency, exchange rate and quotation date, sign and label.
+      properties:
+        amt:
+          type: string
+          description: Amount exclusive of currency.  ISO 8583:87 bit 8, 28, 29, 30
+            & 31 ISO 8583:93/2003 bit 8 & 46
+        ccy:
+          description: Currency for the type of amount.
+          type: string
+        xchgRate:
+          type: string
+          description: Exchange rate of the currency code associated with the amount.  ISO
+            8583 bit 9 (for use with reconciliation/settlement amount) ISO 8583 bit
+            10 (for use with cardholder billing amount)
+        qtnDt:
+          description: Date and time at which the exchange rate has been quoted.
+          type: string
+        sgn:
+          description: 'Indicates whether the amount value is positive or negative.  Negative:
+            the receiver of the message owes the fee to the sender. Positive: the
+            sender of the message owes the fee to the receiver.'
+          type: boolean
+      type: object
+    msginquiryresponseGenericIdentification172:
+      description: Identification of an entity.
+      properties:
+        id:
+          description: Identification of the entity.
+          type: string
+      type: object
+    msginquiryresponsePartyIdentification197:
+      description: Identification of a party.
+      properties:
+        id:
+          description: Identification of the party.
+          type: string
+        addtlId:
+          description: Additional identification of the party.
+          type: string
+      type: object
+    msginquiryresponsePartyIdentification200:
+      description: Identification of a party.
+      properties:
+        tp:
+          $ref: '#/components/schemas/msginquiryresponsePartyType28Code'
+        othrTp:
+          description: Other party type defined at national or private level.
+          type: string
+      type: object
+    msginquiryresponsePartyType28Code:
+      default: PARTY_TYPE28_CODE_UNSPECIFIED
+      description: |-
+        Type of entity involved in a card payment transaction.
+
+         - PARTY_TYPE28_CODE_UNSPECIFIED: Default
+         - PARTY_TYPE28_CODE_ACCP: Card acceptor, party accepting the card and presenting transaction data to the acquirer.
+         - PARTY_TYPE28_CODE_ACQR: Entity acquiring card transactions.
+         - PARTY_TYPE28_CODE_AGNT: Entity providing card payment processing services acting as an intermediary between an acquirer and an issuer.
+         - PARTY_TYPE28_CODE_ISUR: Issuer is the entitled party.
+         - PARTY_TYPE28_CODE_OTHP: Other card payment entity type defined at private level
+         - PARTY_TYPE28_CODE_WLPR: Provider of an electronic wallet
+      enum:
+        - PARTY_TYPE28_CODE_UNSPECIFIED
+        - PARTY_TYPE28_CODE_ACCP
+        - PARTY_TYPE28_CODE_ACQR
+        - PARTY_TYPE28_CODE_AGNT
+        - PARTY_TYPE28_CODE_ISUR
+        - PARTY_TYPE28_CODE_OTHP
+        - PARTY_TYPE28_CODE_WLPR
+      type: string
+    msginquiryresponsePriority3Code:
+      default: PRIORITY3_CODE_UNSPECIFIED
+      description: |-
+        Specifies the priority level of an event.
+
+         - PRIORITY3_CODE_UNSPECIFIED: Default
+         - PRIORITY3_CODE_HIGH: Priority level is high.
+         - PRIORITY3_CODE_NORM: Priority level is normal.
+         - PRIORITY3_CODE_URGT: Priority level is urgent (highest priority possible).
+      enum:
+        - PRIORITY3_CODE_UNSPECIFIED
+        - PRIORITY3_CODE_HIGH
+        - PRIORITY3_CODE_NORM
+        - PRIORITY3_CODE_URGT
+      type: string
+    msginquiryresponseResultData1:
+      description: Result of the processing.
+      properties:
+        rsltDtls:
+          type: string
+          description: Detailed results of the processing.  ISO 8583:1987 bit 39,
+            response code list
+        addtlRsltInf:
+          description: Additional result information to be conveyed.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalData1'
+          type: array
+      type: object
+    msginquiryresponseRiskAssessment1:
+      description: Indicates to the card issuer the level of risk associated with
+        the transaction.
+      properties:
+        rskAssmntNtty:
+          $ref: '#/components/schemas/msginquiryresponsePartyIdentification200'
+        rskAssmntTp:
+          description: Type of risk assessment.
+          type: string
+        rsn:
+          description: Reason for indicating a certain level of risk for the transaction.
+          items:
+            type: string
+          type: array
+        rslt:
+          description: Risk assessment result.
+          type: string
+        addtlRskData:
+          description: Additional risk data associated with the transaction.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalRiskData1'
+          type: array
+      type: object
+    msginquiryresponseRiskContext1:
+      description: Context of risk associated with the transaction.
+      properties:
+        rskAssmnt:
+          description: Indicates to the card issuer the level of risk associated with
+            the transaction.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseRiskAssessment1'
+          type: array
+      type: object
+    msginquiryresponseSettlementService2:
+      description: Attributes of a settlement service.
+      properties:
+        sttlmSvcApld:
+          $ref: '#/components/schemas/msginquiryresponseSettlementServiceMode1'
+        sttlmSvcDts:
+          $ref: '#/components/schemas/msginquiryresponseSettlementServiceDate1'
+      type: object
+    msginquiryresponseSettlementServiceDate1:
+      description: Date related to the settlement of the transaction.
+      properties:
+        sttlmDt:
+          description: Actual date of settlement. ISO 8583 bit 15.
+          type: string
+      type: object
+    msginquiryresponseSettlementServiceMode1:
+      description: Settlement service for specific settlement types of requirements.
+      properties:
+        tp:
+          description: Type of settlement service.
+          type: string
+        id:
+          description: Identification of settlement service.
+          type: string
+        shrtNm:
+          description: Short name of the Settlement Service.
+          type: string
+        sttlmPrty:
+          $ref: '#/components/schemas/msginquiryresponsePriority3Code'
+      type: object
+    msginquiryresponseSpecialProgrammeDetails1:
+      description: Name and value associated with a special programme.
+      properties:
+        nm:
+          description: Name of the special programme detail.
+          type: string
+        val:
+          description: Special programme detail value.
+          type: string
+      type: object
+    msginquiryresponseSpecialProgrammeQualification1:
+      description: Data to qualify for incentive or other related programmes.
+      properties:
+        prgrmm:
+          description: Name of special programme.
+          type: string
+        dtl:
+          description: Name and value associated with a special programme.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseSpecialProgrammeDetails1'
+          type: array
+      type: object
+    msginquiryresponseTerminal2:
+      properties:
+        termnlId:
+          $ref: '#/components/schemas/msginquiryresponseTerminalIdentification1'
+      type: object
+      description: Payment terminal or ATM performing the transaction
+    msginquiryresponseTerminalIdentification1:
+      description: Identification of the terminal performing the transaction.
+      properties:
+        id:
+          type: string
+          description: Identification of the terminal.  ISO 8583 bit 41
+        ctry:
+          description: Country of the terminal.
+          type: string
+      type: object
+    msginquiryresponseToken1:
+      description: Unencrypted sensitive data of a token.
+      properties:
+        pmtTkn:
+          description: Surrogate value of the PAN.
+          type: string
+        tknXpryDt:
+          description: Expiry date of the payment token. ISO 8583 bit 14.
+          type: string
+        tknRqstrId:
+          description: Identification of a party requesting a token.
+          type: string
+        tknAssrncMtd:
+          description: Value that allows a Token Service Provider to indicate the
+            identification and verification performed representing the binding of
+            the payment token to the underlying PAN and cardholder.
+          type: string
+        tknInittdInd:
+          description: Original transaction was initiated by Token.
+          type: boolean
+      type: object
+    msginquiryresponseTransactionContext3:
+      properties:
+        cardPrgrmmApld:
+          $ref: '#/components/schemas/msginquiryresponseCardProgrammeMode1'
+        sttlmSvc:
+          $ref: '#/components/schemas/msginquiryresponseSettlementService2'
+      type: object
+      description: Context of the card payment transaction
+    msginquiryresponseTransactionLifeCycleIdentification1:
+      properties:
+        id:
+          description: Unique transaction identifier.
+          type: string
+        authstnSeqNb:
+          description: Contains authorisation sequence number.
+          type: string
+      type: object
+      description: Unique global identification structure used to match transactions
+        throughout their lifecycle (for example, authorisation to financial, financial
+        to chargebacks, etc.). It shall contain the same value in all messages throughout
+        a transaction's lifecycle. ISO 8583:2003 bit 21
+    msginquiryresponseTypeOfAmount10Code:
+      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      description: |-
+        Type or class of amount.
+
+         - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default
+         - TYPE_OF_AMOUNT10_CODE_FEEA: International service assessment fees.
+         - TYPE_OF_AMOUNT10_CODE_FEEP: Processing fees.
+         - TYPE_OF_AMOUNT10_CODE_INTC: Interchange fee.
+         - TYPE_OF_AMOUNT10_CODE_OTHP: Other type of amount defined at private level.
+      enum:
+        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+        - TYPE_OF_AMOUNT10_CODE_FEEA
+        - TYPE_OF_AMOUNT10_CODE_FEEP
+        - TYPE_OF_AMOUNT10_CODE_INTC
+        - TYPE_OF_AMOUNT10_CODE_OTHP
+      type: string
+    msginquiryresponseVerification2:
+      description: Method and data intended to be verified as well as the related
+        results.
+      properties:
+        vrfctnRslt:
+          description: Result of verifications performed prior or after the transaction.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseVerificationResult1'
+          type: array
+      type: object
+    msginquiryresponseVerificationResult1:
+      properties:
+        rsltDtls:
+          description: Details of the result.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalData1'
+          type: array
+      type: object
+      description: Result of verifications performed prior or after the transaction.  ISO
+        8583:93 bit 39 ISO 8583:2003 bit 39 & 49-72
+    msginquiryresponseWallet1:
+      description: Container for tenders used by the customer to perform the payment
+        transaction.
+      properties:
+        prvdr:
+          $ref: '#/components/schemas/msginquiryresponsePartyIdentification197'
       type: object
     msgreversalinitiationAccountDetails2:
       properties:
@@ -4774,9 +6400,6 @@ components:
           $ref: '#/components/schemas/msgreversalinitiationPartyIdentification197'
       type: object
     msgreversalresponseAccountDetails2:
-      example:
-        acctTp: acctTp
-        acctId: acctId
       properties:
         acctTp:
           type: string
@@ -4790,12 +6413,6 @@ components:
       type: object
       description: Details of a bank account
     msgreversalresponseAdditionalAmounts1:
-      example:
-        othrTp: othrTp
-        amt:
-          ccy: ccy
-          amt: amt
-          sgn: true
       properties:
         tp:
           $ref: '#/components/schemas/msgreversalresponseTypeOfAmount12Code'
@@ -4811,9 +6428,6 @@ components:
       description: Amounts that are not part of the transaction amount and not included
         in reconciliation.  ISO 8583 bit 54
     msgreversalresponseAdditionalData1:
-      example:
-        val: val
-        tp: tp
       properties:
         tp:
           type: string
@@ -4831,17 +6445,6 @@ components:
         8583:93/2003 bit 59
     msgreversalresponseAdditionalFee1:
       description: Fees not included in the transaction.
-      example:
-        feePrgm: feePrgm
-        othrTp: othrTp
-        amt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
-          sgn: true
-        feeDscrptr: feeDscrptr
-        labl: labl
       properties:
         tp:
           $ref: '#/components/schemas/msgreversalresponseTypeOfAmount10Code'
@@ -4866,9 +6469,6 @@ components:
       type: object
     msgreversalresponseAdditionalInformation20:
       description: Additional information relevant to the destination.
-      example:
-        val: val
-        tp: tp
       properties:
         tp:
           type: string
@@ -4883,11 +6483,6 @@ components:
       type: object
     msgreversalresponseAmount4:
       description: Amount, currency, exchange rate and quotation date.
-      example:
-        qtnDt: qtnDt
-        ccy: ccy
-        amt: amt
-        xchgRate: xchgRate
       properties:
         amt:
           type: string
@@ -4912,9 +6507,6 @@ components:
           example: 2022-04-12T15:24:16.545z
       type: object
     msgreversalresponseAmount5:
-      example:
-        amt: amt
-        sgn: true
       properties:
         amt:
           type: string
@@ -4929,10 +6521,6 @@ components:
       type: object
       description: Signed amount in a given numeric currency
     msgreversalresponseAmount14:
-      example:
-        ccy: ccy
-        amt: amt
-        sgn: true
       properties:
         amt:
           type: string
@@ -4952,10 +6540,6 @@ components:
       description: Signed amount in a given currency
     msgreversalresponseApprovalData1:
       description: Data pertaining to the approval of the transaction.
-      example:
-        apprvlCd: apprvlCd
-        apprvlNtty:
-          id: id
       properties:
         apprvlNtty:
           $ref: '#/components/schemas/msgreversalresponseApprovalEntity1'
@@ -4968,8 +6552,6 @@ components:
     msgreversalresponseApprovalEntity1:
       description: Entity that has delivered or declined the card payment authorisation
         (the party may be unidentified).
-      example:
-        id: id
       properties:
         id:
           type: string
@@ -4979,8 +6561,6 @@ components:
           $ref: '#/components/schemas/msgreversalresponsePartyType26Code'
       type: object
     msgreversalresponseCardProgrammeMode1:
-      example:
-        id: id
       properties:
         id:
           type: string
@@ -5021,17 +6601,6 @@ components:
       type: string
     msgreversalresponseDetailedAmount19:
       description: Breakdown of the transaction amount.
-      example:
-        othrTp: othrTp
-        amt:
-          amt: amt
-          sgn: true
-        crdhldrBllgAmt:
-          amt: amt
-          sgn: true
-        rcncltnAmt:
-          amt: amt
-          sgn: true
       properties:
         tp:
           $ref: '#/components/schemas/msgreversalresponseDetailAmount1Code'
@@ -5050,12 +6619,6 @@ components:
       type: object
     msgreversalresponseFeeAmount2:
       description: Amount, currency, exchange rate and quotation date, sign and label.
-      example:
-        qtnDt: qtnDt
-        ccy: ccy
-        amt: amt
-        xchgRate: xchgRate
-        sgn: true
       properties:
         amt:
           type: string
@@ -5083,8 +6646,6 @@ components:
       type: object
     msgreversalresponseGenericIdentification172:
       description: Identification of an entity.
-      example:
-        id: id
       properties:
         id:
           type: string
@@ -5093,17 +6654,6 @@ components:
       type: object
     msgreversalresponseHeader42:
       description: Set of characteristics related to the protocol.
-      example:
-        tracData:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
-        prtcolVrsn: prtcolVrsn
-        initgPty:
-          id: id
-        xchgId: xchgId
-        creDtTm: creDtTm
       properties:
         msgFctn:
           $ref: '#/components/schemas/msgreversalresponseMessageFunction16Code'
@@ -5162,9 +6712,6 @@ components:
       type: string
     msgreversalresponsePartyIdentification197:
       description: Identification of a party.
-      example:
-        id: id
-        addtlId: addtlId
       properties:
         id:
           type: string
@@ -5218,23 +6765,6 @@ components:
       type: string
     msgreversalresponseProcessingResult2:
       description: Outcome of the processing of the authorisation.
-      example:
-        rsltData:
-          rsltDtls: rsltDtls
-          addtlRsltInf:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-        addtlInf:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
-        apprvlData:
-          apprvlCd: apprvlCd
-          apprvlNtty:
-            id: id
       properties:
         apprvlData:
           $ref: '#/components/schemas/msgreversalresponseApprovalData1'
@@ -5248,13 +6778,6 @@ components:
       type: object
     msgreversalresponseResultData1:
       description: Result of the processing.
-      example:
-        rsltDtls: rsltDtls
-        addtlRsltInf:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
       properties:
         rsltDtls:
           type: string
@@ -5271,13 +6794,6 @@ components:
       type: object
     msgreversalresponseSettlementService2:
       description: Attributes of a settlement service.
-      example:
-        sttlmSvcApld:
-          shrtNm: shrtNm
-          id: id
-          tp: tp
-        sttlmSvcDts:
-          sttlmDt: sttlmDt
       properties:
         sttlmSvcApld:
           $ref: '#/components/schemas/msgreversalresponseSettlementServiceMode1'
@@ -5286,8 +6802,6 @@ components:
       type: object
     msgreversalresponseSettlementServiceDate1:
       description: Date related to the settlement of the transaction.
-      example:
-        sttlmDt: sttlmDt
       properties:
         sttlmDt:
           type: string
@@ -5297,10 +6811,6 @@ components:
       type: object
     msgreversalresponseSettlementServiceMode1:
       description: Settlement service for specific settlement types of requirements.
-      example:
-        shrtNm: shrtNm
-        id: id
-        tp: tp
       properties:
         tp:
           type: string
@@ -5320,9 +6830,6 @@ components:
       type: object
     msgreversalresponseSpecialProgrammeDetails1:
       description: Name and value associated with a special programme.
-      example:
-        val: val
-        nm: nm
       properties:
         nm:
           type: string
@@ -5337,13 +6844,6 @@ components:
       type: object
     msgreversalresponseSpecialProgrammeQualification1:
       description: Data to qualify for incentive or other related programmes.
-      example:
-        prgrmm: prgrmm
-        dtl:
-          - val: val
-            nm: nm
-          - val: val
-            nm: nm
       properties:
         prgrmm:
           type: string
@@ -5358,10 +6858,6 @@ components:
           type: array
       type: object
     msgreversalresponseTerminal2:
-      example:
-        termnlId:
-          ctry: ctry
-          id: id
       properties:
         termnlId:
           $ref: '#/components/schemas/msgreversalresponseTerminalIdentification1'
@@ -5369,9 +6865,6 @@ components:
       description: Payment terminal or ATM performing the transaction
     msgreversalresponseTerminalIdentification1:
       description: Identification of the terminal performing the transaction.
-      example:
-        ctry: ctry
-        id: id
       properties:
         id:
           type: string
@@ -5386,12 +6879,6 @@ components:
       type: object
     msgreversalresponseToken1:
       description: Unencrypted sensitive data of a token.
-      example:
-        tknXpryDt: tknXpryDt
-        tknInittdInd: true
-        pmtTkn: pmtTkn
-        tknRqstrId: tknRqstrId
-        tknAssrncMtd: tknAssrncMtd
       properties:
         pmtTkn:
           type: string
@@ -5421,9 +6908,6 @@ components:
       type: object
     msgreversalresponseTransactionAmount1:
       description: Actual amount of the transaction.
-      example:
-        ccy: ccy
-        amt: amt
       properties:
         amt:
           type: string
@@ -5438,55 +6922,6 @@ components:
       type: object
     msgreversalresponseTransactionAmounts1:
       description: Amounts of the card transaction.
-      example:
-        dtldAmt:
-          - othrTp: othrTp
-            amt:
-              amt: amt
-              sgn: true
-            crdhldrBllgAmt:
-              amt: amt
-              sgn: true
-            rcncltnAmt:
-              amt: amt
-              sgn: true
-          - othrTp: othrTp
-            amt:
-              amt: amt
-              sgn: true
-            crdhldrBllgAmt:
-              amt: amt
-              sgn: true
-            rcncltnAmt:
-              amt: amt
-              sgn: true
-        orgnlTxAmts:
-          crdhldrBllgAmt:
-            qtnDt: qtnDt
-            ccy: ccy
-            amt: amt
-            xchgRate: xchgRate
-          txAmt:
-            ccy: ccy
-            amt: amt
-          rcncltnAmt:
-            qtnDt: qtnDt
-            ccy: ccy
-            amt: amt
-            xchgRate: xchgRate
-        crdhldrBllgAmt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
-        txAmt:
-          ccy: ccy
-          amt: amt
-        rcncltnAmt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
       properties:
         amtQlfr:
           $ref: '#/components/schemas/msgreversalresponseTypeOfAmount11Code'
@@ -5547,16 +6982,6 @@ components:
         - TRANSACTION_ATTRIBUTE1_CODE_TPUP
       type: string
     msgreversalresponseTransactionContext3:
-      example:
-        cardPrgrmmApld:
-          id: id
-        sttlmSvc:
-          sttlmSvcApld:
-            shrtNm: shrtNm
-            id: id
-            tp: tp
-          sttlmSvcDts:
-            sttlmDt: sttlmDt
       properties:
         cardPrgrmmApld:
           $ref: '#/components/schemas/msgreversalresponseCardProgrammeMode1'
@@ -5565,27 +6990,6 @@ components:
       type: object
       description: Context of the card payment transaction
     msgreversalresponseTransactionIdentification8:
-      example:
-        sysTracAudtNb: sysTracAudtNb
-        trnsmssnDtTm: trnsmssnDtTm
-        acqrrRefNb: acqrrRefNb
-        rtrvlRefNb: rtrvlRefNb
-        cardIssrRefData: cardIssrRefData
-        lclDtTm: lclDtTm
-        orgnlDataElmts:
-          acqrrId: acqrrId
-          sysTracAudtNb: sysTracAudtNb
-          trnsmssnDtTm: trnsmssnDtTm
-          rtrvlRefNb: rtrvlRefNb
-          lclDtTm: lclDtTm
-          sndrId: sndrId
-          lifeCyclTracIdData:
-            authstnSeqNb: authstnSeqNb
-            id: id
-        lifeCyclTracIdData:
-          authstnSeqNb: authstnSeqNb
-          id: id
-        acqrrRefData: acqrrRefData
       properties:
         lclDtTm:
           type: string
@@ -5633,9 +7037,6 @@ components:
       type: object
       description: Identification of the transaction
     msgreversalresponseTransactionLifeCycleIdentification1:
-      example:
-        authstnSeqNb: authstnSeqNb
-        id: id
       properties:
         id:
           type: string
@@ -5735,237 +7136,6 @@ components:
     responseAuthorisationResponse1:
       description: Information related to the response of an authorisation initiation
         message.
-      example:
-        cntxt:
-          vrfctn:
-            - vrfctnRslt:
-                - rsltDtls:
-                    - val: val
-                      tp: tp
-                    - val: val
-                      tp: tp
-                - rsltDtls:
-                    - val: val
-                      tp: tp
-                    - val: val
-                      tp: tp
-            - vrfctnRslt:
-                - rsltDtls:
-                    - val: val
-                      tp: tp
-                    - val: val
-                      tp: tp
-                - rsltDtls:
-                    - val: val
-                      tp: tp
-                    - val: val
-                      tp: tp
-          rskCntxt:
-            rskAssmnt:
-              - rskAssmntTp: rskAssmntTp
-                rskAssmntNtty:
-                  othrTp: othrTp
-                rsn:
-                  - rsn
-                  - rsn
-                rslt: rslt
-                addtlRskData:
-                  - val: val
-                    tp: tp
-                  - val: val
-                    tp: tp
-              - rskAssmntTp: rskAssmntTp
-                rskAssmntNtty:
-                  othrTp: othrTp
-                rsn:
-                  - rsn
-                  - rsn
-                rslt: rslt
-                addtlRskData:
-                  - val: val
-                    tp: tp
-                  - val: val
-                    tp: tp
-          txCntxt:
-            cardPrgrmmApld:
-              id: id
-            sttlmSvc:
-              sttlmSvcApld:
-                shrtNm: shrtNm
-                id: id
-                tp: tp
-              sttlmSvcDts:
-                sttlmDt: sttlmDt
-        prcgRslt:
-          rsltData:
-            rsltDtls: rsltDtls
-            addtlRsltInf:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-          addtlInf:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-          apprvlData:
-            apprvlCd: apprvlCd
-            apprvlNtty:
-              id: id
-        tx:
-          txAmts:
-            dtldAmt:
-              - othrTp: othrTp
-                amt:
-                  amt: amt
-                  sgn: true
-                crdhldrBllgAmt:
-                  amt: amt
-                  sgn: true
-              - othrTp: othrTp
-                amt:
-                  amt: amt
-                  sgn: true
-                crdhldrBllgAmt:
-                  amt: amt
-                  sgn: true
-            crdhldrBllgAmt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-            txAmt:
-              ccy: ccy
-              amt: amt
-            rcncltnAmt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-          othrTxAttr: othrTxAttr
-          txId:
-            sysTracAudtNb: sysTracAudtNb
-            trnsmssnDtTm: trnsmssnDtTm
-            rtrvlRefNb: rtrvlRefNb
-            cardIssrRefData: cardIssrRefData
-            lclDtTm: lclDtTm
-            lifeCyclTracIdData:
-              authstnSeqNb: authstnSeqNb
-              id: id
-            acqrrRefData: acqrrRefData
-          acctTo:
-            acctTp: acctTp
-            acctId: acctId
-          acctBal:
-            - acctTp: acctTp
-              bal:
-                - othrTp: othrTp
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-                - othrTp: othrTp
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-            - acctTp: acctTp
-              bal:
-                - othrTp: othrTp
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-                - othrTp: othrTp
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-          addtlAmts:
-            - othrTp: othrTp
-              amt:
-                ccy: ccy
-                amt: amt
-                sgn: true
-            - othrTp: othrTp
-              amt:
-                ccy: ccy
-                amt: amt
-                sgn: true
-          addtlData:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-          txTp: txTp
-          spclPrgrmmQlfctn:
-            - prgrmm: prgrmm
-              dtl:
-                - val: val
-                  nm: nm
-                - val: val
-                  nm: nm
-            - prgrmm: prgrmm
-              dtl:
-                - val: val
-                  nm: nm
-                - val: val
-                  nm: nm
-          txSubTp: txSubTp
-          acctFr:
-            acctTp: acctTp
-            acctId: acctId
-          addtlFees:
-            - feePrgm: feePrgm
-              othrTp: othrTp
-              amt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-                sgn: true
-              feeDscrptr: feeDscrptr
-              labl: labl
-            - feePrgm: feePrgm
-              othrTp: othrTp
-              amt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-                sgn: true
-              feeDscrptr: feeDscrptr
-              labl: labl
-        envt:
-          tkn:
-            tknXpryDt: tknXpryDt
-            tknInittdInd: true
-            pmtTkn: pmtTkn
-            tknRqstrId: tknRqstrId
-            tknAssrncMtd: tknAssrncMtd
-          acqrr:
-            id: id
-            addtlId: addtlId
-          accptr:
-            id: id
-            addtlId: addtlId
-          wllt:
-            prvdr:
-              id: id
-              addtlId: addtlId
-          sndr:
-            id: id
-            addtlId: addtlId
-          termnl:
-            termnlId:
-              ctry: ctry
-              id: id
-          card:
-            pmtAcctRef: pmtAcctRef
-            cardSeqNb: cardSeqNb
-            panAcctRg: panAcctRg
-            panFourLastDgts: panFourLastDgts
-            pan: pan
-            cardPdctTp: cardPdctTp
-            cardCtryCd: cardCtryCd
-        iccRltdData: iccRltdData
       properties:
         envt:
           $ref: '#/components/schemas/responseEnvironment2'
@@ -5984,249 +7154,6 @@ components:
     responseAuthorisationResponseV02:
       description: The AuthorisationResponse message is sent by an issuer or an agent
         to an acquirer in response to an AuthorisationInitiation message.
-      example:
-        hdr:
-          tracData:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-          prtcolVrsn: prtcolVrsn
-          initgPty:
-            id: id
-          xchgId: xchgId
-          creDtTm: creDtTm
-        body:
-          cntxt:
-            vrfctn:
-              - vrfctnRslt:
-                  - rsltDtls:
-                      - val: val
-                        tp: tp
-                      - val: val
-                        tp: tp
-                  - rsltDtls:
-                      - val: val
-                        tp: tp
-                      - val: val
-                        tp: tp
-              - vrfctnRslt:
-                  - rsltDtls:
-                      - val: val
-                        tp: tp
-                      - val: val
-                        tp: tp
-                  - rsltDtls:
-                      - val: val
-                        tp: tp
-                      - val: val
-                        tp: tp
-            rskCntxt:
-              rskAssmnt:
-                - rskAssmntTp: rskAssmntTp
-                  rskAssmntNtty:
-                    othrTp: othrTp
-                  rsn:
-                    - rsn
-                    - rsn
-                  rslt: rslt
-                  addtlRskData:
-                    - val: val
-                      tp: tp
-                    - val: val
-                      tp: tp
-                - rskAssmntTp: rskAssmntTp
-                  rskAssmntNtty:
-                    othrTp: othrTp
-                  rsn:
-                    - rsn
-                    - rsn
-                  rslt: rslt
-                  addtlRskData:
-                    - val: val
-                      tp: tp
-                    - val: val
-                      tp: tp
-            txCntxt:
-              cardPrgrmmApld:
-                id: id
-              sttlmSvc:
-                sttlmSvcApld:
-                  shrtNm: shrtNm
-                  id: id
-                  tp: tp
-                sttlmSvcDts:
-                  sttlmDt: sttlmDt
-          prcgRslt:
-            rsltData:
-              rsltDtls: rsltDtls
-              addtlRsltInf:
-                - val: val
-                  tp: tp
-                - val: val
-                  tp: tp
-            addtlInf:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-            apprvlData:
-              apprvlCd: apprvlCd
-              apprvlNtty:
-                id: id
-          tx:
-            txAmts:
-              dtldAmt:
-                - othrTp: othrTp
-                  amt:
-                    amt: amt
-                    sgn: true
-                  crdhldrBllgAmt:
-                    amt: amt
-                    sgn: true
-                - othrTp: othrTp
-                  amt:
-                    amt: amt
-                    sgn: true
-                  crdhldrBllgAmt:
-                    amt: amt
-                    sgn: true
-              crdhldrBllgAmt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-              txAmt:
-                ccy: ccy
-                amt: amt
-              rcncltnAmt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-            othrTxAttr: othrTxAttr
-            txId:
-              sysTracAudtNb: sysTracAudtNb
-              trnsmssnDtTm: trnsmssnDtTm
-              rtrvlRefNb: rtrvlRefNb
-              cardIssrRefData: cardIssrRefData
-              lclDtTm: lclDtTm
-              lifeCyclTracIdData:
-                authstnSeqNb: authstnSeqNb
-                id: id
-              acqrrRefData: acqrrRefData
-            acctTo:
-              acctTp: acctTp
-              acctId: acctId
-            acctBal:
-              - acctTp: acctTp
-                bal:
-                  - othrTp: othrTp
-                    ccy: ccy
-                    amt: amt
-                    sgn: true
-                  - othrTp: othrTp
-                    ccy: ccy
-                    amt: amt
-                    sgn: true
-              - acctTp: acctTp
-                bal:
-                  - othrTp: othrTp
-                    ccy: ccy
-                    amt: amt
-                    sgn: true
-                  - othrTp: othrTp
-                    ccy: ccy
-                    amt: amt
-                    sgn: true
-            addtlAmts:
-              - othrTp: othrTp
-                amt:
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-              - othrTp: othrTp
-                amt:
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-            addtlData:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-            txTp: txTp
-            spclPrgrmmQlfctn:
-              - prgrmm: prgrmm
-                dtl:
-                  - val: val
-                    nm: nm
-                  - val: val
-                    nm: nm
-              - prgrmm: prgrmm
-                dtl:
-                  - val: val
-                    nm: nm
-                  - val: val
-                    nm: nm
-            txSubTp: txSubTp
-            acctFr:
-              acctTp: acctTp
-              acctId: acctId
-            addtlFees:
-              - feePrgm: feePrgm
-                othrTp: othrTp
-                amt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-                  sgn: true
-                feeDscrptr: feeDscrptr
-                labl: labl
-              - feePrgm: feePrgm
-                othrTp: othrTp
-                amt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-                  sgn: true
-                feeDscrptr: feeDscrptr
-                labl: labl
-          envt:
-            tkn:
-              tknXpryDt: tknXpryDt
-              tknInittdInd: true
-              pmtTkn: pmtTkn
-              tknRqstrId: tknRqstrId
-              tknAssrncMtd: tknAssrncMtd
-            acqrr:
-              id: id
-              addtlId: addtlId
-            accptr:
-              id: id
-              addtlId: addtlId
-            wllt:
-              prvdr:
-                id: id
-                addtlId: addtlId
-            sndr:
-              id: id
-              addtlId: addtlId
-            termnl:
-              termnlId:
-                ctry: ctry
-                id: id
-            card:
-              pmtAcctRef: pmtAcctRef
-              cardSeqNb: cardSeqNb
-              panAcctRg: panAcctRg
-              panFourLastDgts: panFourLastDgts
-              pan: pan
-              cardPdctTp: cardPdctTp
-              cardCtryCd: cardCtryCd
-          iccRltdData: iccRltdData
       properties:
         hdr:
           $ref: '#/components/schemas/msgauthorisationresponseHeader42'
@@ -6235,38 +7162,6 @@ components:
       type: object
     responseEnvironment2:
       description: Environment of a card transaction.
-      example:
-        tkn:
-          tknXpryDt: tknXpryDt
-          tknInittdInd: true
-          pmtTkn: pmtTkn
-          tknRqstrId: tknRqstrId
-          tknAssrncMtd: tknAssrncMtd
-        acqrr:
-          id: id
-          addtlId: addtlId
-        accptr:
-          id: id
-          addtlId: addtlId
-        wllt:
-          prvdr:
-            id: id
-            addtlId: addtlId
-        sndr:
-          id: id
-          addtlId: addtlId
-        termnl:
-          termnlId:
-            ctry: ctry
-            id: id
-        card:
-          pmtAcctRef: pmtAcctRef
-          cardSeqNb: cardSeqNb
-          panAcctRg: panAcctRg
-          panFourLastDgts: panFourLastDgts
-          pan: pan
-          cardPdctTp: cardPdctTp
-          cardCtryCd: cardCtryCd
       properties:
         acqrr:
           $ref: '#/components/schemas/msgauthorisationresponsePartyIdentification197'
@@ -6285,34 +7180,6 @@ components:
       type: object
     responseEnvironment14:
       description: Environment of the transaction.
-      example:
-        tkn:
-          tknXpryDt: tknXpryDt
-          tknInittdInd: true
-          pmtTkn: pmtTkn
-          tknRqstrId: tknRqstrId
-          tknAssrncMtd: tknAssrncMtd
-        acqrr:
-          id: id
-          addtlId: addtlId
-        accptr:
-          id: id
-          addtlId: addtlId
-        sndr:
-          id: id
-          addtlId: addtlId
-        termnl:
-          termnlId:
-            ctry: ctry
-            id: id
-        card:
-          prtctdPANInd: true
-          pmtAcctRef: pmtAcctRef
-          cardSeqNb: cardSeqNb
-          addtlCardData: addtlCardData
-          panAcctRg: panAcctRg
-          pan: pan
-          cardPrtflIdr: cardPrtflIdr
       properties:
         acqrr:
           $ref: '#/components/schemas/msgreversalresponsePartyIdentification197'
@@ -6327,218 +7194,52 @@ components:
         tkn:
           $ref: '#/components/schemas/msgreversalresponseToken1'
       type: object
+    responseEnvironment15:
+      description: Environment of the transaction for Inquiry.
+      properties:
+        acqrr:
+          $ref: '#/components/schemas/msginquiryresponsePartyIdentification197'
+        sndr:
+          $ref: '#/components/schemas/msginquiryresponsePartyIdentification197'
+        accptr:
+          $ref: '#/components/schemas/inquiryresponsePartyIdentification203'
+        termnl:
+          $ref: '#/components/schemas/msginquiryresponseTerminal2'
+        card:
+          $ref: '#/components/schemas/msginquiryresponseCardData4'
+        wllt:
+          $ref: '#/components/schemas/msginquiryresponseWallet1'
+        tkn:
+          $ref: '#/components/schemas/msginquiryresponseToken1'
+      type: object
+    responseInquiryResponse1:
+      description: Information related to the inquiry response message.
+      properties:
+        envt:
+          $ref: '#/components/schemas/responseEnvironment15'
+        cntxt:
+          $ref: '#/components/schemas/msginquiryresponseContext2'
+        tx:
+          $ref: '#/components/schemas/responseTransaction87'
+        prcgRslt:
+          $ref: '#/components/schemas/inquiryresponseProcessingResult5'
+        iccRltdData:
+          type: string
+          description: Data related to an integrated circuit card application embedded
+            in the payment card of the cardholder.  ISO 8583 bit 55
+      type: object
+    responseInquiryResponseV01:
+      description: The InquiryResponse message is sent by an issuer or an agent to
+        an acquirer in response to an  InquiryInitiation message.
+      properties:
+        hdr:
+          $ref: '#/components/schemas/inquiryresponseHeader39'
+        body:
+          $ref: '#/components/schemas/responseInquiryResponse1'
+      type: object
     responseReversalResponse2:
       description: Information related to the response to a reversal of an authorisation
         or financial message.
-      example:
-        cntxt:
-          cardPrgrmmApld:
-            id: id
-          sttlmSvc:
-            sttlmSvcApld:
-              shrtNm: shrtNm
-              id: id
-              tp: tp
-            sttlmSvcDts:
-              sttlmDt: sttlmDt
-        prcgRslt:
-          rsltData:
-            rsltDtls: rsltDtls
-            addtlRsltInf:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-          addtlInf:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-          apprvlData:
-            apprvlCd: apprvlCd
-            apprvlNtty:
-              id: id
-        tx:
-          txAmts:
-            dtldAmt:
-              - othrTp: othrTp
-                amt:
-                  amt: amt
-                  sgn: true
-                crdhldrBllgAmt:
-                  amt: amt
-                  sgn: true
-                rcncltnAmt:
-                  amt: amt
-                  sgn: true
-              - othrTp: othrTp
-                amt:
-                  amt: amt
-                  sgn: true
-                crdhldrBllgAmt:
-                  amt: amt
-                  sgn: true
-                rcncltnAmt:
-                  amt: amt
-                  sgn: true
-            orgnlTxAmts:
-              crdhldrBllgAmt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-              txAmt:
-                ccy: ccy
-                amt: amt
-              rcncltnAmt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-            crdhldrBllgAmt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-            txAmt:
-              ccy: ccy
-              amt: amt
-            rcncltnAmt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-          orgnlAddtlFees:
-            - feePrgm: feePrgm
-              othrTp: othrTp
-              amt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-                sgn: true
-              feeDscrptr: feeDscrptr
-              labl: labl
-            - feePrgm: feePrgm
-              othrTp: othrTp
-              amt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-                sgn: true
-              feeDscrptr: feeDscrptr
-              labl: labl
-          othrTxAttr: othrTxAttr
-          txId:
-            sysTracAudtNb: sysTracAudtNb
-            trnsmssnDtTm: trnsmssnDtTm
-            acqrrRefNb: acqrrRefNb
-            rtrvlRefNb: rtrvlRefNb
-            cardIssrRefData: cardIssrRefData
-            lclDtTm: lclDtTm
-            orgnlDataElmts:
-              acqrrId: acqrrId
-              sysTracAudtNb: sysTracAudtNb
-              trnsmssnDtTm: trnsmssnDtTm
-              rtrvlRefNb: rtrvlRefNb
-              lclDtTm: lclDtTm
-              sndrId: sndrId
-              lifeCyclTracIdData:
-                authstnSeqNb: authstnSeqNb
-                id: id
-            lifeCyclTracIdData:
-              authstnSeqNb: authstnSeqNb
-              id: id
-            acqrrRefData: acqrrRefData
-          acctTo:
-            acctTp: acctTp
-            acctId: acctId
-          addtlAmts:
-            - othrTp: othrTp
-              amt:
-                ccy: ccy
-                amt: amt
-                sgn: true
-            - othrTp: othrTp
-              amt:
-                ccy: ccy
-                amt: amt
-                sgn: true
-          addtlData:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-          txTp: txTp
-          spclPrgrmmQlfctn:
-            - prgrmm: prgrmm
-              dtl:
-                - val: val
-                  nm: nm
-                - val: val
-                  nm: nm
-            - prgrmm: prgrmm
-              dtl:
-                - val: val
-                  nm: nm
-                - val: val
-                  nm: nm
-          txSubTp: txSubTp
-          acctFr:
-            acctTp: acctTp
-            acctId: acctId
-          txDesc: txDesc
-          addtlFees:
-            - feePrgm: feePrgm
-              othrTp: othrTp
-              amt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-                sgn: true
-              feeDscrptr: feeDscrptr
-              labl: labl
-            - feePrgm: feePrgm
-              othrTp: othrTp
-              amt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-                sgn: true
-              feeDscrptr: feeDscrptr
-              labl: labl
-        envt:
-          tkn:
-            tknXpryDt: tknXpryDt
-            tknInittdInd: true
-            pmtTkn: pmtTkn
-            tknRqstrId: tknRqstrId
-            tknAssrncMtd: tknAssrncMtd
-          acqrr:
-            id: id
-            addtlId: addtlId
-          accptr:
-            id: id
-            addtlId: addtlId
-          sndr:
-            id: id
-            addtlId: addtlId
-          termnl:
-            termnlId:
-              ctry: ctry
-              id: id
-          card:
-            prtctdPANInd: true
-            pmtAcctRef: pmtAcctRef
-            cardSeqNb: cardSeqNb
-            addtlCardData: addtlCardData
-            panAcctRg: panAcctRg
-            pan: pan
-            cardPrtflIdr: cardPrtflIdr
-        iccRltdData: iccRltdData
       properties:
         envt:
           $ref: '#/components/schemas/responseEnvironment14'
@@ -6557,227 +7258,6 @@ components:
     responseReversalResponseV02:
       description: The ReversalResponse message is sent by an issuer or an agent to
         an acquirer in response to a ReversalInitiation message.
-      example:
-        hdr:
-          tracData:
-            - val: val
-              tp: tp
-            - val: val
-              tp: tp
-          prtcolVrsn: prtcolVrsn
-          initgPty:
-            id: id
-          xchgId: xchgId
-          creDtTm: creDtTm
-        body:
-          cntxt:
-            cardPrgrmmApld:
-              id: id
-            sttlmSvc:
-              sttlmSvcApld:
-                shrtNm: shrtNm
-                id: id
-                tp: tp
-              sttlmSvcDts:
-                sttlmDt: sttlmDt
-          prcgRslt:
-            rsltData:
-              rsltDtls: rsltDtls
-              addtlRsltInf:
-                - val: val
-                  tp: tp
-                - val: val
-                  tp: tp
-            addtlInf:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-            apprvlData:
-              apprvlCd: apprvlCd
-              apprvlNtty:
-                id: id
-          tx:
-            txAmts:
-              dtldAmt:
-                - othrTp: othrTp
-                  amt:
-                    amt: amt
-                    sgn: true
-                  crdhldrBllgAmt:
-                    amt: amt
-                    sgn: true
-                  rcncltnAmt:
-                    amt: amt
-                    sgn: true
-                - othrTp: othrTp
-                  amt:
-                    amt: amt
-                    sgn: true
-                  crdhldrBllgAmt:
-                    amt: amt
-                    sgn: true
-                  rcncltnAmt:
-                    amt: amt
-                    sgn: true
-              orgnlTxAmts:
-                crdhldrBllgAmt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-                txAmt:
-                  ccy: ccy
-                  amt: amt
-                rcncltnAmt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-              crdhldrBllgAmt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-              txAmt:
-                ccy: ccy
-                amt: amt
-              rcncltnAmt:
-                qtnDt: qtnDt
-                ccy: ccy
-                amt: amt
-                xchgRate: xchgRate
-            orgnlAddtlFees:
-              - feePrgm: feePrgm
-                othrTp: othrTp
-                amt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-                  sgn: true
-                feeDscrptr: feeDscrptr
-                labl: labl
-              - feePrgm: feePrgm
-                othrTp: othrTp
-                amt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-                  sgn: true
-                feeDscrptr: feeDscrptr
-                labl: labl
-            othrTxAttr: othrTxAttr
-            txId:
-              sysTracAudtNb: sysTracAudtNb
-              trnsmssnDtTm: trnsmssnDtTm
-              acqrrRefNb: acqrrRefNb
-              rtrvlRefNb: rtrvlRefNb
-              cardIssrRefData: cardIssrRefData
-              lclDtTm: lclDtTm
-              orgnlDataElmts:
-                acqrrId: acqrrId
-                sysTracAudtNb: sysTracAudtNb
-                trnsmssnDtTm: trnsmssnDtTm
-                rtrvlRefNb: rtrvlRefNb
-                lclDtTm: lclDtTm
-                sndrId: sndrId
-                lifeCyclTracIdData:
-                  authstnSeqNb: authstnSeqNb
-                  id: id
-              lifeCyclTracIdData:
-                authstnSeqNb: authstnSeqNb
-                id: id
-              acqrrRefData: acqrrRefData
-            acctTo:
-              acctTp: acctTp
-              acctId: acctId
-            addtlAmts:
-              - othrTp: othrTp
-                amt:
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-              - othrTp: othrTp
-                amt:
-                  ccy: ccy
-                  amt: amt
-                  sgn: true
-            addtlData:
-              - val: val
-                tp: tp
-              - val: val
-                tp: tp
-            txTp: txTp
-            spclPrgrmmQlfctn:
-              - prgrmm: prgrmm
-                dtl:
-                  - val: val
-                    nm: nm
-                  - val: val
-                    nm: nm
-              - prgrmm: prgrmm
-                dtl:
-                  - val: val
-                    nm: nm
-                  - val: val
-                    nm: nm
-            txSubTp: txSubTp
-            acctFr:
-              acctTp: acctTp
-              acctId: acctId
-            txDesc: txDesc
-            addtlFees:
-              - feePrgm: feePrgm
-                othrTp: othrTp
-                amt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-                  sgn: true
-                feeDscrptr: feeDscrptr
-                labl: labl
-              - feePrgm: feePrgm
-                othrTp: othrTp
-                amt:
-                  qtnDt: qtnDt
-                  ccy: ccy
-                  amt: amt
-                  xchgRate: xchgRate
-                  sgn: true
-                feeDscrptr: feeDscrptr
-                labl: labl
-          envt:
-            tkn:
-              tknXpryDt: tknXpryDt
-              tknInittdInd: true
-              pmtTkn: pmtTkn
-              tknRqstrId: tknRqstrId
-              tknAssrncMtd: tknAssrncMtd
-            acqrr:
-              id: id
-              addtlId: addtlId
-            accptr:
-              id: id
-              addtlId: addtlId
-            sndr:
-              id: id
-              addtlId: addtlId
-            termnl:
-              termnlId:
-                ctry: ctry
-                id: id
-            card:
-              prtctdPANInd: true
-              pmtAcctRef: pmtAcctRef
-              cardSeqNb: cardSeqNb
-              addtlCardData: addtlCardData
-              panAcctRg: panAcctRg
-              pan: pan
-              cardPrtflIdr: cardPrtflIdr
-          iccRltdData: iccRltdData
       properties:
         hdr:
           $ref: '#/components/schemas/msgreversalresponseHeader42'
@@ -6786,126 +7266,6 @@ components:
       type: object
     responseTransaction78:
       description: Contains transaction details.
-      example:
-        txAmts:
-          dtldAmt:
-            - othrTp: othrTp
-              amt:
-                amt: amt
-                sgn: true
-              crdhldrBllgAmt:
-                amt: amt
-                sgn: true
-            - othrTp: othrTp
-              amt:
-                amt: amt
-                sgn: true
-              crdhldrBllgAmt:
-                amt: amt
-                sgn: true
-          crdhldrBllgAmt:
-            qtnDt: qtnDt
-            ccy: ccy
-            amt: amt
-            xchgRate: xchgRate
-          txAmt:
-            ccy: ccy
-            amt: amt
-          rcncltnAmt:
-            qtnDt: qtnDt
-            ccy: ccy
-            amt: amt
-            xchgRate: xchgRate
-        othrTxAttr: othrTxAttr
-        txId:
-          sysTracAudtNb: sysTracAudtNb
-          trnsmssnDtTm: trnsmssnDtTm
-          rtrvlRefNb: rtrvlRefNb
-          cardIssrRefData: cardIssrRefData
-          lclDtTm: lclDtTm
-          lifeCyclTracIdData:
-            authstnSeqNb: authstnSeqNb
-            id: id
-          acqrrRefData: acqrrRefData
-        acctTo:
-          acctTp: acctTp
-          acctId: acctId
-        acctBal:
-          - acctTp: acctTp
-            bal:
-              - othrTp: othrTp
-                ccy: ccy
-                amt: amt
-                sgn: true
-              - othrTp: othrTp
-                ccy: ccy
-                amt: amt
-                sgn: true
-          - acctTp: acctTp
-            bal:
-              - othrTp: othrTp
-                ccy: ccy
-                amt: amt
-                sgn: true
-              - othrTp: othrTp
-                ccy: ccy
-                amt: amt
-                sgn: true
-        addtlAmts:
-          - othrTp: othrTp
-            amt:
-              ccy: ccy
-              amt: amt
-              sgn: true
-          - othrTp: othrTp
-            amt:
-              ccy: ccy
-              amt: amt
-              sgn: true
-        addtlData:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
-        txTp: txTp
-        spclPrgrmmQlfctn:
-          - prgrmm: prgrmm
-            dtl:
-              - val: val
-                nm: nm
-              - val: val
-                nm: nm
-          - prgrmm: prgrmm
-            dtl:
-              - val: val
-                nm: nm
-              - val: val
-                nm: nm
-        txSubTp: txSubTp
-        acctFr:
-          acctTp: acctTp
-          acctId: acctId
-        addtlFees:
-          - feePrgm: feePrgm
-            othrTp: othrTp
-            amt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-              sgn: true
-            feeDscrptr: feeDscrptr
-            labl: labl
-          - feePrgm: feePrgm
-            othrTp: othrTp
-            amt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-              sgn: true
-            feeDscrptr: feeDscrptr
-            labl: labl
       properties:
         txTp:
           type: string
@@ -6965,158 +7325,6 @@ components:
       type: object
     responseTransaction86:
       description: Contains transaction details.
-      example:
-        txAmts:
-          dtldAmt:
-            - othrTp: othrTp
-              amt:
-                amt: amt
-                sgn: true
-              crdhldrBllgAmt:
-                amt: amt
-                sgn: true
-              rcncltnAmt:
-                amt: amt
-                sgn: true
-            - othrTp: othrTp
-              amt:
-                amt: amt
-                sgn: true
-              crdhldrBllgAmt:
-                amt: amt
-                sgn: true
-              rcncltnAmt:
-                amt: amt
-                sgn: true
-          orgnlTxAmts:
-            crdhldrBllgAmt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-            txAmt:
-              ccy: ccy
-              amt: amt
-            rcncltnAmt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-          crdhldrBllgAmt:
-            qtnDt: qtnDt
-            ccy: ccy
-            amt: amt
-            xchgRate: xchgRate
-          txAmt:
-            ccy: ccy
-            amt: amt
-          rcncltnAmt:
-            qtnDt: qtnDt
-            ccy: ccy
-            amt: amt
-            xchgRate: xchgRate
-        orgnlAddtlFees:
-          - feePrgm: feePrgm
-            othrTp: othrTp
-            amt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-              sgn: true
-            feeDscrptr: feeDscrptr
-            labl: labl
-          - feePrgm: feePrgm
-            othrTp: othrTp
-            amt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-              sgn: true
-            feeDscrptr: feeDscrptr
-            labl: labl
-        othrTxAttr: othrTxAttr
-        txId:
-          sysTracAudtNb: sysTracAudtNb
-          trnsmssnDtTm: trnsmssnDtTm
-          acqrrRefNb: acqrrRefNb
-          rtrvlRefNb: rtrvlRefNb
-          cardIssrRefData: cardIssrRefData
-          lclDtTm: lclDtTm
-          orgnlDataElmts:
-            acqrrId: acqrrId
-            sysTracAudtNb: sysTracAudtNb
-            trnsmssnDtTm: trnsmssnDtTm
-            rtrvlRefNb: rtrvlRefNb
-            lclDtTm: lclDtTm
-            sndrId: sndrId
-            lifeCyclTracIdData:
-              authstnSeqNb: authstnSeqNb
-              id: id
-          lifeCyclTracIdData:
-            authstnSeqNb: authstnSeqNb
-            id: id
-          acqrrRefData: acqrrRefData
-        acctTo:
-          acctTp: acctTp
-          acctId: acctId
-        addtlAmts:
-          - othrTp: othrTp
-            amt:
-              ccy: ccy
-              amt: amt
-              sgn: true
-          - othrTp: othrTp
-            amt:
-              ccy: ccy
-              amt: amt
-              sgn: true
-        addtlData:
-          - val: val
-            tp: tp
-          - val: val
-            tp: tp
-        txTp: txTp
-        spclPrgrmmQlfctn:
-          - prgrmm: prgrmm
-            dtl:
-              - val: val
-                nm: nm
-              - val: val
-                nm: nm
-          - prgrmm: prgrmm
-            dtl:
-              - val: val
-                nm: nm
-              - val: val
-                nm: nm
-        txSubTp: txSubTp
-        acctFr:
-          acctTp: acctTp
-          acctId: acctId
-        txDesc: txDesc
-        addtlFees:
-          - feePrgm: feePrgm
-            othrTp: othrTp
-            amt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-              sgn: true
-            feeDscrptr: feeDscrptr
-            labl: labl
-          - feePrgm: feePrgm
-            othrTp: othrTp
-            amt:
-              qtnDt: qtnDt
-              ccy: ccy
-              amt: amt
-              xchgRate: xchgRate
-              sgn: true
-            feeDscrptr: feeDscrptr
-            labl: labl
       properties:
         txTp:
           type: string
@@ -7176,6 +7384,50 @@ components:
             $ref: '#/components/schemas/msgreversalresponseAdditionalData1'
           type: array
       type: object
+    responseTransaction87:
+      properties:
+        txTp:
+          type: string
+          description: Type of transaction associated with the main service. ISO 8583:87/93/2003
+            bit 3
+        txSubTp:
+          type: string
+          description: Provides further granularity of purpose of TransactionType
+        spclPrgrmmQlfctn:
+          description: Data to qualify for incentive or other related programmes.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseSpecialProgrammeQualification1'
+          type: array
+        txId:
+          $ref: '#/components/schemas/inquiryresponseTransactionIdentification11'
+        rcncltnAmt:
+          $ref: '#/components/schemas/msginquiryresponseAmount4'
+        addtlAmts:
+          items:
+            $ref: '#/components/schemas/inquiryresponseAdditionalAmounts2'
+          type: array
+          description: Amounts that are not part of the transaction amount and not
+            included in reconciliation.  ISO 8583 bit 54
+        addtlFees:
+          description: Fees not included in the transaction amount but included in
+            the settlement.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalFee1'
+          type: array
+        acctBal:
+          description: Balance of an account.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAccountBalance1'
+          type: array
+        acctFr:
+          $ref: '#/components/schemas/msginquiryresponseAccountDetails2'
+        addtlData:
+          description: Contains additional data.
+          items:
+            $ref: '#/components/schemas/msginquiryresponseAdditionalData1'
+          type: array
+      type: object
+      description: Inquiry transaction
     reversalinitiationAdditionalInformation20:
       description: Additional information relevant to the destination.
       properties:
@@ -7250,14 +7502,6 @@ components:
     reversalresponseCardData5:
       description: Non-protected sensitive data associated with the card or payment
         token performing the transaction.
-      example:
-        prtctdPANInd: true
-        pmtAcctRef: pmtAcctRef
-        cardSeqNb: cardSeqNb
-        addtlCardData: addtlCardData
-        panAcctRg: panAcctRg
-        pan: pan
-        cardPrtflIdr: cardPrtflIdr
       properties:
         pan:
           type: string
@@ -7326,16 +7570,6 @@ components:
     reversalresponseOriginalDataElements1:
       description: Data elements contained in the original message. ISO 8583:1987
         bit 90 and ISO 8583 1993/2003 bit 56.
-      example:
-        acqrrId: acqrrId
-        sysTracAudtNb: sysTracAudtNb
-        trnsmssnDtTm: trnsmssnDtTm
-        rtrvlRefNb: rtrvlRefNb
-        lclDtTm: lclDtTm
-        sndrId: sndrId
-        lifeCyclTracIdData:
-          authstnSeqNb: authstnSeqNb
-          id: id
       properties:
         msgClss:
           $ref: '#/components/schemas/reversalresponseMessageClass1Code'
@@ -7375,20 +7609,6 @@ components:
       type: object
     reversalresponseOriginalTransactionAmount1:
       description: Amount related to the original transaction.
-      example:
-        crdhldrBllgAmt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
-        txAmt:
-          ccy: ccy
-          amt: amt
-        rcncltnAmt:
-          qtnDt: qtnDt
-          ccy: ccy
-          amt: amt
-          xchgRate: xchgRate
       properties:
         txAmt:
           $ref: '#/components/schemas/msgreversalresponseTransactionAmount1'
@@ -7410,6 +7630,12 @@ components:
           schema:
             $ref: '#/components/schemas/responseAuthorisationResponseV02'
       description: A successful response.
+    InquiryResponseV01:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/responseInquiryResponseV01'
+      description: A successful response.
     ReversalResponseV02:
       content:
         application/json:
@@ -7424,6 +7650,13 @@ components:
             $ref: '#/components/schemas/initiationAuthorisationInitiationV02'
       required: true
       description: AuthorisationInitiationV02 request
+    InquiryInitiationV01:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/initiationInquiryInitiationV01'
+      required: true
+      description: InquiryInitiationV01 request
     ReversalInitiationV02:
       content:
         application/json:
