@@ -4,8 +4,8 @@
 
 ### For Mastercard employees
 
-1. git clone git@github.com:Mastercard/transaction-api-reference-app.git
-2. git add remote upstream git@github.com:Mastercard/transaction-api-reference-app.git (hook up the upstream repo with your local copy)
+1. git clone https://github.com/Mastercard/transaction-api-reference-app.git
+2. git remote add upstream https://github.com/Mastercard/transaction-api-reference-app.git (hook up the upstream repo with your local copy)
 3. git fetch --all
 4. git checkout main
 5. git merge upstream main (to get the latest version of the upstream's code, do this daily)

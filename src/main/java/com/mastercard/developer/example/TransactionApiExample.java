@@ -7,7 +7,6 @@ import com.mastercard.developer.exception.ServiceException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
-import org.openapitools.client.model.InitiationInquiryInitiation1;
 import org.openapitools.client.model.InitiationInquiryInitiationV01;
 import org.openapitools.client.model.InitiationReversalInitiationV02;
 
