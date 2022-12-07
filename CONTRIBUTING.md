@@ -2,6 +2,22 @@
 
 ## Submitting Changes
 
+### For Mastercard employees
+
+1. git clone https://github.com/Mastercard/transaction-api-reference-app.git
+2. git remote add upstream https://github.com/Mastercard/transaction-api-reference-app.git (hook up the upstream repo with your local copy)
+3. git fetch --all
+4. git checkout main
+5. git merge upstream main (to get the latest version of the upstream's code, do this daily)
+6. git checkout -b "feature/foobranch"
+7. Commit your changes (git commit -am 'Add some feature')
+   - Don't forget to update existing tests or add new tests
+8. Squash your commits (git rebase --interactive --autosquash)
+9. Execute the unit tests to ensure all pass
+10. git push origin feature/foobranch
+
+### For everyone else
+
 1. Fork the repository
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')

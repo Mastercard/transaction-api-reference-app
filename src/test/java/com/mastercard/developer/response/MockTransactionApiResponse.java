@@ -38,4 +38,19 @@ public class MockTransactionApiResponse {
         reversalResponseV02.setBody(reversalResponse2);
         return reversalResponseV02;
     }
+
+    public static ResponseInquiryResponseV01 getMockInquiryResponse() {
+        ResponseInquiryResponseV01 inquiryResponse = new ResponseInquiryResponseV01();
+        InquiryresponseHeader39 hdr = new InquiryresponseHeader39();
+        hdr.setMsgFctn(InquiryresponseMessageFunction17Code.REQU);
+        inquiryResponse.setHdr(hdr);
+        ResponseInquiryResponse1 body = new ResponseInquiryResponse1();
+        ResponseEnvironment15 envt = new ResponseEnvironment15();
+        MsginquiryresponseCardData4 card = new MsginquiryresponseCardData4();
+        card.setPan(PAN);
+        envt.setCard(card);
+        body.setEnvt(envt);
+        inquiryResponse.setBody(body);
+        return inquiryResponse;
+    }
 }

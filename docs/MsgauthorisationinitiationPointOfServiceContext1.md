@@ -3,22 +3,24 @@
 # MsgauthorisationinitiationPointOfServiceContext1
 
 Contains point of interaction information specific to a given transaction that may change from transaction to transaction.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**cardPres** | **Boolean** | Indicates whether the transaction has been initiated by a card physically present or not.  True: Card physically present during the transaction False: Card physically absent during the transaction.  ISO 8583:87 bit 25, ISO 8583:93 bit 22-6. |  [optional]
-**crdhldrPres** | **Boolean** |  |  [optional]
-**crdhldrActvtd** | **Boolean** |  |  [optional]
-**trnspndrInittd** | **Boolean** | Transaction initiated through a transponder or not. True: Transaction initiated through a transponder. False: Transaction not initiated through a transponder. |  [optional]
-**attnddInd** | **Boolean** |  |  [optional]
-**uattnddLvlCtgy** | **String** | Transaction category level on an unattended terminal. |  [optional]
-**eComrcInd** | **Boolean** |  |  [optional]
-**mOTOInd** | **Boolean** |  |  [optional]
-**prtlApprvlSpprtd** | **Boolean** |  |  [optional]
-**cardDataNtryMd** | [**MsgauthorisationinitiationCardDataReading7Code**](MsgauthorisationinitiationCardDataReading7Code.md) |  |  [optional]
-**othrCardDataNtryMd** | **String** | Other type of card data entry mode. |  [optional]
-**spclConds** | [**List&lt;MsgauthorisationinitiationSpecialConditions1&gt;**](MsgauthorisationinitiationSpecialConditions1.md) | Data used to assign specific conditions at the card acceptor location and decided by bilateral agreements. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**cardPres** | **Boolean** | The indicator that the transaction was initiated with the Card physically present at the point of interaction. |  [optional] |
+|**crdhldrPres** | **Boolean** | The indicator that the transaction was initiated with the Cardholder present at the point of interaction. |  [optional] |
+|**crdhldrActvtd** | **Boolean** | The indicator that the transaction was initiated on an automated device operated solely by the Cardholder, such as an ATM. |  [optional] |
+|**trnspndrInittd** | **Boolean** | The indicator that the transaction was initiated with a transponder. |  [optional] |
+|**attnddInd** | **Boolean** | The indicator that the transaction was initiated on a Terminal attended by an Acceptor representative. |  [optional] |
+|**uattnddLvlCtgy** | **String** | The code identifying the type of Terminal used by the Cardholder to initiate the unattended transaction, such as a self-service Terminal. |  [optional] |
+|**eComrcInd** | **Boolean** | The indicator that the point of interaction was an ecommerce one. |  [optional] |
+|**motoInd** | **Boolean** | The indicator that the transaction was imitated by the Cardholder via mail or telephone. |  [optional] |
+|**prtlApprvlSpprtd** | **Boolean** | The indicator that the Terminal supports partial approvals, which allows for the authorization of less than the full transaction amount so the Cardholder can use multiple forms of payment. code identifying the type of Terminal used by the Cardholder to initiate the unattended transaction, such as a self-service Terminal. |  [optional] |
+|**cardDataNtryMd** | **MsgauthorisationinitiationCardDataReading7Code** |  |  [optional] |
+|**othrCardDataNtryMd** | **String** | A free text field for identifying the Card data input method when the Terminal Card Data Input Method Code is \&quot;OTHN\&quot; or \&quot;OTHP,\&quot; which indicate a national, network, or customer specific value. |  [optional] |
+|**storgLctn** | **String** | The code identifying where the Card data is stored, such as on a Wallet or by the Acceptor. |  [optional] |
+|**spclConds** | [**List&lt;MsgauthorisationinitiationSpecialConditions1&gt;**](MsgauthorisationinitiationSpecialConditions1.md) | Data used to assign specific conditions at the card acceptor location and decided by bilateral agreements. |  [optional] |
 
 
 

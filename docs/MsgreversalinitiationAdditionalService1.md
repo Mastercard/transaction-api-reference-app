@@ -3,12 +3,13 @@
 # MsgreversalinitiationAdditionalService1
 
 Additional functions or services to be performed in conjunction with the transaction.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tp** | [**MsgreversalinitiationAdditionalServiceType1Code**](MsgreversalinitiationAdditionalServiceType1Code.md) |  |  [optional]
-**othrTp** | **String** | Other additional service applied to the transaction. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**tp** | **MsgreversalinitiationAdditionalServiceType1Code** |  |  [optional] |
+|**othrTp** | **String** | A label identifying an additional service applied to the transaction when the Additional Service Type Code is \&quot;OTHN\&quot; or \&quot;OTHP,\&quot; which indicate a national, network, or customer specific value. |  [optional] |
 
 
 

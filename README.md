@@ -124,12 +124,20 @@ See also:
   | `/cain-authorisation-requests`  | POST   | [AuthorisationInitiationV02](docs/InitiationAuthorisationInitiationV02.md)    | [AuthorisationResponseV02](docs/ResponseAuthorisationResponseV02.md) |
 
 > Case 2: [Reversal](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/use-cases/acquirer-reversal/)
-- The user performs an API call with an reversal request. Multiple use cases can be executed simultaneously.
+- The user performs an API call with a reversal request. Multiple use cases can be executed simultaneously.
 - Refer to the model classes for field-level information.
 
   | URL     | Method    | Request |  Response |
   | --------|---------|-------|-------|
   | `/cain-reversal-requests` | POST | [ReversalInitiationV02](docs/InitiationReversalInitiationV02.md) | [ReversalResponseV02](docs/ResponseReversalResponseV02.md) |
+
+> Case 3: [Inquiry](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/use-cases/acquirer-inquiry/)
+- The user performs an API call with an inquiry request. Multiple use cases can be executed simultaneously.
+- Refer to the model classes for field-level information.
+
+  | URL     | Method    | Request |  Response |
+    | --------|---------|-------|-------|
+  | `/cain-inquiry-requests` | POST | [InquiryInitiationV01](docs/InitiationInquiryInitiationV01.md) | [InquiryResponseV01](docs/ResponseInquiryResponseV01.md) |
 
 ## API Reference <a name="api-reference"></a>
 To develop a client application that consumes a RESTful Transaction API with Spring Boot, refer to the [API Reference](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/) page.
@@ -137,9 +145,11 @@ To develop a client application that consumes a RESTful Transaction API with Spr
 ### Request Examples <a name="request-examples"></a>
 To learn which fields are required to make a request, refer to the example below.
 
-| API Request Payload | Endpoint | HTTP Method | API Response Payload |
-| --------|---------|-------|-------|
+| API Request Payload                                                                                                                                      | Endpoint                       | HTTP Method | API Response Payload                                                                                                                                     |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [AuthorisationInitiationV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-authorization/#request) | `/cain-authorisation-requests` | POST | [AuthorisationResponseV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-authorization/#response). |
+| [ReversalInitiationV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-reversal/#request)           | `/cain-reversal-requests`      | POST | [ReversalResponseV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-reversal/#response).           |
+| [InquiryInitiationV01](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-inquiry/#request)             | `/cain-inquiry-requests`       | POST | [InquiryResponseV01](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-inquiry/#response).             |
 
 
 You can change the default input passed to APIs and modify values in the following files:

@@ -3,12 +3,13 @@
 # MsgauthorisationresponseTransactionAmount1
 
 Actual amount of the transaction.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**amt** | **Double** | Amount of the transaction expressed in the currency of the terminal or as a reversed amount of a previous authorisation. ISO 8583 bit 4. |  [optional]
-**ccy** | [**MsgauthorisationresponseISO3NumericCurrencyCode**](MsgauthorisationresponseISO3NumericCurrencyCode.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**amt** | **String** | The amount of the transaction in the currency of the point of interaction. |  [optional] |
+|**ccy** | **String** | The ISO 4217 numeric code for the currency of the Transaction Amount, which is the currency of the point of interaction. |  [optional] |
 
 
 

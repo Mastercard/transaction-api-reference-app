@@ -2,13 +2,15 @@
 
 # MsgreversalinitiationTransferService1
 
+Funds transfer service
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**ref** | **String** | Reference to the funding service. |  [optional]
-**bizPurp** | **String** | Purpose of the transfer. For example: person to person, business-to-business and mobile top-up. |  [optional]
-**desc** | **String** | Free text that can be used between the sender and the receiver to describe the details of the transfer. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**ref** | **String** | An identifier of the Funds Transfer. |  [optional] |
+|**bizPurp** | **String** | The code identifying the purpose of the Funds Transfer. |  [optional] |
+|**desc** | **String** | A free text field for the Payer of the Funds Transfer to provide a description for the Payee. |  [optional] |
 
 
 

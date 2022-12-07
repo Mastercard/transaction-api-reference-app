@@ -3,13 +3,14 @@
 # MsgauthorisationinitiationCardholderName1
 
 Complete name of the cardholder.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**gvnNm** | **String** | First name of the cardholder. |  [optional]
-**mddlInitls** | **String** | Middle initials present in the name of a person. |  [optional]
-**lastNm** | **String** | Family name of the cardholder. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**gvnNm** | **String** | The given name of the Cardholder. |  [optional] |
+|**mddlInitls** | **String** | The initial of the Cardholder&#39;s middle name. |  [optional] |
+|**lastNm** | **String** | The family name of the Cardholder. |  [optional] |
 
 
 

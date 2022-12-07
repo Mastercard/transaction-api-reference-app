@@ -3,14 +3,15 @@
 # MsgauthorisationresponseSettlementServiceMode1
 
 Settlement service for specific settlement types of requirements.
+
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tp** | **String** | Type of settlement service. |  [optional]
-**id** | **String** | Identification of settlement service. |  [optional]
-**shrtNm** | **String** | Short name of the Settlement Service. |  [optional]
-**sttlmPrty** | [**MsgauthorisationresponsePriority3Code**](MsgauthorisationresponsePriority3Code.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**tp** | **String** | The code identifying the type of Settlement Service applied for the transaction. |  [optional] |
+|**id** | **String** | The identifier of the Settlement Service applied for the transaction. |  [optional] |
+|**shrtNm** | **String** | The name of the Settlement Service applied for the transaction. |  [optional] |
+|**sttlmPrty** | **MsgauthorisationresponsePriority3Code** |  |  [optional] |
 
 
 
