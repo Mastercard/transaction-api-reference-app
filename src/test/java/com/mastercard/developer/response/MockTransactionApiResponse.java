@@ -13,7 +13,7 @@ public class MockTransactionApiResponse {
         hdr.setMsgFctn(MsgauthorisationresponseMessageFunction16Code.ADVC);
         authorisationResponseV02.setHdr(hdr);
         ResponseAuthorisationResponse1 authorisationResponse1 = new ResponseAuthorisationResponse1();
-        ResponseEnvironment2 env = new ResponseEnvironment2();
+        MsgauthorisationresponseEnvironment2 env = new MsgauthorisationresponseEnvironment2();
         MsgauthorisationresponseCardData4 card = new MsgauthorisationresponseCardData4();
         card.setPan(PAN);
         env.setCard(card);
