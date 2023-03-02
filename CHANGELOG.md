@@ -2,7 +2,7 @@
 
 -----
 ### 1.1.1
-- S3230995: Update swagger file, generated from version 0.0.56 of next-edge-customer-spec
+- S3230995: Update swagger file, generated from version 0.0.57 of next-edge-customer-spec
 
 ### 1.1.0
 - S2701270: Feature added for Inquiry service
