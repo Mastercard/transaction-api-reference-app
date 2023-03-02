@@ -10,9 +10,9 @@ Amount, currency, exchange rate and quotation date, sign and label.
 |------------ | ------------- | ------------- | -------------|
 |**amt** | **String** | The amount of the Additional Fee. |  [optional] |
 |**ccy** | **String** | The ISO 4217 numeric code for the currency of the Additional Fee Amount. |  [optional] |
-|**xchgRate** | **String** | The exchange rate used to convert the Fee Amount to the Cardholder&#39;s Billing Currency. |  [optional] |
+|**xchgRate** | **String** | Exchange rate of the currency code associated with the amount.  ISO 8583 bit 9 (for use with reconciliation/settlement amount) ISO 8583 bit 10 (for use with cardholder billing amount) |  [optional] |
 |**qtnDt** | **String** | The date of the quote for the Additional Fee Exchange Rate. |  [optional] |
-|**sgn** | **Boolean** | The code identifying whether an Additional Fee is a credit or debit. |  [optional] |
+|**sgn** | **Boolean** | Indicates whether the amount value is positive or negative.  Negative: the receiver of the message owes the fee to the sender. Positive: the sender of the message owes the fee to the receiver. |  [optional] |
 
 
 

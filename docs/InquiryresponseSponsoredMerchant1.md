@@ -2,7 +2,7 @@
 
 # InquiryresponseSponsoredMerchant1
 
-Merchant using the payment services of the card acceptor. The sponsored merchant is not acting as the card acceptor; the latter remaining the only party liable for the transaction vis-�-vis the acquirer.
+Merchant using the payment services of the card acceptor. The sponsored merchant is not acting as the card acceptor; the latter remaining the only party liable for the transaction vis-à-vis the acquirer.
 
 ## Properties
 

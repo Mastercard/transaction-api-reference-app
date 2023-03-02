@@ -8,12 +8,12 @@ Context of the card payment transaction.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**mrchntCtgyCd** | **String** | Category code related to the type of services or goods the merchant provides for the transaction. |  [optional] |
-|**mrchntCtgySpcfcData** | **String** | Further details about the merchant that is used in with the merchant category code (MCC) for the particular purchase. |  [optional] |
-|**cstmrCnsnt** | **Boolean** | Notifies the express consent of the customer for a given service (used in DCC, funds transfers, money lending, etc.).  True: Explicit customer consent obtained False: Implicit customer consent obtained |  [optional] |
-|**iccFllbckInd** | **Boolean** | Indicates a chip data fallback. True: Fallback False: No fallback Default: False |  [optional] |
-|**mgntcStrpFllbckInd** | **Boolean** | Indicates a magnetic stripe fallback. True: Fallback False: No fallback Default: False |  [optional] |
-|**fnlAuthstnInd** | **Boolean** | Identifies final authorisation messages for the purpose of managing open-to buy or available balance. |  [optional] |
+|**mrchntCtgyCd** | **String** | The ISO 18245 code identifying the type of goods or services generally provided by the Acceptor, which is used to drive transaction processing logic. |  [optional] |
+|**mrchntCtgySpcfcData** | **String** | The code identifying a classification of the transaction, such as a bill payment or hotel rental. |  [optional] |
+|**cstmrCnsnt** | **Boolean** | The indicator that the Cardholder gave express consent for a service, such as for a Funds Transfer. |  [optional] |
+|**iccFllbckInd** | **Boolean** | The indicator that an attempted chip entry failed and the Card was swiped or the Card data was entered manually instead. |  [optional] |
+|**mgntcStrpFllbckInd** | **Boolean** | The indicator that an attempted magnetic stripe entry failed and the Card data was entered manually instead. |  [optional] |
+|**fnlAuthstnInd** | **Boolean** | The indicator that the authorization request is for the final amount that should be billed to the Cardholder. |  [optional] |
 |**txInitr** | **MsginquiryinitiationTransactionInitiator1Code** |  |  [optional] |
 |**cardPrgrmm** | [**MsginquiryinitiationCardProgramme1**](MsginquiryinitiationCardProgramme1.md) |  |  [optional] |
 |**sttlmSvc** | [**MsginquiryinitiationSettlementService1**](MsginquiryinitiationSettlementService1.md) |  |  [optional] |

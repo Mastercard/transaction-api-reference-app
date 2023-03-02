@@ -8,11 +8,11 @@ Contact person details.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**homePhneNb** | **String** | Home phone number of contact. |  [optional] |
-|**bizPhneNb** | **String** | Business phone number of contact. |  [optional] |
-|**mobPhneNb** | **String** | Mobile phone number of contact. |  [optional] |
-|**prsnlEmailAdr** | **String** | Personal email address of contact. |  [optional] |
-|**bizEmailAdr** | **String** | Business email address of contact. |  [optional] |
+|**homePhneNb** | **String** | A home phone number of the Cardholder. |  [optional] |
+|**bizPhneNb** | **String** | A business phone number of the Cardholder. |  [optional] |
+|**mobPhneNb** | **String** | A mobile phone number of the Cardholder. |  [optional] |
+|**prsnlEmailAdr** | **String** | A personal email address of the Cardholder. |  [optional] |
+|**bizEmailAdr** | **String** | A business email address of the Cardholder. |  [optional] |
 
 
 

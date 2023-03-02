@@ -13,7 +13,7 @@ Context of the sale associated with the card payment transaction.
 |**saleRefNb** | **String** | An identifier of the transaction in the sale system. |  [optional] |
 |**goodsAndSvcsTp** | **InitiationGoodsAndServices1Code** |  |  [optional] |
 |**goodAndSvcsSubTp** | **InitiationGoodsAndServicesSubType1Code** |  |  [optional] |
-|**goodAndSvcsOthrSubTp** | **String** | The free-text element further identifying if the transaction was for financial instruments. |  [optional] |
+|**goodAndSvcsOthrSubTp** | **String** | Other goods and services sub type applied to the transaction. |  [optional] |
 |**spltPmtInd** | **Boolean** | The indicator that the transaction is a partial payment and the full amount was paid with multiple payment methods. |  [optional] |
 
 

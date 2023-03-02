@@ -8,8 +8,8 @@ Data used to assign specific conditions such as liability shift or preferential 
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Identification of the special condition. |  [optional] |
-|**val** | **String** | Level of the condition. |  [optional] |
+|**id** | **String** | A free text field for labeling the Point of Interaction Context Additional given in the Point of Interaction Context Additional Value. |  [optional] |
+|**val** | **String** | A free text field for the Point of Interaction Context Additional that is labeled by the Point of Interaction Context Additional. |  [optional] |
 
 
 

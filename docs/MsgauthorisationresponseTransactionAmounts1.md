@@ -8,7 +8,6 @@ Amounts of the card transaction.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amtQlfr** | **MsgauthorisationresponseTypeOfAmount11Code** |  |  [optional] |
 |**txAmt** | [**MsgauthorisationresponseTransactionAmount1**](MsgauthorisationresponseTransactionAmount1.md) |  |  [optional] |
 |**crdhldrBllgAmt** | [**MsgauthorisationresponseAmount4**](MsgauthorisationresponseAmount4.md) |  |  [optional] |
 |**rcncltnAmt** | [**MsgauthorisationresponseAmount4**](MsgauthorisationresponseAmount4.md) |  |  [optional] |

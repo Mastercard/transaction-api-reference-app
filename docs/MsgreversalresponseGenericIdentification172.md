@@ -8,7 +8,7 @@ Identification of an entity.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | The identifier of a Message Exchange Initiator. |  [optional] |
+|**id** | **String** | Identification of the entity. |  [optional] |
 
 
 

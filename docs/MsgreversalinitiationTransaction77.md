@@ -13,19 +13,19 @@ Contains transaction details.
 |**addtlSvc** | [**List&lt;MsgreversalinitiationAdditionalService1&gt;**](MsgreversalinitiationAdditionalService1.md) | Information about an additional service applied to the transaction, such as cash back. |  [optional] |
 |**txAttr** | **MsgreversalinitiationTransactionAttribute1Code** |  |  [optional] |
 |**othrTxAttr** | **String** | A free text field for providing a classification of the transaction when the Transaction Attribute Code is \&quot;OTHN\&quot; or \&quot;OTHP,\&quot; which indicate a national, network, or customer specific value. |  [optional] |
-|**msgRsn** | **List&lt;String&gt;** | The conditions under which the message was sent. |  [optional] |
+|**msgRsn** | **List&lt;String&gt;** | Reason to send the message. ISO 8583:93/2003 bit 25  The ISO 8583 maintenance agency (MA) manages this code list. |  [optional] |
 |**altrnMsgRsn** | **List&lt;String&gt;** | The code identifying a specific reason for the message. |  [optional] |
 |**preAuthstnTmLmt** | **String** | The number of minutes within which the Acceptor is expected to complete the transaction. |  [optional] |
 |**spclPrgrmmQlfctn** | [**List&lt;MsgreversalinitiationSpecialProgrammeQualification1&gt;**](MsgreversalinitiationSpecialProgrammeQualification1.md) | Information related to the Card&#39;s qualification in a Mastercard program that affects, for example, how the transaction is processed or the associated interchange fees. |  [optional] |
 |**txId** | [**MsgreversalinitiationTransactionIdentification8**](MsgreversalinitiationTransactionIdentification8.md) |  |  [optional] |
-|**dsptData** | [**List&lt;MsgreversalinitiationDisputeData1&gt;**](MsgreversalinitiationDisputeData1.md) | Information regarding a disputed transaction, such as information about chargebacks. |  [optional] |
+|**dsptData** | [**List&lt;MsgreversalinitiationDisputeData1&gt;**](MsgreversalinitiationDisputeData1.md) | Information about the dispute. |  [optional] |
 |**txAmts** | [**MsgreversalinitiationTransactionAmounts1**](MsgreversalinitiationTransactionAmounts1.md) |  |  [optional] |
 |**addtlAmts** | [**List&lt;MsgreversalinitiationAdditionalAmounts1&gt;**](MsgreversalinitiationAdditionalAmounts1.md) | Information about amounts that are not part of the Transaction Amount, such as an Issuer-assessed Cardholder fee. |  [optional] |
 |**addtlFees** | [**List&lt;MsgreversalinitiationAdditionalFee1&gt;**](MsgreversalinitiationAdditionalFee1.md) | Information about fees not included in the transaction amount. |  [optional] |
 |**fndsSvcs** | [**MsgreversalinitiationFundingService1**](MsgreversalinitiationFundingService1.md) |  |  [optional] |
 |**acctFr** | [**MsgreversalinitiationAccountDetails2**](MsgreversalinitiationAccountDetails2.md) |  |  [optional] |
 |**acctTo** | [**MsgreversalinitiationAccountDetails2**](MsgreversalinitiationAccountDetails2.md) |  |  [optional] |
-|**txDesc** | **String** | Transaction data related to programs and services, content and format based on bilateral agreements. |  [optional] |
+|**txDesc** | **String** | Transaction data related to programmes and services, content and format based on bilateral agreements.  ISO 8583:87/93 bit 104 ISO 8583:2003 bit 104-71 |  [optional] |
 |**addtlData** | [**List&lt;MsgreversalinitiationAdditionalData1&gt;**](MsgreversalinitiationAdditionalData1.md) | Additional data about the transaction. The data is sent in a name-value pair: Transaction Additional Data Name and Transaction Additional Data Value. |  [optional] |
 
 

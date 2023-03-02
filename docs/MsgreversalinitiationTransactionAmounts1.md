@@ -13,7 +13,7 @@ Amounts of the card transaction.
 |**crdhldrBllgAmt** | [**MsgreversalinitiationAmount4**](MsgreversalinitiationAmount4.md) |  |  [optional] |
 |**rcncltnAmt** | [**MsgreversalinitiationAmount4**](MsgreversalinitiationAmount4.md) |  |  [optional] |
 |**dtldAmt** | [**List&lt;MsgreversalinitiationDetailedAmount19&gt;**](MsgreversalinitiationDetailedAmount19.md) | An amount that is a portion of the Transaction Amount, such as a fee or cash back amount. |  [optional] |
-|**orgnlTxAmts** | [**ReversalinitiationOriginalTransactionAmount1**](ReversalinitiationOriginalTransactionAmount1.md) |  |  [optional] |
+|**orgnlTxAmts** | [**MsgreversalinitiationOriginalTransactionAmount1**](MsgreversalinitiationOriginalTransactionAmount1.md) |  |  [optional] |
 
 
 
