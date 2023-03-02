@@ -9,7 +9,7 @@ Cardholder verification capabilities performing the transaction at the point of 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**cpblty** | **MsginquiryinitiationCardholderVerificationCapability5Code** |  |  [optional] |
-|**othrCpblty** | **String** | Other types of cardholder verification capabilities. |  [optional] |
+|**othrCpblty** | **String** | A free text field for identifying a method the Terminal can use for Cardholder verification when the Terminal Cardholder Verification Capability Code is \&quot;OTHN\&quot; or \&quot;OTHP,\&quot; which indicate a national, network, or customer specific value. |  [optional] |
 
 
 

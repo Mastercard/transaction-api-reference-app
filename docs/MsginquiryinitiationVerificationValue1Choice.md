@@ -8,7 +8,7 @@ Contains the data to be authenticated or verified.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**txtVal** | **String** | Value of the data expressed in text form. |  [optional] |
+|**txtVal** | **String** | A free text field for the Verification Data labeled by the Verification Data Name. |  [optional] |
 |**binryVal** | **byte[]** | Value of the data expressed in BASE-64 encoded binary form. |  [optional] |
 
 

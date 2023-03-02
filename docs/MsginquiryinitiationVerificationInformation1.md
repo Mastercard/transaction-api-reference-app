@@ -8,7 +8,7 @@ Contains verification or authentication data.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tp** | **String** | Type of the verification or authentication.  ISO 8583:2003 bit 34 |  [optional] |
+|**tp** | **String** | A free text field for labeling the Verification Data given in the Verification Data Value (Text). |  [optional] |
 |**val** | [**MsginquiryinitiationVerificationValue1Choice**](MsginquiryinitiationVerificationValue1Choice.md) |  |  [optional] |
 
 

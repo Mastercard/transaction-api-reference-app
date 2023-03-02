@@ -8,7 +8,7 @@ ISO track 2 issued from the magnetic stripe card or from the ICC if the magnetic
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**txtVal** | **String** | Value of track 2 data expressed in text form. |  [optional] |
+|**txtVal** | **String** | The information encoded on Track 2 of the Card&#39;s magnetic stripe according to the the ISO 7813 specification, expressed in text form. information encoded on Track 2 of the Card&#39;s magnetic stripe according to the the ISO 7813 specification. |  [optional] |
 
 
 

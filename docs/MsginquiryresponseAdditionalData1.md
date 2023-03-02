@@ -8,8 +8,8 @@ Information sent in the request message to be returned in the response one, for 
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tp** | **String** | Type of information. |  [optional] |
-|**val** | **String** | Value of a specific type of data. |  [optional] |
+|**tp** | **String** | A free text field for labeling the Transaction Additional Data given in the Transaction Additional Data Value. |  [optional] |
+|**val** | **String** | A free text field the Transaction Additional Data that is labeled by the Transaction Additional Data Name. |  [optional] |
 
 
 

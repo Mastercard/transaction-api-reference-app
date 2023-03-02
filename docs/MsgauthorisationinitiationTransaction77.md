@@ -13,7 +13,7 @@ Contains transaction details.
 |**addtlSvc** | [**List&lt;MsgauthorisationinitiationAdditionalService1&gt;**](MsgauthorisationinitiationAdditionalService1.md) | Information about an additional service applied to the transaction, such as cash back. |  [optional] |
 |**txAttr** | **MsgauthorisationinitiationTransactionAttribute1Code** |  |  [optional] |
 |**othrTxAttr** | **String** | A free text field for providing a classification of the transaction when the Transaction Attribute Code is \&quot;OTHN\&quot; or \&quot;OTHP,\&quot; which indicate a national, network, or customer specific value. |  [optional] |
-|**msgRsn** | **List&lt;String&gt;** | The conditions under which the message was sent. |  [optional] |
+|**msgRsn** | **List&lt;String&gt;** | Reason to send the message. ISO 8583:93/2003 bit 25  The ISO 8583 maintenance agency (MA) manages this code list. |  [optional] |
 |**altrnMsgRsn** | **List&lt;String&gt;** | The code identifying a specific reason for the message. |  [optional] |
 |**preAuthstnTmLmt** | **String** | The number of minutes within which the Acceptor is expected to complete the transaction. |  [optional] |
 |**spclPrgrmmQlfctn** | [**List&lt;MsgauthorisationinitiationSpecialProgrammeQualification1&gt;**](MsgauthorisationinitiationSpecialProgrammeQualification1.md) | Information related to the Card&#39;s qualification in a Mastercard program that affects, for example, how the transaction is processed or the associated interchange fees. |  [optional] |
@@ -24,7 +24,7 @@ Contains transaction details.
 |**fndsSvcs** | [**MsgauthorisationinitiationFundingService1**](MsgauthorisationinitiationFundingService1.md) |  |  [optional] |
 |**acctFr** | [**MsgauthorisationinitiationAccountDetails2**](MsgauthorisationinitiationAccountDetails2.md) |  |  [optional] |
 |**acctTo** | [**MsgauthorisationinitiationAccountDetails2**](MsgauthorisationinitiationAccountDetails2.md) |  |  [optional] |
-|**txDesc** | **String** | Transaction data related to programs and services, content and format based on bilateral agreements. |  [optional] |
+|**txDesc** | **String** | Transaction data related to programmes and services, content and format based on bilateral agreements.  ISO 8583:87/93 bit 104 ISO 8583:2003 bit 104-71 |  [optional] |
 |**addtlData** | [**List&lt;MsgauthorisationinitiationAdditionalData1&gt;**](MsgauthorisationinitiationAdditionalData1.md) | Additional data about the transaction. The data is sent in a name-value pair: Transaction Additional Data Name and Transaction Additional Data Value. |  [optional] |
 
 

@@ -8,8 +8,8 @@ Balance of the account involved in the card transaction.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**acctTp** | **String** | Account for which a balance is sought.  See ISO 8583 bit 54, Account type codes |  [optional] |
-|**bal** | [**List&lt;MsginquiryresponseBalance15&gt;**](MsginquiryresponseBalance15.md) | Balance of the account. |  [optional] |
+|**acctTp** | **String** | A code identifying a classification of the account for which the Account Balance is provided. |  [optional] |
+|**bal** | [**List&lt;MsginquiryresponseBalance15&gt;**](MsginquiryresponseBalance15.md) | The balance of the account involved in the transaction, such as the available balance or the amount owed. |  [optional] |
 
 
 

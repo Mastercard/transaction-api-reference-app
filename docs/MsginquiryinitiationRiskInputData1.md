@@ -8,8 +8,8 @@ Input data to be considered in a risk assessment.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tp** | **String** | Identifies the type of risk assessment associated with the input data in the message. |  [optional] |
-|**val** | **String** | Value of input data for risk assessment. |  [optional] |
+|**tp** | **String** | A free text field for labeling the Risk Assessment Input data given in the Risk Data Field Value. |  [optional] |
+|**val** | **String** | A free text field for the Risk Assessment Input data that is labeled by the Risk Data Field Name. |  [optional] |
 
 
 

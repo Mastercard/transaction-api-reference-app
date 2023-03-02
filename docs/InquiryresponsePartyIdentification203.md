@@ -8,11 +8,11 @@ Identification of a party.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Identification of the acceptor. ISO 8583 bit 42 |  [optional] |
-|**nmAndLctn** | **String** | Name and location of acceptor.  ISO 8583:87/93 bit 43 &amp; 8583:2003 bit 43-71 (when used for Acceptor name and location) |  [optional] |
+|**id** | **String** | The identifier assigned by the Acquirer to the Acceptor and its location, or to the Payment Facilitator. |  [optional] |
+|**nmAndLctn** | **String** | The name of the Acceptor that should be recognizable by the Cardholder and may include other descriptors, such as a store number. |  [optional] |
 |**adr** | [**InquiryresponseAddress1**](InquiryresponseAddress1.md) |  |  [optional] |
-|**addtlData** | [**List&lt;MsginquiryresponseAdditionalData1&gt;**](MsginquiryresponseAdditionalData1.md) | Contains additional data. |  [optional] |
-|**spnsrdMrchnt** | [**List&lt;InquiryresponseSponsoredMerchant1&gt;**](InquiryresponseSponsoredMerchant1.md) | Sponsored merchant is a merchant that uses the payment services of another entity that acts as the card acceptor. |  [optional] |
+|**addtlData** | [**List&lt;MsginquiryresponseAdditionalData1&gt;**](MsginquiryresponseAdditionalData1.md) | Additional data about or related to the Acceptor, such as the Payment Facilitator ID.  The data is sent in a name-value pair: Acceptor Additional Data Name and Acceptor Additional Data Value. |  [optional] |
+|**spnsrdMrchnt** | [**List&lt;InquiryresponseSponsoredMerchant1&gt;**](InquiryresponseSponsoredMerchant1.md) | A Merchant that uses the services of a Payment Facilitator.  Referred to as Submerchant in Mastercard Rules. |  [optional] |
 
 
 

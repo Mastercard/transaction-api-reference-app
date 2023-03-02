@@ -8,8 +8,8 @@ Identification of the terminal performing the transaction.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Identification of the terminal.  ISO 8583 bit 41 |  [optional] |
-|**ctry** | **String** | Country of the terminal. |  [optional] |
+|**id** | **String** | The identifier assigned by the Acceptor or the Acquirer to the Terminal, payment gateway, or other acceptance device used to capture account data to effect a transaction at the Acceptor location. |  [optional] |
+|**ctry** | **String** | The ISO 3166-1 alpha-3 country code of the Terminal. |  [optional] |
 
 
 

@@ -8,7 +8,7 @@ Result of the processing.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rsltDtls** | **String** | Detailed results of the processing.  ISO 8583:1987 bit 39, response code list |  [optional] |
+|**rsltDtls** | **String** | The code identifying if the transaction was approved, or if it was declined, the reason for the rejection or the action required of the Acceptor. The code can also identify the disposition of a previous message or an action taken as a result of receipt of a previous message. |  [optional] |
 |**addtlRsltInf** | [**List&lt;MsginquiryinitiationAdditionalData1&gt;**](MsginquiryinitiationAdditionalData1.md) | Additional result information to be conveyed. |  [optional] |
 
 

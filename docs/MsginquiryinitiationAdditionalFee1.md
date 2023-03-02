@@ -9,7 +9,7 @@ Fees not included in the transaction.
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**tp** | **MsginquiryinitiationTypeOfAmount10Code** |  |  [optional] |
-|**othrTp** | **String** | Additional information to specify the type of amount of fee. |  [optional] |
+|**othrTp** | **String** | The code identifying the type of additional fee. |  [optional] |
 |**feePrgm** | **String** | Identification of fee program. |  [optional] |
 |**feeDscrptr** | **String** | Identification of specific fee. |  [optional] |
 |**amt** | [**MsginquiryinitiationFeeAmount2**](MsginquiryinitiationFeeAmount2.md) |  |  [optional] |

@@ -8,7 +8,7 @@ Amounts of the card transaction.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amtQlfr** | **MsgreversalresponseTypeOfAmount11Code** |  |  [optional] |
+|**amtQlfr** | **ReversalresponseTypeOfAmount11Code** |  |  [optional] |
 |**txAmt** | [**MsgreversalresponseTransactionAmount1**](MsgreversalresponseTransactionAmount1.md) |  |  [optional] |
 |**crdhldrBllgAmt** | [**MsgreversalresponseAmount4**](MsgreversalresponseAmount4.md) |  |  [optional] |
 |**rcncltnAmt** | [**MsgreversalresponseAmount4**](MsgreversalresponseAmount4.md) |  |  [optional] |

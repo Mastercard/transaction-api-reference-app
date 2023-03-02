@@ -8,7 +8,7 @@ Date related to the settlement of the transaction.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sttlmDt** | **String** | Actual date of settlement. ISO 8583 bit 15. |  [optional] |
+|**sttlmDt** | **String** | A date assigned by Mastercard and used for settlement reporting. It is not the date of the actual settlement of funds. |  [optional] |
 
 
 
