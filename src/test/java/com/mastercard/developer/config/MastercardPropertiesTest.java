@@ -12,7 +12,7 @@ public class MastercardPropertiesTest {
     private final String keyFile = "";
 
     @Test
-    public void propertiesTest() {
+    void propertiesTest() {
         MastercardProperties properties = new MastercardProperties();
         properties.setBasePath(basePath);
         properties.setKeystorePassword(keyStorePassword);
@@ -25,7 +25,7 @@ public class MastercardPropertiesTest {
     }
 
     @Test
-    public void initializeTest() {
+    void initializeTest() {
         MastercardProperties properties = new MastercardProperties();
         Exception exception = assertThrows(ServiceException.class, properties::initialize);
         assertEquals(MastercardProperties.MISSING_KEY_ERROR, exception.getMessage());

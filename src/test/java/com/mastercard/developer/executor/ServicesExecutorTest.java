@@ -17,7 +17,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class ServicesExecutorTest {
+class ServicesExecutorTest {
 
     @InjectMocks
     ServicesExecutor servicesExecutor;

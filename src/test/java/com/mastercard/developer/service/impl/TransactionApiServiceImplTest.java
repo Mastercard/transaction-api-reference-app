@@ -58,7 +58,8 @@ class TransactionApiServiceImplTest {
     @Test
     void givenAuthorisationRequest_whenInitiate_thenFailure() throws Exception {
         when(apiClient.execute(any(Call.class), any(Type.class))).thenThrow(new ApiException());
-        assertThrows(ServiceException.class, () -> transactionApiService.initiateAuthorisation(TransactionApiExample.buildAuthorisationRequest()));
+        InitiationAuthorisationInitiationV02 authorisationRequest = TransactionApiExample.buildAuthorisationRequest();
+        assertThrows(ServiceException.class, () -> transactionApiService.initiateAuthorisation(authorisationRequest));
         verify(apiClient, atMostOnce()).buildCall(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any());
         verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));
     }
@@ -84,7 +85,8 @@ class TransactionApiServiceImplTest {
     @Test
     void givenReversalRequest_whenInitiate_thenFailure() throws Exception {
         when(apiClient.execute(any(Call.class), any(Type.class))).thenThrow(new ApiException());
-        assertThrows(ServiceException.class, () -> transactionApiService.initiateReversal(TransactionApiExample.buildReversalRequest()));
+        InitiationReversalInitiationV02 reversalRequest = TransactionApiExample.buildReversalRequest();
+        assertThrows(ServiceException.class, () -> transactionApiService.initiateReversal(reversalRequest));
         verify(apiClient, atMostOnce()).buildCall(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any());
         verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));
     }
@@ -110,7 +112,8 @@ class TransactionApiServiceImplTest {
     @Test
     void givenInquiryRequest_whenInitiate_thenFailure() throws Exception {
         when(apiClient.execute(any(Call.class), any(Type.class))).thenThrow(new ApiException());
-        assertThrows(ServiceException.class, () -> transactionApiService.initiateInquiry(TransactionApiExample.buildInquiryRequest()));
+        InitiationInquiryInitiationV01 inquiryRequest = TransactionApiExample.buildInquiryRequest();
+        assertThrows(ServiceException.class, () -> transactionApiService.initiateInquiry(inquiryRequest));
         verify(apiClient, atMostOnce()).buildCall(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any());
         verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));
     }
