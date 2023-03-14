@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MastercardPropertiesTest {
+class MastercardPropertiesTest {
 
     private final String basePath = "https://sandbox.api.mastercard.com/direct-service-api";
     private final String keyStorePassword = "keystorepassword";
