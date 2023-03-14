@@ -2,11 +2,11 @@ name: SonarCloud
 on:
   push:
     branches:
-      - feature/S3282251_Fix_Code_Smells_Prophetics
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
   schedule:
-    - cron: "0 12 * * 2"
+    - cron: "0 12 * * 5"
 jobs:
   build:
     name: Build and analyze
