@@ -16,7 +16,7 @@ public class ApiClientConfigurationTest {
     private final String keyFile = "keyFilePath";
 
     @Test
-    public void apiClientTest() {
+    void apiClientTest() {
         MastercardProperties mastercardProperties = new MastercardProperties();
         mastercardProperties.setFormat(PKCS_12);
         mastercardProperties.setKeyFile(keyFile);
