@@ -85,8 +85,7 @@ class TransactionApiServiceImplTest {
     @Test
     void givenReversalRequest_whenInitiate_thenFailure() throws Exception {
         when(apiClient.execute(any(Call.class), any(Type.class))).thenThrow(new ApiException());
-        InitiationReversalInitiationV02 reversalRequest = TransactionApiExample.buildReversalRequest();
-        assertThrows(ServiceException.class, () -> transactionApiService.initiateReversal(reversalRequest));
+        assertThrows(ServiceException.class, () -> transactionApiService.initiateReversal(TransactionApiExample.buildReversalRequest()));
         verify(apiClient, atMostOnce()).buildCall(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any());
         verify(apiClient, atMostOnce()).execute(any(Call.class), any(Type.class));
     }

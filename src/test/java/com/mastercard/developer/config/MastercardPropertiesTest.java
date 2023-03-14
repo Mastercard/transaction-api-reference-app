@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MastercardPropertiesTest {
+public class MastercardPropertiesTest {
 
     private final String basePath = "https://sandbox.api.mastercard.com/direct-service-api";
     private final String keyStorePassword = "keystorepassword";
     private final String keyFile = "";
 
     @Test
-    void propertiesTest() {
+    public void propertiesTest() {
         MastercardProperties properties = new MastercardProperties();
         properties.setBasePath(basePath);
         properties.setKeystorePassword(keyStorePassword);
@@ -25,7 +25,7 @@ class MastercardPropertiesTest {
     }
 
     @Test
-    void initializeTest() {
+    public void initializeTest() {
         MastercardProperties properties = new MastercardProperties();
         Exception exception = assertThrows(ServiceException.class, properties::initialize);
         assertEquals(MastercardProperties.MISSING_KEY_ERROR, exception.getMessage());
