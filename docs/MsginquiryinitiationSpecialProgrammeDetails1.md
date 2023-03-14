@@ -8,8 +8,8 @@ Name and value associated with a special programme.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**nm** | **String** | Name of the special programme detail. |  [optional] |
-|**val** | **String** | Special programme detail value. |  [optional] |
+|**nm** | **String** | A free text field for the Special Program Data labeled by the Special Program Data Name. |  [optional] |
+|**val** | **String** | A free text field for the Special Program Data lableled by the Special Program Data Name. |  [optional] |
 
 
 

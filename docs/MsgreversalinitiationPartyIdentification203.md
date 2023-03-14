@@ -22,7 +22,7 @@ Identification of a party.
 |**addtlCtctInf** | **String** | Additional information for contacting the Acceptor, such as an additional phone number or a contact name. |  [optional] |
 |**taxRegnId** | **String** | The identifier of the Acceptor issued by a taxation authority. |  [optional] |
 |**addtlData** | [**List&lt;MsgreversalinitiationAdditionalData1&gt;**](MsgreversalinitiationAdditionalData1.md) | Additional data about or related to the Acceptor, such as the Payment Facilitator ID.  The data is sent in a name-value pair: Acceptor Additional Data Name and Acceptor Additional Data Value. |  [optional] |
-|**spnsrdMrchnt** | [**List&lt;MsgreversalinitiationSponsoredMerchant1&gt;**](MsgreversalinitiationSponsoredMerchant1.md) | Sponsored merchant is a merchant that uses the payment services of another entity that acts as the card acceptor. |  [optional] |
+|**spnsrdMrchnt** | [**List&lt;MsgreversalinitiationSponsoredMerchant1&gt;**](MsgreversalinitiationSponsoredMerchant1.md) | A Merchant that uses the services of a Payment Facilitator.  Referred to as Submerchant in Mastercard Rules. |  [optional] |
 
 
 

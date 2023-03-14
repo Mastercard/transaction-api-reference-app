@@ -9,10 +9,10 @@ Card account balance.
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**tp** | **MsginquiryresponseBalanceType14Code** |  |  [optional] |
-|**othrTp** | **String** | Other card account balance type. |  [optional] |
-|**amt** | **String** | Amount value. |  [optional] |
-|**ccy** | **String** | Currency of the account |  [optional] |
-|**sgn** | **Boolean** | Indicates whether the value of the balance id positive or negative. |  [optional] |
+|**othrTp** | **String** | A free text field for identifying a classification of the Account Balance when the Account Balance Type indicates a national, network or customer specific value. |  [optional] |
+|**amt** | **String** | The amount of the Account Balance. |  [optional] |
+|**ccy** | **String** | The ISO 4217 numeric code for the currency of the Account Balance Amount. |  [optional] |
+|**sgn** | **Boolean** | A code identifying whether the Account Balance Amount is positive or negative. |  [optional] |
 
 
 

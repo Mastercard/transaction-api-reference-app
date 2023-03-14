@@ -8,7 +8,7 @@ Identifies the customer in a transfer of money.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**cstmrId** | **String** | The identifier of the Payer assigned by the Payer&#39;s financial institution. |  [optional] |
+|**cstmrId** | **String** | Identification of the customer assigned by a party. |  [optional] |
 |**nm** | **String** | The full name of the Payee. |  [optional] |
 |**adr** | [**MsgreversalinitiationAddress1**](MsgreversalinitiationAddress1.md) |  |  [optional] |
 |**crdntls** | [**List&lt;MsgreversalinitiationCredentials1&gt;**](MsgreversalinitiationCredentials1.md) | Credentials of the financial customer. |  [optional] |

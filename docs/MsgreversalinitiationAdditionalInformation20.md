@@ -1,6 +1,6 @@
 
 
-# MsginquiryresponseAdditionalInformation20
+# MsgreversalinitiationAdditionalInformation20
 
 Additional information relevant to the destination.
 

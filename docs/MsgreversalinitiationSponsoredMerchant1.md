@@ -9,7 +9,7 @@ Merchant using the payment services of the card acceptor. The sponsored merchant
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | [**MsgreversalinitiationPartyIdentification197**](MsgreversalinitiationPartyIdentification197.md) |  |  [optional] |
-|**addtlId** | **String** | An additional identifier of the Party, such as a processor&#39;s pseudo ICA. |  [optional] |
+|**addtlId** | **String** | Additional identification information pertaining to the sponsored merchant. |  [optional] |
 |**cmonNm** | **String** | The name of the Sponsored Merchant that should be recognizable by the Cardholder. |  [optional] |
 |**adr** | [**MsgreversalinitiationAddress1**](MsgreversalinitiationAddress1.md) |  |  [optional] |
 

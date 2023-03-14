@@ -8,8 +8,8 @@ Details of a bank account
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**acctTp** | **String** | Type of cardholder account used for the transaction.  See ISO 8583 bit 3, Account type codes |  [optional] |
-|**acctId** | **String** | Identification of an account.  ISO 8583 bit 102 or bit 103 |  [optional] |
+|**acctTp** | **String** | The code identifying the kind of account to/from which funds were sent. |  [optional] |
+|**acctId** | **String** | An identifier of the account to/from which funds were transferred. |  [optional] |
 
 
 

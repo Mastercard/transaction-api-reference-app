@@ -13,8 +13,6 @@
 
 * `INTC` (value: `"TYPE_OF_AMOUNT10_CODE_INTC"`)
 
-* `OTHN` (value: `"TYPE_OF_AMOUNT10_CODE_OTHN"`)
-
 * `OTHP` (value: `"TYPE_OF_AMOUNT10_CODE_OTHP"`)
 
 

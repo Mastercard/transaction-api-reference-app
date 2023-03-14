@@ -8,7 +8,7 @@ Identification of a party.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Identification of the party. |  [optional] |
+|**id** | **String** | The identifier assigned by Mastercard to the Party. |  [optional] |
 |**addtlId** | **String** | Additional identification of the party. |  [optional] |
 
 
