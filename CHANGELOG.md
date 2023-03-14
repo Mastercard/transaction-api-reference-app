@@ -2,7 +2,8 @@
 
 -----
 ### 1.1.1
-- S3282251: Fixed code smells
+- S3230995: Update swagger file, generated from version 0.0.57 of next-edge-customer-spec
+- S3282251: Fixed code smells, excluded the test directory from sonar
 
 ### 1.1.0
 - S2701270: Feature added for Inquiry service
