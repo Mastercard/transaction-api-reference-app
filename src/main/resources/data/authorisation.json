@@ -1,110 +1,125 @@
 {
-  "hdr": {
-    "msgFctn": "MESSAGE_FUNCTION16_CODE_REQU",
-    "prtcolVrsn": "00.00.00",
-    "creDtTm": "2022-09-23T09:19:40Z",
-    "initgPty": {
-      "id": "782817"
-    }
-  },
-  "body": {
-    "envt": {
-      "acqrr": {
-        "id": "782817"
-      },
-      "sndr": {
-        "id": "123456"
-      },
-      "accptr": {
-        "id": "ZUFoFAf",
-        "nmAndLctn": "n0",
-        "adr": {
-          "pstlCd": "84247056",
-          "twnNm": "A",
-          "ctry": "5"
+    "hdr": {
+        "msgFctn": "MESSAGE_FUNCTION16_CODE_REQU",
+        "prtcolVrsn": "00.00.00",
+        "creDtTm": "2023-07-14T14:01:33.904Z",
+        "initgPty": {
+            "id": "001069"
         }
-      },
-      "termnl": {
-        "termnlId": {
-          "id": "840",
-          "ctry": "840"
-        },
-        "tp": "TERMINAL_TYPE1_CODE_POST",
-        "cpblties": {
-          "cardRdngCpblty": [
-            "CARD_DATA_READING7_CODE_KEEN"
-          ],
-          "cardCaptrCpbl": false,
-          "crdhldrVrfctnCpblty": [
-            {
-              "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP"
-            }
-          ]
-        },
-        "offPrmissInd": false
-      },
-      "card": {
-        "pan": "5005202019400536",
-        "xpryDt": "2304"
-      }
     },
-    "cntxt": {
-      "ptOfSvcCntxt": {
-        "cardPres": false,
-        "crdhldrPres": false,
-        "attnddInd": true,
-        "eComrcInd": false,
-        "motoInd": true,
-        "prtlApprvlSpprtd": false,
-        "cardDataNtryMd": "CARD_DATA_READING7_CODE_UNSP",
-        "othrCardDataNtryMd": "KEEN",
-        "spclConds": [
-          {
-            "id": "mail_facsimile",
-            "val": "2"
-          }
-        ]
-      },
-      "txCntxt": {
-        "mrchntCtgyCd": "5311",
-        "mrchntCtgySpcfcData": "T",
-        "iccFllbckInd": false,
-        "fnlAuthstnInd": false
-      },
-      "rskCntxt": [
-        {
-          "rskInptData": [
-            {
-              "tp": "pos_transaction_security",
-              "val": "0"
+    "body": {
+        "envt": {
+            "acqrr": {
+                "id": "001069"
+            },
+            "sndr": {
+                "id": "208013"
+            },
+            "accptr": {
+                "id": "ygre8PdAevic",
+                "nmAndLctn": "BurrelsRathnew",
+                "adr": {
+                    "twnNm": "Rathnew",
+                    "ctry": "USA"
+                }
+            },
+            "termnl": {
+                "termnlId": {
+                    "id": "123456",
+                    "ctry": "USA"
+                },
+                "cpblties": {
+                    "crdhldrVrfctnCpblty": [
+                        {
+                            "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP"
+                        }
+                    ]
+                }
+            },
+            "card": {
+                "pan": "5460126200000037",
+                "xpryDt": "2304"
             }
-          ]
+        },
+        "cntxt": {
+            "ptOfSvcCntxt": {
+                "cardDataNtryMd": "CARD_DATA_READING7_CODE_KEEN",
+                "spclConds": [
+                    {
+                        "id": "pos_terminal_attendance",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_terminal_location",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_cardholder_present",
+                        "val": "2"
+                    },
+                    {
+                        "id": "pos_card_presence",
+                        "val": "1"
+                    },
+                    {
+                        "id": "pos_card_capture_capabilities",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_transaction_status",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_transaction_security",
+                        "val": "0"
+                    },
+                    {
+                        "id": "cat_level",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_card_input_capability",
+                        "val": "6"
+                    },
+                    {
+                        "id": "pos_auth_life_cycle",
+                        "val": "00"
+                    },
+                    {
+                        "id": "pos_country_code",
+                        "val": "566"
+                    },
+                    {
+                        "id": "pos_postal_code",
+                        "val": "63017"
+                    }
+                ]
+            },
+            "txCntxt": {
+                "mrchntCtgyCd": "5311",
+                "mrchntCtgySpcfcData": "T"
+            }
+        },
+        "tx": {
+            "txTp": "00",
+            "txId": {
+                "lclDtTm": "2023-07-14T14:01:33.904Z",
+                "trnsmssnDtTm": "2023-07-14T14:01:33.904Z",
+                "sysTracAudtNb": "140133",
+                "rtrvlRefNb": "al0O8C1385"
+            },
+            "txAmts": {
+                "txAmt": {
+                    "amt": "100.00",
+                    "ccy": "978"
+                }
+            },
+            "acctFr": {
+                "acctTp": "00"
+            },
+            "acctTo": {
+                "acctTp": "00"
+            }
         }
-      ]
-    },
-    "tx": {
-      "txTp": "00",
-      "txAttr": "TRANSACTION_ATTRIBUTE1_CODE_OTHP",
-      "othrTxAttr": "first_presentment",
-      "preAuthstnTmLmt": "00",
-      "txId": {
-        "lclDtTm": "2022-09-23T09:19:40Z",
-        "trnsmssnDtTm": "2022-09-23T09:19:40Z",
-        "sysTracAudtNb": "091940",
-        "rtrvlRefNb": "E2i"
-      },
-      "txAmts": {
-        "txAmt": {
-          "amt": "11.99",
-          "ccy": "840"
-        }
-      },
-      "acctFr": {
-        "acctTp": "00"
-      },
-      "acctTo": {
-        "acctTp": "00"
-      }
     }
-  }
 }
