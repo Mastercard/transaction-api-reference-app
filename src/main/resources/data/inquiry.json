@@ -1,73 +1,128 @@
 {
-  "hdr": {
-    "msgFctn": "MESSAGE_FUNCTION17_CODE_REQU",
-    "creDtTm": "2022-04-12T15:24:16.545Z"
-  },
-  "body": {
-    "envt": {
-      "acqrr": {
-        "id": "001727"
-      },
-      "accptr": {
-        "id": "0011011001001  "
-      },
-      "termnl": {
-        "termnlId": {
-          "ctry": "840"
-        },
-        "tp": "TERMINAL_TYPE1_CODE_UNSPECIFIED",
-        "cpblties": {
-          "cardRdngCpblty": [
-            "CARD_DATA_READING7_CODE_UNSP"
-          ],
-          "cardCaptrCpbl": true,
-          "crdhldrVrfctnCpblty": [
-            {
-              "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED"
-            }
-          ]
-        },
-        "offPrmissInd": true
-      },
-      "card": {
-        "pan": "5460126267022775"
-      }
+    "hdr": {
+        "msgFctn": "MESSAGE_FUNCTION17_CODE_REQU",
+        "prtcolVrsn": "00.00.00",
+        "creDtTm": "2023-07-17T10:30:50.837Z",
+        "initgPty": {
+            "id": "001069"
+        }
     },
-    "cntxt": {
-      "ptOfSvcCntxt": {
-        "cardPres": true,
-        "crdhldrPres": true,
-        "attnddInd": true,
-        "cardDataNtryMd": "CARD_DATA_READING7_CODE_UNSP",
-        "eComrcInd": true
-      },
-      "txCntxt": {
-        "mrchntCtgyCd": "7992",
-        "mrchntCtgySpcfcData": "T"
-      },
-      "rskCntxt":
-      {
-        "rskAssmnt": [
-          {
-            "rskAssmntNtty": {
-              "tp": "PARTY_TYPE28_CODE_ACCP"
+    "body": {
+        "envt": {
+            "acqrr": {
+                "id": "001069"
             },
-            "addtlRskData": [
-              {
-                "tp": "pos_transaction_security",
-                "val": "0"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "tx": {
-      "txTp": "00",
-      "txId": {
-        "sysTracAudtNb": "123456",
-        "trnsmssnDtTm": "2022-05-12T15:24:16.545Z"
-      }
+            "sndr": {
+                "id": "208013"
+            },
+            "accptr": {
+                "id": "y01lGUHkynD7QE",
+                "nmAndLctn": "Cambridge City West US",
+                "adr": {
+                    "twnNm": "North SLittle",
+                    "ctry": "USA"
+                }
+            },
+            "termnl": {
+                "termnlId": {
+                    "id": "48687053",
+                    "ctry": "USA"
+                },
+                "cpblties": {
+                    "crdhldrVrfctnCpblty": [
+                        {
+                            "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP"
+                        }
+                    ]
+                },
+                "offPrmissInd": false
+            },
+            "card": {
+                "pan": "5460126200000037",
+                "xpryDt": "2702"
+            }
+        },
+        "cntxt": {
+            "ptOfSvcCntxt": {
+                "attnddInd": true,
+                "cardDataNtryMd": "CARD_DATA_READING7_CODE_KEEN",
+                "spclConds": [
+                    {
+                        "id": "pos_terminal_attendance",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_terminal_location",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_cardholder_present",
+                        "val": "2"
+                    },
+                    {
+                        "id": "pos_card_presence",
+                        "val": "1"
+                    },
+                    {
+                        "id": "pos_card_capture_capabilities",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_transaction_status",
+                        "val": "8"
+                    },
+                    {
+                        "id": "pos_transaction_security",
+                        "val": "0"
+                    },
+                    {
+                        "id": "cat_level",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_card_input_capability",
+                        "val": "6"
+                    },
+                    {
+                        "id": "pos_auth_life_cycle",
+                        "val": "00"
+                    },
+                    {
+                        "id": "pos_country_code",
+                        "val": "566"
+                    },
+                    {
+                        "id": "pos_postal_code",
+                        "val": "10032"
+                    }
+                ]
+            },
+            "txCntxt": {
+                "mrchntCtgyCd": "5311",
+                "mrchntCtgySpcfcData": "T"
+            }
+        },
+        "tx": {
+            "txTp": "00",
+            "txId": {
+                "lclDtTm": "2023-07-17T10:30:50.837Z",
+                "trnsmssnDtTm": "2023-07-17T10:30:50.837Z",
+                "sysTracAudtNb": "103050",
+                "rtrvlRefNb": "BcMB"
+            },
+            "addtlAmts": [
+                {
+                    "tp": "TYPE_OF_AMOUNT17_CODE_OTHP",
+                    "othrTp": "transaction_amount",
+                    "amt": {
+                        "amt": "0.00",
+                        "ccy": "840"
+                    }
+                }
+            ],
+            "acctFr": {
+                "acctTp": "00"
+            }
+        }
     }
-  }
 }

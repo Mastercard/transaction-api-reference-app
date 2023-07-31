@@ -12,17 +12,20 @@
     * [Compatibility](#compatibility)
 - [Usage](#usage)
     * [Prerequisites](#prerequisites)
-    * [Security & Authentication](#references)
+    * [Security & Authentication](#security-and-authentication)
+- [Before You Start: Getting MTLS Client Certificates for Your Project](#before-you-start-getting-mtls-client-certificates-for-your-project)
+    * [Client Certificates and Environments](#client-certificates-and-environments)
+    * [Creating and Renewing Client Certificate](#creating-and-renewing-client-certificate)
+    * [Step-by-Step Guide on Requesting a Certificate](#step-by-step-guide-on-requesting-a-certificate)
+    * [Download the appropriate Client Certificate](#download-the-appropriate-client-certificate)
     * [Configuration](#configuration)
-    * [Build and Execute](#build-and-execute)
-- [Use Cases](#use-cases)
+    * [Working with JKS instead of PKCS12](#working-with-jks-instead-of-pkcs12)
+- [Build and Execute](#build-and-execute)
 - [API Reference](#api-reference)
-    * [Request Examples](#request-examples)
-    * [Recommendation](#recommendation)
-- [License](#license)
 - [About This Project](#about-this-project)
   * [Integrating with OpenAPI Generator](#integrating-with-openapi-generator)
 - [Support](#support)
+- [License](#license)
 
 ## Project Overview <a name="overview"></a>
 This is a reference application to demonstrate how the Mastercard Transaction API for Acquirers can be used for the supported operations. Please see here for details on the API: [Mastercard Developers](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/). To call this API, a valid _Client Certificate_ file must be acquired and access provisioned as explained later in this documentation.
@@ -34,34 +37,34 @@ This is a reference application to demonstrate how the Mastercard Transaction AP
 ### Prerequisites <a name="prerequisites"></a>
 * [Mastercard Developers Account](https://developer.mastercard.com/dashboard) with access to the Mastercard Transaction API for Acquirers
 * A text editor or IDE
-* [Spring Boot 2.2+](https://spring.io/projects/spring-boot)
+* [Spring Boot 2.7+](https://spring.io/projects/spring-boot)
 * [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
 * Set up the `JAVA_HOME` environment variable to match the location of your Java installation.
 
-### Security and Authentication <a name="references"></a>
+### Security and Authentication <a name="security-and-authentication"></a>
 * [Using MTLS to access Mastercard APIs](https://developer.mastercard.com/platform/documentation/security-and-authentication/using-mtls-to-access-mastercard-apis/)
 
-## Before You Start: Getting MTLS Client Certificates for Your Project
-The client authentication side of the MTLS protocol involves a client certificate and a private key, known as a key pair. To use the key pair with Mastercard APIs, you will need to perform the onboarding steps detailed here.
+## Before You Start: Getting MTLS Client Certificates for Your Project <a name="before-you-start-getting-mtls-client-certificates-for-your-project"></a>
+The client authentication side of the MTLS protocol involves a client certificate, a public key and a private key, known as a key pair. To use the key pair with Mastercard APIs, you will need to perform the onboarding steps detailed here.
 
-### Client Certificates and Environments
+### Client Certificates and Environments <a name="client-certificates-and-environments"></a>
 There are two different types of MTLS client certificates, depending on the stage of your project:
 
-1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (*mtf.services.mastercard.com & *mtf.services-asn.mastercard.com/)
-2. Production MLTS certificates, which allow an application to access the Production environment (*services.mastercard.com & *services-asn.mastercard.com)
-*Domain/Server URL may vary depending on the API. Please check the API Reference section of the service documentation for the correct server URL.
+1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (mtf.asn.api.gateway.mastercard.com)
+2. Production MLTS certificates, which allow an application to access the Production environment (asn.api.gateway.mastercard.com)
+*Domain/Server URL may vary depending on the API. Please check the API Reference section of the service documentation for the correct server URL.*
 
-### Creating and Renewing Client Certificate
+### Creating and Renewing Client Certificate <a name="creating-and-renewing-client-certificate"></a>
 The [Key Management Portal (KMP)](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp) is an application available in [Mastercard Connect](https://www.mastercardconnect.com/). KMP is a self-service portal for Mastercard customers, which allows them to request and exchange keys and certificates with Mastercard.
 
 The portal provides guided workflows to create and manage requests for key and certificate exchange, as well as an inventory of all PKI for Business Partners keys and certificates that have been exchanged between Mastercard and customers using KMP.
 
 Access the Key Management Portal application on [Mastercard Connect](https://www.mastercardconnect.com/) to obtain MTLS client certificates. You can access the user guide within the KMP application for instructions on how to use the application.
 
-#### Step-by-Step Guide on Requesting a Certificate
-Visit the [Mastercard Transaction APIs for Acquirers Tutorials & Guides](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/tutorial/tutorials-and-guides/) for a step-by-step guide on requesting an MTLS Certificate.
+### Step-by-Step Guide on Requesting a Certificate <a name="step-by-step-guide-on-requesting-a-certificate"></a>
+Visit the [Mastercard Transaction APIs for Acquirers Tutorials & Guides](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/tutorials-and-guides/) for a step-by-step guide on requesting an MTLS Certificate.
 
-### Download the appropriate Client Certificate
+### Download the appropriate Client Certificate <a name="download-the-appropriate-client-certificate"></a>
 Once you are notified that your Certificate Request is signed, you can access the client certificate in KMP.
 
 When accessing your certificate, you will see an option to download the certificate. Ensure that the following options are selected:
@@ -71,31 +74,34 @@ When accessing your certificate, you will see an option to download the certific
 The certificate will be available to download. Save it to a safe location so that it can be uploaded to your project in Mastercard Developers or used within your client's run command.
 
 ### Configuration <a name="configuration"></a>
-With the PKCS12 file downloaded from [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp) configure the properties for your client as explained below - 
-* Open `${project.basedir}/src/main/resources/application.properties` and configure the below parameters.
+With the PKCS12 file downloaded from [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp), configure the properties for your client application as explained below - 
 
-  **The below properties will be required for authentication of API calls. You can modify them or add the appropriate values to the `run command` as environment variables**
+* Open `${project.basedir}/src/main/resources/application.properties` and configure the below properties.
 
-  >**mastercard.api.key-file=**, this refers to the .p12 file found in the signing key. Please place .p12 file at src\main\resources\certs\ in the project folder and add classpath for .p12 file. 
-  > If the certificate is not present, you will receive this error:
+  **The below properties will be required for authentication of API calls.**
+
+  >**transaction-api.ssl.key-store**, this refers to the .p12 file with the signing key. Please place the .p12 file in the project folder and update this property with the name of the file.
+  > If the key file is not present, you will receive this error:
   > ```markdown
-  > java.io.FileNotFoundException: src/main/resources/certs/certificate.p12 (No such file or directory)
+  > java.io.FileNotFoundException: key.p12 (No such file or directory)
   
-  >**mastercard.api.format=**, for .p12 files this is "PKCS12" (without quotes)
+  >**transaction-api.ssl.key-store-type**, for .p12 files, this is "PKCS12" (without quotes)
   
-  >**mastercard.api.keystore-password=**, this is the default value of the key alias. If it is modified, use what was identified when creating CSR on [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp)
-### Working with JKS instead of PKCS12
-* If you received a different format of key file change the property **mastercard.api.format** accordingly. For example provide **mastercard.api.format=JKS** if you received the JKS file.
+  >**transaction-api.ssl.key-store-password**, this is the password for the .p12 file. If it is modified, use what was identified when creating CSR on [KMP](https://www.mastercardconnect.com/-/store-plus/item-details/A/ckmp)
+
+### Working with JKS instead of PKCS12 <a name="working-with-jks-instead-of-pkcs12"></a>
+* If you received a different format of key file, change the property **transaction-api.ssl.key-store-type** accordingly. For example, provide **transaction-api.ssl.key-store-type=JKS** if you received the JKS file.
 * Alternatively you can convert that to `.p12` using the following command (provide input where necessary).
 ```bash
-keytool -importkeystore -srckeystore <jks file location> \
--destkeystore <pkcs12 file location> \
+keytool -importkeystore -srckeystore <jks-file-location> \
+-destkeystore <pkcs12-file-location> \
 -srcstoretype JKS \
 -deststoretype PKCS12 \
--deststorepass <keystore password>
+-deststorepass <keystore-password>
 ```
 
-### Build and Execute <a name="build-and-execute"></a>
+
+## Build and Execute <a name="build-and-execute"></a>
 Once you’ve added the correct properties, we can build the application. We can do this by navigating to the project’s base directory from the terminal and running the following command:
 
 `mvn clean install`
@@ -103,60 +109,22 @@ Once you’ve added the correct properties, we can build the application. We can
 When the project builds successfully you can then run the following command to start the project:
 
 ```bash
-KEYFILE=my-keystore.p12 \
-PASSWORD=my-keystore-password \
-java -jar target/transaction-api-reference-1.0.0.jar
+java -jar target/transaction-api-reference-application-2.0.0.jar
 ```
-*** Note: the default environment is - `https://mtf.services-asn.mastercard.com` ***
+*** Note: the default environment is - `https://mtf.asn.api.gateway.mastercard.com/transaction-api` ***
 
 See also:
 * [OpenAPI Generator (Plugin for Maven)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin)
 * [OpenAPI Generator (executable)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-cli)
 * [CONFIG OPTIONS for Java](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/java.md)
 
-## Use Cases <a name="use-cases"></a>
-> Case 1: [Authorisation](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/use-cases/acquirer-authorization/)
-- The user performs an API call with an authorization request. Multiple use cases can be executed simultaneously.
-- Refer to the model classes for field-level information.
-
-  | URL     | Method    | Request |  Response |
-  | --------|---------|-------|-------|
-  | `/cain-authorisation-requests`  | POST   | [AuthorisationInitiationV02](docs/InitiationAuthorisationInitiationV02.md)    | [AuthorisationResponseV02](docs/ResponseAuthorisationResponseV02.md) |
-
-> Case 2: [Reversal](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/use-cases/acquirer-reversal/)
-- The user performs an API call with a reversal request. Multiple use cases can be executed simultaneously.
-- Refer to the model classes for field-level information.
-
-  | URL     | Method    | Request |  Response |
-  | --------|---------|-------|-------|
-  | `/cain-reversal-requests` | POST | [ReversalInitiationV02](docs/InitiationReversalInitiationV02.md) | [ReversalResponseV02](docs/ResponseReversalResponseV02.md) |
-
-> Case 3: [Inquiry](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/use-cases/acquirer-inquiry/)
-- The user performs an API call with an inquiry request. Multiple use cases can be executed simultaneously.
-- Refer to the model classes for field-level information.
-
-  | URL     | Method    | Request |  Response |
-    | --------|---------|-------|-------|
-  | `/cain-inquiry-requests` | POST | [InquiryInitiationV01](docs/InitiationInquiryInitiationV01.md) | [InquiryResponseV01](docs/ResponseInquiryResponseV01.md) |
-
 ## API Reference <a name="api-reference"></a>
-To develop a client application that consumes a RESTful Transaction API with Spring Boot, refer to the [API Reference](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/) page.
+Please consult the API documentation at the [API Reference](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/) page.
 
-### Request Examples <a name="request-examples"></a>
-To learn which fields are required to make a request, refer to the example below.
+The OpenAPI specification file is also included in the project as `${project.basedir}/src/main/resources/transaction-api-openapi.yaml`.
 
-| API Request Payload                                                                                                                                      | Endpoint                       | HTTP Method | API Response Payload                                                                                                                                     |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [AuthorisationInitiationV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-authorization/#request) | `/cain-authorisation-requests` | POST | [AuthorisationResponseV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-authorization/#response). |
-| [ReversalInitiationV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-reversal/#request)           | `/cain-reversal-requests`      | POST | [ReversalResponseV02](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-reversal/#response).           |
-| [InquiryInitiationV01](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-inquiry/#request)             | `/cain-inquiry-requests`       | POST | [InquiryResponseV01](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/api-reference/acquirer-inquiry/#response).             |
-
-
-You can change the default input passed to APIs and modify values in the following files:
-* `com.mastercard.developer.example.TransactionApiExample.java`
-
-### Recommendation <a name="recommendation"></a>
-It is recommended to create an instance of `ApiClient` per thread in a multi-threaded environment to avoid any potential issues.
+Note that the sample requests included in this project are for demo purposes only.
+Please modify for your use cases and change to valid values before running this application.
 
 ## About this Project <a name="about-this-project"></a>
 This project was created using the `OpenAPI Generator` for generating API client and SDK libraries, server stubs, documentation and configuration.
