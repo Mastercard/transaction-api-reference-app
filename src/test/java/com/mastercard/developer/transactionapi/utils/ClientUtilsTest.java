@@ -2,9 +2,7 @@ package com.mastercard.developer.transactionapi.utils;
 
 import com.mastercard.developer.transactionapi.exception.RuntimeInterruptedException;
 import com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openapitools.client.JSON;
 import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
 
 import java.time.Duration;
@@ -16,11 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ClientUtilsTest {
 
     private static final Duration TEST_DELAY = Duration.ofMillis(250);
-
-    @BeforeEach
-    void setup() {
-        new JSON(); // Initialises required JSON.getGson() which is required for Json translation
-    }
 
     @Test
     void givenHappyPath_whenSleep_thenSleep() {
@@ -41,7 +34,7 @@ class ClientUtilsTest {
 
         // call
         assertThrows(RuntimeInterruptedException.class, () ->
-            ClientUtils.sleep(TEST_DELAY));
+                ClientUtils.sleep(TEST_DELAY));
 
         // verify
         assertThat(Thread.interrupted()).isTrue();

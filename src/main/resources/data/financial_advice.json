@@ -3,7 +3,7 @@
         "btchMgmtInf": {
             "msgSeqNb": "00000061"
         },
-        "msgFctn": "MESSAGE_FUNCTION16_CODE_ADVC"
+        "msgFctn": "ADVC"
     },
     "body": {
         "cntxt": {
@@ -238,7 +238,7 @@
                 "termnlId": {
                     "id": "12345678"
                 },
-                "tp": "TERMINAL_TYPE1_CODE_OTHP"
+                "tp": "OTHP"
             },
             "card": {
                 "pan": "5500966732189440"

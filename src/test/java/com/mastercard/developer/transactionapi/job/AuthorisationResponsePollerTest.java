@@ -53,6 +53,6 @@ class AuthorisationResponsePollerTest {
 
         // verify
         assertThat(result).isEqualTo(
-                "{\"hdr\":{\"msgFctn\":\"MESSAGE_FUNCTION16_CODE_UNSPECIFIED\"},\"body\":{}}");
+                "{\"hdr\":{\"msgFctn\":\"UNSPECIFIED\"},\"body\":{}}");
     }
 }

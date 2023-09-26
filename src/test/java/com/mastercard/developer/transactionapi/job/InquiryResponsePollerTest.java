@@ -52,7 +52,7 @@ class InquiryResponsePollerTest {
         String result = testResponse.toJson();
 
         // verify
-        assertThat(result).isEqualTo("{\"hdr\":{\"msgFctn\":\"MESSAGE_FUNCTION17_CODE_UNSPECIFIED\"},\"body\":{}}");
+        assertThat(result).isEqualTo("{\"hdr\":{\"msgFctn\":\"UNSPECIFIED\"},\"body\":{}}");
     }
 
 }

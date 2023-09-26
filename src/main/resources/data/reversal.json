@@ -1,6 +1,6 @@
 {
     "hdr": {
-        "msgFctn": "MESSAGE_FUNCTION16_CODE_REQU",
+        "msgFctn": "REQU",
         "prtcolVrsn": "00.00.00",
         "creDtTm": "2023-07-18T08:53:31.237Z"
     },
@@ -40,7 +40,7 @@
                         "val": "242"
                     }
                 ],
-                "cardDataNtryMd": "CARD_DATA_READING7_CODE_CDFL",
+                "cardDataNtryMd": "CDFL",
                 "spclConds": [
                     {
                         "id": "pin_entry_mode",
@@ -126,7 +126,7 @@
                 "sysTracAudtNb": "710559",
                 "rtrvlRefNb": "GvJRPAV28686",
                 "orgnlDataElmts": {
-                    "msgClss": "MESSAGE_CLASS1_CODE_AUTH",
+                    "msgClss": "AUTH",
                     "acqrrId": "912716",
                     "sndrId": "123456",
                     "trnsmssnDtTm": "2023-07-18T08:53:22.000Z",
