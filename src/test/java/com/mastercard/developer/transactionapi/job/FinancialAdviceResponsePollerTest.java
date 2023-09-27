@@ -52,7 +52,7 @@ class FinancialAdviceResponsePollerTest {
         String result = testResponse.toJson();
 
         // verify
-        assertThat(result).isEqualTo("{\"hdr\":{\"msgFctn\":\"MESSAGE_FUNCTION16_CODE_UNSPECIFIED\"},\"body\":{}}");
+        assertThat(result).isEqualTo("{\"hdr\":{\"msgFctn\":\"UNSPECIFIED\"},\"body\":{}}");
     }
 
 }

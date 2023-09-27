@@ -1,6 +1,6 @@
 {
     "hdr": {
-        "msgFctn": "MESSAGE_FUNCTION17_CODE_REQU",
+        "msgFctn": "REQU",
         "prtcolVrsn": "00.00.00",
         "creDtTm": "2023-07-17T10:30:50.837Z",
         "initgPty": {
@@ -31,7 +31,7 @@
                 "cpblties": {
                     "crdhldrVrfctnCpblty": [
                         {
-                            "cpblty": "CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP"
+                            "cpblty": "UNSP"
                         }
                     ]
                 },
@@ -45,7 +45,7 @@
         "cntxt": {
             "ptOfSvcCntxt": {
                 "attnddInd": true,
-                "cardDataNtryMd": "CARD_DATA_READING7_CODE_KEEN",
+                "cardDataNtryMd": "KEEN",
                 "spclConds": [
                     {
                         "id": "pos_terminal_attendance",
@@ -112,7 +112,7 @@
             },
             "addtlAmts": [
                 {
-                    "tp": "TYPE_OF_AMOUNT17_CODE_OTHP",
+                    "tp": "OTHP",
                     "othrTp": "transaction_amount",
                     "amt": {
                         "amt": "0.00",

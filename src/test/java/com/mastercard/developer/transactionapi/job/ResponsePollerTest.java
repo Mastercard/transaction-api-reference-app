@@ -227,7 +227,7 @@ class ResponsePollerTest {
         poller.pollOnce(results);
 
         // verify
-        assertThat(output.getAll()).contains("Received successful AUTHORISATION response with correlationId=12345: {\"hdr\":{\"msgFctn\":\"MESSAGE_FUNCTION16_CODE_UNSPECIFIED\"},\"body\":");
+        assertThat(output.getAll()).contains("Received successful AUTHORISATION response with correlationId=12345: {\"hdr\":{\"msgFctn\":\"UNSPECIFIED\"},\"body\":");
     }
 
     @Test

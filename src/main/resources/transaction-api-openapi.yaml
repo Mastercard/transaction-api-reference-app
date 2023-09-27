@@ -184,8 +184,7 @@ components:
         Description:
           type: string
           description: Short description of the error
-          example: "Invalid enum value: MESSAGE_FUNCTION16_CODE_ABCD for enum type:\
-            \ MessageFunction16Code"
+          example: "Invalid enum value: ABCD for enum type: MessageFunction16Code"
         Recoverable:
           type: boolean
           description: Whether error is recoverable
@@ -391,15 +390,15 @@ components:
           type: string
       type: object
     initiationAdditionalIdentificationType1Code:
-      default: ADDITIONAL_IDENTIFICATION_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Contains the additional identification type, for example NAICS, etc.
 
-         - ADDITIONAL_IDENTIFICATION_TYPE1_CODE_UNSPECIFIED: Default
-         - ADDITIONAL_IDENTIFICATION_TYPE1_CODE_OTHP: Other Additional Identification defined at a private level.
+         - UNSPECIFIED: Default
+         - OTHP: Other Additional Identification defined at a private level.
       enum:
-        - ADDITIONAL_IDENTIFICATION_TYPE1_CODE_UNSPECIFIED
-        - ADDITIONAL_IDENTIFICATION_TYPE1_CODE_OTHP
+        - UNSPECIFIED
+        - OTHP
       type: string
     initiationAuthorisationInitiation1:
       properties:
@@ -447,14 +446,14 @@ components:
           $ref: '#/components/schemas/initiationTransactionContext4'
       type: object
     initiationDetailAmount2Code:
-      default: DETAIL_AMOUNT2_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - DETAIL_AMOUNT2_CODE_UNSPECIFIED
-        - DETAIL_AMOUNT2_CODE_OTHN
-        - DETAIL_AMOUNT2_CODE_OTHP
-        - DETAIL_AMOUNT2_CODE_SRCH
+        - UNSPECIFIED
+        - OTHN
+        - OTHP
+        - SRCH
       type: string
-      description: "- DETAIL_AMOUNT2_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     initiationDetailedAmount20:
       properties:
         tp:
@@ -601,25 +600,25 @@ components:
           $ref: '#/components/schemas/initiationVehicle5'
       type: object
     initiationGoodsAndServices1Code:
-      default: GOODS_AND_SERVICES1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - GOODS_AND_SERVICES1_CODE_UNSPECIFIED
-        - GOODS_AND_SERVICES1_CODE_ELEC
-        - GOODS_AND_SERVICES1_CODE_ELPH
-        - GOODS_AND_SERVICES1_CODE_PHYS
+        - UNSPECIFIED
+        - ELEC
+        - ELPH
+        - PHYS
       type: string
-      description: "- GOODS_AND_SERVICES1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     initiationGoodsAndServicesSubType1Code:
-      default: GOODS_AND_SERVICES_SUB_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - GOODS_AND_SERVICES_SUB_TYPE1_CODE_UNSPECIFIED
-        - GOODS_AND_SERVICES_SUB_TYPE1_CODE_CRCU
-        - GOODS_AND_SERVICES_SUB_TYPE1_CODE_FORX
-        - GOODS_AND_SERVICES_SUB_TYPE1_CODE_OTHN
-        - GOODS_AND_SERVICES_SUB_TYPE1_CODE_OTHP
-        - GOODS_AND_SERVICES_SUB_TYPE1_CODE_SECS
+        - UNSPECIFIED
+        - CRCU
+        - FORX
+        - OTHN
+        - OTHP
+        - SECS
       type: string
-      description: "- GOODS_AND_SERVICES_SUB_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     initiationGracePeriod1:
       description: Grace period applicable to an instalment plan.
       properties:
@@ -630,25 +629,25 @@ components:
           $ref: '#/components/schemas/initiationGracePeriodUnitType1Code'
       type: object
     initiationGracePeriodUnitType1Code:
-      default: GRACE_PERIOD_UNIT_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Contains the details of the grace period applicable to the instalment.
 
-         - GRACE_PERIOD_UNIT_TYPE1_CODE_UNSPECIFIED: Default
-         - GRACE_PERIOD_UNIT_TYPE1_CODE_DAYS: Grace period days.
-         - GRACE_PERIOD_UNIT_TYPE1_CODE_MNTH: Grace period months.
-         - GRACE_PERIOD_UNIT_TYPE1_CODE_OTHN: Other National Grace period.
-         - GRACE_PERIOD_UNIT_TYPE1_CODE_OTHP: Other Private Grace period.
-         - GRACE_PERIOD_UNIT_TYPE1_CODE_PMTS: Grace period payments.
-         - GRACE_PERIOD_UNIT_TYPE1_CODE_WEKS: Grace period weeks.
+         - UNSPECIFIED: Default
+         - DAYS: Grace period days.
+         - MNTH: Grace period months.
+         - OTHN: Other National Grace period.
+         - OTHP: Other Private Grace period.
+         - PMTS: Grace period payments.
+         - WEKS: Grace period weeks.
       enum:
-        - GRACE_PERIOD_UNIT_TYPE1_CODE_UNSPECIFIED
-        - GRACE_PERIOD_UNIT_TYPE1_CODE_DAYS
-        - GRACE_PERIOD_UNIT_TYPE1_CODE_MNTH
-        - GRACE_PERIOD_UNIT_TYPE1_CODE_OTHN
-        - GRACE_PERIOD_UNIT_TYPE1_CODE_OTHP
-        - GRACE_PERIOD_UNIT_TYPE1_CODE_PMTS
-        - GRACE_PERIOD_UNIT_TYPE1_CODE_WEKS
+        - UNSPECIFIED
+        - DAYS
+        - MNTH
+        - OTHN
+        - OTHP
+        - PMTS
+        - WEKS
       type: string
     initiationInquiryInitiation1:
       properties:
@@ -700,41 +699,41 @@ components:
       type: object
       description: Instalment amount details
     initiationInstalmentAmountDetailsType1Code:
-      default: INSTALMENT_AMOUNT_DETAILS_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Contains the details of the grace period applicable to the instalment.
 
-         - INSTALMENT_AMOUNT_DETAILS_TYPE1_CODE_UNSPECIFIED: Default
-         - INSTALMENT_AMOUNT_DETAILS_TYPE1_CODE_FEES: Fees amount
-         - INSTALMENT_AMOUNT_DETAILS_TYPE1_CODE_OTHP: Grace period unit type
+         - UNSPECIFIED: Default
+         - FEES: Fees amount
+         - OTHP: Grace period unit type
       enum:
-        - INSTALMENT_AMOUNT_DETAILS_TYPE1_CODE_UNSPECIFIED
-        - INSTALMENT_AMOUNT_DETAILS_TYPE1_CODE_FEES
-        - INSTALMENT_AMOUNT_DETAILS_TYPE1_CODE_OTHP
+        - UNSPECIFIED
+        - FEES
+        - OTHP
       type: string
     initiationInstalmentPeriod1Code:
-      default: INSTALMENT_PERIOD1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Instalment period.
 
-         - INSTALMENT_PERIOD1_CODE_UNSPECIFIED: Default
-         - INSTALMENT_PERIOD1_CODE_ANNU: Annual instalment period.
+         - UNSPECIFIED: Default
+         - ANNU: Annual instalment period.
       enum:
-        - INSTALMENT_PERIOD1_CODE_UNSPECIFIED
-        - INSTALMENT_PERIOD1_CODE_ANNU
+        - UNSPECIFIED
+        - ANNU
       type: string
     initiationInterestRate1Code:
-      default: INTEREST_RATE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Contains the list of interest rates.
 
-         - INTEREST_RATE1_CODE_UNSPECIFIED: Default
-         - INTEREST_RATE1_CODE_GSRT: Gross interest rate of the instalment
-         - INTEREST_RATE1_CODE_OTHP: Other interest rate of the instalment
+         - UNSPECIFIED: Default
+         - GSRT: Gross interest rate of the instalment
+         - OTHP: Other interest rate of the instalment
       enum:
-        - INTEREST_RATE1_CODE_UNSPECIFIED
-        - INTEREST_RATE1_CODE_GSRT
-        - INTEREST_RATE1_CODE_OTHP
+        - UNSPECIFIED
+        - GSRT
+        - OTHP
       type: string
     initiationInterestRateDetails1:
       properties:
@@ -863,57 +862,57 @@ components:
           type: array
       type: object
     initiationPurchaseIdentifierType1Code:
-      default: PURCHASE_IDENTIFIER_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Identifies the type of identifier used in the Purchase Identifier field.
 
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_UNSPECIFIED: Default
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_CUOR: Customer Order
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_CUPO: Customer Purchase Order
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_FONU: Folio Number
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_INNU: Invoice Number
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_OTHP: Other Purchase Identifier defined at a private level.
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_PRNU: Payment Reference Number
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_PUID: Purchase Identification
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_REAG: Rental Agreement
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_RELO: Record Locator
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_RSNU: Reservation Number
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_SUIN: Supplier Invoice
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_SUOR: Supplier Order
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_TINU: Ticket Number
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_TNID: Transaction Identification is a proprietary value provided by the card acceptor or acquirer to uniquely identify a given transaction.
-         - PURCHASE_IDENTIFIER_TYPE1_CODE_TRNU: Tracking Number
+         - UNSPECIFIED: Default
+         - CUOR: Customer Order
+         - CUPO: Customer Purchase Order
+         - FONU: Folio Number
+         - INNU: Invoice Number
+         - OTHP: Other Purchase Identifier defined at a private level.
+         - PRNU: Payment Reference Number
+         - PUID: Purchase Identification
+         - REAG: Rental Agreement
+         - RELO: Record Locator
+         - RSNU: Reservation Number
+         - SUIN: Supplier Invoice
+         - SUOR: Supplier Order
+         - TINU: Ticket Number
+         - TNID: Transaction Identification is a proprietary value provided by the card acceptor or acquirer to uniquely identify a given transaction.
+         - TRNU: Tracking Number
       enum:
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_UNSPECIFIED
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_CUOR
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_CUPO
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_FONU
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_INNU
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_OTHP
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_PRNU
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_PUID
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_REAG
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_RELO
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_RSNU
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_SUIN
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_SUOR
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_TINU
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_TNID
-        - PURCHASE_IDENTIFIER_TYPE1_CODE_TRNU
+        - UNSPECIFIED
+        - CUOR
+        - CUPO
+        - FONU
+        - INNU
+        - OTHP
+        - PRNU
+        - PUID
+        - REAG
+        - RELO
+        - RSNU
+        - SUIN
+        - SUOR
+        - TINU
+        - TNID
+        - TRNU
       type: string
     initiationResponse8Code:
-      default: RESPONSE8_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - RESPONSE8_CODE_UNSPECIFIED
-        - RESPONSE8_CODE_OTHN
-        - RESPONSE8_CODE_OTHP
-        - RESPONSE8_CODE_PRCS
-        - RESPONSE8_CODE_REJT
-        - RESPONSE8_CODE_TECH
-        - RESPONSE8_CODE_UNPR
-        - RESPONSE8_CODE_UNRV
+        - UNSPECIFIED
+        - OTHN
+        - OTHP
+        - PRCS
+        - REJT
+        - TECH
+        - UNPR
+        - UNRV
       type: string
-      description: "- RESPONSE8_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     initiationReversalInitiation1:
       properties:
         envt:
@@ -969,29 +968,29 @@ components:
       type: object
       description: Sale Context
     initiationSecurityCharacteristics1Code:
-      default: SECURITY_CHARACTERISTICS1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - SECURITY_CHARACTERISTICS1_CODE_UNSPECIFIED
-        - SECURITY_CHARACTERISTICS1_CODE_AETE
-        - SECURITY_CHARACTERISTICS1_CODE_APTE
-        - SECURITY_CHARACTERISTICS1_CODE_CENC
-        - SECURITY_CHARACTERISTICS1_CODE_CETE
-        - SECURITY_CHARACTERISTICS1_CODE_CMAC
-        - SECURITY_CHARACTERISTICS1_CODE_CPTE
-        - SECURITY_CHARACTERISTICS1_CODE_ETEE
-        - SECURITY_CHARACTERISTICS1_CODE_METE
-        - SECURITY_CHARACTERISTICS1_CODE_MPTE
-        - SECURITY_CHARACTERISTICS1_CODE_OPNN
-        - SECURITY_CHARACTERISTICS1_CODE_OTHN
-        - SECURITY_CHARACTERISTICS1_CODE_OTHP
-        - SECURITY_CHARACTERISTICS1_CODE_PKIE
-        - SECURITY_CHARACTERISTICS1_CODE_PMAC
-        - SECURITY_CHARACTERISTICS1_CODE_PRAE
-        - SECURITY_CHARACTERISTICS1_CODE_PRAM
-        - SECURITY_CHARACTERISTICS1_CODE_PRVN
-        - SECURITY_CHARACTERISTICS1_CODE_STAM
+        - UNSPECIFIED
+        - AETE
+        - APTE
+        - CENC
+        - CETE
+        - CMAC
+        - CPTE
+        - ETEE
+        - METE
+        - MPTE
+        - OPNN
+        - OTHN
+        - OTHP
+        - PKIE
+        - PMAC
+        - PRAE
+        - PRAM
+        - PRVN
+        - STAM
       type: string
-      description: "- SECURITY_CHARACTERISTICS1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     initiationTelecomCallDetails1:
       description: Structured call details with address.
       properties:
@@ -1104,23 +1103,23 @@ components:
           example: 2022-02-22
       type: object
     initiationUnitOfMeasure1Code:
-      default: UNIT_OF_MEASURE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Unit of measure of the item purchased.
 
-         - UNIT_OF_MEASURE1_CODE_UNSPECIFIED: Default
-         - UNIT_OF_MEASURE1_CODE_GBGA: Unit of volume that is equal to 8 pints.
-         - UNIT_OF_MEASURE1_CODE_KILO: Basic unit of mass in the SI system, 1000 grams.
-         - UNIT_OF_MEASURE1_CODE_LITR: Unit of volume that is equal to a thousand cubic centimetres.
-         - UNIT_OF_MEASURE1_CODE_PUND: Unit of weight equal to 0.454 kilograms.
-         - UNIT_OF_MEASURE1_CODE_USGA: Unit of volume that is equal to 8 pints.
+         - UNSPECIFIED: Default
+         - GBGA: Unit of volume that is equal to 8 pints.
+         - KILO: Basic unit of mass in the SI system, 1000 grams.
+         - LITR: Unit of volume that is equal to a thousand cubic centimetres.
+         - PUND: Unit of weight equal to 0.454 kilograms.
+         - USGA: Unit of volume that is equal to 8 pints.
       enum:
-        - UNIT_OF_MEASURE1_CODE_UNSPECIFIED
-        - UNIT_OF_MEASURE1_CODE_GBGA
-        - UNIT_OF_MEASURE1_CODE_KILO
-        - UNIT_OF_MEASURE1_CODE_LITR
-        - UNIT_OF_MEASURE1_CODE_PUND
-        - UNIT_OF_MEASURE1_CODE_USGA
+        - UNSPECIFIED
+        - GBGA
+        - KILO
+        - LITR
+        - PUND
+        - USGA
       type: string
     initiationVehicle5:
       description: Attributes of a fleet vehicle.
@@ -1132,19 +1131,19 @@ components:
           type: string
       type: object
     initiationVerificationEntity1Code:
-      default: VERIFICATION_ENTITY1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type of verification entity.
 
-         - VERIFICATION_ENTITY1_CODE_UNSPECIFIED: Default
-         - VERIFICATION_ENTITY1_CODE_AGNT: Entity providing card payment processing services acting as an intermediary between (or on behalf of) an acquirer and an issuer.
-         - VERIFICATION_ENTITY1_CODE_MERC: Acceptor (for example signature verification by the attendant).
-         - VERIFICATION_ENTITY1_CODE_OTHP: Other type of authentication entity defined at private level.
+         - UNSPECIFIED: Default
+         - AGNT: Entity providing card payment processing services acting as an intermediary between (or on behalf of) an acquirer and an issuer.
+         - MERC: Acceptor (for example signature verification by the attendant).
+         - OTHP: Other type of authentication entity defined at private level.
       enum:
-        - VERIFICATION_ENTITY1_CODE_UNSPECIFIED
-        - VERIFICATION_ENTITY1_CODE_AGNT
-        - VERIFICATION_ENTITY1_CODE_MERC
-        - VERIFICATION_ENTITY1_CODE_OTHP
+        - UNSPECIFIED
+        - AGNT
+        - MERC
+        - OTHP
       type: string
     inquiryinitiationAdditionalAmounts2:
       properties:
@@ -1173,12 +1172,12 @@ components:
           type: array
       type: object
     inquiryinitiationMessageFunction17Code:
-      default: MESSAGE_FUNCTION17_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_FUNCTION17_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION17_CODE_REQU
+        - UNSPECIFIED
+        - REQU
       type: string
-      description: "- MESSAGE_FUNCTION17_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     inquiryinitiationProcessingResult5:
       properties:
         rsltData:
@@ -1204,12 +1203,12 @@ components:
           type: string
       type: object
     inquiryinitiationTypeOfAmount17Code:
-      default: TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT17_CODE_OTHP
+        - UNSPECIFIED
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT17_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     inquiryresponseAdditionalAmounts2:
       properties:
         tp:
@@ -1265,12 +1264,12 @@ components:
           type: array
       type: object
     inquiryresponseMessageFunction17Code:
-      default: MESSAGE_FUNCTION17_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_FUNCTION17_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION17_CODE_REQU
+        - UNSPECIFIED
+        - REQU
       type: string
-      description: "- MESSAGE_FUNCTION17_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     inquiryresponsePartyIdentification203:
       properties:
         id:
@@ -1336,14 +1335,14 @@ components:
           type: string
       type: object
     inquiryresponseTypeOfAmount17Code:
-      default: TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT17_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT17_CODE_ANTA
-        - TYPE_OF_AMOUNT17_CODE_ISCF
-        - TYPE_OF_AMOUNT17_CODE_OTHP
+        - UNSPECIFIED
+        - ANTA
+        - ISCF
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT17_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationAccountDetails2:
       properties:
         acctTp:
@@ -1436,20 +1435,20 @@ components:
       type: object
       description: Additional Service Information
     msgauthorisationinitiationAdditionalServiceType1Code:
-      default: ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
-        - ADDITIONAL_SERVICE_TYPE1_CODE_CACT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_CSHB
-        - ADDITIONAL_SERVICE_TYPE1_CODE_DCCV
-        - ADDITIONAL_SERVICE_TYPE1_CODE_INTP
-        - ADDITIONAL_SERVICE_TYPE1_CODE_INTT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_LOYT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHN
-        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHP
-        - ADDITIONAL_SERVICE_TYPE1_CODE_PRST
+        - UNSPECIFIED
+        - CACT
+        - CSHB
+        - DCCV
+        - INTP
+        - INTT
+        - LOYT
+        - OTHN
+        - OTHP
+        - PRST
       type: string
-      description: "- ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationAddress1:
       properties:
         adrLine1:
@@ -1657,38 +1656,38 @@ components:
       type: object
       description: Card
     msgauthorisationinitiationCardDataReading7Code:
-      default: CARD_DATA_READING7_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CARD_DATA_READING7_CODE_UNSPECIFIED
-        - CARD_DATA_READING7_CODE_CDFL
-        - CARD_DATA_READING7_CODE_ICCY
-        - CARD_DATA_READING7_CODE_ICPY
-        - CARD_DATA_READING7_CODE_KEEN
-        - CARD_DATA_READING7_CODE_MGST
-        - CARD_DATA_READING7_CODE_MICR
-        - CARD_DATA_READING7_CODE_MLEY
-        - CARD_DATA_READING7_CODE_MSIP
-        - CARD_DATA_READING7_CODE_OCRR
-        - CARD_DATA_READING7_CODE_OPTC
-        - CARD_DATA_READING7_CODE_OTHN
-        - CARD_DATA_READING7_CODE_OTHP
-        - CARD_DATA_READING7_CODE_RFID
-        - CARD_DATA_READING7_CODE_UNSP
+        - UNSPECIFIED
+        - CDFL
+        - ICCY
+        - ICPY
+        - KEEN
+        - MGST
+        - MICR
+        - MLEY
+        - MSIP
+        - OCRR
+        - OPTC
+        - OTHN
+        - OTHP
+        - RFID
+        - UNSP
       type: string
-      description: "- CARD_DATA_READING7_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationCardDataWriting1Code:
-      default: CARD_DATA_WRITING1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CARD_DATA_WRITING1_CODE_UNSPECIFIED
-        - CARD_DATA_WRITING1_CODE_ICCY
-        - CARD_DATA_WRITING1_CODE_ICPY
-        - CARD_DATA_WRITING1_CODE_MGST
-        - CARD_DATA_WRITING1_CODE_MSIP
-        - CARD_DATA_WRITING1_CODE_OTHN
-        - CARD_DATA_WRITING1_CODE_OTHP
-        - CARD_DATA_WRITING1_CODE_UNSP
+        - UNSPECIFIED
+        - ICCY
+        - ICPY
+        - MGST
+        - MSIP
+        - OTHN
+        - OTHP
+        - UNSP
       type: string
-      description: "- CARD_DATA_WRITING1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationCardProgramme1:
       properties:
         cardPrgrmmApld:
@@ -1747,15 +1746,15 @@ components:
       type: object
       description: Terminal Cardholder Verification Capability
     msgauthorisationinitiationCardholderVerificationCapability5Code:
-      default: CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOPN
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NPIN
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_OTHP
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP
+        - UNSPECIFIED
+        - NOPN
+        - NPIN
+        - OTHP
+        - UNSP
       type: string
-      description: "- CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationContact1:
       properties:
         homePhneNb:
@@ -1844,26 +1843,26 @@ components:
       type: object
       description: Cardholder Device Information
     msgauthorisationinitiationCustomerDeviceType1Code:
-      default: CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
-        - CUSTOMER_DEVICE_TYPE1_CODE_MOBL
-        - CUSTOMER_DEVICE_TYPE1_CODE_NSCR
-        - CUSTOMER_DEVICE_TYPE1_CODE_OTHN
-        - CUSTOMER_DEVICE_TYPE1_CODE_OTHP
-        - CUSTOMER_DEVICE_TYPE1_CODE_PECR
-        - CUSTOMER_DEVICE_TYPE1_CODE_SECR
-        - CUSTOMER_DEVICE_TYPE1_CODE_TBLT
+        - UNSPECIFIED
+        - MOBL
+        - NSCR
+        - OTHN
+        - OTHP
+        - PECR
+        - SECR
+        - TBLT
       type: string
-      description: "- CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationDetailAmount1Code:
-      default: DETAIL_AMOUNT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - DETAIL_AMOUNT1_CODE_UNSPECIFIED
-        - DETAIL_AMOUNT1_CODE_DCCF
-        - DETAIL_AMOUNT1_CODE_SRCH
+        - UNSPECIFIED
+        - DCCF
+        - SRCH
       type: string
-      description: "- DETAIL_AMOUNT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationDetailedAmount19:
       properties:
         tp:
@@ -1961,25 +1960,25 @@ components:
       type: object
       description: Funds Transfer Source
     msgauthorisationinitiationFundingSourceType2Code:
-      default: FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED
-        - FUNDING_SOURCE_TYPE2_CODE_CASH
-        - FUNDING_SOURCE_TYPE2_CODE_CDBT
-        - FUNDING_SOURCE_TYPE2_CODE_CHQE
-        - FUNDING_SOURCE_TYPE2_CODE_CRDT
-        - FUNDING_SOURCE_TYPE2_CODE_CURR
-        - FUNDING_SOURCE_TYPE2_CODE_DBAC
-        - FUNDING_SOURCE_TYPE2_CODE_EPRS
-        - FUNDING_SOURCE_TYPE2_CODE_LCDT
-        - FUNDING_SOURCE_TYPE2_CODE_LOYL
-        - FUNDING_SOURCE_TYPE2_CODE_OTHN
-        - FUNDING_SOURCE_TYPE2_CODE_OTHP
-        - FUNDING_SOURCE_TYPE2_CODE_PRPD
-        - FUNDING_SOURCE_TYPE2_CODE_SVNG
-        - FUNDING_SOURCE_TYPE2_CODE_UVRL
+        - UNSPECIFIED
+        - CASH
+        - CDBT
+        - CHQE
+        - CRDT
+        - CURR
+        - DBAC
+        - EPRS
+        - LCDT
+        - LOYL
+        - OTHN
+        - OTHP
+        - PRPD
+        - SVNG
+        - UVRL
       type: string
-      description: "- FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationGenericIdentification172:
       properties:
         id:
@@ -2016,51 +2015,51 @@ components:
       type: object
       description: Message Header
     msgauthorisationinitiationIdentification2Code:
-      default: IDENTIFICATION2_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - IDENTIFICATION2_CODE_UNSPECIFIED
-        - IDENTIFICATION2_CODE_ARNB
-        - IDENTIFICATION2_CODE_DRID
-        - IDENTIFICATION2_CODE_EMAL
-        - IDENTIFICATION2_CODE_NTID
-        - IDENTIFICATION2_CODE_OTHN
-        - IDENTIFICATION2_CODE_OTHP
-        - IDENTIFICATION2_CODE_PASS
-        - IDENTIFICATION2_CODE_PHNB
-        - IDENTIFICATION2_CODE_SSYN
+        - UNSPECIFIED
+        - ARNB
+        - DRID
+        - EMAL
+        - NTID
+        - OTHN
+        - OTHP
+        - PASS
+        - PHNB
+        - SSYN
       type: string
-      description: "- IDENTIFICATION2_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationLifeCycleSupport1Code:
-      default: LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
-        - LIFE_CYCLE_SUPPORT1_CODE_AUTH
-        - LIFE_CYCLE_SUPPORT1_CODE_FINC
+        - UNSPECIFIED
+        - AUTH
+        - FINC
       type: string
-      description: "- LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationMessageClass1Code:
-      default: MESSAGE_CLASS1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_CLASS1_CODE_UNSPECIFIED
-        - MESSAGE_CLASS1_CODE_ADDE
-        - MESSAGE_CLASS1_CODE_AMDT
-        - MESSAGE_CLASS1_CODE_AUTH
-        - MESSAGE_CLASS1_CODE_CBCK
-        - MESSAGE_CLASS1_CODE_CMGT
-        - MESSAGE_CLASS1_CODE_FEEC
-        - MESSAGE_CLASS1_CODE_FINL
-        - MESSAGE_CLASS1_CODE_INQY
-        - MESSAGE_CLASS1_CODE_VERI
+        - UNSPECIFIED
+        - ADDE
+        - AMDT
+        - AUTH
+        - CBCK
+        - CMGT
+        - FEEC
+        - FINL
+        - INQY
+        - VERI
       type: string
-      description: "- MESSAGE_CLASS1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationMessageFunction16Code:
-      default: MESSAGE_FUNCTION16_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION16_CODE_ADVC
-        - MESSAGE_FUNCTION16_CODE_REQU
+        - UNSPECIFIED
+        - ADVC
+        - REQU
       type: string
-      description: "- MESSAGE_FUNCTION16_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationOriginalDataElements1:
       properties:
         msgClss:
@@ -2184,26 +2183,26 @@ components:
           $ref: '#/components/schemas/msgauthorisationinitiationCustomer3'
       type: object
     msgauthorisationinitiationPartyType26Code:
-      default: PARTY_TYPE26_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE26_CODE_UNSPECIFIED
-        - PARTY_TYPE26_CODE_AGNT
-        - PARTY_TYPE26_CODE_CISS
+        - UNSPECIFIED
+        - AGNT
+        - CISS
       type: string
-      description: "- PARTY_TYPE26_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationPartyType28Code:
-      default: PARTY_TYPE28_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE28_CODE_UNSPECIFIED
-        - PARTY_TYPE28_CODE_ACCP
-        - PARTY_TYPE28_CODE_ACQR
-        - PARTY_TYPE28_CODE_AGNT
-        - PARTY_TYPE28_CODE_ISUR
-        - PARTY_TYPE28_CODE_OTHN
-        - PARTY_TYPE28_CODE_OTHP
-        - PARTY_TYPE28_CODE_WLPR
+        - UNSPECIFIED
+        - ACCP
+        - ACQR
+        - AGNT
+        - ISUR
+        - OTHN
+        - OTHP
+        - WLPR
       type: string
-      description: "- PARTY_TYPE28_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationPointOfServiceContext1:
       properties:
         cardPres:
@@ -2273,14 +2272,14 @@ components:
       type: object
       description: Point of Interaction Context
     msgauthorisationinitiationPriority3Code:
-      default: PRIORITY3_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PRIORITY3_CODE_UNSPECIFIED
-        - PRIORITY3_CODE_HIGH
-        - PRIORITY3_CODE_NORM
-        - PRIORITY3_CODE_URGT
+        - UNSPECIFIED
+        - HIGH
+        - NORM
+        - URGT
       type: string
-      description: "- PRIORITY3_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationProcessingResult1:
       properties:
         apprvlData:
@@ -2491,24 +2490,24 @@ components:
       type: object
       description: Terminal Identification
     msgauthorisationinitiationTerminalIntegrationCategory1Code:
-      default: TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_MPOI
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_MSLE
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_SSLE
+        - UNSPECIFIED
+        - MPOI
+        - MSLE
+        - SSLE
       type: string
-      description: "- TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationTerminalType1Code:
-      default: TERMINAL_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TERMINAL_TYPE1_CODE_UNSPECIFIED
-        - TERMINAL_TYPE1_CODE_ATMT
-        - TERMINAL_TYPE1_CODE_MPOS
-        - TERMINAL_TYPE1_CODE_OTHP
-        - TERMINAL_TYPE1_CODE_POST
+        - UNSPECIFIED
+        - ATMT
+        - MPOS
+        - OTHP
+        - POST
       type: string
-      description: "- TERMINAL_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationToken1:
       properties:
         pmtTkn:
@@ -2664,27 +2663,27 @@ components:
       type: object
       description: Transaction Amounts
     msgauthorisationinitiationTransactionAttribute1Code:
-      default: TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
-        - TRANSACTION_ATTRIBUTE1_CODE_AGGR
-        - TRANSACTION_ATTRIBUTE1_CODE_CADB
-        - TRANSACTION_ATTRIBUTE1_CODE_CPLT
-        - TRANSACTION_ATTRIBUTE1_CODE_DBRP
-        - TRANSACTION_ATTRIBUTE1_CODE_DFRD
-        - TRANSACTION_ATTRIBUTE1_CODE_FRCP
-        - TRANSACTION_ATTRIBUTE1_CODE_INCR
-        - TRANSACTION_ATTRIBUTE1_CODE_INST
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHN
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHP
-        - TRANSACTION_ATTRIBUTE1_CODE_PACP
-        - TRANSACTION_ATTRIBUTE1_CODE_PAUT
-        - TRANSACTION_ATTRIBUTE1_CODE_PPYT
-        - TRANSACTION_ATTRIBUTE1_CODE_RCPT
-        - TRANSACTION_ATTRIBUTE1_CODE_SUBR
-        - TRANSACTION_ATTRIBUTE1_CODE_TPUP
+        - UNSPECIFIED
+        - AGGR
+        - CADB
+        - CPLT
+        - DBRP
+        - DFRD
+        - FRCP
+        - INCR
+        - INST
+        - OTHN
+        - OTHP
+        - PACP
+        - PAUT
+        - PPYT
+        - RCPT
+        - SUBR
+        - TPUP
       type: string
-      description: "- TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationTransactionContext1:
       properties:
         mrchntCtgyCd:
@@ -2762,13 +2761,13 @@ components:
       type: object
       description: XXXX1234567XXXX
     msgauthorisationinitiationTransactionInitiator1Code:
-      default: TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
-        - TRANSACTION_INITIATOR1_CODE_CUST
-        - TRANSACTION_INITIATOR1_CODE_MERC
+        - UNSPECIFIED
+        - CUST
+        - MERC
       type: string
-      description: "- TRANSACTION_INITIATOR1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationTransactionLifeCycleIdentification1:
       properties:
         id:
@@ -2803,38 +2802,38 @@ components:
       type: object
       description: Funds Transfer Service
     msgauthorisationinitiationTypeOfAmount10Code:
-      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT10_CODE_FEEA
-        - TYPE_OF_AMOUNT10_CODE_FEEP
-        - TYPE_OF_AMOUNT10_CODE_INTC
-        - TYPE_OF_AMOUNT10_CODE_OTHP
+        - UNSPECIFIED
+        - FEEA
+        - FEEP
+        - INTC
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationTypeOfAmount11Code:
-      default: TYPE_OF_AMOUNT11_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT11_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT11_CODE_ACTL
-        - TYPE_OF_AMOUNT11_CODE_DFLT
-        - TYPE_OF_AMOUNT11_CODE_DPST
-        - TYPE_OF_AMOUNT11_CODE_ESTM
-        - TYPE_OF_AMOUNT11_CODE_MAXI
-        - TYPE_OF_AMOUNT11_CODE_PRXY
-        - TYPE_OF_AMOUNT11_CODE_RESD
+        - UNSPECIFIED
+        - ACTL
+        - DFLT
+        - DPST
+        - ESTM
+        - MAXI
+        - PRXY
+        - RESD
       type: string
-      description: "- TYPE_OF_AMOUNT11_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationTypeOfAmount12Code:
-      default: TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT12_CODE_AMTH
-        - TYPE_OF_AMOUNT12_CODE_AMTQ
-        - TYPE_OF_AMOUNT12_CODE_OTHP
-        - TYPE_OF_AMOUNT12_CODE_RQCH
+        - UNSPECIFIED
+        - AMTH
+        - AMTQ
+        - OTHP
+        - RQCH
       type: string
-      description: "- TYPE_OF_AMOUNT12_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationinitiationVerification1:
       properties:
         vrfctnInf:
@@ -3096,20 +3095,20 @@ components:
       type: object
       description: Account Balance
     msgauthorisationresponseBalanceType14Code:
-      default: BALANCE_TYPE14_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - BALANCE_TYPE14_CODE_UNSPECIFIED
-        - BALANCE_TYPE14_CODE_AMOH
-        - BALANCE_TYPE14_CODE_AMTD
-        - BALANCE_TYPE14_CODE_AMTO
-        - BALANCE_TYPE14_CODE_AVLB
-        - BALANCE_TYPE14_CODE_CLRI
-        - BALANCE_TYPE14_CODE_CRDL
-        - BALANCE_TYPE14_CODE_LDGR
-        - BALANCE_TYPE14_CODE_OTHN
-        - BALANCE_TYPE14_CODE_OTHP
+        - UNSPECIFIED
+        - AMOH
+        - AMTD
+        - AMTO
+        - AVLB
+        - CLRI
+        - CRDL
+        - LDGR
+        - OTHN
+        - OTHP
       type: string
-      description: "- BALANCE_TYPE14_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponseCardData4:
       properties:
         pan:
@@ -3171,21 +3170,21 @@ components:
       type: object
       description: Context
     msgauthorisationresponseDetailAmount1Code:
-      default: DETAIL_AMOUNT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - DETAIL_AMOUNT1_CODE_UNSPECIFIED
-        - DETAIL_AMOUNT1_CODE_CSHB
-        - DETAIL_AMOUNT1_CODE_DCCF
-        - DETAIL_AMOUNT1_CODE_DONN
-        - DETAIL_AMOUNT1_CODE_EXTR
-        - DETAIL_AMOUNT1_CODE_FORX
-        - DETAIL_AMOUNT1_CODE_GRTY
-        - DETAIL_AMOUNT1_CODE_OTHN
-        - DETAIL_AMOUNT1_CODE_OTHP
-        - DETAIL_AMOUNT1_CODE_SRCH
-        - DETAIL_AMOUNT1_CODE_TAXT
+        - UNSPECIFIED
+        - CSHB
+        - DCCF
+        - DONN
+        - EXTR
+        - FORX
+        - GRTY
+        - OTHN
+        - OTHP
+        - SRCH
+        - TAXT
       type: string
-      description: "- DETAIL_AMOUNT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponseDetailedAmount19:
       properties:
         tp:
@@ -3281,21 +3280,21 @@ components:
       type: object
       description: Message Header
     msgauthorisationresponseLifeCycleSupport1Code:
-      default: LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
-        - LIFE_CYCLE_SUPPORT1_CODE_AUTH
-        - LIFE_CYCLE_SUPPORT1_CODE_FINC
+        - UNSPECIFIED
+        - AUTH
+        - FINC
       type: string
-      description: "- LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponseMessageFunction16Code:
-      default: MESSAGE_FUNCTION16_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION16_CODE_ADVC
-        - MESSAGE_FUNCTION16_CODE_REQU
+        - UNSPECIFIED
+        - ADVC
+        - REQU
       type: string
-      description: "- MESSAGE_FUNCTION16_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponsePartyIdentification197:
       properties:
         id:
@@ -3317,41 +3316,41 @@ components:
       type: object
       description: Risk Assessor
     msgauthorisationresponsePartyType26Code:
-      default: PARTY_TYPE26_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE26_CODE_UNSPECIFIED
-        - PARTY_TYPE26_CODE_ACCP
-        - PARTY_TYPE26_CODE_ACQR
-        - PARTY_TYPE26_CODE_AGNT
-        - PARTY_TYPE26_CODE_CISS
-        - PARTY_TYPE26_CODE_DLIS
-        - PARTY_TYPE26_CODE_ICCA
-        - PARTY_TYPE26_CODE_OTHN
-        - PARTY_TYPE26_CODE_OTHP
+        - UNSPECIFIED
+        - ACCP
+        - ACQR
+        - AGNT
+        - CISS
+        - DLIS
+        - ICCA
+        - OTHN
+        - OTHP
       type: string
-      description: "- PARTY_TYPE26_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponsePartyType28Code:
-      default: PARTY_TYPE28_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE28_CODE_UNSPECIFIED
-        - PARTY_TYPE28_CODE_ACCP
-        - PARTY_TYPE28_CODE_ACQR
-        - PARTY_TYPE28_CODE_AGNT
-        - PARTY_TYPE28_CODE_ISUR
-        - PARTY_TYPE28_CODE_OTHN
-        - PARTY_TYPE28_CODE_OTHP
-        - PARTY_TYPE28_CODE_WLPR
+        - UNSPECIFIED
+        - ACCP
+        - ACQR
+        - AGNT
+        - ISUR
+        - OTHN
+        - OTHP
+        - WLPR
       type: string
-      description: "- PARTY_TYPE28_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponsePriority3Code:
-      default: PRIORITY3_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PRIORITY3_CODE_UNSPECIFIED
-        - PRIORITY3_CODE_HIGH
-        - PRIORITY3_CODE_NORM
-        - PRIORITY3_CODE_URGT
+        - UNSPECIFIED
+        - HIGH
+        - NORM
+        - URGT
       type: string
-      description: "- PRIORITY3_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponseProcessingResult2:
       properties:
         apprvlData:
@@ -3616,27 +3615,27 @@ components:
       type: object
       description: Transaction Amounts
     msgauthorisationresponseTransactionAttribute1Code:
-      default: TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
-        - TRANSACTION_ATTRIBUTE1_CODE_AGGR
-        - TRANSACTION_ATTRIBUTE1_CODE_CADB
-        - TRANSACTION_ATTRIBUTE1_CODE_CPLT
-        - TRANSACTION_ATTRIBUTE1_CODE_DBRP
-        - TRANSACTION_ATTRIBUTE1_CODE_DFRD
-        - TRANSACTION_ATTRIBUTE1_CODE_FRCP
-        - TRANSACTION_ATTRIBUTE1_CODE_INCR
-        - TRANSACTION_ATTRIBUTE1_CODE_INST
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHN
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHP
-        - TRANSACTION_ATTRIBUTE1_CODE_PACP
-        - TRANSACTION_ATTRIBUTE1_CODE_PAUT
-        - TRANSACTION_ATTRIBUTE1_CODE_PPYT
-        - TRANSACTION_ATTRIBUTE1_CODE_RCPT
-        - TRANSACTION_ATTRIBUTE1_CODE_SUBR
-        - TRANSACTION_ATTRIBUTE1_CODE_TPUP
+        - UNSPECIFIED
+        - AGGR
+        - CADB
+        - CPLT
+        - DBRP
+        - DFRD
+        - FRCP
+        - INCR
+        - INST
+        - OTHN
+        - OTHP
+        - PACP
+        - PAUT
+        - PPYT
+        - RCPT
+        - SUBR
+        - TPUP
       type: string
-      description: "- TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponseTransactionContext3:
       properties:
         cardPrgrmmApld:
@@ -3699,26 +3698,26 @@ components:
       type: object
       description: Life Cycle Identification
     msgauthorisationresponseTypeOfAmount10Code:
-      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT10_CODE_FEEA
-        - TYPE_OF_AMOUNT10_CODE_FEEP
-        - TYPE_OF_AMOUNT10_CODE_INTC
-        - TYPE_OF_AMOUNT10_CODE_OTHN
-        - TYPE_OF_AMOUNT10_CODE_OTHP
+        - UNSPECIFIED
+        - FEEA
+        - FEEP
+        - INTC
+        - OTHN
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponseTypeOfAmount12Code:
-      default: TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT12_CODE_AMTH
-        - TYPE_OF_AMOUNT12_CODE_AMTQ
-        - TYPE_OF_AMOUNT12_CODE_OTHP
-        - TYPE_OF_AMOUNT12_CODE_RQCH
+        - UNSPECIFIED
+        - AMTH
+        - AMTQ
+        - OTHP
+        - RQCH
       type: string
-      description: "- TYPE_OF_AMOUNT12_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgauthorisationresponseVerification2:
       properties:
         vrfctnRslt:
@@ -3826,31 +3825,31 @@ components:
           $ref: '#/components/schemas/msgfinancialinitiationAdditionalServiceType1Code'
       type: object
     msgfinancialinitiationAdditionalServiceType1Code:
-      default: ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type of additional service.
 
-         - ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED: Default
-         - ADDITIONAL_SERVICE_TYPE1_CODE_CACT: Card activation
-         - ADDITIONAL_SERVICE_TYPE1_CODE_CSHB: Purchase of goods or services with cashback
-         - ADDITIONAL_SERVICE_TYPE1_CODE_DCCV: Dynamic Currency Conversion (DCC)
-         - ADDITIONAL_SERVICE_TYPE1_CODE_INTP: Instant payment from a cardholder's account to an acceptor's account
-         - ADDITIONAL_SERVICE_TYPE1_CODE_INTT: Instant transfer of funds from a payer's account to a payee's account.
-         - ADDITIONAL_SERVICE_TYPE1_CODE_LOYT: Loyalty services
-         - ADDITIONAL_SERVICE_TYPE1_CODE_OTHN: Other type of additional service at national level
-         - ADDITIONAL_SERVICE_TYPE1_CODE_OTHP: Other type of additional service at private level
-         - ADDITIONAL_SERVICE_TYPE1_CODE_PRST: Withdrawal transaction was pre-authorised by another channel (amount could be absent).
+         - UNSPECIFIED: Default
+         - CACT: Card activation
+         - CSHB: Purchase of goods or services with cashback
+         - DCCV: Dynamic Currency Conversion (DCC)
+         - INTP: Instant payment from a cardholder's account to an acceptor's account
+         - INTT: Instant transfer of funds from a payer's account to a payee's account.
+         - LOYT: Loyalty services
+         - OTHN: Other type of additional service at national level
+         - OTHP: Other type of additional service at private level
+         - PRST: Withdrawal transaction was pre-authorised by another channel (amount could be absent).
       enum:
-        - ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
-        - ADDITIONAL_SERVICE_TYPE1_CODE_CACT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_CSHB
-        - ADDITIONAL_SERVICE_TYPE1_CODE_DCCV
-        - ADDITIONAL_SERVICE_TYPE1_CODE_INTP
-        - ADDITIONAL_SERVICE_TYPE1_CODE_INTT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_LOYT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHN
-        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHP
-        - ADDITIONAL_SERVICE_TYPE1_CODE_PRST
+        - UNSPECIFIED
+        - CACT
+        - CSHB
+        - DCCV
+        - INTP
+        - INTT
+        - LOYT
+        - OTHN
+        - OTHP
+        - PRST
       type: string
     msgfinancialinitiationAddress1:
       description: Structured postal address.
@@ -4031,46 +4030,46 @@ components:
           example: CIR
       type: object
     msgfinancialinitiationCardDataReading7Code:
-      default: CARD_DATA_READING7_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
-        - CARD_DATA_READING7_CODE_UNSPECIFIED: Default
-         - CARD_DATA_READING7_CODE_CDFL: Card information are stored on a file.
-         - CARD_DATA_READING7_CODE_ICCY: ICC contact capability
-         - CARD_DATA_READING7_CODE_ICPY: ICC contactless proximity
-         - CARD_DATA_READING7_CODE_KEEN: Key entered.
-         - CARD_DATA_READING7_CODE_MGST: Magnetic stripe.
-         - CARD_DATA_READING7_CODE_MLEY: Manual, no terminal used.
-         - CARD_DATA_READING7_CODE_MSIP: Magstripe image contactless proximity
-         - CARD_DATA_READING7_CODE_OCRR: OCR either at time of transaction or after the event.
-         - CARD_DATA_READING7_CODE_OTHP: Other card reading capability assigned on a private basis.
-         - CARD_DATA_READING7_CODE_UNSP: Unspecified capability.
+        - UNSPECIFIED: Default
+         - CDFL: Card information are stored on a file.
+         - ICCY: ICC contact capability
+         - ICPY: ICC contactless proximity
+         - KEEN: Key entered.
+         - MGST: Magnetic stripe.
+         - MLEY: Manual, no terminal used.
+         - MSIP: Magstripe image contactless proximity
+         - OCRR: OCR either at time of transaction or after the event.
+         - OTHP: Other card reading capability assigned on a private basis.
+         - UNSP: Unspecified capability.
       enum:
-        - CARD_DATA_READING7_CODE_UNSPECIFIED
-        - CARD_DATA_READING7_CODE_CDFL
-        - CARD_DATA_READING7_CODE_ICCY
-        - CARD_DATA_READING7_CODE_ICPY
-        - CARD_DATA_READING7_CODE_KEEN
-        - CARD_DATA_READING7_CODE_MGST
-        - CARD_DATA_READING7_CODE_MLEY
-        - CARD_DATA_READING7_CODE_MSIP
-        - CARD_DATA_READING7_CODE_OCRR
-        - CARD_DATA_READING7_CODE_OTHP
-        - CARD_DATA_READING7_CODE_UNSP
+        - UNSPECIFIED
+        - CDFL
+        - ICCY
+        - ICPY
+        - KEEN
+        - MGST
+        - MLEY
+        - MSIP
+        - OCRR
+        - OTHP
+        - UNSP
       type: string
     msgfinancialinitiationCardDataWriting1Code:
-      default: CARD_DATA_WRITING1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
-        - CARD_DATA_WRITING1_CODE_UNSPECIFIED: Default
-         - CARD_DATA_WRITING1_CODE_ICCY: ICC contact capability
-         - CARD_DATA_WRITING1_CODE_MGST: Magnetic stripe.
-         - CARD_DATA_WRITING1_CODE_OTHP: Other card reading capability assigned on a private basis.
-         - CARD_DATA_WRITING1_CODE_UNSP: Unspecified capability.
+        - UNSPECIFIED: Default
+         - ICCY: ICC contact capability
+         - MGST: Magnetic stripe.
+         - OTHP: Other card reading capability assigned on a private basis.
+         - UNSP: Unspecified capability.
       enum:
-        - CARD_DATA_WRITING1_CODE_UNSPECIFIED
-        - CARD_DATA_WRITING1_CODE_ICCY
-        - CARD_DATA_WRITING1_CODE_MGST
-        - CARD_DATA_WRITING1_CODE_OTHP
-        - CARD_DATA_WRITING1_CODE_UNSP
+        - UNSPECIFIED
+        - ICCY
+        - MGST
+        - OTHP
+        - UNSP
       type: string
     msgfinancialinitiationCardProgramme1:
       description: Card programme or brand related to the transaction.
@@ -4104,23 +4103,23 @@ components:
         \ at the point of service.  ISO 8583:87 bit 22-3, ISO 8583;93 bit 22-2, ISO\
         \ 8583:2003 bit 27-2"
     msgfinancialinitiationCardholderVerificationCapability5Code:
-      default: CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Capability of verifying the cardholder's identity or authenticity.
 
-         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED: Default
-         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOPN: Device has no pin entry capability.
-         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NPIN: Online PIN (Personal Identification Number).
-         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_OTHP: Other type of cardholder verification defined in a private manner.
-         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_SIGN: Handwritten signature verification
-         - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP: Cardholder verification capability unspecified.
+         - UNSPECIFIED: Default
+         - NOPN: Device has no pin entry capability.
+         - NPIN: Online PIN (Personal Identification Number).
+         - OTHP: Other type of cardholder verification defined in a private manner.
+         - SIGN: Handwritten signature verification
+         - UNSP: Cardholder verification capability unspecified.
       enum:
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOPN
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NPIN
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_OTHP
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_SIGN
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP
+        - UNSPECIFIED
+        - NOPN
+        - NPIN
+        - OTHP
+        - SIGN
+        - UNSP
       type: string
     msgfinancialinitiationContext1:
       description: Context in which the card payment transaction is performed.
@@ -4142,40 +4141,40 @@ components:
           $ref: '#/components/schemas/msgfinancialinitiationDevice1'
       type: object
     msgfinancialinitiationCustomerDeviceType1Code:
-      default: CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type of customer device.
 
-         - CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED: Default
-         - CUSTOMER_DEVICE_TYPE1_CODE_MOBL: Mobile phone
-         - CUSTOMER_DEVICE_TYPE1_CODE_OTHP: Other device defined in a private way.
-         - CUSTOMER_DEVICE_TYPE1_CODE_PECR: Personal computer
-         - CUSTOMER_DEVICE_TYPE1_CODE_TBLT: Tablet
+         - UNSPECIFIED: Default
+         - MOBL: Mobile phone
+         - OTHP: Other device defined in a private way.
+         - PECR: Personal computer
+         - TBLT: Tablet
       enum:
-        - CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
-        - CUSTOMER_DEVICE_TYPE1_CODE_MOBL
-        - CUSTOMER_DEVICE_TYPE1_CODE_OTHP
-        - CUSTOMER_DEVICE_TYPE1_CODE_PECR
-        - CUSTOMER_DEVICE_TYPE1_CODE_TBLT
+        - UNSPECIFIED
+        - MOBL
+        - OTHP
+        - PECR
+        - TBLT
       type: string
     msgfinancialinitiationDetailAmount1Code:
-      default: DETAIL_AMOUNT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type of detail amount.
 
-         - DETAIL_AMOUNT1_CODE_UNSPECIFIED: Default
-         - DETAIL_AMOUNT1_CODE_DCCF: Dynamic Currency Conversion type of amount
-         - DETAIL_AMOUNT1_CODE_FORX: Fee applicable to a foreign exchange (Forex) transaction
-         - DETAIL_AMOUNT1_CODE_OTHP: Other type of amount defined at private level
-         - DETAIL_AMOUNT1_CODE_SRCH: Fee charged by the acceptor for the transaction.
-         - DETAIL_AMOUNT1_CODE_TAXT: Tax applicable to the transaction
+         - UNSPECIFIED: Default
+         - DCCF: Dynamic Currency Conversion type of amount
+         - FORX: Fee applicable to a foreign exchange (Forex) transaction
+         - OTHP: Other type of amount defined at private level
+         - SRCH: Fee charged by the acceptor for the transaction.
+         - TAXT: Tax applicable to the transaction
       enum:
-        - DETAIL_AMOUNT1_CODE_UNSPECIFIED
-        - DETAIL_AMOUNT1_CODE_DCCF
-        - DETAIL_AMOUNT1_CODE_FORX
-        - DETAIL_AMOUNT1_CODE_OTHP
-        - DETAIL_AMOUNT1_CODE_SRCH
-        - DETAIL_AMOUNT1_CODE_TAXT
+        - UNSPECIFIED
+        - DCCF
+        - FORX
+        - OTHP
+        - SRCH
+        - TAXT
       type: string
     msgfinancialinitiationDetailedAmount19:
       description: Breakdown of the transaction amount.
@@ -4263,25 +4262,25 @@ components:
       type: object
       description: Source of funding
     msgfinancialinitiationFundingSourceType2Code:
-      default: FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type of funding source used for a financial service.
 
-         - FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED: Default
-         - FUNDING_SOURCE_TYPE2_CODE_CASH: Cash as a source type  to perform the transaction.
-         - FUNDING_SOURCE_TYPE2_CODE_CDBT: Debit card account.
-         - FUNDING_SOURCE_TYPE2_CODE_CRDT: Credit card account.
-         - FUNDING_SOURCE_TYPE2_CODE_OTHP: Other type of account defined at private level.
-         - FUNDING_SOURCE_TYPE2_CODE_PRPD: Pre-paid account.
-         - FUNDING_SOURCE_TYPE2_CODE_SVNG: Savings account.
+         - UNSPECIFIED: Default
+         - CASH: Cash as a source type  to perform the transaction.
+         - CDBT: Debit card account.
+         - CRDT: Credit card account.
+         - OTHP: Other type of account defined at private level.
+         - PRPD: Pre-paid account.
+         - SVNG: Savings account.
       enum:
-        - FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED
-        - FUNDING_SOURCE_TYPE2_CODE_CASH
-        - FUNDING_SOURCE_TYPE2_CODE_CDBT
-        - FUNDING_SOURCE_TYPE2_CODE_CRDT
-        - FUNDING_SOURCE_TYPE2_CODE_OTHP
-        - FUNDING_SOURCE_TYPE2_CODE_PRPD
-        - FUNDING_SOURCE_TYPE2_CODE_SVNG
+        - UNSPECIFIED
+        - CASH
+        - CDBT
+        - CRDT
+        - OTHP
+        - PRPD
+        - SVNG
       type: string
     msgfinancialinitiationGenericIdentification172:
       description: Identification of an entity.
@@ -4322,28 +4321,28 @@ components:
           type: array
       type: object
     msgfinancialinitiationLifeCycleSupport1Code:
-      default: LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Indicates the point in the transaction lifecycle at which the lifecycle identifier was assigned.
 
-         - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED: Default
-         - LIFE_CYCLE_SUPPORT1_CODE_FINC: Assigned at financial time.
+         - UNSPECIFIED: Default
+         - FINC: Assigned at financial time.
       enum:
-        - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
-        - LIFE_CYCLE_SUPPORT1_CODE_FINC
+        - UNSPECIFIED
+        - FINC
       type: string
     msgfinancialinitiationMessageFunction16Code:
-      default: MESSAGE_FUNCTION16_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED: Default
-         - MESSAGE_FUNCTION16_CODE_ADVC: Advice indicates where the sender informs the receiver of an activity that has been taken that requires a response.
-         - MESSAGE_FUNCTION16_CODE_NOTI: Information about the transaction.
-         - MESSAGE_FUNCTION16_CODE_REQU: Message function is a request.
+        - UNSPECIFIED: Default
+         - ADVC: Advice indicates where the sender informs the receiver of an activity that has been taken that requires a response.
+         - NOTI: Information about the transaction.
+         - REQU: Message function is a request.
       enum:
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION16_CODE_ADVC
-        - MESSAGE_FUNCTION16_CODE_NOTI
-        - MESSAGE_FUNCTION16_CODE_REQU
+        - UNSPECIFIED
+        - ADVC
+        - NOTI
+        - REQU
       type: string
     msgfinancialinitiationOriginalTransactionAmount1:
       description: Amount related to the original transaction.
@@ -4627,21 +4626,21 @@ components:
           example: ABC232635
       type: object
     msgfinancialinitiationTerminalType1Code:
-      default: TERMINAL_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type of terminal to perform the transaction.
 
-         - TERMINAL_TYPE1_CODE_UNSPECIFIED: Default
-         - TERMINAL_TYPE1_CODE_ATMT: Automated Teller Machine
-         - TERMINAL_TYPE1_CODE_MPOS: Mobile or tablet used as a Point of Sale terminal
-         - TERMINAL_TYPE1_CODE_OTHP: Other private type of terminal.
-         - TERMINAL_TYPE1_CODE_POST: Point of Sale terminal.
+         - UNSPECIFIED: Default
+         - ATMT: Automated Teller Machine
+         - MPOS: Mobile or tablet used as a Point of Sale terminal
+         - OTHP: Other private type of terminal.
+         - POST: Point of Sale terminal.
       enum:
-        - TERMINAL_TYPE1_CODE_UNSPECIFIED
-        - TERMINAL_TYPE1_CODE_ATMT
-        - TERMINAL_TYPE1_CODE_MPOS
-        - TERMINAL_TYPE1_CODE_OTHP
-        - TERMINAL_TYPE1_CODE_POST
+        - UNSPECIFIED
+        - ATMT
+        - MPOS
+        - OTHP
+        - POST
       type: string
     msgfinancialinitiationToken1:
       description: Unencrypted sensitive data of a token.
@@ -4764,45 +4763,45 @@ components:
           $ref: '#/components/schemas/msgfinancialinitiationOriginalTransactionAmount1'
       type: object
     msgfinancialinitiationTransactionAttribute1Code:
-      default: TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Attribute of the transaction.
 
-         - TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED: Default
-         - TRANSACTION_ATTRIBUTE1_CODE_AGGR: Payment is an aggregation one.
-         - TRANSACTION_ATTRIBUTE1_CODE_CADB: Withdrawal is a cardless cash disbursement one.
-         - TRANSACTION_ATTRIBUTE1_CODE_CPLT: Transaction previously initiated is completed and contains the actual amount.
-         - TRANSACTION_ATTRIBUTE1_CODE_DBRP: Payment is a debt repayment one.
-         - TRANSACTION_ATTRIBUTE1_CODE_DFRD: Payment is a deferred one.
-         - TRANSACTION_ATTRIBUTE1_CODE_FRCP: First occurence of a recurring payment.
-         - TRANSACTION_ATTRIBUTE1_CODE_INCR: To authorise additional amounts for a previously authorised transaction.
-         - TRANSACTION_ATTRIBUTE1_CODE_INST: Payment is an instalment one.
-         - TRANSACTION_ATTRIBUTE1_CODE_OTHN: Attribute defined at national level.
-         - TRANSACTION_ATTRIBUTE1_CODE_OTHP: Attribute defined at private level
-         - TRANSACTION_ATTRIBUTE1_CODE_PACP: Financial completion of a pre-authorised transaction within a specified timeframe.
-         - TRANSACTION_ATTRIBUTE1_CODE_PAUT: Preauthorisation for an amount which is unknown at the time when the transaction is initiated and to be cleared within a specified timeframe.
-         - TRANSACTION_ATTRIBUTE1_CODE_PPYT: Payment in advance of receiving goods or services.
-         - TRANSACTION_ATTRIBUTE1_CODE_RCPT: An occurrence of a recurring payment..
-         - TRANSACTION_ATTRIBUTE1_CODE_SUBR: Subsequent occurrence of a recurring payment.
-         - TRANSACTION_ATTRIBUTE1_CODE_TPUP: Service to replenish value in an account (for example, mobile account, prepaid account, etc.).
+         - UNSPECIFIED: Default
+         - AGGR: Payment is an aggregation one.
+         - CADB: Withdrawal is a cardless cash disbursement one.
+         - CPLT: Transaction previously initiated is completed and contains the actual amount.
+         - DBRP: Payment is a debt repayment one.
+         - DFRD: Payment is a deferred one.
+         - FRCP: First occurence of a recurring payment.
+         - INCR: To authorise additional amounts for a previously authorised transaction.
+         - INST: Payment is an instalment one.
+         - OTHN: Attribute defined at national level.
+         - OTHP: Attribute defined at private level
+         - PACP: Financial completion of a pre-authorised transaction within a specified timeframe.
+         - PAUT: Preauthorisation for an amount which is unknown at the time when the transaction is initiated and to be cleared within a specified timeframe.
+         - PPYT: Payment in advance of receiving goods or services.
+         - RCPT: An occurrence of a recurring payment..
+         - SUBR: Subsequent occurrence of a recurring payment.
+         - TPUP: Service to replenish value in an account (for example, mobile account, prepaid account, etc.).
       enum:
-        - TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
-        - TRANSACTION_ATTRIBUTE1_CODE_AGGR
-        - TRANSACTION_ATTRIBUTE1_CODE_CADB
-        - TRANSACTION_ATTRIBUTE1_CODE_CPLT
-        - TRANSACTION_ATTRIBUTE1_CODE_DBRP
-        - TRANSACTION_ATTRIBUTE1_CODE_DFRD
-        - TRANSACTION_ATTRIBUTE1_CODE_FRCP
-        - TRANSACTION_ATTRIBUTE1_CODE_INCR
-        - TRANSACTION_ATTRIBUTE1_CODE_INST
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHN
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHP
-        - TRANSACTION_ATTRIBUTE1_CODE_PACP
-        - TRANSACTION_ATTRIBUTE1_CODE_PAUT
-        - TRANSACTION_ATTRIBUTE1_CODE_PPYT
-        - TRANSACTION_ATTRIBUTE1_CODE_RCPT
-        - TRANSACTION_ATTRIBUTE1_CODE_SUBR
-        - TRANSACTION_ATTRIBUTE1_CODE_TPUP
+        - UNSPECIFIED
+        - AGGR
+        - CADB
+        - CPLT
+        - DBRP
+        - DFRD
+        - FRCP
+        - INCR
+        - INST
+        - OTHN
+        - OTHP
+        - PACP
+        - PAUT
+        - PPYT
+        - RCPT
+        - SUBR
+        - TPUP
       type: string
     msgfinancialinitiationTransactionContext1:
       description: Context of the card payment transaction.
@@ -4868,17 +4867,17 @@ components:
       type: object
       description: Identification of the transaction
     msgfinancialinitiationTransactionInitiator1Code:
-      default: TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Identifies the transaction initiator.
 
-         - TRANSACTION_INITIATOR1_CODE_UNSPECIFIED: Default
-         - TRANSACTION_INITIATOR1_CODE_CUST: Customer initiated transaction.
-         - TRANSACTION_INITIATOR1_CODE_MERC: Merchant initiated transaction.
+         - UNSPECIFIED: Default
+         - CUST: Customer initiated transaction.
+         - MERC: Merchant initiated transaction.
       enum:
-        - TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
-        - TRANSACTION_INITIATOR1_CODE_CUST
-        - TRANSACTION_INITIATOR1_CODE_MERC
+        - UNSPECIFIED
+        - CUST
+        - MERC
       type: string
     msgfinancialinitiationTransactionLifeCycleIdentification1:
       properties:
@@ -4894,34 +4893,34 @@ components:
         \ to chargebacks, etc.). It shall contain the same value in all messages throughout\
         \ a transaction's lifecycle. ISO 8583:2003 bit 21"
     msgfinancialinitiationTypeOfAmount10Code:
-      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type or class of amount.
 
-         - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default
-         - TYPE_OF_AMOUNT10_CODE_FEEA: International service assessment fees.
-         - TYPE_OF_AMOUNT10_CODE_FEEP: Processing fees.
-         - TYPE_OF_AMOUNT10_CODE_INTC: Interchange fee.
-         - TYPE_OF_AMOUNT10_CODE_OTHP: Other type of amount defined at private level.
+         - UNSPECIFIED: Default
+         - FEEA: International service assessment fees.
+         - FEEP: Processing fees.
+         - INTC: Interchange fee.
+         - OTHP: Other type of amount defined at private level.
       enum:
-        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT10_CODE_FEEA
-        - TYPE_OF_AMOUNT10_CODE_FEEP
-        - TYPE_OF_AMOUNT10_CODE_INTC
-        - TYPE_OF_AMOUNT10_CODE_OTHP
+        - UNSPECIFIED
+        - FEEA
+        - FEEP
+        - INTC
+        - OTHP
       type: string
     msgfinancialinitiationTypeOfAmount12Code:
-      default: TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Type of amount.
 
-         - TYPE_OF_AMOUNT12_CODE_UNSPECIFIED: Default
-         - TYPE_OF_AMOUNT12_CODE_OTHP: Other type of amount defined at private level.
-         - TYPE_OF_AMOUNT12_CODE_RQCH: Requested cashback amount
+         - UNSPECIFIED: Default
+         - OTHP: Other type of amount defined at private level.
+         - RQCH: Requested cashback amount
       enum:
-        - TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT12_CODE_OTHP
-        - TYPE_OF_AMOUNT12_CODE_RQCH
+        - UNSPECIFIED
+        - OTHP
+        - RQCH
       type: string
     msgfinancialinitiationVerification1:
       description: Contain validation result and/or data to be validated.
@@ -5102,28 +5101,28 @@ components:
           type: array
       type: object
     msgfinancialresponseLifeCycleSupport1Code:
-      default: LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
         Indicates the point in the transaction lifecycle at which the lifecycle identifier was assigned.
 
-         - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED: Default
-         - LIFE_CYCLE_SUPPORT1_CODE_AUTH: Assigned at authorisation time.
-         - LIFE_CYCLE_SUPPORT1_CODE_FINC: Assigned at financial time.
+         - UNSPECIFIED: Default
+         - AUTH: Assigned at authorisation time.
+         - FINC: Assigned at financial time.
       enum:
-        - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
-        - LIFE_CYCLE_SUPPORT1_CODE_AUTH
-        - LIFE_CYCLE_SUPPORT1_CODE_FINC
+        - UNSPECIFIED
+        - AUTH
+        - FINC
       type: string
     msgfinancialresponseMessageFunction16Code:
-      default: MESSAGE_FUNCTION16_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       description: |-
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED: Default
-         - MESSAGE_FUNCTION16_CODE_ADVC: Advice indicates where the sender informs the receiver of an activity that has been taken that requires a response.
-         - MESSAGE_FUNCTION16_CODE_REQU: Message function is a request.
+        - UNSPECIFIED: Default
+         - ADVC: Advice indicates where the sender informs the receiver of an activity that has been taken that requires a response.
+         - REQU: Message function is a request.
       enum:
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION16_CODE_ADVC
-        - MESSAGE_FUNCTION16_CODE_REQU
+        - UNSPECIFIED
+        - ADVC
+        - REQU
       type: string
     msgfinancialresponsePartyIdentification197:
       description: Identification of a party.
@@ -5367,13 +5366,13 @@ components:
       type: object
       description: Additional Service Information
     msginquiryinitiationAdditionalServiceType1Code:
-      default: ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
-        - ADDITIONAL_SERVICE_TYPE1_CODE_DCCV
-        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHP
+        - UNSPECIFIED
+        - DCCV
+        - OTHP
       type: string
-      description: "- ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationAddress1:
       properties:
         adrLine1:
@@ -5564,38 +5563,38 @@ components:
       type: object
       description: Card
     msginquiryinitiationCardDataReading7Code:
-      default: CARD_DATA_READING7_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CARD_DATA_READING7_CODE_UNSPECIFIED
-        - CARD_DATA_READING7_CODE_CDFL
-        - CARD_DATA_READING7_CODE_ICCY
-        - CARD_DATA_READING7_CODE_ICPY
-        - CARD_DATA_READING7_CODE_KEEN
-        - CARD_DATA_READING7_CODE_MGST
-        - CARD_DATA_READING7_CODE_MICR
-        - CARD_DATA_READING7_CODE_MLEY
-        - CARD_DATA_READING7_CODE_MSIP
-        - CARD_DATA_READING7_CODE_OCRR
-        - CARD_DATA_READING7_CODE_OPTC
-        - CARD_DATA_READING7_CODE_OTHN
-        - CARD_DATA_READING7_CODE_OTHP
-        - CARD_DATA_READING7_CODE_RFID
-        - CARD_DATA_READING7_CODE_UNSP
+        - UNSPECIFIED
+        - CDFL
+        - ICCY
+        - ICPY
+        - KEEN
+        - MGST
+        - MICR
+        - MLEY
+        - MSIP
+        - OCRR
+        - OPTC
+        - OTHN
+        - OTHP
+        - RFID
+        - UNSP
       type: string
-      description: "- CARD_DATA_READING7_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationCardDataWriting1Code:
-      default: CARD_DATA_WRITING1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CARD_DATA_WRITING1_CODE_UNSPECIFIED
-        - CARD_DATA_WRITING1_CODE_ICCY
-        - CARD_DATA_WRITING1_CODE_ICPY
-        - CARD_DATA_WRITING1_CODE_MGST
-        - CARD_DATA_WRITING1_CODE_MSIP
-        - CARD_DATA_WRITING1_CODE_OTHN
-        - CARD_DATA_WRITING1_CODE_OTHP
-        - CARD_DATA_WRITING1_CODE_UNSP
+        - UNSPECIFIED
+        - ICCY
+        - ICPY
+        - MGST
+        - MSIP
+        - OTHN
+        - OTHP
+        - UNSP
       type: string
-      description: "- CARD_DATA_WRITING1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationCardProgramme1:
       properties:
         cardPrgrmmApld:
@@ -5654,15 +5653,15 @@ components:
       type: object
       description: Terminal Cardholder Verification Capability
     msginquiryinitiationCardholderVerificationCapability5Code:
-      default: CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NOPN
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_NPIN
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_OTHP
-        - CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSP
+        - UNSPECIFIED
+        - NOPN
+        - NPIN
+        - OTHP
+        - UNSP
       type: string
-      description: "- CARDHOLDER_VERIFICATION_CAPABILITY5_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationContact1:
       properties:
         homePhneNb:
@@ -5706,17 +5705,17 @@ components:
       type: object
       description: Cardholder Device Information
     msginquiryinitiationCustomerDeviceType1Code:
-      default: CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED
-        - CUSTOMER_DEVICE_TYPE1_CODE_MOBL
-        - CUSTOMER_DEVICE_TYPE1_CODE_NSCR
-        - CUSTOMER_DEVICE_TYPE1_CODE_OTHP
-        - CUSTOMER_DEVICE_TYPE1_CODE_PECR
-        - CUSTOMER_DEVICE_TYPE1_CODE_SECR
-        - CUSTOMER_DEVICE_TYPE1_CODE_TBLT
+        - UNSPECIFIED
+        - MOBL
+        - NSCR
+        - OTHP
+        - PECR
+        - SECR
+        - TBLT
       type: string
-      description: "- CUSTOMER_DEVICE_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationDevice1:
       properties:
         tp:
@@ -5755,19 +5754,19 @@ components:
           example: 523793
       type: object
     msginquiryinitiationIdentification2Code:
-      default: IDENTIFICATION2_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - IDENTIFICATION2_CODE_UNSPECIFIED
-        - IDENTIFICATION2_CODE_ARNB
-        - IDENTIFICATION2_CODE_DRID
-        - IDENTIFICATION2_CODE_EMAL
-        - IDENTIFICATION2_CODE_NTID
-        - IDENTIFICATION2_CODE_OTHP
-        - IDENTIFICATION2_CODE_PASS
-        - IDENTIFICATION2_CODE_PHNB
-        - IDENTIFICATION2_CODE_SSYN
+        - UNSPECIFIED
+        - ARNB
+        - DRID
+        - EMAL
+        - NTID
+        - OTHP
+        - PASS
+        - PHNB
+        - SSYN
       type: string
-      description: "- IDENTIFICATION2_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationPartyIdentification197:
       properties:
         id:
@@ -5847,17 +5846,17 @@ components:
           type: array
       type: object
     msginquiryinitiationPartyType28Code:
-      default: PARTY_TYPE28_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE28_CODE_UNSPECIFIED
-        - PARTY_TYPE28_CODE_ACCP
-        - PARTY_TYPE28_CODE_ACQR
-        - PARTY_TYPE28_CODE_AGNT
-        - PARTY_TYPE28_CODE_ISUR
-        - PARTY_TYPE28_CODE_OTHP
-        - PARTY_TYPE28_CODE_WLPR
+        - UNSPECIFIED
+        - ACCP
+        - ACQR
+        - AGNT
+        - ISUR
+        - OTHP
+        - WLPR
       type: string
-      description: "- PARTY_TYPE28_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationPointOfServiceContext1:
       properties:
         cardPres:
@@ -5927,14 +5926,14 @@ components:
       type: object
       description: Point of Interaction Context
     msginquiryinitiationPriority3Code:
-      default: PRIORITY3_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PRIORITY3_CODE_UNSPECIFIED
-        - PRIORITY3_CODE_HIGH
-        - PRIORITY3_CODE_NORM
-        - PRIORITY3_CODE_URGT
+        - UNSPECIFIED
+        - HIGH
+        - NORM
+        - URGT
       type: string
-      description: "- PRIORITY3_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationResultData1:
       properties:
         rsltDtls:
@@ -6137,24 +6136,24 @@ components:
       type: object
       description: Terminal Identification
     msginquiryinitiationTerminalIntegrationCategory1Code:
-      default: TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_MPOI
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_MSLE
-        - TERMINAL_INTEGRATION_CATEGORY1_CODE_SSLE
+        - UNSPECIFIED
+        - MPOI
+        - MSLE
+        - SSLE
       type: string
-      description: "- TERMINAL_INTEGRATION_CATEGORY1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationTerminalType1Code:
-      default: TERMINAL_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TERMINAL_TYPE1_CODE_UNSPECIFIED
-        - TERMINAL_TYPE1_CODE_ATMT
-        - TERMINAL_TYPE1_CODE_MPOS
-        - TERMINAL_TYPE1_CODE_OTHP
-        - TERMINAL_TYPE1_CODE_POST
+        - UNSPECIFIED
+        - ATMT
+        - MPOS
+        - OTHP
+        - POST
       type: string
-      description: "- TERMINAL_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationToken1:
       properties:
         pmtTkn:
@@ -6236,13 +6235,13 @@ components:
       type: object
       description: Transaction Context
     msginquiryinitiationTransactionInitiator1Code:
-      default: TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
-        - TRANSACTION_INITIATOR1_CODE_CUST
-        - TRANSACTION_INITIATOR1_CODE_MERC
+        - UNSPECIFIED
+        - CUST
+        - MERC
       type: string
-      description: "- TRANSACTION_INITIATOR1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationTransactionLifeCycleIdentification1:
       properties:
         id:
@@ -6261,15 +6260,15 @@ components:
       type: object
       description: Life Cycle Identification
     msginquiryinitiationTypeOfAmount10Code:
-      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT10_CODE_FEEA
-        - TYPE_OF_AMOUNT10_CODE_FEEP
-        - TYPE_OF_AMOUNT10_CODE_INTC
-        - TYPE_OF_AMOUNT10_CODE_OTHP
+        - UNSPECIFIED
+        - FEEA
+        - FEEP
+        - INTC
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryinitiationVerification1:
       properties:
         vrfctnInf:
@@ -6482,18 +6481,18 @@ components:
       type: object
       description: Account Balance
     msginquiryresponseBalanceType14Code:
-      default: BALANCE_TYPE14_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - BALANCE_TYPE14_CODE_UNSPECIFIED
-        - BALANCE_TYPE14_CODE_AMOH
-        - BALANCE_TYPE14_CODE_AMTD
-        - BALANCE_TYPE14_CODE_AMTO
-        - BALANCE_TYPE14_CODE_CLRI
-        - BALANCE_TYPE14_CODE_CRDL
-        - BALANCE_TYPE14_CODE_LDGR
-        - BALANCE_TYPE14_CODE_OTHP
+        - UNSPECIFIED
+        - AMOH
+        - AMTD
+        - AMTO
+        - CLRI
+        - CRDL
+        - LDGR
+        - OTHP
       type: string
-      description: "- BALANCE_TYPE14_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryresponseCardData4:
       properties:
         pan:
@@ -6607,26 +6606,26 @@ components:
       type: object
       description: Risk Assessor
     msginquiryresponsePartyType28Code:
-      default: PARTY_TYPE28_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE28_CODE_UNSPECIFIED
-        - PARTY_TYPE28_CODE_ACCP
-        - PARTY_TYPE28_CODE_ACQR
-        - PARTY_TYPE28_CODE_AGNT
-        - PARTY_TYPE28_CODE_ISUR
-        - PARTY_TYPE28_CODE_OTHP
-        - PARTY_TYPE28_CODE_WLPR
+        - UNSPECIFIED
+        - ACCP
+        - ACQR
+        - AGNT
+        - ISUR
+        - OTHP
+        - WLPR
       type: string
-      description: "- PARTY_TYPE28_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryresponsePriority3Code:
-      default: PRIORITY3_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PRIORITY3_CODE_UNSPECIFIED
-        - PRIORITY3_CODE_HIGH
-        - PRIORITY3_CODE_NORM
-        - PRIORITY3_CODE_URGT
+        - UNSPECIFIED
+        - HIGH
+        - NORM
+        - URGT
       type: string
-      description: "- PRIORITY3_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryresponseResultData1:
       properties:
         rsltDtls:
@@ -6815,15 +6814,15 @@ components:
       type: object
       description: Life Cycle Identification
     msginquiryresponseTypeOfAmount10Code:
-      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT10_CODE_FEEA
-        - TYPE_OF_AMOUNT10_CODE_FEEP
-        - TYPE_OF_AMOUNT10_CODE_INTC
-        - TYPE_OF_AMOUNT10_CODE_OTHP
+        - UNSPECIFIED
+        - FEEA
+        - FEEP
+        - INTC
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msginquiryresponseVerification2:
       properties:
         vrfctnRslt:
@@ -6941,20 +6940,20 @@ components:
       type: object
       description: Additional Service Information
     msgreversalinitiationAdditionalServiceType1Code:
-      default: ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED
-        - ADDITIONAL_SERVICE_TYPE1_CODE_CACT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_CSHB
-        - ADDITIONAL_SERVICE_TYPE1_CODE_DCCV
-        - ADDITIONAL_SERVICE_TYPE1_CODE_INTP
-        - ADDITIONAL_SERVICE_TYPE1_CODE_INTT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_LOYT
-        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHN
-        - ADDITIONAL_SERVICE_TYPE1_CODE_OTHP
-        - ADDITIONAL_SERVICE_TYPE1_CODE_PRST
+        - UNSPECIFIED
+        - CACT
+        - CSHB
+        - DCCV
+        - INTP
+        - INTT
+        - LOYT
+        - OTHN
+        - OTHP
+        - PRST
       type: string
-      description: "- ADDITIONAL_SERVICE_TYPE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationAddress1:
       properties:
         adrLine1:
@@ -7057,23 +7056,23 @@ components:
       type: object
       description: Authorizing Entity
     msgreversalinitiationCardDataReading7Code:
-      default: CARD_DATA_READING7_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - CARD_DATA_READING7_CODE_UNSPECIFIED
-        - CARD_DATA_READING7_CODE_CDFL
-        - CARD_DATA_READING7_CODE_ICCY
-        - CARD_DATA_READING7_CODE_ICPY
-        - CARD_DATA_READING7_CODE_KEEN
-        - CARD_DATA_READING7_CODE_MGST
-        - CARD_DATA_READING7_CODE_MICR
-        - CARD_DATA_READING7_CODE_MLEY
-        - CARD_DATA_READING7_CODE_MSIP
-        - CARD_DATA_READING7_CODE_OCRR
-        - CARD_DATA_READING7_CODE_OPTC
-        - CARD_DATA_READING7_CODE_OTHP
-        - CARD_DATA_READING7_CODE_UNSP
+        - UNSPECIFIED
+        - CDFL
+        - ICCY
+        - ICPY
+        - KEEN
+        - MGST
+        - MICR
+        - MLEY
+        - MSIP
+        - OCRR
+        - OPTC
+        - OTHP
+        - UNSP
       type: string
-      description: "- CARD_DATA_READING7_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationCardProgramme1:
       properties:
         cardPrgrmmApld:
@@ -7129,21 +7128,21 @@ components:
           example: 1997-08-22
       type: object
     msgreversalinitiationDetailAmount1Code:
-      default: DETAIL_AMOUNT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - DETAIL_AMOUNT1_CODE_UNSPECIFIED
-        - DETAIL_AMOUNT1_CODE_CSHB
-        - DETAIL_AMOUNT1_CODE_DCCF
-        - DETAIL_AMOUNT1_CODE_DONN
-        - DETAIL_AMOUNT1_CODE_EXTR
-        - DETAIL_AMOUNT1_CODE_FORX
-        - DETAIL_AMOUNT1_CODE_GRTY
-        - DETAIL_AMOUNT1_CODE_OTHN
-        - DETAIL_AMOUNT1_CODE_OTHP
-        - DETAIL_AMOUNT1_CODE_SRCH
-        - DETAIL_AMOUNT1_CODE_TAXT
+        - UNSPECIFIED
+        - CSHB
+        - DCCF
+        - DONN
+        - EXTR
+        - FORX
+        - GRTY
+        - OTHN
+        - OTHP
+        - SRCH
+        - TAXT
       type: string
-      description: "- DETAIL_AMOUNT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationDetailedAmount19:
       properties:
         tp:
@@ -7208,25 +7207,25 @@ components:
       type: object
       description: Funds Transfer Source
     msgreversalinitiationFundingSourceType2Code:
-      default: FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED
-        - FUNDING_SOURCE_TYPE2_CODE_CASH
-        - FUNDING_SOURCE_TYPE2_CODE_CDBT
-        - FUNDING_SOURCE_TYPE2_CODE_CHQE
-        - FUNDING_SOURCE_TYPE2_CODE_CRDT
-        - FUNDING_SOURCE_TYPE2_CODE_CURR
-        - FUNDING_SOURCE_TYPE2_CODE_DBAC
-        - FUNDING_SOURCE_TYPE2_CODE_EPRS
-        - FUNDING_SOURCE_TYPE2_CODE_LCDT
-        - FUNDING_SOURCE_TYPE2_CODE_LOYL
-        - FUNDING_SOURCE_TYPE2_CODE_OTHN
-        - FUNDING_SOURCE_TYPE2_CODE_OTHP
-        - FUNDING_SOURCE_TYPE2_CODE_PRPD
-        - FUNDING_SOURCE_TYPE2_CODE_SVNG
-        - FUNDING_SOURCE_TYPE2_CODE_UVRL
+        - UNSPECIFIED
+        - CASH
+        - CDBT
+        - CHQE
+        - CRDT
+        - CURR
+        - DBAC
+        - EPRS
+        - LCDT
+        - LOYL
+        - OTHN
+        - OTHP
+        - PRPD
+        - SVNG
+        - UVRL
       type: string
-      description: "- FUNDING_SOURCE_TYPE2_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationGenericIdentification172:
       properties:
         id:
@@ -7263,54 +7262,54 @@ components:
       type: object
       description: Message Header
     msgreversalinitiationIdentification2Code:
-      default: IDENTIFICATION2_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - IDENTIFICATION2_CODE_UNSPECIFIED
-        - IDENTIFICATION2_CODE_ARNB
-        - IDENTIFICATION2_CODE_DRID
-        - IDENTIFICATION2_CODE_EMAL
-        - IDENTIFICATION2_CODE_NTID
-        - IDENTIFICATION2_CODE_OTHN
-        - IDENTIFICATION2_CODE_OTHP
-        - IDENTIFICATION2_CODE_PASS
-        - IDENTIFICATION2_CODE_PHNB
-        - IDENTIFICATION2_CODE_SSYN
+        - UNSPECIFIED
+        - ARNB
+        - DRID
+        - EMAL
+        - NTID
+        - OTHN
+        - OTHP
+        - PASS
+        - PHNB
+        - SSYN
       type: string
-      description: "- IDENTIFICATION2_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationLifeCycleSupport1Code:
-      default: LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
-        - LIFE_CYCLE_SUPPORT1_CODE_AUTH
-        - LIFE_CYCLE_SUPPORT1_CODE_FINC
+        - UNSPECIFIED
+        - AUTH
+        - FINC
       type: string
-      description: "- LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationMessageClass1Code:
-      default: MESSAGE_CLASS1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_CLASS1_CODE_UNSPECIFIED
-        - MESSAGE_CLASS1_CODE_ADDE
-        - MESSAGE_CLASS1_CODE_AMDT
-        - MESSAGE_CLASS1_CODE_AUTH
-        - MESSAGE_CLASS1_CODE_CBCK
-        - MESSAGE_CLASS1_CODE_CMGT
-        - MESSAGE_CLASS1_CODE_FEEC
-        - MESSAGE_CLASS1_CODE_FINL
-        - MESSAGE_CLASS1_CODE_INQY
-        - MESSAGE_CLASS1_CODE_VERI
+        - UNSPECIFIED
+        - ADDE
+        - AMDT
+        - AUTH
+        - CBCK
+        - CMGT
+        - FEEC
+        - FINL
+        - INQY
+        - VERI
       type: string
-      description: "- MESSAGE_CLASS1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationMessageFunction16Code:
-      default: MESSAGE_FUNCTION16_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION16_CODE_ADVC
-        - MESSAGE_FUNCTION16_CODE_CAAD
-        - MESSAGE_FUNCTION16_CODE_CANO
-        - MESSAGE_FUNCTION16_CODE_NOTI
-        - MESSAGE_FUNCTION16_CODE_REQU
+        - UNSPECIFIED
+        - ADVC
+        - CAAD
+        - CANO
+        - NOTI
+        - REQU
       type: string
-      description: "- MESSAGE_FUNCTION16_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationOriginalDataElements1:
       properties:
         msgClss:
@@ -7449,28 +7448,28 @@ components:
           $ref: '#/components/schemas/msgreversalinitiationCustomer3'
       type: object
     msgreversalinitiationPartyType26Code:
-      default: PARTY_TYPE26_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE26_CODE_UNSPECIFIED
-        - PARTY_TYPE26_CODE_ACCP
-        - PARTY_TYPE26_CODE_ACQR
-        - PARTY_TYPE26_CODE_AGNT
-        - PARTY_TYPE26_CODE_CISS
-        - PARTY_TYPE26_CODE_DLIS
-        - PARTY_TYPE26_CODE_ICCA
-        - PARTY_TYPE26_CODE_OTHN
-        - PARTY_TYPE26_CODE_OTHP
+        - UNSPECIFIED
+        - ACCP
+        - ACQR
+        - AGNT
+        - CISS
+        - DLIS
+        - ICCA
+        - OTHN
+        - OTHP
       type: string
-      description: "- PARTY_TYPE26_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationPriority3Code:
-      default: PRIORITY3_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PRIORITY3_CODE_UNSPECIFIED
-        - PRIORITY3_CODE_HIGH
-        - PRIORITY3_CODE_NORM
-        - PRIORITY3_CODE_URGT
+        - UNSPECIFIED
+        - HIGH
+        - NORM
+        - URGT
       type: string
-      description: "- PRIORITY3_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationProcessingResult1:
       properties:
         apprvlData:
@@ -7787,27 +7786,27 @@ components:
       type: object
       description: Transaction Amounts
     msgreversalinitiationTransactionAttribute1Code:
-      default: TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
-        - TRANSACTION_ATTRIBUTE1_CODE_AGGR
-        - TRANSACTION_ATTRIBUTE1_CODE_CADB
-        - TRANSACTION_ATTRIBUTE1_CODE_CPLT
-        - TRANSACTION_ATTRIBUTE1_CODE_DBRP
-        - TRANSACTION_ATTRIBUTE1_CODE_DFRD
-        - TRANSACTION_ATTRIBUTE1_CODE_FRCP
-        - TRANSACTION_ATTRIBUTE1_CODE_INCR
-        - TRANSACTION_ATTRIBUTE1_CODE_INST
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHN
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHP
-        - TRANSACTION_ATTRIBUTE1_CODE_PACP
-        - TRANSACTION_ATTRIBUTE1_CODE_PAUT
-        - TRANSACTION_ATTRIBUTE1_CODE_PPYT
-        - TRANSACTION_ATTRIBUTE1_CODE_RCPT
-        - TRANSACTION_ATTRIBUTE1_CODE_SUBR
-        - TRANSACTION_ATTRIBUTE1_CODE_TPUP
+        - UNSPECIFIED
+        - AGGR
+        - CADB
+        - CPLT
+        - DBRP
+        - DFRD
+        - FRCP
+        - INCR
+        - INST
+        - OTHN
+        - OTHP
+        - PACP
+        - PAUT
+        - PPYT
+        - RCPT
+        - SUBR
+        - TPUP
       type: string
-      description: "- TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationTransactionIdentification8:
       properties:
         lclDtTm:
@@ -7847,13 +7846,13 @@ components:
       type: object
       description: XXXX1234567XXXX
     msgreversalinitiationTransactionInitiator1Code:
-      default: TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TRANSACTION_INITIATOR1_CODE_UNSPECIFIED
-        - TRANSACTION_INITIATOR1_CODE_CUST
-        - TRANSACTION_INITIATOR1_CODE_MERC
+        - UNSPECIFIED
+        - CUST
+        - MERC
       type: string
-      description: "- TRANSACTION_INITIATOR1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationTransactionLifeCycleIdentification1:
       properties:
         id:
@@ -7888,48 +7887,48 @@ components:
       type: object
       description: Funds Transfer Service
     msgreversalinitiationTypeOfAmount10Code:
-      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT10_CODE_FEEA
-        - TYPE_OF_AMOUNT10_CODE_FEEP
-        - TYPE_OF_AMOUNT10_CODE_INTC
-        - TYPE_OF_AMOUNT10_CODE_OTHN
-        - TYPE_OF_AMOUNT10_CODE_OTHP
+        - UNSPECIFIED
+        - FEEA
+        - FEEP
+        - INTC
+        - OTHN
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationTypeOfAmount11Code:
-      default: TYPE_OF_AMOUNT11_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT11_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT11_CODE_ACTL
-        - TYPE_OF_AMOUNT11_CODE_DFLT
-        - TYPE_OF_AMOUNT11_CODE_DPST
-        - TYPE_OF_AMOUNT11_CODE_ESTM
-        - TYPE_OF_AMOUNT11_CODE_MAXI
-        - TYPE_OF_AMOUNT11_CODE_PRXY
-        - TYPE_OF_AMOUNT11_CODE_RESD
+        - UNSPECIFIED
+        - ACTL
+        - DFLT
+        - DPST
+        - ESTM
+        - MAXI
+        - PRXY
+        - RESD
       type: string
-      description: "- TYPE_OF_AMOUNT11_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationTypeOfAmount12Code:
-      default: TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT12_CODE_AMTH
-        - TYPE_OF_AMOUNT12_CODE_AMTN
-        - TYPE_OF_AMOUNT12_CODE_AMTQ
-        - TYPE_OF_AMOUNT12_CODE_AMTX
-        - TYPE_OF_AMOUNT12_CODE_ANTA
-        - TYPE_OF_AMOUNT12_CODE_CUAT
-        - TYPE_OF_AMOUNT12_CODE_DCNT
-        - TYPE_OF_AMOUNT12_CODE_ISCF
-        - TYPE_OF_AMOUNT12_CODE_MAXI
-        - TYPE_OF_AMOUNT12_CODE_OTHN
-        - TYPE_OF_AMOUNT12_CODE_OTHP
-        - TYPE_OF_AMOUNT12_CODE_PDCC
-        - TYPE_OF_AMOUNT12_CODE_RQCH
+        - UNSPECIFIED
+        - AMTH
+        - AMTN
+        - AMTQ
+        - AMTX
+        - ANTA
+        - CUAT
+        - DCNT
+        - ISCF
+        - MAXI
+        - OTHN
+        - OTHP
+        - PDCC
+        - RQCH
       type: string
-      description: "- TYPE_OF_AMOUNT12_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalinitiationWallet1:
       properties:
         prvdr:
@@ -8100,21 +8099,21 @@ components:
       type: object
       description: Card Processing Program (Applied)
     msgreversalresponseDetailAmount1Code:
-      default: DETAIL_AMOUNT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - DETAIL_AMOUNT1_CODE_UNSPECIFIED
-        - DETAIL_AMOUNT1_CODE_CSHB
-        - DETAIL_AMOUNT1_CODE_DCCF
-        - DETAIL_AMOUNT1_CODE_DONN
-        - DETAIL_AMOUNT1_CODE_EXTR
-        - DETAIL_AMOUNT1_CODE_FORX
-        - DETAIL_AMOUNT1_CODE_GRTY
-        - DETAIL_AMOUNT1_CODE_OTHN
-        - DETAIL_AMOUNT1_CODE_OTHP
-        - DETAIL_AMOUNT1_CODE_SRCH
-        - DETAIL_AMOUNT1_CODE_TAXT
+        - UNSPECIFIED
+        - CSHB
+        - DCCF
+        - DONN
+        - EXTR
+        - FORX
+        - GRTY
+        - OTHN
+        - OTHP
+        - SRCH
+        - TAXT
       type: string
-      description: "- DETAIL_AMOUNT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalresponseDetailedAmount19:
       properties:
         tp:
@@ -8194,24 +8193,24 @@ components:
       type: object
       description: Message Header
     msgreversalresponseLifeCycleSupport1Code:
-      default: LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED
-        - LIFE_CYCLE_SUPPORT1_CODE_AUTH
-        - LIFE_CYCLE_SUPPORT1_CODE_FINC
+        - UNSPECIFIED
+        - AUTH
+        - FINC
       type: string
-      description: "- LIFE_CYCLE_SUPPORT1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalresponseMessageFunction16Code:
-      default: MESSAGE_FUNCTION16_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_FUNCTION16_CODE_UNSPECIFIED
-        - MESSAGE_FUNCTION16_CODE_ADVC
-        - MESSAGE_FUNCTION16_CODE_CAAD
-        - MESSAGE_FUNCTION16_CODE_CANO
-        - MESSAGE_FUNCTION16_CODE_NOTI
-        - MESSAGE_FUNCTION16_CODE_REQU
+        - UNSPECIFIED
+        - ADVC
+        - CAAD
+        - CANO
+        - NOTI
+        - REQU
       type: string
-      description: "- MESSAGE_FUNCTION16_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalresponsePartyIdentification197:
       properties:
         id:
@@ -8225,28 +8224,28 @@ components:
       type: object
       description: Party
     msgreversalresponsePartyType26Code:
-      default: PARTY_TYPE26_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PARTY_TYPE26_CODE_UNSPECIFIED
-        - PARTY_TYPE26_CODE_ACCP
-        - PARTY_TYPE26_CODE_ACQR
-        - PARTY_TYPE26_CODE_AGNT
-        - PARTY_TYPE26_CODE_CISS
-        - PARTY_TYPE26_CODE_DLIS
-        - PARTY_TYPE26_CODE_ICCA
-        - PARTY_TYPE26_CODE_OTHN
-        - PARTY_TYPE26_CODE_OTHP
+        - UNSPECIFIED
+        - ACCP
+        - ACQR
+        - AGNT
+        - CISS
+        - DLIS
+        - ICCA
+        - OTHN
+        - OTHP
       type: string
-      description: "- PARTY_TYPE26_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalresponsePriority3Code:
-      default: PRIORITY3_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - PRIORITY3_CODE_UNSPECIFIED
-        - PRIORITY3_CODE_HIGH
-        - PRIORITY3_CODE_NORM
-        - PRIORITY3_CODE_URGT
+        - UNSPECIFIED
+        - HIGH
+        - NORM
+        - URGT
       type: string
-      description: "- PRIORITY3_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalresponseProcessingResult2:
       properties:
         apprvlData:
@@ -8424,27 +8423,27 @@ components:
       type: object
       description: Transaction Amounts
     msgreversalresponseTransactionAttribute1Code:
-      default: TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED
-        - TRANSACTION_ATTRIBUTE1_CODE_AGGR
-        - TRANSACTION_ATTRIBUTE1_CODE_CADB
-        - TRANSACTION_ATTRIBUTE1_CODE_CPLT
-        - TRANSACTION_ATTRIBUTE1_CODE_DBRP
-        - TRANSACTION_ATTRIBUTE1_CODE_DFRD
-        - TRANSACTION_ATTRIBUTE1_CODE_FRCP
-        - TRANSACTION_ATTRIBUTE1_CODE_INCR
-        - TRANSACTION_ATTRIBUTE1_CODE_INST
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHN
-        - TRANSACTION_ATTRIBUTE1_CODE_OTHP
-        - TRANSACTION_ATTRIBUTE1_CODE_PACP
-        - TRANSACTION_ATTRIBUTE1_CODE_PAUT
-        - TRANSACTION_ATTRIBUTE1_CODE_PPYT
-        - TRANSACTION_ATTRIBUTE1_CODE_RCPT
-        - TRANSACTION_ATTRIBUTE1_CODE_SUBR
-        - TRANSACTION_ATTRIBUTE1_CODE_TPUP
+        - UNSPECIFIED
+        - AGGR
+        - CADB
+        - CPLT
+        - DBRP
+        - DFRD
+        - FRCP
+        - INCR
+        - INST
+        - OTHN
+        - OTHP
+        - PACP
+        - PAUT
+        - PPYT
+        - RCPT
+        - SUBR
+        - TPUP
       type: string
-      description: "- TRANSACTION_ATTRIBUTE1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalresponseTransactionContext3:
       properties:
         cardPrgrmmApld:
@@ -8511,35 +8510,35 @@ components:
       type: object
       description: Life Cycle Identification
     msgreversalresponseTypeOfAmount10Code:
-      default: TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT10_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT10_CODE_FEEA
-        - TYPE_OF_AMOUNT10_CODE_FEEP
-        - TYPE_OF_AMOUNT10_CODE_INTC
-        - TYPE_OF_AMOUNT10_CODE_OTHN
-        - TYPE_OF_AMOUNT10_CODE_OTHP
+        - UNSPECIFIED
+        - FEEA
+        - FEEP
+        - INTC
+        - OTHN
+        - OTHP
       type: string
-      description: "- TYPE_OF_AMOUNT10_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     msgreversalresponseTypeOfAmount12Code:
-      default: TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT12_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT12_CODE_AMTH
-        - TYPE_OF_AMOUNT12_CODE_AMTN
-        - TYPE_OF_AMOUNT12_CODE_AMTQ
-        - TYPE_OF_AMOUNT12_CODE_AMTX
-        - TYPE_OF_AMOUNT12_CODE_ANTA
-        - TYPE_OF_AMOUNT12_CODE_CUAT
-        - TYPE_OF_AMOUNT12_CODE_DCNT
-        - TYPE_OF_AMOUNT12_CODE_ISCF
-        - TYPE_OF_AMOUNT12_CODE_MAXI
-        - TYPE_OF_AMOUNT12_CODE_OTHN
-        - TYPE_OF_AMOUNT12_CODE_OTHP
-        - TYPE_OF_AMOUNT12_CODE_PDCC
-        - TYPE_OF_AMOUNT12_CODE_RQCH
+        - UNSPECIFIED
+        - AMTH
+        - AMTN
+        - AMTQ
+        - AMTX
+        - ANTA
+        - CUAT
+        - DCNT
+        - ISCF
+        - MAXI
+        - OTHN
+        - OTHP
+        - PDCC
+        - RQCH
       type: string
-      description: "- TYPE_OF_AMOUNT12_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     responseAuthorisationResponse1:
       properties:
         envt:
@@ -8811,20 +8810,20 @@ components:
           example: additionalcarddata
       type: object
     reversalresponseMessageClass1Code:
-      default: MESSAGE_CLASS1_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - MESSAGE_CLASS1_CODE_UNSPECIFIED
-        - MESSAGE_CLASS1_CODE_ADDE
-        - MESSAGE_CLASS1_CODE_AMDT
-        - MESSAGE_CLASS1_CODE_AUTH
-        - MESSAGE_CLASS1_CODE_CBCK
-        - MESSAGE_CLASS1_CODE_CMGT
-        - MESSAGE_CLASS1_CODE_FEEC
-        - MESSAGE_CLASS1_CODE_FINL
-        - MESSAGE_CLASS1_CODE_INQY
-        - MESSAGE_CLASS1_CODE_VERI
+        - UNSPECIFIED
+        - ADDE
+        - AMDT
+        - AUTH
+        - CBCK
+        - CMGT
+        - FEEC
+        - FINL
+        - INQY
+        - VERI
       type: string
-      description: "- MESSAGE_CLASS1_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
     reversalresponseOriginalDataElements1:
       properties:
         msgClss:
@@ -8874,18 +8873,18 @@ components:
           $ref: '#/components/schemas/msgreversalresponseAmount4'
       type: object
     reversalresponseTypeOfAmount11Code:
-      default: TYPE_OF_AMOUNT11_CODE_UNSPECIFIED
+      default: UNSPECIFIED
       enum:
-        - TYPE_OF_AMOUNT11_CODE_UNSPECIFIED
-        - TYPE_OF_AMOUNT11_CODE_ACTL
-        - TYPE_OF_AMOUNT11_CODE_DFLT
-        - TYPE_OF_AMOUNT11_CODE_DPST
-        - TYPE_OF_AMOUNT11_CODE_ESTM
-        - TYPE_OF_AMOUNT11_CODE_MAXI
-        - TYPE_OF_AMOUNT11_CODE_PRXY
-        - TYPE_OF_AMOUNT11_CODE_RESD
+        - UNSPECIFIED
+        - ACTL
+        - DFLT
+        - DPST
+        - ESTM
+        - MAXI
+        - PRXY
+        - RESD
       type: string
-      description: "- TYPE_OF_AMOUNT11_CODE_UNSPECIFIED: Default"
+      description: "- UNSPECIFIED: Default"
   responses:
     AcceptedBody:
       description: Accepted
