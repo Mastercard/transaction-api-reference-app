@@ -1,15 +1,18 @@
 package com.mastercard.developer.transactionapi.example;
 
 import com.google.gson.Gson;
-import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
-import org.openapitools.client.model.InitiationFinancialInitiationV02;
-import org.openapitools.client.model.InitiationInquiryInitiationV01;
-import org.openapitools.client.model.InitiationReversalInitiationV02;
+import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.FinancialinitiationFinancialInitiationV02;
+import org.openapitools.client.model.InquiryinitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalinitiationReversalInitiationV02;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 /**
@@ -23,6 +26,7 @@ public class RequestExampleGenerator {
     public static final String REVERSAL_JSON = "reversal.json";
     public static final String INQUIRY_JSON = "inquiry.json";
     public static final String FINANCIAL_ADVICE_JSON = "financial_advice.json";
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 
     private final Clock clock = Clock.systemUTC();
     private final Random random = new Random();     // NOSONAR used for test data only
@@ -33,9 +37,10 @@ public class RequestExampleGenerator {
      * @return An instance of AuthorisationInitiationV02
      * @implNote The required field values used in this tutorial are dummy values and for demo purposes only, please change to valid values before running this application.
      */
-    public InitiationAuthorisationInitiationV02 buildAuthorisationRequest() {
-        InitiationAuthorisationInitiationV02 request = loadInitiationRequest(AUTHORISATION_JSON, InitiationAuthorisationInitiationV02.class);
-        String now = clock.instant().toString();
+    public AuthorisationinitiationAuthorisationInitiationV02 buildAuthorisationRequest() {
+        AuthorisationinitiationAuthorisationInitiationV02 request = loadInitiationRequest(AUTHORISATION_JSON, AuthorisationinitiationAuthorisationInitiationV02.class);
+        LocalDateTime date = LocalDateTime.now();
+        String now = date.atOffset(ZoneOffset.UTC).format(dtf);
         // the below fields must be uinque in each request
         request.getBody().getTx().getTxId().setLclDtTm(now);
         request.getBody().getTx().getTxId().setTrnsmssnDtTm(now);
@@ -49,9 +54,10 @@ public class RequestExampleGenerator {
      * @return An instance of InitiationReversalInitiationV02
      * @implNote The required field values used in this tutorial are dummy values and for demo purposes only, please change to valid values before running this application.
      */
-    public InitiationReversalInitiationV02 buildReversalRequest() {
-        InitiationReversalInitiationV02 request = loadInitiationRequest(REVERSAL_JSON, InitiationReversalInitiationV02.class);
-        String now = clock.instant().toString();
+    public ReversalinitiationReversalInitiationV02 buildReversalRequest() {
+        ReversalinitiationReversalInitiationV02 request = loadInitiationRequest(REVERSAL_JSON, ReversalinitiationReversalInitiationV02.class);
+        LocalDateTime date = LocalDateTime.now();
+        String now = date.atOffset(ZoneOffset.UTC).format(dtf);
         // the below fields must be uinque in each request
         request.getBody().getTx().getTxId().setLclDtTm(now);
         request.getBody().getTx().getTxId().setTrnsmssnDtTm(now);
@@ -65,9 +71,10 @@ public class RequestExampleGenerator {
      * @return An instance of InitiationInquiryInitiationV01
      * @implNote The required field values used in this tutorial are dummy values and for demo purposes only, please change to valid values before running this application.
      */
-    public InitiationInquiryInitiationV01 buildInquiryRequest() {
-        InitiationInquiryInitiationV01 request = loadInitiationRequest(INQUIRY_JSON, InitiationInquiryInitiationV01.class);
-        String now = clock.instant().toString();
+    public InquiryinitiationInquiryInitiationV01 buildInquiryRequest() {
+        InquiryinitiationInquiryInitiationV01 request = loadInitiationRequest(INQUIRY_JSON, InquiryinitiationInquiryInitiationV01.class);
+        LocalDateTime date = LocalDateTime.now();
+        String now = date.atOffset(ZoneOffset.UTC).format(dtf);
         // the below fields must be uinque in each request
         request.getBody().getTx().getTxId().setLclDtTm(now);
         request.getBody().getTx().getTxId().setTrnsmssnDtTm(now);
@@ -81,9 +88,10 @@ public class RequestExampleGenerator {
      * @return An instance of InitiationFinancialInitiationV02
      * @implNote The required field values used in this tutorial are dummy values and for demo purposes only, please change to valid values before running this application.
      */
-    public InitiationFinancialInitiationV02 buildFinancialAdviceRequest() {
-        InitiationFinancialInitiationV02 request = loadInitiationRequest(FINANCIAL_ADVICE_JSON, InitiationFinancialInitiationV02.class);
-        String now = clock.instant().toString();
+    public FinancialinitiationFinancialInitiationV02 buildFinancialAdviceRequest() {
+        FinancialinitiationFinancialInitiationV02 request = loadInitiationRequest(FINANCIAL_ADVICE_JSON, FinancialinitiationFinancialInitiationV02.class);
+        LocalDateTime date = LocalDateTime.now();
+        String now = date.atOffset(ZoneOffset.UTC).format(dtf);
         // the below fields must be uinque in each request
         request.getBody().getTx().getTxId().setLclDtTm(now);
         request.getBody().getTx().getTxId().setSysTracAudtNb(nextSysTracAudtNb());

@@ -1,248 +1,260 @@
 {
-    "hdr": {
-        "btchMgmtInf": {
-            "msgSeqNb": "00000061"
-        },
-        "msgFctn": "ADVC"
-    },
-    "body": {
-        "cntxt": {
-            "vrfctn": [
-                {
-                    "vrfctnInf": [
-                        {
-                            "val": {
-                                "txtVal": "122"
-                            },
-                            "tp": "ecom_security_level_ucaf_collection"
-                        }
-                    ]
-                }
-            ],
-            "ptOfSvcCntxt": {
-                "spclConds": [
-                    {
-                        "val": "1",
-                        "id": "cardholder_auth_capability"
-                    },
-                    {
-                        "val": "9",
-                        "id": "card_input_data_capability"
-                    },
-                    {
-                        "val": "9",
-                        "id": "card_capture_capability"
-                    },
-                    {
-                        "val": "5",
-                        "id": "terminal_op_env"
-                    },
-                    {
-                        "val": "5",
-                        "id": "cardholder_present_data"
-                    },
-                    {
-                        "val": "0",
-                        "id": "card_present_data"
-                    },
-                    {
-                        "val": "S",
-                        "id": "card_data_input_mode"
-                    },
-                    {
-                        "val": "0",
-                        "id": "cardholder_authentication_method"
-                    },
-                    {
-                        "val": "0",
-                        "id": "cardholder_authentication_entity"
-                    },
-                    {
-                        "val": "1",
-                        "id": "card_data_output_capability"
-                    },
-                    {
-                        "val": "1",
-                        "id": "terminal_data_output_capability"
-                    },
-                    {
-                        "val": "0",
-                        "id": "pin_capture_capability"
-                    }
-                ]
-            },
-            "txCntxt": {
-                "cardPrgrmm": {
-                    "cardPrgrmmApld": {
-                        "id": "not_specified"
-                    }
-                },
-                "mrchntCtgyCd": "4829"
-            }
-        },
-        "prcgRslt": {
-            "apprvlData": {
-                "apprvlCd": "A11111"
-            }
-        },
-        "tx": {
-            "txAmts": {
-                "orgnlTxAmts": {
-                    "txAmt": {
-                        "ccy": "978"
-                    },
-                    "rcncltnAmt": {
-                        "ccy": "978"
-                    }
-                },
-                "txAmt": {
-                    "ccy": "978",
-                    "amt": "61.38"
-                }
-            },
-            "addtlData": [
-                {
-                    "val": "200",
-                    "tp": "function_code"
-                },
-                {
-                    "val": "00000009694",
-                    "tp": "txn_orig_inst_id"
-                },
-                {
-                    "val": "M",
-                    "tp": "settlement_indicator"
-                },
-                {
-                    "val": "02544793",
-                    "tp": "test_case_trace_id_1"
-                },
-                {
-                    "val": "TEST 12345678            ",
-                    "tp": "test_case_trace_id_2"
-                },
-                {
-                    "val": "Debit MasterCard electronic commerce purchase no CVM",
-                    "tp": "pds_1000"
-                }
-            ],
-            "txTp": "18",
-            "spclPrgrmmQlfctn": [
-                {
-                    "dtl": [
-                        {
-                            "val": "608",
-                            "nm": "submitted_currency_exp_currency_code"
-                        }
-                    ]
-                },
-                {
-                    "dtl": [
-                        {
-                            "val": "2",
-                            "nm": "submitted_currency_exponent"
-                        }
-                    ]
-                },
-                {
-                    "dtl": [
-                        {
-                            "val": " ",
-                            "nm": "business_service_arrangement_type"
-                        },
-                        {
-                            "val": "      ",
-                            "nm": "business_service_arrangement_id"
-                        },
-                        {
-                            "val": "      ",
-                            "nm": "business_service_arr_central_date"
-                        },
-                        {
-                            "val": "  ",
-                            "nm": "business_service_arr_cycle"
-                        },
-                        {
-                            "val": " ",
-                            "nm": "business_service_arr_accpt_class"
-                        },
-                        {
-                            "val": "   ",
-                            "nm": "business_service_prod_override_ind"
-                        },
-                        {
-                            "val": " ",
-                            "nm": "business_service_arr_corp_incent_ind"
-                        },
-                        {
-                            "val": " ",
-                            "nm": "business_service_special_cond_ind"
-                        },
-                        {
-                            "val": " ",
-                            "nm": "business_service_mc_override_ind"
-                        },
-                        {
-                            "val": " ",
-                            "nm": "business_service_acct_level_code"
-                        },
-                        {
-                            "val": " ",
-                            "nm": "business_service_rate_indicator"
-                        },
-                        {
-                            "val": "73",
-                            "nm": "business_service_arr_interchange_fee"
-                        }
-                    ]
-                }
-            ],
-            "msgRsn": [
-                "previously_approved_same"
-            ],
-            "acctFr": {
-                "acctTp": "00"
-            },
-            "txId": {
-                "sysTracAudtNb": "100817",
-                "acqrrRefNb": "55506943192000000001901",
-                "lclDtTm": "2023-07-11T08:17:06.089Z",
-                "lifeCyclTracIdData": {
-                    "id": "DMCCPW6751202  "
-                }
-            },
-            "acctTo": {
-                "acctTp": "00"
-            }
-        },
-        "envt": {
-            "acqrr": {
-                "id": "550694"
-            },
-            "accptr": {
-                "id": "Merchant termin",
-                "nmAndLctn": "WIRE MONEY ORDERS",
-                "adr": {
-                    "twnNm": "MANILA",
-                    "pstlCd": "4455      ",
-                    "ctry": "PHL",
-                    "adrLine1": "4829 WTMOS WAY",
-                    "ctrySubDvsnMjr": "PHL"
-                }
-            },
-            "sndr": {
-                "id": "009694"
-            },
-            "termnl": {
-                "othrTp": "cat_6_ecommerce",
-                "termnlId": {
-                    "id": "12345678"
-                },
-                "tp": "OTHP"
-            },
-            "card": {
-                "pan": "5500966732189440"
-            }
-        }
+  "hdr": {
+    "msgFctn": "ADVC",
+    "btchMgmtInf": {
+      "msgSeqNb": "00000061"
     }
+  },
+  "body": {
+    "envt": {
+      "acqrr": {
+        "id": "550694"
+      },
+      "sndr": {
+        "id": "009694"
+      },
+      "accptr": {
+        "id": "Merchant termin",
+        "nmAndLctn": "WIRE MONEY ORDERS",
+        "adr": {
+          "adrLine1": "4829 WTMOS WAY",
+          "pstlCd": "4455667788",
+          "twnNm": "MANILA",
+          "ctrySubDvsnMjr": "PHL",
+          "ctry": "PHL"
+        }
+      },
+      "termnl": {
+        "termnlId": {
+          "id": "12345678"
+        },
+        "tp": "OTHP",
+        "othrTp": "cat_6_ecommerce"
+      },
+      "card": {
+        "pan": "5500966732189440"
+      }
+    },
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "cardDataNtryMd": "UNSPECIFIED",
+        "spclConds": [
+          {
+            "id": "cardholder_auth_capability",
+            "val": "1"
+          },
+          {
+            "id": "card_input_data_capability",
+            "val": "9"
+          },
+          {
+            "id": "card_capture_capability",
+            "val": "9"
+          },
+          {
+            "id": "terminal_op_env",
+            "val": "5"
+          },
+          {
+            "id": "cardholder_present_data",
+            "val": "5"
+          },
+          {
+            "id": "card_present_data",
+            "val": "0"
+          },
+          {
+            "id": "card_data_input_mode",
+            "val": "S"
+          },
+          {
+            "id": "cardholder_authentication_method",
+            "val": "0"
+          },
+          {
+            "id": "cardholder_authentication_entity",
+            "val": "0"
+          },
+          {
+            "id": "card_data_output_capability",
+            "val": "1"
+          },
+          {
+            "id": "terminal_data_output_capability",
+            "val": "1"
+          },
+          {
+            "id": "pin_capture_capability",
+            "val": "0"
+          }
+        ]
+      },
+      "txCntxt": {
+        "mrchntCtgyCd": "4829",
+        "txInitr": "UNSPECIFIED",
+        "cardPrgrmm": {
+          "cardPrgrmmApld": {
+            "id": "not_specified"
+          }
+        }
+      },
+      "vrfctn": [
+        {
+          "vrfctnInf": [
+            {
+              "tp": "ecom_security_level_ucaf_collection",
+              "val": {
+                "txtVal": "122"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tx": {
+      "txTp": "18",
+      "txAttr": "UNSPECIFIED",
+      "msgRsn": [
+        "previously_approved_same"
+      ],
+      "spclPrgrmmQlfctn": [
+        {
+          "dtl": [
+            {
+              "nm": "submitted_currency_exp_currency_code",
+              "val": "608"
+            }
+          ]
+        },
+        {
+          "dtl": [
+            {
+              "nm": "submitted_currency_exponent",
+              "val": "2"
+            }
+          ]
+        },
+        {
+          "dtl": [
+            {
+              "nm": "business_service_arrangement_type",
+              "val": " "
+            },
+            {
+              "nm": "business_service_arrangement_id",
+              "val": " "
+            },
+            {
+              "nm": "business_service_arr_central_date",
+              "val": " "
+            },
+            {
+              "nm": "business_service_arr_cycle",
+              "val": " "
+            },
+            {
+              "nm": "business_service_arr_accpt_class",
+              "val": " "
+            },
+            {
+              "nm": "business_service_prod_override_ind",
+              "val": " "
+            },
+            {
+              "nm": "business_service_arr_corp_incent_ind",
+              "val": " "
+            },
+            {
+              "nm": "business_service_special_cond_ind",
+              "val": " "
+            },
+            {
+              "nm": "business_service_mc_override_ind",
+              "val": " "
+            },
+            {
+              "nm": "business_service_acct_level_code",
+              "val": " "
+            },
+            {
+              "nm": "business_service_rate_indicator",
+              "val": " "
+            },
+            {
+              "nm": "business_service_arr_interchange_fee",
+              "val": "73"
+            }
+          ]
+        }
+      ],
+      "txId": {
+        "lclDtTm": "2023-12-21T10:45:41.663Z",
+        "sysTracAudtNb": "467118",
+        "lifeCyclSpprt": "UNSPECIFIED",
+        "lifeCyclTracIdData": {
+          "id": "DMCCPW675120213"
+        },
+        "acqrrRefNb": "55506943192000000001901"
+      },
+      "txAmts": {
+        "txAmt": {
+          "amt": "61.38",
+          "ccy": "978"
+        },
+        "orgnlTxAmts": {
+          "txAmt": {
+            "ccy": "840"
+          },
+          "rcncltnAmt": {
+            "ccy": "840"
+          }
+        }
+      },
+      "acctFr": {
+        "acctTp": "00"
+      },
+      "acctTo": {
+        "acctTp": "00"
+      },
+      "addtlData": [
+        {
+          "tp": "function_code",
+          "val": "200"
+        },
+        {
+          "tp": "txn_orig_inst_id",
+          "val": "00000009694"
+        },
+        {
+          "tp": "settlement_indicator",
+          "val": "M"
+        },
+        {
+          "tp": "test_case_trace_id_1",
+          "val": "02544793"
+        },
+        {
+          "tp": "test_case_trace_id_2",
+          "val": "TEST 12345678"
+        },
+        {
+          "tp": "pds_1000",
+          "val": "Debit MasterCard electronic commerce purchase no CVM"
+        },
+        {
+          "tp": "submitted_currency_exp_currency_code",
+          "val": "840"
+        },
+        {
+          "tp": "submitted_currency_exponent",
+          "val": "2"
+        }
+      ]
+    },
+    "prcgRslt": {
+      "apprvlData": {
+        "apprvlCd": "A11111"
+      }
+    }
+  }
 }
