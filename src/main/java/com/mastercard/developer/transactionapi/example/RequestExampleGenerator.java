@@ -28,7 +28,6 @@ public class RequestExampleGenerator {
     public static final String FINANCIAL_ADVICE_JSON = "financial_advice.json";
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 
-    private final Clock clock = Clock.systemUTC();
     private final Random random = new Random();     // NOSONAR used for test data only
 
     /**
