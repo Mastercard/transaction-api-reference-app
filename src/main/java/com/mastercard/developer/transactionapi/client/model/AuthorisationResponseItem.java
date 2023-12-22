@@ -2,8 +2,8 @@ package com.mastercard.developer.transactionapi.client.model;
 
 import lombok.RequiredArgsConstructor;
 import org.openapitools.client.model.AuthorisationResponseV02Item;
+import org.openapitools.client.model.AuthorisationresponseAuthorisationResponseV02;
 import org.openapitools.client.model.Error;
-import org.openapitools.client.model.ResponseAuthorisationResponseV02;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Adapter class for an Authorisation response item.
  */
 @RequiredArgsConstructor
-public class AuthorisationResponseItem implements ResponseItem<ResponseAuthorisationResponseV02> {
+public class AuthorisationResponseItem implements ResponseItem<AuthorisationresponseAuthorisationResponseV02> {
 
     private final AuthorisationResponseV02Item responseItem;
 
@@ -26,7 +26,7 @@ public class AuthorisationResponseItem implements ResponseItem<ResponseAuthorisa
     }
 
     @Override
-    public ResponseAuthorisationResponseV02 getPayload() {
+    public AuthorisationresponseAuthorisationResponseV02 getPayload() {
         return responseItem.getPayload();
     }
 

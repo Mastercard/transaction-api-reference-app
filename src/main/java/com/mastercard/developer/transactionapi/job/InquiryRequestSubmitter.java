@@ -7,7 +7,7 @@ import com.mastercard.developer.transactionapi.enums.FlowType;
 import com.mastercard.developer.transactionapi.example.RequestExampleGenerator;
 import com.mastercard.developer.transactionapi.utils.ClientUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.openapitools.client.model.InitiationInquiryInitiationV01;
+import org.openapitools.client.model.InquiryinitiationInquiryInitiationV01;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +26,7 @@ public class InquiryRequestSubmitter extends RequestSubmitter {
      */
     @Override
     protected void submitRequest() {
-        InitiationInquiryInitiationV01 request = getRequestExampleGenerator().buildInquiryRequest();
+        InquiryinitiationInquiryInitiationV01 request = getRequestExampleGenerator().buildInquiryRequest();
 
         String correlationId = getTransactionApiClient().submitInquiryRequest(request);
 

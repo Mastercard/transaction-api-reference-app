@@ -3,7 +3,7 @@ package com.mastercard.developer.transactionapi.client.model;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.client.model.Error;
 import org.openapitools.client.model.FinancialAdviceResponseV02Item;
-import org.openapitools.client.model.ResponseFinancialResponseV02;
+import org.openapitools.client.model.FinancialresponseFinancialResponseV02;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Adapter class for a Financial Advice response item.
  */
 @RequiredArgsConstructor
-public class FinancialAdviceResponseItem implements ResponseItem<ResponseFinancialResponseV02> {
+public class FinancialAdviceResponseItem implements ResponseItem<FinancialresponseFinancialResponseV02> {
 
     private final FinancialAdviceResponseV02Item responseItem;
 
@@ -26,7 +26,7 @@ public class FinancialAdviceResponseItem implements ResponseItem<ResponseFinanci
     }
 
     @Override
-    public ResponseFinancialResponseV02 getPayload() {
+    public FinancialresponseFinancialResponseV02 getPayload() {
         return responseItem.getPayload();
     }
 

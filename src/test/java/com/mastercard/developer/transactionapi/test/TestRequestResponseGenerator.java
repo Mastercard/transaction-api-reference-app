@@ -6,45 +6,29 @@ import com.mastercard.developer.transactionapi.client.model.ResponseItem;
 import com.mastercard.developer.transactionapi.example.RequestExampleGenerator;
 import org.openapitools.client.model.AuthorisationResponseV02Item;
 import org.openapitools.client.model.AuthorisationResponseV02List;
+import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.AuthorisationresponseAuthorisationResponse1;
+import org.openapitools.client.model.AuthorisationresponseAuthorisationResponseV02;
+import org.openapitools.client.model.AuthorisationresponseHeader42;
 import org.openapitools.client.model.Error;
 import org.openapitools.client.model.FinancialAdviceResponseV02Item;
 import org.openapitools.client.model.FinancialAdviceResponseV02List;
-import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
-import org.openapitools.client.model.InitiationFinancialInitiationV02;
-import org.openapitools.client.model.InitiationInquiryInitiationV01;
-import org.openapitools.client.model.InitiationReversalInitiationV02;
+import org.openapitools.client.model.FinancialinitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialresponseFinancialResponse1;
+import org.openapitools.client.model.FinancialresponseFinancialResponseV02;
+import org.openapitools.client.model.FinancialresponseHeader42;
 import org.openapitools.client.model.InquiryResponseV01Item;
 import org.openapitools.client.model.InquiryResponseV01List;
+import org.openapitools.client.model.InquiryinitiationInquiryInitiationV01;
 import org.openapitools.client.model.InquiryresponseHeader39;
-import org.openapitools.client.model.MsgauthorisationresponseAdditionalData1;
-import org.openapitools.client.model.MsgauthorisationresponseCardData4;
-import org.openapitools.client.model.MsgauthorisationresponseContext2;
-import org.openapitools.client.model.MsgauthorisationresponseEnvironment2;
-import org.openapitools.client.model.MsgauthorisationresponseGenericIdentification172;
-import org.openapitools.client.model.MsgauthorisationresponseHeader42;
-import org.openapitools.client.model.MsgauthorisationresponsePartyIdentification197;
-import org.openapitools.client.model.MsgauthorisationresponseProcessingResult2;
-import org.openapitools.client.model.MsgauthorisationresponseRiskAssessment1;
-import org.openapitools.client.model.MsgauthorisationresponseRiskContext1;
-import org.openapitools.client.model.MsgauthorisationresponseToken1;
-import org.openapitools.client.model.MsgauthorisationresponseTransaction78;
-import org.openapitools.client.model.MsgauthorisationresponseTransactionAmounts1;
-import org.openapitools.client.model.MsgauthorisationresponseTransactionAttribute1Code;
-import org.openapitools.client.model.MsgauthorisationresponseTransactionContext3;
-import org.openapitools.client.model.MsgauthorisationresponseTransactionIdentification8;
-import org.openapitools.client.model.MsgauthorisationresponseVerification2;
-import org.openapitools.client.model.MsgfinancialresponseHeader42;
-import org.openapitools.client.model.MsgreversalresponseHeader42;
-import org.openapitools.client.model.ResponseAuthorisationResponse1;
-import org.openapitools.client.model.ResponseAuthorisationResponseV02;
-import org.openapitools.client.model.ResponseFinancialResponse1;
-import org.openapitools.client.model.ResponseFinancialResponseV02;
-import org.openapitools.client.model.ResponseInquiryResponse1;
-import org.openapitools.client.model.ResponseInquiryResponseV01;
-import org.openapitools.client.model.ResponseReversalResponse2;
-import org.openapitools.client.model.ResponseReversalResponseV02;
+import org.openapitools.client.model.InquiryresponseInquiryResponse1;
+import org.openapitools.client.model.InquiryresponseInquiryResponseV01;
 import org.openapitools.client.model.ReversalResponseV02Item;
 import org.openapitools.client.model.ReversalResponseV02List;
+import org.openapitools.client.model.ReversalinitiationReversalInitiationV02;
+import org.openapitools.client.model.ReversalresponseHeader42;
+import org.openapitools.client.model.ReversalresponseReversalResponse2;
+import org.openapitools.client.model.ReversalresponseReversalResponseV02;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -58,31 +42,31 @@ public class  TestRequestResponseGenerator {
 
     private static final RequestExampleGenerator requestExampleGenerator = new RequestExampleGenerator();
 
-    public static ResponseAuthorisationResponseV02 getResponseAuthResponseItem() {
-        return new ResponseAuthorisationResponseV02()
-                .body(new ResponseAuthorisationResponse1())
-                .hdr(new MsgauthorisationresponseHeader42());
+    public static AuthorisationresponseAuthorisationResponseV02 getResponseAuthResponseItem() {
+        return new AuthorisationresponseAuthorisationResponseV02()
+                .body(new AuthorisationresponseAuthorisationResponse1())
+                .hdr(new AuthorisationresponseHeader42());
     }
 
-    public static ResponseFinancialResponseV02 getResponseFinancialAdvResponseItem() {
-        return new ResponseFinancialResponseV02()
-                .body(new ResponseFinancialResponse1())
-                .hdr(new MsgfinancialresponseHeader42());
+    public static FinancialresponseFinancialResponseV02 getResponseFinancialAdvResponseItem() {
+        return new FinancialresponseFinancialResponseV02()
+                .body(new FinancialresponseFinancialResponse1())
+                .hdr(new FinancialresponseHeader42());
     }
 
-    public static ResponseInquiryResponseV01 getResponseInquiryResponseItem() {
-        return new ResponseInquiryResponseV01()
-                .body(new ResponseInquiryResponse1())
+    public static InquiryresponseInquiryResponseV01 getResponseInquiryResponseItem() {
+        return new InquiryresponseInquiryResponseV01()
+                .body(new InquiryresponseInquiryResponse1())
                 .hdr(new InquiryresponseHeader39());
     }
 
-    public static ResponseReversalResponseV02 getResponseReversalResponseItem() {
-        return new ResponseReversalResponseV02()
-                .body(new ResponseReversalResponse2())
-                .hdr(new MsgreversalresponseHeader42());
+    public static ReversalresponseReversalResponseV02 getResponseReversalResponseItem() {
+        return new ReversalresponseReversalResponseV02()
+                .body(new ReversalresponseReversalResponse2())
+                .hdr(new ReversalresponseHeader42());
     }
 
-    private static AuthorisationResponseItem getAuthResponseItem(ResponseAuthorisationResponseV02 resp, String corrId, int httpStatus) {
+    private static AuthorisationResponseItem getAuthResponseItem(AuthorisationresponseAuthorisationResponseV02 resp, String corrId, int httpStatus) {
         return new AuthorisationResponseItem(
                 new AuthorisationResponseV02Item()
                         .correlationId(corrId)
@@ -90,28 +74,28 @@ public class  TestRequestResponseGenerator {
                         .httpStatus(httpStatus));
     }
 
-    private static AuthorisationResponseV02Item getAuthResponseV02(ResponseAuthorisationResponseV02 resp, String corrId, int httpStatus) {
+    private static AuthorisationResponseV02Item getAuthResponseV02(AuthorisationresponseAuthorisationResponseV02 resp, String corrId, int httpStatus) {
         return new AuthorisationResponseV02Item()
                 .correlationId(corrId)
                 .payload(resp)
                 .httpStatus(httpStatus);
     }
 
-    private static FinancialAdviceResponseV02Item getFinancialAdvResponseV02(ResponseFinancialResponseV02 resp, String corrId, int httpStatus) {
+    private static FinancialAdviceResponseV02Item getFinancialAdvResponseV02(FinancialresponseFinancialResponseV02 resp, String corrId, int httpStatus) {
         return new FinancialAdviceResponseV02Item()
                 .correlationId(corrId)
                 .payload(resp)
                 .httpStatus(httpStatus);
     }
 
-    private static InquiryResponseV01Item getInquiryResponseV02(ResponseInquiryResponseV01 resp, String corrId, int httpStatus) {
+    private static InquiryResponseV01Item getInquiryResponseV02(InquiryresponseInquiryResponseV01 resp, String corrId, int httpStatus) {
         return new InquiryResponseV01Item()
                 .correlationId(corrId)
                 .payload(resp)
                 .httpStatus(httpStatus);
     }
 
-    private static ReversalResponseV02Item getReversalResponseV02(ResponseReversalResponseV02 resp, String corrId, int httpStatus) {
+    private static ReversalResponseV02Item getReversalResponseV02(ReversalresponseReversalResponseV02 resp, String corrId, int httpStatus) {
         return new ReversalResponseV02Item()
                 .correlationId(corrId)
                 .payload(resp)
@@ -135,18 +119,18 @@ public class  TestRequestResponseGenerator {
                         .httpStatus(httpStatus));
     }
 
-    private static List<ResponseItem<ResponseAuthorisationResponseV02>> getResponseItemList(AuthorisationResponseItem respItem) {
+    private static List<ResponseItem<AuthorisationresponseAuthorisationResponseV02>> getResponseItemList(AuthorisationResponseItem respItem) {
         return Collections.singletonList(respItem);
     }
 
-    public static BatchResponse.BatchResponseBuilder<ResponseAuthorisationResponseV02> getBatchBuilder(List<ResponseItem<ResponseAuthorisationResponseV02>> respList) {
-        BatchResponse.BatchResponseBuilder<ResponseAuthorisationResponseV02> batchBuilder = BatchResponse.builder();
+    public static BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> getBatchBuilder(List<ResponseItem<AuthorisationresponseAuthorisationResponseV02>> respList) {
+        BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> batchBuilder = BatchResponse.builder();
         return batchBuilder
                 .items(respList)
                 .retryAfter(Duration.ZERO);
     }
 
-    public static BatchResponse.BatchResponseBuilder<ResponseAuthorisationResponseV02> generateBatchBuilder(String corrId, int httpStatus) {
+    public static BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> generateBatchBuilder(String corrId, int httpStatus) {
         return getBatchBuilder(
                 getResponseItemList(
                         getAuthResponseItem(
@@ -154,7 +138,7 @@ public class  TestRequestResponseGenerator {
                         )));
     }
 
-    public static BatchResponse.BatchResponseBuilder<ResponseAuthorisationResponseV02> generateBatchBuilderWithErrors(String corrId, int httpStatus) {
+    public static BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> generateBatchBuilderWithErrors(String corrId, int httpStatus) {
         return getBatchBuilder(
                 getResponseItemList(
                         getAuthResponseItemWithErrors(
@@ -202,19 +186,19 @@ public class  TestRequestResponseGenerator {
         return new ReversalResponseV02List().items(buildReversalList(httpStatus));
     }
 
-    public static InitiationAuthorisationInitiationV02 getTestAuthorisationInitiationV02() {
+    public static AuthorisationinitiationAuthorisationInitiationV02 getTestAuthorisationInitiationV02() {
         return requestExampleGenerator.buildAuthorisationRequest();
     }
 
-    public static InitiationReversalInitiationV02 getTestReversalInitiationV02() {
+    public static ReversalinitiationReversalInitiationV02 getTestReversalInitiationV02() {
         return requestExampleGenerator.buildReversalRequest();
     }
 
-    public static InitiationInquiryInitiationV01 getTestInquiryInitiationV01() {
+    public static InquiryinitiationInquiryInitiationV01 getTestInquiryInitiationV01() {
         return requestExampleGenerator.buildInquiryRequest();
     }
 
-    public static InitiationFinancialInitiationV02 getTestFinancialInitiationV02() {
+    public static FinancialinitiationFinancialInitiationV02 getTestFinancialInitiationV02() {
         return requestExampleGenerator.buildFinancialAdviceRequest();
     }
 

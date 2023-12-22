@@ -3,7 +3,7 @@ package com.mastercard.developer.transactionapi.client.model;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.client.model.Error;
 import org.openapitools.client.model.InquiryResponseV01Item;
-import org.openapitools.client.model.ResponseInquiryResponseV01;
+import org.openapitools.client.model.InquiryresponseInquiryResponseV01;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Adapter class for an Inquiry response item.
  */
 @RequiredArgsConstructor
-public class InquiryResponseItem implements ResponseItem<ResponseInquiryResponseV01> {
+public class InquiryResponseItem implements ResponseItem<InquiryresponseInquiryResponseV01> {
 
     private final InquiryResponseV01Item responseItem;
 
@@ -26,7 +26,7 @@ public class InquiryResponseItem implements ResponseItem<ResponseInquiryResponse
     }
 
     @Override
-    public ResponseInquiryResponseV01 getPayload() {
+    public InquiryresponseInquiryResponseV01 getPayload() {
         return responseItem.getPayload();
     }
 

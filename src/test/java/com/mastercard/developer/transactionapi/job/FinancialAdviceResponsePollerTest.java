@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.ResponseFinancialResponseV02;
+import org.openapitools.client.model.FinancialresponseFinancialResponseV02;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -25,7 +25,7 @@ class FinancialAdviceResponsePollerTest {
     private FinancialAdviceResponsePoller financialAdviceResponsePoller;
 
     @Mock
-    private BatchResponse<ResponseFinancialResponseV02> testBatchResponse;
+    private BatchResponse<FinancialresponseFinancialResponseV02> testBatchResponse;
 
     @BeforeAll
     static void setup() {
@@ -38,7 +38,7 @@ class FinancialAdviceResponsePollerTest {
         when(mockTransactionApiClient.getFinancialAdviceResponses()).thenReturn(testBatchResponse);
 
         // call
-        BatchResponse<ResponseFinancialResponseV02> actual = financialAdviceResponsePoller.getResponses();
+        BatchResponse<FinancialresponseFinancialResponseV02> actual = financialAdviceResponsePoller.getResponses();
 
         // verify
         assertThat(actual).isSameAs(testBatchResponse);
@@ -47,7 +47,7 @@ class FinancialAdviceResponsePollerTest {
     @Test
     void whenToJson_verifyJsonOutput() {
         // setup
-        ResponseFinancialResponseV02 testResponse = TestRequestResponseGenerator.getResponseFinancialAdvResponseItem();
+        FinancialresponseFinancialResponseV02 testResponse = TestRequestResponseGenerator.getResponseFinancialAdvResponseItem();
         // call
         String result = testResponse.toJson();
 

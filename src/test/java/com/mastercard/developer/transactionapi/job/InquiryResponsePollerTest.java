@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.ResponseInquiryResponseV01;
+import org.openapitools.client.model.InquiryresponseInquiryResponseV01;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -24,7 +24,7 @@ class InquiryResponsePollerTest {
     private InquiryResponsePoller inquiryResponsePoller;
 
     @Mock
-    private BatchResponse<ResponseInquiryResponseV01> testBatchResponse;
+    private BatchResponse<InquiryresponseInquiryResponseV01> testBatchResponse;
 
     @BeforeAll
     static void setup() {
@@ -38,7 +38,7 @@ class InquiryResponsePollerTest {
         when(mockTransactionApiClient.getInquiryResponses()).thenReturn(testBatchResponse);
 
         // call
-        BatchResponse<ResponseInquiryResponseV01> actual = inquiryResponsePoller.getResponses();
+        BatchResponse<InquiryresponseInquiryResponseV01> actual = inquiryResponsePoller.getResponses();
 
         // verify
         assertThat(actual).isSameAs(testBatchResponse);
@@ -47,7 +47,7 @@ class InquiryResponsePollerTest {
     @Test
     void whenToJson_verifyJsonOutput() {
         // setup
-        ResponseInquiryResponseV01 testResponse = TestRequestResponseGenerator.getResponseInquiryResponseItem();
+        InquiryresponseInquiryResponseV01 testResponse = TestRequestResponseGenerator.getResponseInquiryResponseItem();
         // call
         String result = testResponse.toJson();
 

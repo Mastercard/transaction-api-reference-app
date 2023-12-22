@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
@@ -29,7 +29,7 @@ class RequestContextManagerTest {
 
     private RequestContextManager requestContextManager;
 
-    private final InitiationAuthorisationInitiationV02 testRequest = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
+    private final AuthorisationinitiationAuthorisationInitiationV02 testRequest = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
 
     private final String incorrectTestCorrId = "6789";
 
@@ -338,6 +338,6 @@ class RequestContextManagerTest {
         RequestContextManager.onRequestExpired(TEST_CORRELATION_ID, testRequest);
 
         // verify
-        assertThat(output.getAll()).contains("Request InitiationAuthorisationInitiationV02 with correlationId=12345 has expired");
+        assertThat(output.getAll()).contains("Request AuthorisationinitiationAuthorisationInitiationV02 with correlationId=12345 has expired");
     }
 }

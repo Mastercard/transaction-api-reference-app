@@ -5,7 +5,7 @@ import com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.InitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -50,7 +50,7 @@ class ClientUtilsTest {
     @Test
     void givenLoggingEnabled_whenConvertPayloadForLogging_verifyString(){
         // setup
-        InitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
+        AuthorisationinitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
 
         // call
         String result = ClientUtils.convertPayloadForLogging(item.toJson(), true);
@@ -62,7 +62,7 @@ class ClientUtilsTest {
     @Test
     void givenLoggingDisabled_whenConvertPayloadForLogging_verifyString(){
         // setup
-        InitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
+        AuthorisationinitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
 
         // call
         String result = ClientUtils.convertPayloadForLogging(item.toJson(), false);
