@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.ResponseReversalResponseV02;
+import org.openapitools.client.model.ReversalresponseReversalResponseV02;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -25,7 +25,7 @@ class ReversalResponsePollerTest {
     private ReversalResponsePoller reversalResponsePoller;
 
     @Mock
-    private BatchResponse<ResponseReversalResponseV02> testBatchResponse;
+    private BatchResponse<ReversalresponseReversalResponseV02> testBatchResponse;
 
     @BeforeAll
     static void setup(){
@@ -38,7 +38,7 @@ class ReversalResponsePollerTest {
         when(mockTransactionApiClient.getReversalResponses()).thenReturn(testBatchResponse);
 
         // call
-        BatchResponse<ResponseReversalResponseV02> actual = reversalResponsePoller.getResponses();
+        BatchResponse<ReversalresponseReversalResponseV02> actual = reversalResponsePoller.getResponses();
 
         // verify
         assertThat(actual).isSameAs(testBatchResponse);
@@ -47,7 +47,7 @@ class ReversalResponsePollerTest {
     @Test
     void whenToJson_verifyJsonOutput(){
         // setup
-        ResponseReversalResponseV02 testResponse = TestRequestResponseGenerator.getResponseReversalResponseItem();
+        ReversalresponseReversalResponseV02 testResponse = TestRequestResponseGenerator.getResponseReversalResponseItem();
         // call
         String result = testResponse.toJson();
 
