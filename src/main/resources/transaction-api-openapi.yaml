@@ -354,6 +354,7 @@ components:
       title: Transaction Additional Data
       description: "Additional data about the transaction. The data is sent in a name-value\
         \ pair: Transaction Additional Data Name and Transaction Additional Data Value."
+      example: A
     authorisationinitiationAdditionalFee1:
       properties:
         tp:
@@ -499,6 +500,7 @@ components:
           type: string
           title: "Date, Conversion"
           description: The date of the quote for the conversion Exchange Rate.
+          example: 2022-04-12T15:24:16.545Z
       type: object
       title: Cardholder Billing Amount Information
       description: "Information used to bill the Cardholder's account, including the\
@@ -613,8 +615,9 @@ components:
           items:
             $ref: '#/components/schemas/authorisationinitiationCardholderVerificationCapabilities1'
           type: array
-          description: "Cardholder verification capabilities performing the transaction\
-            \ at the point of service. ISO 8583:93 bit 22-2, ISO 8583:2003 bit 27-2"
+          description: |-
+            Cardholder verification capabilities performing the transaction at the point of service.
+              ISO 8583:93 bit 22-2, ISO 8583:2003 bit 27-2
       type: object
       title: Terminal Capabilities
       description: The functions the Terminal can perform in the initiation or authorization
@@ -725,9 +728,9 @@ components:
           items:
             $ref: '#/components/schemas/authorisationinitiationCredentials1'
           type: array
-          description: Identification of the cardholder.  ISO 8583:87 bit 56 (TLV
-            tag 03/dataset 73) ISO 8583:93 bit 112 (TLV tag 03/dataset 73) ISO 8583:2003
-            bit 51 (TLV tag 03/dataset 73)
+          description: "Identification of the cardholder.\n  \n  ISO 8583:87 bit 56\
+            \ (TLV tag 03/dataset 73)\n  ISO 8583:93 bit 112 (TLV tag 03/dataset 73)\n\
+            \  ISO 8583:2003 bit 51 (TLV tag 03/dataset 73)"
         adr:
           $ref: '#/components/schemas/authorisationinitiationAddress1'
       type: object
@@ -892,6 +895,7 @@ components:
           description: "The code identifying the kind of device, such as a mobile\
             \ phone, used by the Cardholder to store or read Card data and to initiate\
             \ the transaction not shown in Type."
+          example: mobile_case
       type: object
       description: Identification of the customer device.
     authorisationinitiationEnvironment1:
@@ -1006,7 +1010,7 @@ components:
           type: array
           title: Trace Data
           description: "Private-use data defined by the message originator to be returned\
-            \ unaltered in any subsequent message.  The data is sent in a name-value\
+            \ unaltered in any subsequent message.\n  \n  The data is sent in a name-value\
             \ pair: Trace Data Name and Trace Data Value."
       type: object
       title: Message Header
@@ -1110,6 +1114,7 @@ components:
         ctry:
           type: string
           description: Country of the party.
+          example: 840
         addtlId:
           type: string
           title: Additional Party ID
@@ -1159,15 +1164,15 @@ components:
           type: array
           title: Acceptor Additional Data
           description: "Additional data about or related to the Acceptor, such as\
-            \ the Payment Facilitator ID.  The data is sent in a name-value pair:\
-            \ Acceptor Additional Data Name and Acceptor Additional Data Value."
+            \ the Payment Facilitator ID.\n  \n  The data is sent in a name-value\
+            \ pair: Acceptor Additional Data Name and Acceptor Additional Data Value."
         spnsrdMrchnt:
           items:
             $ref: '#/components/schemas/authorisationinitiationSponsoredMerchant1'
           type: array
           title: Sponsored Merchant
-          description: A Merchant that uses the services of a Payment Facilitator.  Referred
-            to as Submerchant in Mastercard Rules.
+          description: "A Merchant that uses the services of a Payment Facilitator.\n\
+            \  \n  Referred to as Submerchant in Mastercard Rules."
       type: object
       description: Identification of a party.
     authorisationinitiationPartyIdentification211:
@@ -1428,8 +1433,8 @@ components:
           $ref: '#/components/schemas/authorisationinitiationPartyIdentification197'
       type: object
       title: Sponsored Merchant
-      description: A Merchant that uses the services of a Payment Facilitator.  Referred
-        to as Submerchant in Mastercard Rules.
+      description: "A Merchant that uses the services of a Payment Facilitator.\n\
+        \  \n  Referred to as Submerchant in Mastercard Rules."
     authorisationinitiationTerminal1:
       properties:
         termnlId:
@@ -1751,6 +1756,7 @@ components:
           title: Transmission Date Time
           description: "The date and time that the message was sent to the Mastercard\
             \ Switch Platform, expressed in Coordinated Universal Time (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (STAN)
@@ -1847,8 +1853,8 @@ components:
           items:
             $ref: '#/components/schemas/authorisationinitiationVerificationResult1'
           type: array
-          description: Result of verifications performed prior or after the transaction.  ISO
-            8583:93 bit 39 ISO 8583:2003 bit 39 & 49-72
+          description: "Result of verifications performed prior or after the transaction.\n\
+            \  \n  ISO 8583:93 bit 39\n  ISO 8583:2003 bit 39 & 49-72"
       type: object
       title: Verification
       description: Information related to the verification of Card and Cardholder
@@ -1946,6 +1952,7 @@ components:
       description: "Information about amounts that are not part of the Transaction\
         \ Amount, such as an Issuer-assessed Cardholder fee."
     authorisationresponseAdditionalData1:
+      example: A
       properties:
         tp:
           type: string
@@ -2020,6 +2027,7 @@ components:
           type: string
           title: "Date, Conversion"
           description: The date of the quote for the conversion Exchange Rate.
+          example: 2022-04-12T15:24:16.545Z
       type: object
       title: Cardholder Billing Amount Information
       description: "Information used to bill the Cardholder's account, including the\
@@ -2290,7 +2298,7 @@ components:
           type: array
           title: Trace Data
           description: "Private-use data defined by the message originator to be returned\
-            \ unaltered in any subsequent message.  The data is sent in a name-value\
+            \ unaltered in any subsequent message.\n  \n  The data is sent in a name-value\
             \ pair: Trace Data Name and Trace Data Value."
       type: object
       title: Message Header
@@ -2679,6 +2687,7 @@ components:
           title: Transmission Date Time
           description: "The date and time that the message was sent to the Mastercard\
             \ Switch Platform, expressed in Coordinated Universal Time (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (STAN)
@@ -2795,8 +2804,12 @@ components:
           $ref: '#/components/schemas/financialinitiationPurchaseIdentifierType1Code'
         othrPurchsIdrTp:
           type: string
+          description: Used when Purchase Identifier Type is Other National or Other
+            Private.
         purchsIdr:
           type: string
+          description: Contains a value identifying Invoice Data or Purchase Request
+            Data.
         addtlAccptrData:
           $ref: '#/components/schemas/financialinitiationAdditionalAcceptorData1'
         fleet:
@@ -2809,16 +2822,23 @@ components:
           items:
             $ref: '#/components/schemas/financialinitiationAdditionalData1'
           type: array
+          description: Contains additional data for the addendum.
       type: object
+      description: Component contains data structures applicable to certain merchant
+        verticals that require industry-specific data within transaction messages.
     financialinitiationAdditionalAcceptorData1:
       properties:
         taxRegnId:
           type: string
+          description: Identification of the company recognized by the taxation authority.  Used
+            for reporting transaction-related taxes.
         addtlId:
           items:
             $ref: '#/components/schemas/financialinitiationAdditionalIdentification1'
           type: array
+          description: Contains additional identification information.
       type: object
+      description: Contains additional acceptor data
     financialinitiationAdditionalAmounts1:
       properties:
         tp:
@@ -2880,16 +2900,24 @@ components:
           $ref: '#/components/schemas/financialinitiationAdditionalIdentificationType1Code'
         othrTp:
           type: string
+          description: Other Additional Identification applied to the transaction.
         val:
           type: string
+          description: Additional identification value.
       type: object
+      description: Contains additional identification details of additional card acceptor
+        data.
     financialinitiationAdditionalIdentificationType1Code:
       default: UNSPECIFIED
       enum:
         - UNSPECIFIED
         - OTHP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Contains the additional identification type, for example NAICS, etc.
+
+         - UNSPECIFIED: Default
+         - OTHP: Other Additional Identification defined at a private level.
     financialinitiationAdditionalInformation20:
       properties:
         tp:
@@ -2929,7 +2957,19 @@ components:
         - OTHP
         - PRST
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type of additional service.
+
+         - UNSPECIFIED: Default
+         - CACT: Card activation
+         - CSHB: Purchase of goods or services with cashback
+         - DCCV: Dynamic Currency Conversion (DCC)
+         - INTP: Instant payment from a cardholder's account to an acceptor's account
+         - INTT: Instant transfer of funds from a payer's account to a payee's account.
+         - LOYT: Loyalty services
+         - OTHN: Other type of additional service at national level
+         - OTHP: Other type of additional service at private level
+         - PRST: Withdrawal transaction was pre-authorised by another channel (amount could be absent).
     financialinitiationAddress1:
       properties:
         adrLine1:
@@ -3042,9 +3082,14 @@ components:
       properties:
         btchId:
           type: string
+          description: "Identification of the batch to which the message belongs.\n\
+            \  \n  ISO 8583:2003 bit 69-2"
         msgSeqNb:
           type: string
+          description: "Sequence number of the message inside the batch.\n  \n  ISO\
+            \ 8583:87/93 bit 71\n  ISO 8583:2003 bit 68-2"
       type: object
+      description: Elements of identification of a batch management transaction.
     financialinitiationCapabilities1:
       properties:
         cardRdngCpblty:
@@ -3053,10 +3098,10 @@ components:
           type: array
           title: Terminal Card Data Input Capability Code
           description: "The code(s) identifying the method the Terminal supports for\
-            \ entering Card data, such as via a magnetic stripe or a chip.  If this\
-            \ field specifies a national or network-specific value (\"OTHN\" or \"\
-            OTHP\"), a more specific value may be required in Terminal Card Data Input\
-            \ Capability (Other)."
+            \ entering Card data, such as via a magnetic stripe or a chip.\n  \n \
+            \ If this field specifies a national or network-specific value (\"OTHN\"\
+            \ or \"OTHP\"), a more specific value may be required in Terminal Card\
+            \ Data Input Capability (Other)."
           example: UNSP
         othrCardRdngCpblties:
           items:
@@ -3074,10 +3119,10 @@ components:
           type: array
           title: Terminal Card Writing Capability Code
           description: "The code(s) identifying the method the Terminal can use to\
-            \ write to a Card, such as a magnetic stripe or a chip.  If this field\
-            \ specifies a national or network-specific value (\"OTHN\" or \"OTHP\"\
-            ), a more specific value may be required in Terminal Card Writing Capability\
-            \ (Other)."
+            \ write to a Card, such as a magnetic stripe or a chip.\n  \n  If this\
+            \ field specifies a national or network-specific value (\"OTHN\" or \"\
+            OTHP\"), a more specific value may be required in Terminal Card Writing\
+            \ Capability (Other)."
           example: MGST
         othrCardWrtgCpblties:
           items:
@@ -3110,6 +3155,9 @@ components:
           items:
             $ref: '#/components/schemas/financialinitiationCardholderVerificationCapabilities1'
           type: array
+          description: |-
+            Cardholder verification capabilities performing the transaction at the point of service.
+              ISO 8583:93 bit 22-2, ISO 8583:2003 bit 27-2
       type: object
       title: Terminal Capabilities
       description: The functions the Terminal can perform in the initiation or authorization
@@ -3137,6 +3185,8 @@ components:
           example: 2302
         svcCd:
           type: string
+          description: "Service attached to the card as defined in ISO 7813.\n  \n\
+            \  ISO 8583 bit 40."
         cardPdctTp:
           type: string
           title: Card Product Code
@@ -3161,7 +3211,18 @@ components:
         - OTHP
         - UNSP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        - UNSPECIFIED: Default
+         - CDFL: Card information are stored on a file.
+         - ICCY: ICC contact capability
+         - ICPY: ICC contactless proximity
+         - KEEN: Key entered.
+         - MGST: Magnetic stripe.
+         - MLEY: Manual, no terminal used.
+         - MSIP: Magstripe image contactless proximity
+         - OCRR: OCR either at time of transaction or after the event.
+         - OTHP: Other card reading capability assigned on a private basis.
+         - UNSP: Unspecified capability.
     financialinitiationCardDataWriting1Code:
       default: UNSPECIFIED
       enum:
@@ -3171,7 +3232,12 @@ components:
         - OTHP
         - UNSP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        - UNSPECIFIED: Default
+         - ICCY: ICC contact capability
+         - MGST: Magnetic stripe.
+         - OTHP: Other card reading capability assigned on a private basis.
+         - UNSP: Unspecified capability.
     financialinitiationCardProgramme1:
       properties:
         cardPrgrmmApld:
@@ -3211,7 +3277,11 @@ components:
         - UNSPECIFIED
         - NOPN
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Capability of verifying the cardholder's identity or authenticity.
+
+         - UNSPECIFIED: Default
+         - NOPN: Device has no pin entry capability.
     financialinitiationContext1:
       properties:
         ptOfSvcCntxt:
@@ -3222,6 +3292,7 @@ components:
           items:
             $ref: '#/components/schemas/financialinitiationVerification1'
           type: array
+          description: Contain validation result and/or data to be validated.
       type: object
       title: Context
       description: Information about the conditions and characteristics of the transaction.
@@ -3242,7 +3313,14 @@ components:
         - PECR
         - TBLT
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type of customer device.
+
+         - UNSPECIFIED: Default
+         - MOBL: Mobile phone
+         - OTHP: Other device defined in a private way.
+         - PECR: Personal computer
+         - TBLT: Tablet
     financialinitiationDetailAmount1Code:
       default: UNSPECIFIED
       enum:
@@ -3253,7 +3331,15 @@ components:
         - SRCH
         - TAXT
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type of detail amount.
+
+         - UNSPECIFIED: Default
+         - DCCF: Dynamic Currency Conversion type of amount
+         - FORX: Fee applicable to a foreign exchange (Forex) transaction
+         - OTHP: Other type of amount defined at private level
+         - SRCH: Fee charged by the acceptor for the transaction.
+         - TAXT: Tax applicable to the transaction
     financialinitiationDetailedAmount19:
       properties:
         tp:
@@ -3284,11 +3370,14 @@ components:
             \ phone, used by the Cardholder to store or read Card data and to initiate\
             \ the transaction not shown in Type."
       type: object
+      description: Identification of the customer device.
     financialinitiationDisputeData1:
       properties:
         chrgbckElgblty:
           type: string
+          description: Provides transaction chargeback eligibility conditions.
       type: object
+      description: Data to be present in a dispute.
     financialinitiationEnvironment1:
       properties:
         acqrr:
@@ -3349,7 +3438,10 @@ components:
           $ref: '#/components/schemas/financialinitiationProcessingResult1'
         iccRltdData:
           type: string
+          description: "Data related to an integrated circuit card application embedded\
+            \ in the payment card of the cardholder.\n  \n  ISO 8583 bit 55"
       type: object
+      description: Information related to the financial initiation message.
     financialinitiationFinancialInitiationV02:
       properties:
         hdr:
@@ -3357,6 +3449,13 @@ components:
         body:
           $ref: '#/components/schemas/financialinitiationFinancialInitiation1'
       type: object
+      description: The FinancialInitiation message is sent by an acquirer or an agent
+        to an issuer to request approval of a card transaction or to inform about
+        the completion of an authorisation. It allows the approved transaction amount
+        to be billed or posted on the cardholder's account. It can also be sent by
+        an issuer to an acquirer or agent to advise that an authorisation has been
+        successfully completed for the final amount and requests the clearing of the
+        transaction.
     financialinitiationFleetData2:
       properties:
         summry:
@@ -3365,29 +3464,43 @@ components:
           items:
             $ref: '#/components/schemas/financialinitiationFleetLineItem1'
           type: array
+          description: Fleet Line Item component is designed to carry detail level
+            fleet data and to enable issuers to supply more transaction information
+            to their consumer and corporate clients pertaining to fleet transactions.
       type: object
+      description: Fleet data pertaining to the payment transaction.
     financialinitiationFleetLineItem1:
       properties:
         fuelInd:
           type: boolean
+          description: "Indicates whether or not the line item represents a fuel or\
+            \ non-fuel product or service.\n  \n  True = Fuel item\n  False = Non-fuel\
+            \ item"
         fleetPdctCd:
           type: string
+          description: Product code of fleet product or service being purchased.
         unitPric:
           type: string
+          description: Unit price of the fleet line item.
         unitOfMeasr:
           $ref: '#/components/schemas/financialinitiationUnitOfMeasure1Code'
         othrUnitOfMeasr:
           type: string
+          description: Other unit of measure.
         pdctQty:
           type: string
+          description: Quantity of product or item.
         ttlAmtInclgTax:
           type: string
+          description: Total amount including tax.
       type: object
+      description: Supplies additional transaction information for fleet transactions.
     financialinitiationFleetSummary1:
       properties:
         vhcl:
           $ref: '#/components/schemas/financialinitiationVehicle5'
       type: object
+      description: Supplies additional transaction information for fleet transactions.
     financialinitiationFundingService1:
       properties:
         fndgSrc:
@@ -3420,7 +3533,15 @@ components:
         - OTHP
         - PRPD
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type of funding source used for a financial service.
+
+         - UNSPECIFIED: Default
+         - CASH: Cash as a source type  to perform the transaction.
+         - CDBT: Debit card account.
+         - CRDT: Credit card account.
+         - OTHP: Other type of account defined at private level.
+         - PRPD: Pre-paid account.
     financialinitiationGenericIdentification172:
       properties:
         id:
@@ -3429,13 +3550,16 @@ components:
           description: The identifier assigned by Mastercard to the Party.
           example: 523793
       type: object
+      description: Identification of an entity.
     financialinitiationGracePeriod1:
       properties:
         tm:
           type: string
+          description: Grace period time relative to the grace period unit type.
         unitTp:
           $ref: '#/components/schemas/financialinitiationGracePeriodUnitType1Code'
       type: object
+      description: Grace period applicable to an instalment plan.
     financialinitiationGracePeriodUnitType1Code:
       default: UNSPECIFIED
       enum:
@@ -3447,7 +3571,16 @@ components:
         - PMTS
         - WEKS
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Contains the details of the grace period applicable to the instalment.
+
+         - UNSPECIFIED: Default
+         - DAYS: Grace period days.
+         - MNTH: Grace period months.
+         - OTHN: Other National Grace period.
+         - OTHP: Other Private Grace period.
+         - PMTS: Grace period payments.
+         - WEKS: Grace period weeks.
     financialinitiationHeader42:
       properties:
         msgFctn:
@@ -3478,7 +3611,7 @@ components:
           type: array
           title: Trace Data
           description: "Private-use data defined by the message originator to be returned\
-            \ unaltered in any subsequent message.  The data is sent in a name-value\
+            \ unaltered in any subsequent message.\n  \n  The data is sent in a name-value\
             \ pair: Trace Data Name and Trace Data Value."
       type: object
       title: Message Header
@@ -3488,22 +3621,31 @@ components:
       properties:
         pmtSeqNb:
           type: string
+          description: Indicates the occurrence of a single instalment payment within
+            a series of instalment payments.
         plan:
           items:
             $ref: '#/components/schemas/financialinitiationPlan1'
           type: array
+          description: Attributes of the instalment plan.
       type: object
+      description: "Data exclusively related to a card issuer financial loan of the\
+        \ payment transaction, or instalment."
     financialinitiationInstalmentAmountDetails1:
       properties:
         tp:
           $ref: '#/components/schemas/financialinitiationInstalmentAmountDetailsType1Code'
         othrTp:
           type: string
+          description: Grace period other unit type.
         amt:
           $ref: '#/components/schemas/financialinitiationAmount5'
         pctg:
           type: string
+          description: "Rate expressed as a percentage, that is, in hundredths, example,\
+            \ 0.7 is 7/10 of a percent, and 7.0 is 7%."
       type: object
+      description: Instalment amount details
     financialinitiationInstalmentAmountDetailsType1Code:
       default: UNSPECIFIED
       enum:
@@ -3511,14 +3653,23 @@ components:
         - FEES
         - OTHP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Contains the details of the grace period applicable to the instalment.
+
+         - UNSPECIFIED: Default
+         - FEES: Fees amount
+         - OTHP: Grace period unit type
     financialinitiationInstalmentPeriod1Code:
       default: UNSPECIFIED
       enum:
         - UNSPECIFIED
         - ANNU
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Instalment period.
+
+         - UNSPECIFIED: Default
+         - ANNU: Annual instalment period.
     financialinitiationInterestRate1Code:
       default: UNSPECIFIED
       enum:
@@ -3526,32 +3677,47 @@ components:
         - GSRT
         - OTHP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Contains the list of interest rates.
+
+         - UNSPECIFIED: Default
+         - GSRT: Gross interest rate of the instalment
+         - OTHP: Other interest rate of the instalment
     financialinitiationInterestRateDetails1:
       properties:
         tp:
           $ref: '#/components/schemas/financialinitiationInterestRate1Code'
         othrTp:
           type: string
+          description: "Other type of interest applied to the instalment, when Type\
+            \ is OtherNational or OtherPrivate."
         prd:
           $ref: '#/components/schemas/financialinitiationInstalmentPeriod1Code'
         rate:
           type: string
+          description: "Rate expressed as a decimal, example, 0.7 is 7/10 and 70%."
       type: object
+      description: Details of the interest rate
     financialinitiationLifeCycleSupport1Code:
       default: UNSPECIFIED
       enum:
         - UNSPECIFIED
         - FINC
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Indicates the point in the transaction lifecycle at which the lifecycle identifier was assigned.
+
+         - UNSPECIFIED: Default
+         - FINC: Assigned at financial time.
     financialinitiationMessageFunction16Code:
       default: UNSPECIFIED
       enum:
         - UNSPECIFIED
         - ADVC
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        - UNSPECIFIED: Default
+         - ADVC: Advice indicates where the sender informs the receiver of an activity that has been taken that requires a response.
     financialinitiationOriginalTransactionAmount1:
       properties:
         txAmt:
@@ -3559,6 +3725,7 @@ components:
         rcncltnAmt:
           $ref: '#/components/schemas/financialinitiationAmount4'
       type: object
+      description: Amount related to the original transaction.
     financialinitiationPartyIdentification197:
       properties:
         id:
@@ -3636,43 +3803,57 @@ components:
           type: array
           title: Acceptor Additional Data
           description: "Additional data about or related to the Acceptor, such as\
-            \ the Payment Facilitator ID.  The data is sent in a name-value pair:\
-            \ Acceptor Additional Data Name and Acceptor Additional Data Value."
+            \ the Payment Facilitator ID.\n  \n  The data is sent in a name-value\
+            \ pair: Acceptor Additional Data Name and Acceptor Additional Data Value."
         spnsrdMrchnt:
           items:
             $ref: '#/components/schemas/financialinitiationSponsoredMerchant1'
           type: array
           title: Sponsored Merchant
-          description: A Merchant that uses the services of a Payment Facilitator.  Referred
-            to as Submerchant in Mastercard Rules.
+          description: "A Merchant that uses the services of a Payment Facilitator.\n\
+            \  \n  Referred to as Submerchant in Mastercard Rules."
       type: object
+      description: Identification of a party.
     financialinitiationPlan1:
       properties:
         instlmtPmtTp:
           type: string
+          description: Instalment payment type.
         intrstRate:
           items:
             $ref: '#/components/schemas/financialinitiationInterestRateDetails1'
           type: array
+          description: Details of the interest rate.
         frstPmtDt:
           type: string
+          description: Date of the first payment.
         frstAmt:
           type: string
+          description: Amount of the first payment when different from the subsequent
+            payments.
         sbsqntAmt:
           type: string
+          description: Amount of subsequent payments.
         ttlNbOfPmts:
           type: string
+          description: "Total number of instalment payments.\n  \n  ISO 8583 bit 59"
         instlmtCcy:
           type: string
+          description: Currency code associated with the instalment amount.  ISO 4217
+            "Codes for the representation of currencies and funds".
         gracePrd:
           $ref: '#/components/schemas/financialinitiationGracePeriod1'
         amtDtls:
           items:
             $ref: '#/components/schemas/financialinitiationInstalmentAmountDetails1'
           type: array
+          description: Contains the amount details of an instalment plan.
         grdTtlAmt:
           type: string
+          description: "Total amount of the instalment including charges, insurance\
+            \ and taxes in addition to the funded amount."
       type: object
+      description: Attributes of the instalment plan.
     financialinitiationPointOfServiceContext1:
       properties:
         cardPres:
@@ -3723,6 +3904,8 @@ components:
           items:
             $ref: '#/components/schemas/financialinitiationSpecialConditions1'
           type: array
+          description: Data used to assign specific conditions at the card acceptor
+            location and decided by bilateral agreements.
       type: object
       title: Point of Interaction Context
       description: "Information about the initiation of the transaction, such as how\
@@ -3735,6 +3918,8 @@ components:
           items:
             $ref: '#/components/schemas/financialinitiationAdditionalInformation20'
           type: array
+          description: "Additional information relevant for the destination.\n  \n\
+            \  ISO 8583 bit 44"
       type: object
       title: Authorization Result Information
       description: Information related to the result of the Authorization Initiation.
@@ -3758,19 +3943,45 @@ components:
         - TNID
         - TRNU
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Identifies the type of identifier used in the Purchase Identifier field.
+
+         - UNSPECIFIED: Default
+         - CUOR: Customer Order
+         - CUPO: Customer Purchase Order
+         - FONU: Folio Number
+         - INNU: Invoice Number
+         - OTHP: Other Purchase Identifier defined at a private level.
+         - PRNU: Payment Reference Number
+         - PUID: Purchase Identification
+         - REAG: Rental Agreement
+         - RELO: Record Locator
+         - RSNU: Reservation Number
+         - SUIN: Supplier Invoice
+         - SUOR: Supplier Order
+         - TINU: Ticket Number
+         - TNID: Transaction Identification is a proprietary value provided by the card acceptor or acquirer to uniquely identify a given transaction.
+         - TRNU: Tracking Number
     financialinitiationReconciliation3:
       properties:
         id:
           type: string
+          description: Identification of the reconciliation.
           example: reconciliationid
         dt:
           type: string
+          description: |-
+            Date of the reconciliation.
+              ISO 8583:93/2003 bit 28
           example: 2022-02-23
         chckptRef:
           type: string
+          description: A value used to allow a period within a reconciliation date.  Refer
+            to ISO8583:2003 Field 29
           example: reconciliationcheckpointreference
       type: object
+      description: Identification of the reconciliation period between an acquirer
+        and an issuer or their respective agents.
     financialinitiationSettlementService1:
       properties:
         sttlmSvcApld:
@@ -3877,35 +4088,49 @@ components:
           $ref: '#/components/schemas/financialinitiationPartyIdentification197'
       type: object
       title: Sponsored Merchant
-      description: A Merchant that uses the services of a Payment Facilitator.  Referred
-        to as Submerchant in Mastercard Rules.
+      description: "A Merchant that uses the services of a Payment Facilitator.\n\
+        \  \n  Referred to as Submerchant in Mastercard Rules."
     financialinitiationTelecomCallDetails1:
       properties:
         city:
           type: string
+          description: City from which or to which the call was made.
         stat:
           type: string
+          description: State from which or to which the call was made.
         ctry:
           type: string
+          description: Country from which or to which the call was made.
       type: object
+      description: Structured call details with address.
     financialinitiationTelecomServices1:
       properties:
         lineItm:
           items:
             $ref: '#/components/schemas/financialinitiationTelecomServicesLineItem1'
           type: array
+          description: Telecom Services Line Item component is designed to carry detail
+            level telephony billing data and to enable issuers to supply more transaction
+            information to their consumer and corporate clients pertaining to telecommunications
+            services and related billing information.
       type: object
+      description: Telecom services carries telephony billing data.
     financialinitiationTelecomServicesLineItem1:
       properties:
         drtn:
           type: string
+          description: Duration of phone call expressed in HHMMSS format.
         callFr:
           $ref: '#/components/schemas/financialinitiationTelecomCallDetails1'
         callTo:
           $ref: '#/components/schemas/financialinitiationTelecomCallDetails1'
         addtlData:
           type: string
+          description: Additional user-defined data pertaining to the telecommunications
+            services.
       type: object
+      description: Telecom services line item carries detail level telephony billing
+        data.
     financialinitiationTerminal1:
       properties:
         termnlId:
@@ -3952,7 +4177,14 @@ components:
         - OTHP
         - POST
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type of terminal to perform the transaction.
+
+         - UNSPECIFIED: Default
+         - ATMT: Automated Teller Machine
+         - MPOS: Mobile or tablet used as a Point of Sale terminal
+         - OTHP: Other private type of terminal.
+         - POST: Point of Sale terminal.
     financialinitiationToken1:
       properties:
         pmtTkn:
@@ -4027,6 +4259,7 @@ components:
           items:
             $ref: '#/components/schemas/financialinitiationDisputeData1'
           type: array
+          description: Information about the dispute.
         txAmts:
           $ref: '#/components/schemas/financialinitiationTransactionAmounts1'
         addtlAmts:
@@ -4117,7 +4350,26 @@ components:
         - SUBR
         - TPUP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Attribute of the transaction.
+
+         - UNSPECIFIED: Default
+         - AGGR: Payment is an aggregation one.
+         - CADB: Withdrawal is a cardless cash disbursement one.
+         - CPLT: Transaction previously initiated is completed and contains the actual amount.
+         - DBRP: Payment is a debt repayment one.
+         - DFRD: Payment is a deferred one.
+         - FRCP: First occurence of a recurring payment.
+         - INCR: To authorise additional amounts for a previously authorised transaction.
+         - INST: Payment is an instalment one.
+         - OTHN: Attribute defined at national level.
+         - OTHP: Attribute defined at private level
+         - PACP: Financial completion of a pre-authorised transaction within a specified timeframe.
+         - PAUT: Preauthorisation for an amount which is unknown at the time when the transaction is initiated and to be cleared within a specified timeframe.
+         - PPYT: Payment in advance of receiving goods or services.
+         - RCPT: An occurrence of a recurring payment..
+         - SUBR: Subsequent occurrence of a recurring payment.
+         - TPUP: Service to replenish value in an account (for example, mobile account, prepaid account, etc.).
     financialinitiationTransactionContext1:
       properties:
         mrchntCtgyCd:
@@ -4170,6 +4422,9 @@ components:
           $ref: '#/components/schemas/financialinitiationTransactionLifeCycleIdentification1'
         acqrrRefNb:
           type: string
+          description: "Data supplied by an acquirer to assist in identifying a transaction\
+            \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
+            \ 8583:2003 bit 31"
         cardIssrRefData:
           type: string
           title: Transaction Reference Data
@@ -4189,7 +4444,12 @@ components:
         - CUST
         - MERC
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Identifies the transaction initiator.
+
+         - UNSPECIFIED: Default
+         - CUST: Customer initiated transaction.
+         - MERC: Merchant initiated transaction.
     financialinitiationTransactionLifeCycleIdentification1:
       properties:
         id:
@@ -4210,7 +4470,13 @@ components:
         - INTC
         - OTHP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type or class of amount.
+
+         - UNSPECIFIED: Default
+         - FEEP: Processing fees.
+         - INTC: Interchange fee.
+         - OTHP: Other type of amount defined at private level.
     financialinitiationTypeOfAmount12Code:
       default: UNSPECIFIED
       enum:
@@ -4218,7 +4484,12 @@ components:
         - OTHP
         - RQCH
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type of amount.
+
+         - UNSPECIFIED: Default
+         - OTHP: Other type of amount defined at private level.
+         - RQCH: Requested cashback amount
     financialinitiationUnitOfMeasure1Code:
       default: UNSPECIFIED
       enum:
@@ -4229,22 +4500,37 @@ components:
         - PUND
         - USGA
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Unit of measure of the item purchased.
+
+         - UNSPECIFIED: Default
+         - GBGA: Unit of volume that is equal to 8 pints.
+         - KILO: Basic unit of mass in the SI system, 1000 grams.
+         - LITR: Unit of volume that is equal to a thousand cubic centimetres.
+         - PUND: Unit of weight equal to 0.454 kilograms.
+         - USGA: Unit of volume that is equal to 8 pints.
     financialinitiationVehicle5:
       properties:
         odmtr:
           type: string
+          description: "Odometer reading value indicating the distance travelled by\
+            \ the vehicle (for example, car, van, pickup truck, semi-truck portion\
+            \ of a tractor trailer unit)."
       type: object
+      description: Attributes of a fleet vehicle.
     financialinitiationVerification1:
       properties:
         vrfctnInf:
           items:
             $ref: '#/components/schemas/financialinitiationVerificationInformation1'
           type: array
+          description: Contains verification or authentication data.
         vrfctnRslt:
           items:
             $ref: '#/components/schemas/financialinitiationVerificationResult1'
           type: array
+          description: "Result of verifications performed prior or after the transaction.\n\
+            \  \n  ISO 8583:93 bit 39\n  ISO 8583:2003 bit 39 & 49-72"
       type: object
       title: Verification
       description: Information related to the verification of Card and Cardholder
@@ -4257,7 +4543,13 @@ components:
         - MERC
         - OTHP
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Type of verification entity.
+
+         - UNSPECIFIED: Default
+         - AGNT: Entity providing card payment processing services acting as an intermediary between (or on behalf of) an acquirer and an issuer.
+         - MERC: Acceptor (for example signature verification by the attendant).
+         - OTHP: Other type of authentication entity defined at private level.
     financialinitiationVerificationInformation1:
       properties:
         tp:
@@ -4269,13 +4561,14 @@ components:
         val:
           $ref: '#/components/schemas/financialinitiationVerificationValue1Choice'
       type: object
-      description: Verification Information
+      description: Contains verification or authentication data.
     financialinitiationVerificationResult1:
       properties:
         ntty:
           $ref: '#/components/schemas/financialinitiationVerificationEntity1Code'
         othrNtty:
           type: string
+          description: Other national or private entity in charge of the verification.
         rsltDtls:
           items:
             $ref: '#/components/schemas/financialinitiationAdditionalData1'
@@ -4409,6 +4702,7 @@ components:
         prcgRslt:
           $ref: '#/components/schemas/financialresponseProcessingResult2'
       type: object
+      description: Information related to the response of a financial initiation message.
     financialresponseFinancialResponseV02:
       properties:
         hdr:
@@ -4416,6 +4710,8 @@ components:
         body:
           $ref: '#/components/schemas/financialresponseFinancialResponse1'
       type: object
+      description: The FinancialResponse message is sent by an issuer or an agent
+        to an acquirer in response to a FinancialInitiation message.
     financialresponseGenericIdentification172:
       properties:
         id:
@@ -4424,6 +4720,7 @@ components:
           description: The identifier assigned by Mastercard to the Party.
           example: 523793
       type: object
+      description: Identification of an entity.
     financialresponseHeader42:
       properties:
         msgFctn:
@@ -4452,7 +4749,7 @@ components:
           type: array
           title: Trace Data
           description: "Private-use data defined by the message originator to be returned\
-            \ unaltered in any subsequent message.  The data is sent in a name-value\
+            \ unaltered in any subsequent message.\n  \n  The data is sent in a name-value\
             \ pair: Trace Data Name and Trace Data Value."
       type: object
       title: Message Header
@@ -4465,7 +4762,12 @@ components:
         - AUTH
         - FINC
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        Indicates the point in the transaction lifecycle at which the lifecycle identifier was assigned.
+
+         - UNSPECIFIED: Default
+         - AUTH: Assigned at authorisation time.
+         - FINC: Assigned at financial time.
     financialresponseMessageFunction16Code:
       default: UNSPECIFIED
       enum:
@@ -4473,7 +4775,10 @@ components:
         - ADVC
         - REQU
       type: string
-      description: "- UNSPECIFIED: Default"
+      description: |-
+        - UNSPECIFIED: Default
+         - ADVC: Advice indicates where the sender informs the receiver of an activity that has been taken that requires a response.
+         - REQU: Message function is a request.
     financialresponsePartyIdentification197:
       properties:
         id:
@@ -4498,8 +4803,11 @@ components:
       properties:
         id:
           type: string
+          description: Identification of the reconciliation.
           example: reconciliationid
       type: object
+      description: Identification of the reconciliation period between an acquirer
+        and an issuer or their respective agents.
     financialresponseResultData1:
       properties:
         rsltDtls:
@@ -4514,6 +4822,7 @@ components:
           items:
             $ref: '#/components/schemas/financialresponseAdditionalData1'
           type: array
+          description: Additional result information to be conveyed.
       type: object
       title: Authorization Result (Original)
       description: The result of a previous Authorization Initiation message.
@@ -4568,6 +4877,7 @@ components:
           items:
             $ref: '#/components/schemas/financialresponseSpecialProgrammeQualification1'
           type: array
+          description: Data to qualify for incentive or other related programmes.
         txId:
           $ref: '#/components/schemas/financialresponseTransactionIdentification8'
         txAmts:
@@ -4633,6 +4943,9 @@ components:
           $ref: '#/components/schemas/financialresponseTransactionLifeCycleIdentification1'
         acqrrRefNb:
           type: string
+          description: "Data supplied by an acquirer to assist in identifying a transaction\
+            \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
+            \ 8583:2003 bit 31"
       type: object
       title: Transaction Identification
       description: Information used to identify the transaction.
@@ -4654,6 +4967,7 @@ components:
           items:
             $ref: '#/components/schemas/financialresponseVerificationResult1'
           type: array
+          description: Result of verifications performed prior or after the transaction.
       type: object
       title: Verification
       description: Information related to the verification of Card and Cardholder
@@ -4717,6 +5031,7 @@ components:
       title: Transaction Additional Data
       description: "Additional data about the transaction. The data is sent in a name-value\
         \ pair: Transaction Additional Data Name and Transaction Additional Data Value."
+      example: A
     inquiryinitiationAdditionalRiskData1:
       properties:
         tp:
@@ -4834,6 +5149,7 @@ components:
           type: string
           title: "Date, Conversion"
           description: The date of the quote for the conversion Exchange Rate.
+          example: 2022-04-12T15:24:16.545Z
       type: object
       title: Cardholder Billing Amount Information
       description: "Information used to bill the Cardholder's account, including the\
@@ -4891,8 +5207,9 @@ components:
           items:
             $ref: '#/components/schemas/inquiryinitiationCardholderVerificationCapabilities1'
           type: array
-          description: "Cardholder verification capabilities performing the transaction\
-            \ at the point of service. ISO 8583:93 bit 22-2, ISO 8583:2003 bit 27-2"
+          description: |-
+            Cardholder verification capabilities performing the transaction at the point of service.
+              ISO 8583:93 bit 22-2, ISO 8583:2003 bit 27-2
       type: object
       title: Terminal Capabilities
       description: The functions the Terminal can perform in the initiation or authorization
@@ -5003,9 +5320,9 @@ components:
           items:
             $ref: '#/components/schemas/inquiryinitiationCredentials1'
           type: array
-          description: Identification of the cardholder.  ISO 8583:87 bit 56 (TLV
-            tag 03/dataset 73) ISO 8583:93 bit 112 (TLV tag 03/dataset 73) ISO 8583:2003
-            bit 51 (TLV tag 03/dataset 73)
+          description: "Identification of the cardholder.\n  \n  ISO 8583:87 bit 56\
+            \ (TLV tag 03/dataset 73)\n  ISO 8583:93 bit 112 (TLV tag 03/dataset 73)\n\
+            \  ISO 8583:2003 bit 51 (TLV tag 03/dataset 73)"
         adr:
           $ref: '#/components/schemas/inquiryinitiationAddress1'
       type: object
@@ -5141,6 +5458,7 @@ components:
           description: "The code identifying the kind of device, such as a mobile\
             \ phone, used by the Cardholder to store or read Card data and to initiate\
             \ the transaction not shown in Type."
+          example: mobile_case
       type: object
       description: Identification of the customer device.
     inquiryinitiationEnvironment12:
@@ -5192,7 +5510,7 @@ components:
           type: array
           description: "Information sent in the request message to be returned in\
             \ the response one, for instance to help in the retrieval of the context\
-            \ of the exchange.  ISO 8583:93/2003 bit 59"
+            \ of the exchange.\n  \n  ISO 8583:93/2003 bit 59"
       type: object
       description: Set of characteristics related to the protocol.
     inquiryinitiationIdentification2Code:
@@ -5218,8 +5536,8 @@ components:
           $ref: '#/components/schemas/inquiryinitiationProcessingResult5'
         iccRltdData:
           type: string
-          description: Data related to an integrated circuit card application embedded
-            in the payment card of the cardholder.  ISO 8583 bit 55
+          description: "Data related to an integrated circuit card application embedded\
+            \ in the payment card of the cardholder.\n  \n  ISO 8583 bit 55"
       type: object
       description: Information related to the inquiry initiation message.
     inquiryinitiationInquiryInitiationV01:
@@ -5251,6 +5569,7 @@ components:
         ctry:
           type: string
           description: Country of the party.
+          example: 840
         addtlId:
           type: string
           title: Additional Party ID
@@ -5294,15 +5613,15 @@ components:
           type: array
           title: Acceptor Additional Data
           description: "Additional data about or related to the Acceptor, such as\
-            \ the Payment Facilitator ID.  The data is sent in a name-value pair:\
-            \ Acceptor Additional Data Name and Acceptor Additional Data Value."
+            \ the Payment Facilitator ID.\n  \n  The data is sent in a name-value\
+            \ pair: Acceptor Additional Data Name and Acceptor Additional Data Value."
         spnsrdMrchnt:
           items:
             $ref: '#/components/schemas/inquiryinitiationSponsoredMerchant1'
           type: array
           title: Sponsored Merchant
-          description: A Merchant that uses the services of a Payment Facilitator.  Referred
-            to as Submerchant in Mastercard Rules.
+          description: "A Merchant that uses the services of a Payment Facilitator.\n\
+            \  \n  Referred to as Submerchant in Mastercard Rules."
       type: object
       description: Identification of a party.
     inquiryinitiationPartyType28Code:
@@ -5511,8 +5830,8 @@ components:
           $ref: '#/components/schemas/inquiryinitiationPartyIdentification197'
       type: object
       title: Sponsored Merchant
-      description: A Merchant that uses the services of a Payment Facilitator.  Referred
-        to as Submerchant in Mastercard Rules.
+      description: "A Merchant that uses the services of a Payment Facilitator.\n\
+        \  \n  Referred to as Submerchant in Mastercard Rules."
     inquiryinitiationTerminal1:
       properties:
         termnlId:
@@ -5643,8 +5962,9 @@ components:
       properties:
         txTp:
           type: string
-          description: Type of transaction associated with the main service. ISO 8583:87/93/2003
-            bit 3
+          description: |-
+            Type of transaction associated with the main service.
+              ISO 8583:87/93/2003 bit 3
         txSubTp:
           type: string
           description: Provides further granularity of purpose of TransactionType
@@ -5665,17 +5985,17 @@ components:
           items:
             $ref: '#/components/schemas/inquiryinitiationDetailedAmount20'
           type: array
-          description: Further details of some or all amounts in the transaction amount.  The
-            detailed amount is used to calculate the reconciliation amount for messages
-            in which the transaction amount is absent.
+          description: "Further details of some or all amounts in the transaction\
+            \ amount.   \n  \n  The detailed amount is used to calculate the reconciliation\
+            \ amount for messages in which the transaction amount is absent."
         rcncltnAmt:
           $ref: '#/components/schemas/inquiryinitiationAmount4'
         addtlAmts:
           items:
             $ref: '#/components/schemas/inquiryinitiationAdditionalAmounts2'
           type: array
-          description: Amounts that are not part of the transaction amount and not
-            included in reconciliation.  ISO 8583 bit 54
+          description: "Amounts that are not part of the transaction amount and not\
+            \ included in reconciliation.\n  \n  ISO 8583 bit 54"
         acctFr:
           $ref: '#/components/schemas/inquiryinitiationAccountDetails2'
         addtlData:
@@ -5731,23 +6051,24 @@ components:
         lclDtTm:
           type: string
           description: "Local date and time the transaction takes place at the card\
-            \ acceptor location.  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003 bit\
-            \ 12"
+            \ acceptor location.\n  \n  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003\
+            \ bit 12"
         trnsmssnDtTm:
           type: string
-          description: Date and time expressed in UTC of the message as sent by the
-            initiator. ISO 8583 bit 7
+          description: |-
+            Date and time expressed in UTC of the message as sent by the initiator.
+              ISO 8583 bit 7
         sysTracAudtNb:
           type: string
           description: "Number assigned by a transaction originator to assist in identifying\
             \ a transaction uniquely. The trace number remains unchanged for all messages\
-            \ within a two-message exchange (for example, request/repeat and response).\
-            \  ISO 8583 bit 11."
+            \ within a two-message exchange (for example, request/repeat and response).\n\
+            \  \n  ISO 8583 bit 11."
         rtrvlRefNb:
           type: string
-          description: Reference supplied by the system retaining the original source
-            information and used to assist in locating that information or a copy
-            thereof. ISO 8583 bit 37
+          description: |-
+            Reference supplied by the system retaining the original source information and used to assist in locating that information or a copy thereof.
+              ISO 8583 bit 37
         lifeCyclSpprtInd:
           type: string
           description: Indicate the point in the transaction lifecycle at which the
@@ -5756,15 +6077,14 @@ components:
           $ref: '#/components/schemas/inquiryinitiationTransactionLifeCycleIdentification1'
         acqrrRefNb:
           type: string
-          description: "Data supplied by an acquirer to assist in identifying a transaction\
-            \ (for example, for researching retrievals and chargebacks). ISO 8583:2003\
-            \ bit 31"
+          description: |-
+            Data supplied by an acquirer to assist in identifying a transaction (for example, for researching retrievals and chargebacks).
+              ISO 8583:2003 bit 31
         cardIssrRefData:
           type: string
-          description: "Data supplied by a card issuer in an authorisation response,\
-            \ financial response message or in a chargeback transaction that the acquirer\
-            \ may be required to provide in subsequent transactions. ISO 8583:1993\
-            \ and ISO 8583:2003 bit 95."
+          description: |-
+            Data supplied by a card issuer in an authorisation response, financial response message or in a chargeback transaction that the acquirer may be required to provide in subsequent transactions.
+              ISO 8583:1993 and ISO 8583:2003 bit 95.
       type: object
       description: Identification of the transaction for network management.
     inquiryinitiationTransactionLifeCycleIdentification1:
@@ -5807,8 +6127,8 @@ components:
           items:
             $ref: '#/components/schemas/inquiryinitiationVerificationResult1'
           type: array
-          description: Result of verifications performed prior or after the transaction.  ISO
-            8583:93 bit 39 ISO 8583:2003 bit 39 & 49-72
+          description: "Result of verifications performed prior or after the transaction.\n\
+            \  \n  ISO 8583:93 bit 39\n  ISO 8583:2003 bit 39 & 49-72"
       type: object
       title: Verification
       description: Information related to the verification of Card and Cardholder
@@ -5920,6 +6240,7 @@ components:
       type: object
       description: Limits and amounts not part of the transaction amount.
     inquiryresponseAdditionalData1:
+      example: A
       properties:
         tp:
           type: string
@@ -6026,6 +6347,7 @@ components:
           type: string
           title: "Date, Conversion"
           description: The date of the quote for the conversion Exchange Rate.
+          example: 2022-04-12T15:24:16.545Z
       type: object
       title: Cardholder Billing Amount Information
       description: "Information used to bill the Cardholder's account, including the\
@@ -6219,7 +6541,7 @@ components:
           type: array
           description: "Information sent in the request message to be returned in\
             \ the response one, for instance to help in the retrieval of the context\
-            \ of the exchange.  ISO 8583:93/2003 bit 59"
+            \ of the exchange.\n  \n  ISO 8583:93/2003 bit 59"
       type: object
       description: Set of characteristics related to the protocol.
     inquiryresponseInquiryResponse1:
@@ -6234,8 +6556,8 @@ components:
           $ref: '#/components/schemas/inquiryresponseProcessingResult5'
         iccRltdData:
           type: string
-          description: Data related to an integrated circuit card application embedded
-            in the payment card of the cardholder.  ISO 8583 bit 55
+          description: "Data related to an integrated circuit card application embedded\
+            \ in the payment card of the cardholder.\n  \n  ISO 8583 bit 55"
       type: object
       description: Information related to the inquiry response message.
     inquiryresponseInquiryResponseV01:
@@ -6306,8 +6628,8 @@ components:
           type: array
           title: Acceptor Additional Data
           description: "Additional data about or related to the Acceptor, such as\
-            \ the Payment Facilitator ID.  The data is sent in a name-value pair:\
-            \ Acceptor Additional Data Name and Acceptor Additional Data Value."
+            \ the Payment Facilitator ID.\n  \n  The data is sent in a name-value\
+            \ pair: Acceptor Additional Data Name and Acceptor Additional Data Value."
       type: object
       description: Identification of a party.
     inquiryresponsePartyType28Code:
@@ -6517,8 +6839,9 @@ components:
       properties:
         txTp:
           type: string
-          description: Type of transaction associated with the main service. ISO 8583:87/93/2003
-            bit 3
+          description: |-
+            Type of transaction associated with the main service.
+              ISO 8583:87/93/2003 bit 3
         txSubTp:
           type: string
           description: Provides further granularity of purpose of TransactionType
@@ -6535,8 +6858,8 @@ components:
           items:
             $ref: '#/components/schemas/inquiryresponseAdditionalAmounts2'
           type: array
-          description: Amounts that are not part of the transaction amount and not
-            included in reconciliation.  ISO 8583 bit 54
+          description: "Amounts that are not part of the transaction amount and not\
+            \ included in reconciliation.\n  \n  ISO 8583 bit 54"
         acctBal:
           items:
             $ref: '#/components/schemas/inquiryresponseAccountBalance1'
@@ -6566,23 +6889,24 @@ components:
         lclDtTm:
           type: string
           description: "Local date and time the transaction takes place at the card\
-            \ acceptor location.  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003 bit\
-            \ 12"
+            \ acceptor location.\n  \n  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003\
+            \ bit 12"
         trnsmssnDtTm:
           type: string
-          description: Date and time expressed in UTC of the message as sent by the
-            initiator. ISO 8583 bit 7
+          description: |-
+            Date and time expressed in UTC of the message as sent by the initiator.
+              ISO 8583 bit 7
         sysTracAudtNb:
           type: string
           description: "Number assigned by a transaction originator to assist in identifying\
             \ a transaction uniquely. The trace number remains unchanged for all messages\
-            \ within a two-message exchange (for example, request/repeat and response).\
-            \  ISO 8583 bit 11."
+            \ within a two-message exchange (for example, request/repeat and response).\n\
+            \  \n  ISO 8583 bit 11."
         rtrvlRefNb:
           type: string
-          description: Reference supplied by the system retaining the original source
-            information and used to assist in locating that information or a copy
-            thereof. ISO 8583 bit 37
+          description: |-
+            Reference supplied by the system retaining the original source information and used to assist in locating that information or a copy thereof.
+              ISO 8583 bit 37
         lifeCyclTracIdData:
           $ref: '#/components/schemas/inquiryresponseTransactionLifeCycleIdentification1'
       type: object
@@ -6700,6 +7024,7 @@ components:
       title: Transaction Additional Data
       description: "Additional data about the transaction. The data is sent in a name-value\
         \ pair: Transaction Additional Data Name and Transaction Additional Data Value."
+      example: A
     reversalinitiationAdditionalFee1:
       properties:
         tp:
@@ -6826,6 +7151,7 @@ components:
           type: string
           title: "Date, Conversion"
           description: The date of the quote for the conversion Exchange Rate.
+          example: 2022-04-12T15:24:16.545Z
       type: object
       title: Cardholder Billing Amount Information
       description: "Information used to bill the Cardholder's account, including the\
@@ -6901,21 +7227,23 @@ components:
       properties:
         pan:
           type: string
-          description: Primary Account Number (PAN) of the card or a surrogate of
-            the PAN such as a payment token. ISO 8583 bit 2
+          description: |-
+            Primary Account Number (PAN) of the card or a surrogate of the PAN such as a payment token.
+              ISO 8583 bit 2
           example: XXXX26423764723XXXX
         cardSeqNb:
           type: string
-          description: Distinguishes between instances of the same payment card. ISO
-            8583 bit 23
+          description: |-
+            Distinguishes between instances of the same payment card.
+              ISO 8583 bit 23
           example: '00'
         pmtAcctRef:
           type: string
-          description: A unique non-financial reference assigned to a given payment
-            account. May be used to link all transaction activity associated with
-            the same payment account.  ISO 8583:87 bit 56 (TLV tag 01/dataset 71)
-            ISO 8583:93 bit 112 (TLV tag 01/dataset 71) ISO 8583:2003 bit 51 (TLV
-            tag 01/dataset 71)
+          description: "A unique non-financial reference assigned to a given payment\
+            \ account. May be used to link all transaction activity associated with\
+            \ the same payment account. \n  \n  ISO 8583:87 bit 56 (TLV tag 01/dataset\
+            \ 71)\n  ISO 8583:93 bit 112 (TLV tag 01/dataset 71)\n  ISO 8583:2003\
+            \ bit 51 (TLV tag 01/dataset 71)"
           example: paymentaccountreference
         panAcctRg:
           type: string
@@ -7218,7 +7546,7 @@ components:
           type: array
           title: Trace Data
           description: "Private-use data defined by the message originator to be returned\
-            \ unaltered in any subsequent message.  The data is sent in a name-value\
+            \ unaltered in any subsequent message.\n  \n  The data is sent in a name-value\
             \ pair: Trace Data Name and Trace Data Value."
       type: object
       title: Message Header
@@ -7347,6 +7675,7 @@ components:
         ctry:
           type: string
           description: Country of the party.
+          example: 840
         addtlId:
           type: string
           title: Additional Party ID
@@ -7383,8 +7712,8 @@ components:
           type: array
           title: Acceptor Additional Data
           description: "Additional data about or related to the Acceptor, such as\
-            \ the Payment Facilitator ID.  The data is sent in a name-value pair:\
-            \ Acceptor Additional Data Name and Acceptor Additional Data Value."
+            \ the Payment Facilitator ID.\n  \n  The data is sent in a name-value\
+            \ pair: Acceptor Additional Data Name and Acceptor Additional Data Value."
       type: object
       description: Identification of a party.
     reversalinitiationPartyIdentification211:
@@ -7814,8 +8143,8 @@ components:
         mrchntCtgyCd:
           type: string
           description: "Category code related to the type of services or goods the\
-            \ merchant provides for the transaction.  ISO 8583:87 bit 18, ISO 8583:93\
-            \ bit 18 & 26, ISO 8583:2003 bit 26 ISO 18245"
+            \ merchant provides for the transaction.\n  \n  ISO 8583:87 bit 18, ISO\
+            \ 8583:93 bit 18 & 26, ISO 8583:2003 bit 26\n  ISO 18245"
           example: 5542
         cardPrgrmm:
           $ref: '#/components/schemas/reversalinitiationCardProgramme1'
@@ -7836,6 +8165,7 @@ components:
           title: Transmission Date Time
           description: "The date and time that the message was sent to the Mastercard\
             \ Switch Platform, expressed in Coordinated Universal Time (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (STAN)
@@ -7853,8 +8183,8 @@ components:
         acqrrRefNb:
           type: string
           description: "Data supplied by an acquirer to assist in identifying a transaction\
-            \ (for example, for researching retrievals and chargebacks).  ISO 8583:2003\
-            \ bit 31"
+            \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
+            \ 8583:2003 bit 31"
         orgnlDataElmts:
           $ref: '#/components/schemas/reversalinitiationOriginalDataElements1'
       type: object
@@ -7955,6 +8285,7 @@ components:
       description: "Information about amounts that are not part of the Transaction\
         \ Amount, such as an Issuer-assessed Cardholder fee."
     reversalresponseAdditionalData1:
+      example: A
       properties:
         tp:
           type: string
@@ -7996,6 +8327,7 @@ components:
           type: string
           title: "Date, Conversion"
           description: The date of the quote for the conversion Exchange Rate.
+          example: 2022-04-12T15:24:16.545Z
       type: object
       title: Cardholder Billing Amount Information
       description: "Information used to bill the Cardholder's account, including the\
@@ -8071,21 +8403,23 @@ components:
       properties:
         pan:
           type: string
-          description: Primary Account Number (PAN) of the card or a surrogate of
-            the PAN such as a payment token. ISO 8583 bit 2
+          description: |-
+            Primary Account Number (PAN) of the card or a surrogate of the PAN such as a payment token.
+              ISO 8583 bit 2
           example: XXXX26423764723XXXX
         cardSeqNb:
           type: string
-          description: Distinguishes between instances of the same payment card. ISO
-            8583 bit 23
+          description: |-
+            Distinguishes between instances of the same payment card.
+              ISO 8583 bit 23
           example: '00'
         pmtAcctRef:
           type: string
-          description: A unique non-financial reference assigned to a given payment
-            account. May be used to link all transaction activity associated with
-            the same payment account.  ISO 8583:87 bit 56 (TLV tag 01/dataset 71)
-            ISO 8583:93 bit 112 (TLV tag 01/dataset 71) ISO 8583:2003 bit 51 (TLV
-            tag 01/dataset 71)
+          description: "A unique non-financial reference assigned to a given payment\
+            \ account. May be used to link all transaction activity associated with\
+            \ the same payment account. \n  \n  ISO 8583:87 bit 56 (TLV tag 01/dataset\
+            \ 71)\n  ISO 8583:93 bit 112 (TLV tag 01/dataset 71)\n  ISO 8583:2003\
+            \ bit 51 (TLV tag 01/dataset 71)"
           example: paymentaccountreference
         panAcctRg:
           type: string
@@ -8204,7 +8538,7 @@ components:
           type: array
           title: Trace Data
           description: "Private-use data defined by the message originator to be returned\
-            \ unaltered in any subsequent message.  The data is sent in a name-value\
+            \ unaltered in any subsequent message.\n  \n  The data is sent in a name-value\
             \ pair: Trace Data Name and Trace Data Value."
       type: object
       title: Message Header
@@ -8517,8 +8851,9 @@ components:
       properties:
         txTp:
           type: string
-          description: Type of transaction associated with the main service. ISO 8583:87/93/2003
-            bit 3
+          description: |-
+            Type of transaction associated with the main service.
+              ISO 8583:87/93/2003 bit 3
           example: '00'
         txSubTp:
           type: string
@@ -8537,8 +8872,8 @@ components:
           items:
             $ref: '#/components/schemas/reversalresponseAdditionalAmounts1'
           type: array
-          description: Amounts that are not part of the transaction amount and not
-            included in reconciliation.  ISO 8583 bit 54
+          description: "Amounts that are not part of the transaction amount and not\
+            \ included in reconciliation.\n  \n  ISO 8583 bit 54"
         acctFr:
           $ref: '#/components/schemas/reversalresponseAccountDetails2'
         acctTo:
@@ -8613,6 +8948,7 @@ components:
           title: Transmission Date Time
           description: "The date and time that the message was sent to the Mastercard\
             \ Switch Platform, expressed in Coordinated Universal Time (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (STAN)
@@ -8633,12 +8969,12 @@ components:
           type: string
           description: "Data supplied by an acquirer in an authorisation or financial\
             \ request, advice or notification that may be required to be provided\
-            \ in a subsequent transaction.  ISO 8583:93 bit 31"
+            \ in a subsequent transaction.\n  \n  ISO 8583:93 bit 31"
         acqrrRefNb:
           type: string
           description: "Data supplied by an acquirer to assist in identifying a transaction\
-            \ (for example, for researching retrievals and chargebacks).  ISO 8583:2003\
-            \ bit 31"
+            \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
+            \ 8583:2003 bit 31"
         cardIssrRefData:
           type: string
           title: Transaction Reference Data
@@ -8852,6 +9188,13 @@ components:
           schema:
             $ref: '#/components/schemas/financialinitiationFinancialInitiationV02'
       required: true
+      description: The FinancialInitiation message is sent by an acquirer or an agent
+        to an issuer to request approval of a card transaction or to inform about
+        the completion of an authorisation. It allows the approved transaction amount
+        to be billed or posted on the cardholder's account. It can also be sent by
+        an issuer to an acquirer or agent to advise that an authorisation has been
+        successfully completed for the final amount and requests the clearing of the
+        transaction.
     InquiryInitiationV01Body:
       content:
         application/json:
