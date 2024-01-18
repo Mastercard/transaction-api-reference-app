@@ -441,12 +441,15 @@ components:
           type: string
           description: "Second line of information that locates and identifies a specific\
             \ address, as defined by postal services."
+          example: Bluebell Heights
         strtNm:
           type: string
           description: Name of a street or thoroughfare.
+          example: Meadow Way
         bldgNb:
           type: string
           description: Number that identifies the position of a building on a street.
+          example: 1134
         pstlCd:
           type: string
           title: Cardholder Postal Code
@@ -461,6 +464,7 @@ components:
           type: string
           description: "Identifies a minor subdivision of a country, for instance\
             \ county, prefecture."
+          example: Erial County
         ctrySubDvsnMjr:
           type: string
           title: Cardholder Country Subdivision Code
@@ -661,6 +665,7 @@ components:
           type: string
           title: Card Country Code
           description: The ISO 3166-1 numeric country code of the Card's Issuer.
+          example: 840
         cardPdctTp:
           type: string
           title: Card Product Code
@@ -1446,6 +1451,7 @@ components:
           title: Terminal Subtype Code
           description: "The code identifying the subtype of the Cardholder activated\
             \ Terminal, such as an automated dispensing machine."
+          example: nfc_mobile
         cpblties:
           $ref: '#/components/schemas/authorisationinitiationCapabilities1'
         termnlIntgtn:
@@ -1806,6 +1812,7 @@ components:
           title: Funds Transfer Description
           description: A free text field for the Payer of the Funds Transfer to provide
             a description for the Payee.
+          example: Salary
       type: object
       title: Funds Transfer Service
       description: Information about the service where funds are sent from one party
@@ -1905,6 +1912,7 @@ components:
           title: Verification Data Value (Binary)
           description: A binary field for the Verification Data labeled by the Verification
             Data Name.
+          example: '010101001100111'
         pINData:
           $ref: '#/components/schemas/authorisationinitiationPINData1'
       type: object
@@ -2806,10 +2814,12 @@ components:
           type: string
           description: Used when Purchase Identifier Type is Other National or Other
             Private.
+          example: identifier_type
         purchsIdr:
           type: string
           description: Contains a value identifying Invoice Data or Purchase Request
             Data.
+          example: ABCD123456
         addtlAccptrData:
           $ref: '#/components/schemas/financialinitiationAdditionalAcceptorData1'
         fleet:
@@ -2832,6 +2842,7 @@ components:
           type: string
           description: Identification of the company recognized by the taxation authority.  Used
             for reporting transaction-related taxes.
+          example: NE449471F
         addtlId:
           items:
             $ref: '#/components/schemas/financialinitiationAdditionalIdentification1'
@@ -2901,9 +2912,11 @@ components:
         othrTp:
           type: string
           description: Other Additional Identification applied to the transaction.
+          example: id_type
         val:
           type: string
           description: Additional identification value.
+          example: 91dc0a459376-4c46
       type: object
       description: Contains additional identification details of additional card acceptor
         data.
@@ -3084,10 +3097,12 @@ components:
           type: string
           description: "Identification of the batch to which the message belongs.\n\
             \  \n  ISO 8583:2003 bit 69-2"
+          example: 20231221002345
         msgSeqNb:
           type: string
           description: "Sequence number of the message inside the batch.\n  \n  ISO\
             \ 8583:87/93 bit 71\n  ISO 8583:2003 bit 68-2"
+          example: '001'
       type: object
       description: Elements of identification of a batch management transaction.
     financialinitiationCapabilities1:
@@ -3187,6 +3202,7 @@ components:
           type: string
           description: "Service attached to the card as defined in ISO 7813.\n  \n\
             \  ISO 8583 bit 40."
+          example: 30
         cardPdctTp:
           type: string
           title: Card Product Code
@@ -3369,6 +3385,7 @@ components:
           description: "The code identifying the kind of device, such as a mobile\
             \ phone, used by the Cardholder to store or read Card data and to initiate\
             \ the transaction not shown in Type."
+          example: mobile_case
       type: object
       description: Identification of the customer device.
     financialinitiationDisputeData1:
@@ -3376,6 +3393,7 @@ components:
         chrgbckElgblty:
           type: string
           description: Provides transaction chargeback eligibility conditions.
+          example: I
       type: object
       description: Data to be present in a dispute.
     financialinitiationEnvironment1:
@@ -3440,6 +3458,7 @@ components:
           type: string
           description: "Data related to an integrated circuit card application embedded\
             \ in the payment card of the cardholder.\n  \n  ISO 8583 bit 55"
+          example: 5F2A02084082025C00950500000000009A030306199C01009F02060000000100009F10120412208003242000961F00000000000000FF9F1A0208409F2701809F360200A29F370401F8F06B9F260895DA430B98041D12
       type: object
       description: Information related to the financial initiation message.
     financialinitiationFinancialInitiationV02:
@@ -3476,23 +3495,29 @@ components:
           description: "Indicates whether or not the line item represents a fuel or\
             \ non-fuel product or service.\n  \n  True = Fuel item\n  False = Non-fuel\
             \ item"
+          example: true
         fleetPdctCd:
           type: string
           description: Product code of fleet product or service being purchased.
+          example: 101
         unitPric:
           type: string
           description: Unit price of the fleet line item.
+          example: 1.439
         unitOfMeasr:
           $ref: '#/components/schemas/financialinitiationUnitOfMeasure1Code'
         othrUnitOfMeasr:
           type: string
           description: Other unit of measure.
+          example: gill
         pdctQty:
           type: string
           description: Quantity of product or item.
+          example: 50.44
         ttlAmtInclgTax:
           type: string
           description: Total amount including tax.
+          example: 76.43
       type: object
       description: Supplies additional transaction information for fleet transactions.
     financialinitiationFleetSummary1:
@@ -3556,6 +3581,7 @@ components:
         tm:
           type: string
           description: Grace period time relative to the grace period unit type.
+          example: 3
         unitTp:
           $ref: '#/components/schemas/financialinitiationGracePeriodUnitType1Code'
       type: object
@@ -3623,6 +3649,7 @@ components:
           type: string
           description: Indicates the occurrence of a single instalment payment within
             a series of instalment payments.
+          example: 3
         plan:
           items:
             $ref: '#/components/schemas/financialinitiationPlan1'
@@ -3638,12 +3665,14 @@ components:
         othrTp:
           type: string
           description: Grace period other unit type.
+          example: vat
         amt:
           $ref: '#/components/schemas/financialinitiationAmount5'
         pctg:
           type: string
           description: "Rate expressed as a percentage, that is, in hundredths, example,\
             \ 0.7 is 7/10 of a percent, and 7.0 is 7%."
+          example: 35
       type: object
       description: Instalment amount details
     financialinitiationInstalmentAmountDetailsType1Code:
@@ -3691,11 +3720,13 @@ components:
           type: string
           description: "Other type of interest applied to the instalment, when Type\
             \ is OtherNational or OtherPrivate."
+          example: vat_exc_rate
         prd:
           $ref: '#/components/schemas/financialinitiationInstalmentPeriod1Code'
         rate:
           type: string
           description: "Rate expressed as a decimal, example, 0.7 is 7/10 and 70%."
+          example: 27.99
       type: object
       description: Details of the interest rate
     financialinitiationLifeCycleSupport1Code:
@@ -3819,6 +3850,7 @@ components:
         instlmtPmtTp:
           type: string
           description: Instalment payment type.
+          example: Wk
         intrstRate:
           items:
             $ref: '#/components/schemas/financialinitiationInterestRateDetails1'
@@ -3827,20 +3859,25 @@ components:
         frstPmtDt:
           type: string
           description: Date of the first payment.
+          example: 2023-12-12
         frstAmt:
           type: string
           description: Amount of the first payment when different from the subsequent
             payments.
+          example: 108.75
         sbsqntAmt:
           type: string
           description: Amount of subsequent payments.
+          example: 108.75
         ttlNbOfPmts:
           type: string
           description: "Total number of instalment payments.\n  \n  ISO 8583 bit 59"
+          example: 12
         instlmtCcy:
           type: string
           description: Currency code associated with the instalment amount.  ISO 4217
             "Codes for the representation of currencies and funds".
+          example: 840
         gracePrd:
           $ref: '#/components/schemas/financialinitiationGracePeriod1'
         amtDtls:
@@ -3852,6 +3889,7 @@ components:
           type: string
           description: "Total amount of the instalment including charges, insurance\
             \ and taxes in addition to the funded amount."
+          example: 1304.00
       type: object
       description: Attributes of the instalment plan.
     financialinitiationPointOfServiceContext1:
@@ -4095,12 +4133,15 @@ components:
         city:
           type: string
           description: City from which or to which the call was made.
+          example: ST LOUIS
         stat:
           type: string
           description: State from which or to which the call was made.
+          example: MO
         ctry:
           type: string
           description: Country from which or to which the call was made.
+          example: USA
       type: object
       description: Structured call details with address.
     financialinitiationTelecomServices1:
@@ -4120,6 +4161,7 @@ components:
         drtn:
           type: string
           description: Duration of phone call expressed in HHMMSS format.
+          example: 00:15:43
         callFr:
           $ref: '#/components/schemas/financialinitiationTelecomCallDetails1'
         callTo:
@@ -4128,6 +4170,7 @@ components:
           type: string
           description: Additional user-defined data pertaining to the telecommunications
             services.
+          example: ITT
       type: object
       description: Telecom services line item carries detail level telephony billing
         data.
@@ -4142,6 +4185,7 @@ components:
           title: Terminal Subtype Code
           description: "The code identifying the subtype of the Cardholder activated\
             \ Terminal, such as an automated dispensing machine."
+          example: nfc_mobile
         cpblties:
           $ref: '#/components/schemas/financialinitiationCapabilities1'
         offPrmissInd:
@@ -4404,6 +4448,7 @@ components:
           title: Transmission Date Time
           description: "The date and time that the message was sent to the Mastercard\
             \ Switch Platform, expressed in Coordinated Universal Time (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (STAN)
@@ -4425,6 +4470,7 @@ components:
           description: "Data supplied by an acquirer to assist in identifying a transaction\
             \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
             \ 8583:2003 bit 31"
+          example: 556775
         cardIssrRefData:
           type: string
           title: Transaction Reference Data
@@ -4501,9 +4547,7 @@ components:
         - USGA
       type: string
       description: |-
-        Unit of measure of the item purchased.
-
-         - UNSPECIFIED: Default
+        - UNSPECIFIED: Default
          - GBGA: Unit of volume that is equal to 8 pints.
          - KILO: Basic unit of mass in the SI system, 1000 grams.
          - LITR: Unit of volume that is equal to a thousand cubic centimetres.
@@ -4516,6 +4560,7 @@ components:
           description: "Odometer reading value indicating the distance travelled by\
             \ the vehicle (for example, car, van, pickup truck, semi-truck portion\
             \ of a tractor trailer unit)."
+          example: 130332
       type: object
       description: Attributes of a fleet vehicle.
     financialinitiationVerification1:
@@ -4569,6 +4614,7 @@ components:
         othrNtty:
           type: string
           description: Other national or private entity in charge of the verification.
+          example: PISP
         rsltDtls:
           items:
             $ref: '#/components/schemas/financialinitiationAdditionalData1'
@@ -4925,6 +4971,7 @@ components:
           title: Transmission Date Time
           description: "The date and time that the message was sent to the Mastercard\
             \ Switch Platform, expressed in Coordinated Universal Time (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (STAN)
@@ -4946,6 +4993,7 @@ components:
           description: "Data supplied by an acquirer to assist in identifying a transaction\
             \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
             \ 8583:2003 bit 31"
+          example: 556775
       type: object
       title: Transaction Identification
       description: Information used to identify the transaction.
@@ -5009,6 +5057,7 @@ components:
         othrTp:
           type: string
           description: Other type of amount.
+          example: bal_inq
         amt:
           $ref: '#/components/schemas/inquiryinitiationAmount14'
       type: object
@@ -5090,12 +5139,15 @@ components:
           type: string
           description: "Second line of information that locates and identifies a specific\
             \ address, as defined by postal services."
+          example: Bluebell Heights
         strtNm:
           type: string
           description: Name of a street or thoroughfare.
+          example: Meadow Way
         bldgNb:
           type: string
           description: Number that identifies the position of a building on a street.
+          example: 1134
         pstlCd:
           type: string
           title: Cardholder Postal Code
@@ -5110,6 +5162,7 @@ components:
           type: string
           description: "Identifies a minor subdivision of a country, for instance\
             \ county, prefecture."
+          example: Erial County
         ctrySubDvsnMjr:
           type: string
           title: Cardholder Country Subdivision Code
@@ -5253,6 +5306,7 @@ components:
           type: string
           title: Card Country Code
           description: The ISO 3166-1 numeric country code of the Card's Issuer.
+          example: 840
         cardPdctTp:
           type: string
           title: Card Product Code
@@ -5444,6 +5498,7 @@ components:
         othrTp:
           type: string
           description: Additional information to specify the type of amount.
+          example: vat_excl
         amt:
           $ref: '#/components/schemas/inquiryinitiationAmount5'
       type: object
@@ -5499,9 +5554,11 @@ components:
         prtcolVrsn:
           type: string
           description: Version of the acquirer to issuer protocol specifications.
+          example: 1
         creDtTm:
           type: string
           description: Date and time at which the message was sent.
+          example: 2022-04-12T15:24:16.545z
         initgPty:
           $ref: '#/components/schemas/inquiryinitiationGenericIdentification172'
         tracData:
@@ -5538,6 +5595,7 @@ components:
           type: string
           description: "Data related to an integrated circuit card application embedded\
             \ in the payment card of the cardholder.\n  \n  ISO 8583 bit 55"
+          example: 5F2A02084082025C00950500000000009A030306199C01009F02060000000100009F10120412208003242000961F00000000000000FF9F1A0208409F2701809F360200A29F370401F8F06B9F260895DA430B98041D12
       type: object
       description: Information related to the inquiry initiation message.
     inquiryinitiationInquiryInitiationV01:
@@ -5843,6 +5901,7 @@ components:
           title: Terminal Subtype Code
           description: "The code identifying the subtype of the Cardholder activated\
             \ Terminal, such as an automated dispensing machine."
+          example: nfc_mobile
         cpblties:
           $ref: '#/components/schemas/inquiryinitiationCapabilities1'
         termnlIntgtn:
@@ -5965,9 +6024,11 @@ components:
           description: |-
             Type of transaction associated with the main service.
               ISO 8583:87/93/2003 bit 3
+          example: 12
         txSubTp:
           type: string
           description: Provides further granularity of purpose of TransactionType
+          example: P10
         addtlSvc:
           items:
             $ref: '#/components/schemas/inquiryinitiationAdditionalService1'
@@ -6053,26 +6114,31 @@ components:
           description: "Local date and time the transaction takes place at the card\
             \ acceptor location.\n  \n  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003\
             \ bit 12"
+          example: 2024-01-12T09:08:18
         trnsmssnDtTm:
           type: string
           description: |-
             Date and time expressed in UTC of the message as sent by the initiator.
               ISO 8583 bit 7
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           description: "Number assigned by a transaction originator to assist in identifying\
             \ a transaction uniquely. The trace number remains unchanged for all messages\
             \ within a two-message exchange (for example, request/repeat and response).\n\
             \  \n  ISO 8583 bit 11."
+          example: 665743
         rtrvlRefNb:
           type: string
           description: |-
             Reference supplied by the system retaining the original source information and used to assist in locating that information or a copy thereof.
               ISO 8583 bit 37
+          example: 202312127756
         lifeCyclSpprtInd:
           type: string
           description: Indicate the point in the transaction lifecycle at which the
             lifecycle identifier was assigned.
+          example: CISP
         lifeCyclTracIdData:
           $ref: '#/components/schemas/inquiryinitiationTransactionLifeCycleIdentification1'
         acqrrRefNb:
@@ -6080,11 +6146,13 @@ components:
           description: |-
             Data supplied by an acquirer to assist in identifying a transaction (for example, for researching retrievals and chargebacks).
               ISO 8583:2003 bit 31
+          example: 2023121988474655364747465
         cardIssrRefData:
           type: string
           description: |-
             Data supplied by a card issuer in an authorisation response, financial response message or in a chargeback transaction that the acquirer may be required to provide in subsequent transactions.
               ISO 8583:1993 and ISO 8583:2003 bit 95.
+          example: 2023121988474655364747465
       type: object
       description: Identification of the transaction for network management.
     inquiryinitiationTransactionLifeCycleIdentification1:
@@ -6179,6 +6247,7 @@ components:
           title: Verification Data Value (Binary)
           description: A binary field for the Verification Data labeled by the Verification
             Data Name.
+          example: '010101001100111'
       type: object
       title: Verification Data Value
       description: The Verification Data labeled by the Verification Data Name.
@@ -6197,6 +6266,7 @@ components:
           title: Account Type (Balance Inquiry)
           description: A code identifying a classification of the account for which
             the Account Balance is provided.
+          example: '00'
         bal:
           items:
             $ref: '#/components/schemas/inquiryresponseBalance15'
@@ -6232,11 +6302,13 @@ components:
         othrTp:
           type: string
           description: Other type of amount.
+          example: bal_inq
         amt:
           $ref: '#/components/schemas/inquiryresponseAmount14'
         labl:
           type: string
           description: Short description of the additional amount.
+          example: Current Balance
       type: object
       description: Limits and amounts not part of the transaction amount.
     inquiryresponseAdditionalData1:
@@ -6288,12 +6360,15 @@ components:
           type: string
           description: "Second line of information that locates and identifies a specific\
             \ address, as defined by postal services."
+          example: Bluebell Heights
         strtNm:
           type: string
           description: Name of a street or thoroughfare.
+          example: Meadow Way
         bldgNb:
           type: string
           description: Number that identifies the position of a building on a street.
+          example: 1134
         pstlCd:
           type: string
           title: Cardholder Postal Code
@@ -6308,6 +6383,7 @@ components:
           type: string
           description: "Identifies a minor subdivision of a country, for instance\
             \ county, prefecture."
+          example: Erial County
         ctrySubDvsnMjr:
           type: string
           title: Cardholder Country Subdivision Code
@@ -6530,9 +6606,11 @@ components:
         prtcolVrsn:
           type: string
           description: Version of the acquirer to issuer protocol specifications.
+          example: 1
         creDtTm:
           type: string
           description: Date and time at which the message was sent.
+          example: 2022-04-12T15:24:16.545z
         initgPty:
           $ref: '#/components/schemas/inquiryresponseGenericIdentification172'
         tracData:
@@ -6558,6 +6636,7 @@ components:
           type: string
           description: "Data related to an integrated circuit card application embedded\
             \ in the payment card of the cardholder.\n  \n  ISO 8583 bit 55"
+          example: 5F2A02084082025C00950500000000009A030306199C01009F02060000000100009F10120412208003242000961F00000000000000FF9F1A0208409F2701809F360200A29F370401F8F06B9F260895DA430B98041D12
       type: object
       description: Information related to the inquiry response message.
     inquiryresponseInquiryResponseV01:
@@ -6598,6 +6677,7 @@ components:
           title: Risk Assessor Type Code (Other)
           description: "The network specific code identifying the type of party that\
             \ performed the Risk Assessment, such as an Agent."
+          example: CISP
       type: object
       title: Risk Assessor
       description: The party that performed the Risk Assessment.
@@ -6842,9 +6922,11 @@ components:
           description: |-
             Type of transaction associated with the main service.
               ISO 8583:87/93/2003 bit 3
+          example: 12
         txSubTp:
           type: string
           description: Provides further granularity of purpose of TransactionType
+          example: P10
         spclPrgrmmQlfctn:
           items:
             $ref: '#/components/schemas/inquiryresponseSpecialProgrammeQualification1'
@@ -6891,22 +6973,26 @@ components:
           description: "Local date and time the transaction takes place at the card\
             \ acceptor location.\n  \n  ISO 8583:87 bit 12 and 13, ISO 8583:93/2003\
             \ bit 12"
+          example: 2024-01-12T09:08:18
         trnsmssnDtTm:
           type: string
           description: |-
             Date and time expressed in UTC of the message as sent by the initiator.
               ISO 8583 bit 7
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           description: "Number assigned by a transaction originator to assist in identifying\
             \ a transaction uniquely. The trace number remains unchanged for all messages\
             \ within a two-message exchange (for example, request/repeat and response).\n\
             \  \n  ISO 8583 bit 11."
+          example: 665743
         rtrvlRefNb:
           type: string
           description: |-
             Reference supplied by the system retaining the original source information and used to assist in locating that information or a copy thereof.
               ISO 8583 bit 37
+          example: 202312127756
         lifeCyclTracIdData:
           $ref: '#/components/schemas/inquiryresponseTransactionLifeCycleIdentification1'
       type: object
@@ -7092,12 +7178,15 @@ components:
           type: string
           description: "Second line of information that locates and identifies a specific\
             \ address, as defined by postal services."
+          example: Bluebell Heights
         strtNm:
           type: string
           description: Name of a street or thoroughfare.
+          example: Meadow Way
         bldgNb:
           type: string
           description: Number that identifies the position of a building on a street.
+          example: 1134
         pstlCd:
           type: string
           title: Cardholder Postal Code
@@ -7112,6 +7201,7 @@ components:
           type: string
           description: "Identifies a minor subdivision of a country, for instance\
             \ county, prefecture."
+          example: Erial County
         ctrySubDvsnMjr:
           type: string
           title: Cardholder Country Subdivision Code
@@ -7635,6 +7725,7 @@ components:
           description: "The date and time that the original message was sent to the\
             \ Mastercard Switch Platform, expressed in Coordinated Universal Time\
             \ (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (Original)
@@ -8185,6 +8276,7 @@ components:
           description: "Data supplied by an acquirer to assist in identifying a transaction\
             \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
             \ 8583:2003 bit 31"
+          example: 556775
         orgnlDataElmts:
           $ref: '#/components/schemas/reversalinitiationOriginalDataElements1'
       type: object
@@ -8220,6 +8312,7 @@ components:
           title: Funds Transfer Description
           description: A free text field for the Payer of the Funds Transfer to provide
             a description for the Payee.
+          example: Salary
       type: object
       title: Funds Transfer Service
       description: Information about the service where funds are sent from one party
@@ -8621,12 +8714,14 @@ components:
           description: "The Transaction Date Time (Local) of the original message,\
             \ which is the local date and time at which the transaction took place\
             \ at the point of interaction."
+          example: 2022-04-12T15:24:16.545z
         trnsmssnDtTm:
           type: string
           title: Transmission Date Time (Original)
           description: "The date and time that the original message was sent to the\
             \ Mastercard Switch Platform, expressed in Coordinated Universal Time\
             \ (UTC)."
+          example: 2022-04-12T15:24:16.545Z
         sysTracAudtNb:
           type: string
           title: System Trace Audit Number (Original)
@@ -8942,7 +9037,7 @@ components:
           title: Transaction Date Time (Local)
           description: The local date and time at which the transaction took place
             at the point of interaction.
-          example: 2022-04-12T15:24:16.545z
+          example: 2024-01-15T14:26:54
         trnsmssnDtTm:
           type: string
           title: Transmission Date Time
@@ -8970,11 +9065,13 @@ components:
           description: "Data supplied by an acquirer in an authorisation or financial\
             \ request, advice or notification that may be required to be provided\
             \ in a subsequent transaction.\n  \n  ISO 8583:93 bit 31"
+          example: 323150af8a164a378b083b848eb6438a
         acqrrRefNb:
           type: string
           description: "Data supplied by an acquirer to assist in identifying a transaction\
             \ (for example, for researching retrievals and chargebacks).\n  \n  ISO\
             \ 8583:2003 bit 31"
+          example: 556775
         cardIssrRefData:
           type: string
           title: Transaction Reference Data

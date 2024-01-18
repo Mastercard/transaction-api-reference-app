@@ -35,4 +35,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.exclusions=src/test/**/*  -Dsonar.projectKey=Mastercard_transaction-api-reference-app -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=mastercard
+#          added flag to disable deprecated java version check, build is failing and warning that an update to Java 17 is required, currently Java 8
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.exclusions=src/test/**/*  -Dsonar.projectKey=Mastercard_transaction-api-reference-app -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=mastercard -Dsonar.scanner.force-deprecated-java-version=true
