@@ -8,7 +8,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.openapitools.client.model.AuthorisationresponseAuthorisationResponseV02;
+import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -25,7 +25,7 @@ class ResponsePollerJobConfigurationTest {
     private final ResponsePollerJobConfiguration responsePollerJobConfiguration = new ResponsePollerJobConfiguration();
 
     @Mock
-    private ResponsePoller<AuthorisationresponseAuthorisationResponseV02> mockResponsePoller;
+    private ResponsePoller<AuthorisationResponseAuthorisationResponseV02> mockResponsePoller;
 
     @Mock
     private ThreadPoolTaskExecutor mockThreadPoolTaskExecutor;

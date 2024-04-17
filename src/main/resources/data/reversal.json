@@ -1,168 +1,133 @@
 {
-    "hdr": {
-        "msgFctn": "REQU",
-        "prtcolVrsn": "00.00.00",
-        "creDtTm": "2023-07-18T08:53:31.237Z"
+  "hdr": {
+    "prtcolVrsn": "auths",
+    "initgPty": {
+      "id": "999698"
     },
-    "body": {
-        "envt": {
-            "acqrr": {
-                "id": "002711"
-            },
-            "sndr": {
-                "id": "123456"
-            },
-            "accptr": {
-                "id": "IECQGBtV",
-                "nmAndLctn": "Delta Air Minneapolis1",
-                "adr": {
-                    "twnNm": "Any Town USA",
-                    "ctry": "USA"
-                },
-                "addtlData": [
-                ]
-            },
-            "termnl": {
-                "termnlId": {
-                    "id": "12345678",
-                    "ctry": "USA"
-                }
-            },
-            "card": {
-                "pan": "5186231499999213"
-            }
-        },
-        "cntxt": {
-            "ptOfSvcCntxt": {
-                "eComrcData": [
-                    {
-                        "tp": "ecom_security_level_ucaf_collection",
-                        "val": "242"
-                    }
-                ],
-                "cardDataNtryMd": "CDFL",
-                "spclConds": [
-                    {
-                        "id": "pin_entry_mode",
-                        "val": "2"
-                    },
-                    {
-                        "id": "pos_terminal_attendance",
-                        "val": "1"
-                    },
-                    {
-                        "id": "pos_terminal_location",
-                        "val": "2"
-                    },
-                    {
-                        "id": "pos_cardholder_present",
-                        "val": "4"
-                    },
-                    {
-                        "id": "pos_card_presence",
-                        "val": "1"
-                    },
-                    {
-                        "id": "pos_card_capture_capabilities",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_transaction_status",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_transaction_security",
-                        "val": "0"
-                    },
-                    {
-                        "id": "cat_level",
-                        "val": "6"
-                    },
-                    {
-                        "id": "pos_card_input_capability",
-                        "val": "6"
-                    },
-                    {
-                        "id": "pos_auth_life_cycle",
-                        "val": "00"
-                    },
-                    {
-                        "id": "pos_country_code",
-                        "val": "840"
-                    },
-                    {
-                        "id": "pos_postal_code",
-                        "val": "398806"
-                    }
-                ]
-            },
-            "txCntxt": {
-                "mrchntCtgyCd": "5311"
-            }
-        },
-        "tx": {
-            "txTp": "00",
-            "spclPrgrmmQlfctn": [
-                {
-                    "dtl": [
-                        {
-                            "nm": "cardholder_merchant_init_tx",
-                            "val": "C101"
-                        }
-                    ]
-                },
-                {
-                    "dtl": [
-                        {
-                            "nm": "message_format_version_code_acq",
-                            "val": "B"
-                        }
-                    ]
-                }
-            ],
-            "txId": {
-                "lclDtTm": "2023-07-18T08:53:31.237Z",
-                "trnsmssnDtTm": "2023-07-18T08:53:31.237Z",
-                "sysTracAudtNb": "710559",
-                "rtrvlRefNb": "GvJRPAV28686",
-                "orgnlDataElmts": {
-                    "msgClss": "AUTH",
-                    "acqrrId": "912716",
-                    "sndrId": "123456",
-                    "trnsmssnDtTm": "2023-07-18T08:53:22.000Z",
-                    "sysTracAudtNb": "085322",
-                    "lifeCyclTracIdData": {
-                        "id": "MCS0BZD1Q0725  "
-                    }
-                }
-            },
-            "txAmts": {
-                "txAmt": {
-                    "amt": "100.00",
-                    "ccy": "840"
-                }
-            },
-            "acctFr": {
-                "acctTp": "00"
-            },
-            "acctTo": {
-                "acctTp": "00"
-            },
-            "addtlData": [
-                {
-                    "tp": "card_expiry_date",
-                    "val": "2510"
-                },
-                {
-                    "tp": "tcc",
-                    "val": "T"
-                }
-            ]
-        },
-        "prcgRslt": {
-            "rsltData": {
-                "rsltDtls": "00"
-            }
+    "msgFctn": "REQU",
+    "creDtTm": "2024-01-13T06:41:43.000Z"
+  },
+  "body": {
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "spclConds": [
+          {
+            "val": "1",
+            "id": "pin_entry_mode"
+          },
+          {
+            "val": "0",
+            "id": "pos_terminal_attendance"
+          },
+          {
+            "val": "0",
+            "id": "pos_terminal_location"
+          },
+          {
+            "val": "0",
+            "id": "pos_cardholder_present"
+          },
+          {
+            "val": "0",
+            "id": "pos_card_presence"
+          },
+          {
+            "val": "0",
+            "id": "pos_card_capture_capabilities"
+          },
+          {
+            "val": "0",
+            "id": "pos_transaction_status"
+          },
+          {
+            "val": "0",
+            "id": "pos_transaction_security"
+          },
+          {
+            "val": "0",
+            "id": "cat_level"
+          },
+          {
+            "val": "0",
+            "id": "pos_card_input_capability"
+          },
+          {
+            "val": "01",
+            "id": "pos_auth_life_cycle"
+          },
+          {
+            "val": "076",
+            "id": "pos_country_code"
+          },
+          {
+            "val": "6312915210",
+            "id": "pos_postal_code"
+          }
+        ],
+        "cardDataNtryMd": "MGST"
+      },
+      "txCntxt": {
+        "mrchntCtgyCd": "7992"
+      }
+    },
+    "prcgRslt": {
+      "rsltData": {
+        "rsltDtls": "00"
+      }
+    },
+    "tx": {
+      "txAmts": {
+        "txAmt": {
+          "ccy": "840",
+          "amt": "100.00"
         }
+      },
+      "addtlData": [
+        {
+          "val": "R",
+          "tp": "tcc"
+        },
+        {
+          "val": "P",
+          "tp": "cardholder_verification_method"
+        }
+      ],
+      "txTp": "20",
+      "txSubTp": "C94",
+      "acctFr": {
+        "acctTp": "00"
+      },
+      "txId": {
+        "sysTracAudtNb": "417623",
+        "trnsmssnDtTm": "2024-01-29T14:54:22.894Z",
+        "rtrvlRefNb": "000TC2034769",
+        "lclDtTm": "2024-01-13T00:41:43.000Z",
+        "orgnlDataElmts": {
+          "acqrrId": "00000999698",
+          "sysTracAudtNb": "011013",
+          "trnsmssnDtTm": "2024-08-20T08:48:42.000Z",
+          "msgClss": "AUTH",
+          "sndrId": "00000000000",
+          "lifeCyclTracIdData": {
+            "id": "MCC1234560704  "
+          }
+        }
+      },
+      "acctTo": {
+        "acctTp": "00"
+      }
+    },
+    "envt": {
+      "acqrr": {
+        "id": "999698"
+      },
+      "accptr": {
+        "id": "006370011000001"
+      },
+      "card": {
+        "cardSeqNb": "091",
+        "pan": "5663555001724517"
+      }
     }
+  }
 }

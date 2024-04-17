@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.InquiryinitiationInquiryInitiationV01;
+import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
@@ -38,8 +38,7 @@ class InquiryRequestSubmitterTest {
     @Mock
     private TransactionApiProperties transactionApiProperties;
 
-    private InquiryinitiationInquiryInitiationV01 testRequest = TestRequestResponseGenerator.getTestInquiryInitiationV01();
-
+    private InquiryInitiationInquiryInitiationV01 testRequest = TestRequestResponseGenerator.getTestInquiryInitiationV01();
     @BeforeEach
     void setup() {
         new JSON();     // required to initialise Json.getGson() method

@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.FinancialinitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
@@ -38,7 +38,7 @@ class FinancialAdviceRequestSubmitterTest {
     @Mock
     private TransactionApiProperties transactionApiProperties;
 
-    private FinancialinitiationFinancialInitiationV02 testRequest = TestRequestResponseGenerator.getTestFinancialInitiationV02();
+    private FinancialInitiationFinancialInitiationV02 testRequest = TestRequestResponseGenerator.getTestFinancialInitiationV02();
 
     @BeforeEach
     void setup() {

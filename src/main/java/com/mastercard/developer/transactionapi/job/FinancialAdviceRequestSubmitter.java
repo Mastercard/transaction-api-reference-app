@@ -7,7 +7,7 @@ import com.mastercard.developer.transactionapi.enums.FlowType;
 import com.mastercard.developer.transactionapi.example.RequestExampleGenerator;
 import com.mastercard.developer.transactionapi.utils.ClientUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.openapitools.client.model.FinancialinitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +26,7 @@ public class FinancialAdviceRequestSubmitter extends RequestSubmitter {
      */
     @Override
     protected void submitRequest() {
-        FinancialinitiationFinancialInitiationV02 request = getRequestExampleGenerator().buildFinancialAdviceRequest();
+        FinancialInitiationFinancialInitiationV02 request = getRequestExampleGenerator().buildFinancialAdviceRequest();
 
         String correlationId = getTransactionApiClient().submitFinancialAdviceRequest(request);
 

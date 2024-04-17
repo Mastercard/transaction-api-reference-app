@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
@@ -39,7 +39,7 @@ class AuthorisationRequestSubmitterTest {
     @Mock
     private TransactionApiProperties transactionApiProperties;
 
-    private AuthorisationinitiationAuthorisationInitiationV02 testRequest = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
+    private AuthorisationInitiationAuthorisationInitiationV02 testRequest = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
 
     @BeforeEach
     void setup() {

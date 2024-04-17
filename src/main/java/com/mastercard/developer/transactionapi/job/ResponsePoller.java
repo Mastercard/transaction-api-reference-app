@@ -2,7 +2,7 @@ package com.mastercard.developer.transactionapi.job;
 
 import com.mastercard.developer.transactionapi.client.TransactionApiClient;
 import com.mastercard.developer.transactionapi.client.model.BatchResponse;
-import com.mastercard.developer.transactionapi.client.model.ResponseItem;
+import com.mastercard.developer.transactionapi.client.model.ResponseStatus;
 import com.mastercard.developer.transactionapi.config.TransactionApiProperties;
 import com.mastercard.developer.transactionapi.context.RequestContextManager;
 import com.mastercard.developer.transactionapi.enums.FlowType;
@@ -18,7 +18,7 @@ import java.time.Duration;
 /**
  * Polls for responses of a particular type from the Transaction API.
  *
- * @param <P> response item payload type
+ * @param <P> response status payload type
  */
 @RequiredArgsConstructor
 public abstract class ResponsePoller<P> {
@@ -104,8 +104,8 @@ public abstract class ResponsePoller<P> {
                 BatchResponse<P> batch = getResponses();
 
                 // process received responses
-                for (ResponseItem<P> item : batch.getItems()) {
-                    processResponseItem(item);
+                for (ResponseStatus<P> item : batch.getItems()) {
+                    processResponseStatus(item);
                 }
 
                 // save the results
@@ -121,9 +121,9 @@ public abstract class ResponsePoller<P> {
     }
 
     /**
-     * Processes a received response item.
+     * Processes a received response status.
      */
-    void processResponseItem(ResponseItem<P> item) {
+    void processResponseStatus(ResponseStatus<P> item) {
 
 
         if (item.getPayload() != null) {

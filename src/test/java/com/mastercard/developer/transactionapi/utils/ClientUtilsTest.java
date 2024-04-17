@@ -2,10 +2,8 @@ package com.mastercard.developer.transactionapi.utils;
 
 import com.mastercard.developer.transactionapi.exception.RuntimeInterruptedException;
 import com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openapitools.client.JSON;
-import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -16,11 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ClientUtilsTest {
 
     private static final Duration TEST_DELAY = Duration.ofMillis(250);
-
-    @BeforeEach
-    void setup() {
-        new JSON(); // Initialises required JSON.getGson() which is required for Json translation
-    }
 
     @Test
     void givenHappyPath_whenSleep_thenSleep() {
@@ -41,7 +34,7 @@ class ClientUtilsTest {
 
         // call
         assertThrows(RuntimeInterruptedException.class, () ->
-            ClientUtils.sleep(TEST_DELAY));
+                ClientUtils.sleep(TEST_DELAY));
 
         // verify
         assertThat(Thread.interrupted()).isTrue();
@@ -50,7 +43,7 @@ class ClientUtilsTest {
     @Test
     void givenLoggingEnabled_whenConvertPayloadForLogging_verifyString(){
         // setup
-        AuthorisationinitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
+        AuthorisationInitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
 
         // call
         String result = ClientUtils.convertPayloadForLogging(item.toJson(), true);
@@ -62,7 +55,7 @@ class ClientUtilsTest {
     @Test
     void givenLoggingDisabled_whenConvertPayloadForLogging_verifyString(){
         // setup
-        AuthorisationinitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
+        AuthorisationInitiationAuthorisationInitiationV02 item = TestRequestResponseGenerator.getTestAuthorisationInitiationV02();
 
         // call
         String result = ClientUtils.convertPayloadForLogging(item.toJson(), false);

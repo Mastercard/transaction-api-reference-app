@@ -1,7 +1,7 @@
 package com.mastercard.developer.transactionapi.client.impl;
 
 import com.mastercard.developer.transactionapi.client.model.BatchResponse;
-import com.mastercard.developer.transactionapi.client.model.ResponseItem;
+import com.mastercard.developer.transactionapi.client.model.ResponseStatus;
 import com.mastercard.developer.transactionapi.exception.TransactionApiException;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
@@ -12,22 +12,22 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.ApiResponse;
 import org.openapitools.client.api.TransactionApiApi;
-import org.openapitools.client.model.AuthorisationResponseV02Item;
+import org.openapitools.client.model.AuthorisationResponseV02Status;
 import org.openapitools.client.model.AuthorisationResponseV02List;
-import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
-import org.openapitools.client.model.AuthorisationresponseAuthorisationResponseV02;
-import org.openapitools.client.model.FinancialAdviceResponseV02Item;
+import org.openapitools.client.model.FinancialAdviceResponseV02Status;
 import org.openapitools.client.model.FinancialAdviceResponseV02List;
-import org.openapitools.client.model.FinancialinitiationFinancialInitiationV02;
-import org.openapitools.client.model.FinancialresponseFinancialResponseV02;
-import org.openapitools.client.model.InquiryResponseV01Item;
+import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
+import org.openapitools.client.model.InquiryResponseV01Status;
 import org.openapitools.client.model.InquiryResponseV01List;
-import org.openapitools.client.model.InquiryinitiationInquiryInitiationV01;
-import org.openapitools.client.model.InquiryresponseInquiryResponseV01;
-import org.openapitools.client.model.ReversalResponseV02Item;
+import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
+import org.openapitools.client.model.FinancialResponseFinancialResponseV02;
+import org.openapitools.client.model.InquiryResponseInquiryResponseV01;
+import org.openapitools.client.model.ReversalResponseReversalResponseV02;
+import org.openapitools.client.model.ReversalResponseV02Status;
 import org.openapitools.client.model.ReversalResponseV02List;
-import org.openapitools.client.model.ReversalinitiationReversalInitiationV02;
-import org.openapitools.client.model.ReversalresponseReversalResponseV02;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
@@ -87,10 +87,10 @@ class TransactionApiClientImplTest {
 
     private final ApiException testApiException = new ApiException(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Failed");
 
-    private final AuthorisationinitiationAuthorisationInitiationV02 testAuthInitiation = getTestAuthorisationInitiationV02();
-    private final ReversalinitiationReversalInitiationV02 testRevInitiation = getTestReversalInitiationV02();
-    private final InquiryinitiationInquiryInitiationV01 testInqInitiation = getTestInquiryInitiationV01();
-    private final FinancialinitiationFinancialInitiationV02 testFinAdvInitiation = getTestFinancialInitiationV02();
+    private final AuthorisationInitiationAuthorisationInitiationV02 testAuthInitiation = getTestAuthorisationInitiationV02();
+    private final ReversalInitiationReversalInitiationV02 testRevInitiation = getTestReversalInitiationV02();
+    private final InquiryInitiationInquiryInitiationV01 testInqInitiation = getTestInquiryInitiationV01();
+    private final FinancialInitiationFinancialInitiationV02 testFinAdvInitiation = getTestFinancialInitiationV02();
 
     private final AuthorisationResponseV02List authList = getAuthorisationResponseList(HttpStatus.SC_OK);
     private final FinancialAdviceResponseV02List financialAdvList = getFinancialAdvResponseList(HttpStatus.SC_OK);
@@ -100,7 +100,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenHappyPath_whenSubmitAuthorisationRequest_thenReturnCorrId() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessAuthorisationRequestWithHttpInfo(testAuthInitiation))
+        when(transactionApiApi.processAuthorisationRequestWithHttpInfo(testAuthInitiation))
                 .thenReturn(testPostApiResponse);
 
         // call
@@ -113,7 +113,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenSubmitAuthorisationRequest_thenThrowException() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessAuthorisationRequestWithHttpInfo(testAuthInitiation))
+        when(transactionApiApi.processAuthorisationRequestWithHttpInfo(testAuthInitiation))
                 .thenThrow(testApiException);
 
         // call
@@ -128,7 +128,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenHappyPath_whenSubmitReversalRequest_thenReturnCorrId() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessReversalRequestWithHttpInfo(testRevInitiation))
+        when(transactionApiApi.processReversalRequestWithHttpInfo(testRevInitiation))
                 .thenReturn(testPostApiResponse);
 
         // call
@@ -141,7 +141,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenSubmitReversalRequest_thenThrowException() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessReversalRequestWithHttpInfo(testRevInitiation))
+        when(transactionApiApi.processReversalRequestWithHttpInfo(testRevInitiation))
                 .thenThrow(testApiException);
 
         // call
@@ -156,7 +156,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenHappyPath_whenSubmitInquiryRequest_thenReturnCorrId() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessInquiryRequestWithHttpInfo(testInqInitiation))
+        when(transactionApiApi.processInquiryRequestWithHttpInfo(testInqInitiation))
                 .thenReturn(testPostApiResponse);
 
         // call
@@ -169,7 +169,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenSubmitInquiryRequest_thenThrowException() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessInquiryRequestWithHttpInfo(testInqInitiation))
+        when(transactionApiApi.processInquiryRequestWithHttpInfo(testInqInitiation))
                 .thenThrow(testApiException);
 
         // call
@@ -184,7 +184,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenHappyPath_whenSubmitFinancialAdviceRequest_thenReturnCorrId() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessFinancialAdviceRequestWithHttpInfo(testFinAdvInitiation))
+        when(transactionApiApi.processFinancialAdviceRequestWithHttpInfo(testFinAdvInitiation))
                 .thenReturn(testPostApiResponse);
 
         // call
@@ -197,7 +197,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenSubmitFinancialAdviceRequest_thenThrowException() throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiProcessFinancialAdviceRequestWithHttpInfo(testFinAdvInitiation))
+        when(transactionApiApi.processFinancialAdviceRequestWithHttpInfo(testFinAdvInitiation))
                 .thenThrow(testApiException);
 
         // call
@@ -215,17 +215,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<AuthorisationResponseV02List> response =
                 new ApiResponse<>(HttpStatus.SC_OK, testGetResponseHeaders, authList);
-        when(transactionApiApi.transactionApiGetAuthorisationResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getAuthorisationResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        AuthorisationResponseV02Item expectedItem1 = authList.getItems().get(0);
-        AuthorisationResponseV02Item expectedItem2 = authList.getItems().get(1);
+        AuthorisationResponseV02Status expectedItem1 = authList.getItems().get(0);
+        AuthorisationResponseV02Status expectedItem2 = authList.getItems().get(1);
 
         // call
-        BatchResponse<AuthorisationresponseAuthorisationResponseV02> responseActual = transactionApiClient.getAuthorisationResponses();
+        BatchResponse<AuthorisationResponseAuthorisationResponseV02> responseActual = transactionApiClient.getAuthorisationResponses();
 
         // verify
-        ResponseItem<AuthorisationresponseAuthorisationResponseV02> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<AuthorisationresponseAuthorisationResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<AuthorisationResponseAuthorisationResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<AuthorisationResponseAuthorisationResponseV02> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isFalse();
         assertThat(responseActual.getRetryAfter()).isEqualTo(TEST_RETRY_AFTER);
@@ -250,17 +250,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<AuthorisationResponseV02List> response =
                 new ApiResponse<>(HttpStatus.SC_PARTIAL_CONTENT, testGetPartialResponseHeaders, authList);
-        when(transactionApiApi.transactionApiGetAuthorisationResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getAuthorisationResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        AuthorisationResponseV02Item expectedItem1 = authList.getItems().get(0);
-        AuthorisationResponseV02Item expectedItem2 = authList.getItems().get(1);
+        AuthorisationResponseV02Status expectedItem1 = authList.getItems().get(0);
+        AuthorisationResponseV02Status expectedItem2 = authList.getItems().get(1);
 
         // call
-        BatchResponse<AuthorisationresponseAuthorisationResponseV02> responseActual = transactionApiClient.getAuthorisationResponses();
+        BatchResponse<AuthorisationResponseAuthorisationResponseV02> responseActual = transactionApiClient.getAuthorisationResponses();
 
         // verify
-        ResponseItem<AuthorisationresponseAuthorisationResponseV02> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<AuthorisationresponseAuthorisationResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<AuthorisationResponseAuthorisationResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<AuthorisationResponseAuthorisationResponseV02> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isTrue();
         assertThat(responseActual.getRetryAfter()).isEqualTo(Duration.ZERO);
@@ -285,17 +285,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<FinancialAdviceResponseV02List> response =
                 new ApiResponse<>(HttpStatus.SC_OK, testGetResponseHeaders, financialAdvList);
-        when(transactionApiApi.transactionApiGetFinancialAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getFinancialAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        FinancialAdviceResponseV02Item expectedItem1 = financialAdvList.getItems().get(0);
-        FinancialAdviceResponseV02Item expectedItem2 = financialAdvList.getItems().get(1);
+        FinancialAdviceResponseV02Status expectedItem1 = financialAdvList.getItems().get(0);
+        FinancialAdviceResponseV02Status expectedItem2 = financialAdvList.getItems().get(1);
 
         // call
-        BatchResponse<FinancialresponseFinancialResponseV02> responseActual = transactionApiClient.getFinancialAdviceResponses();
+        BatchResponse<FinancialResponseFinancialResponseV02> responseActual = transactionApiClient.getFinancialAdviceResponses();
 
         // verify
-        ResponseItem<FinancialresponseFinancialResponseV02> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<FinancialresponseFinancialResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<FinancialResponseFinancialResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<FinancialResponseFinancialResponseV02> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isFalse();
         assertThat(responseActual.getRetryAfter()).isEqualTo(TEST_RETRY_AFTER);
@@ -320,17 +320,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<FinancialAdviceResponseV02List> response =
                 new ApiResponse<>(HttpStatus.SC_PARTIAL_CONTENT, testGetPartialResponseHeaders, financialAdvList);
-        when(transactionApiApi.transactionApiGetFinancialAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getFinancialAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        FinancialAdviceResponseV02Item expectedItem1 = financialAdvList.getItems().get(0);
-        FinancialAdviceResponseV02Item expectedItem2 = financialAdvList.getItems().get(1);
+        FinancialAdviceResponseV02Status expectedItem1 = financialAdvList.getItems().get(0);
+        FinancialAdviceResponseV02Status expectedItem2 = financialAdvList.getItems().get(1);
 
         // call
-        BatchResponse<FinancialresponseFinancialResponseV02> responseActual = transactionApiClient.getFinancialAdviceResponses();
+        BatchResponse<FinancialResponseFinancialResponseV02> responseActual = transactionApiClient.getFinancialAdviceResponses();
 
         // verify
-        ResponseItem<FinancialresponseFinancialResponseV02> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<FinancialresponseFinancialResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<FinancialResponseFinancialResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<FinancialResponseFinancialResponseV02> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isTrue();
         assertThat(responseActual.getRetryAfter()).isEqualTo(Duration.ZERO);
@@ -355,17 +355,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<InquiryResponseV01List> response =
                 new ApiResponse<>(HttpStatus.SC_OK, testGetResponseHeaders, inquiryList);
-        when(transactionApiApi.transactionApiGetInquiryResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getInquiryResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        InquiryResponseV01Item expectedItem1 = inquiryList.getItems().get(0);
-        InquiryResponseV01Item expectedItem2 = inquiryList.getItems().get(1);
+        InquiryResponseV01Status expectedItem1 = inquiryList.getItems().get(0);
+        InquiryResponseV01Status expectedItem2 = inquiryList.getItems().get(1);
 
         // call
-        BatchResponse<InquiryresponseInquiryResponseV01> responseActual = transactionApiClient.getInquiryResponses();
+        BatchResponse<InquiryResponseInquiryResponseV01> responseActual = transactionApiClient.getInquiryResponses();
 
         // verify
-        ResponseItem<InquiryresponseInquiryResponseV01> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<InquiryresponseInquiryResponseV01> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<InquiryResponseInquiryResponseV01> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<InquiryResponseInquiryResponseV01> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isFalse();
         assertThat(responseActual.getRetryAfter()).isEqualTo(TEST_RETRY_AFTER);
@@ -390,17 +390,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<InquiryResponseV01List> response =
                 new ApiResponse<>(HttpStatus.SC_PARTIAL_CONTENT, testGetPartialResponseHeaders, inquiryList);
-        when(transactionApiApi.transactionApiGetInquiryResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getInquiryResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        InquiryResponseV01Item expectedItem1 = inquiryList.getItems().get(0);
-        InquiryResponseV01Item expectedItem2 = inquiryList.getItems().get(1);
+        InquiryResponseV01Status expectedItem1 = inquiryList.getItems().get(0);
+        InquiryResponseV01Status expectedItem2 = inquiryList.getItems().get(1);
 
         // call
-        BatchResponse<InquiryresponseInquiryResponseV01> responseActual = transactionApiClient.getInquiryResponses();
+        BatchResponse<InquiryResponseInquiryResponseV01> responseActual = transactionApiClient.getInquiryResponses();
 
         // verify
-        ResponseItem<InquiryresponseInquiryResponseV01> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<InquiryresponseInquiryResponseV01> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<InquiryResponseInquiryResponseV01> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<InquiryResponseInquiryResponseV01> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isTrue();
         assertThat(responseActual.getRetryAfter()).isEqualTo(Duration.ZERO);
@@ -425,17 +425,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<ReversalResponseV02List> response =
                 new ApiResponse<>(HttpStatus.SC_OK, testGetResponseHeaders, reversalList);
-        when(transactionApiApi.transactionApiGetReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        ReversalResponseV02Item expectedItem1 = reversalList.getItems().get(0);
-        ReversalResponseV02Item expectedItem2 = reversalList.getItems().get(1);
+        ReversalResponseV02Status expectedItem1 = reversalList.getItems().get(0);
+        ReversalResponseV02Status expectedItem2 = reversalList.getItems().get(1);
 
         // call
-        BatchResponse<ReversalresponseReversalResponseV02> responseActual = transactionApiClient.getReversalResponses();
+        BatchResponse<ReversalResponseReversalResponseV02> responseActual = transactionApiClient.getReversalResponses();
 
         // verify
-        ResponseItem<ReversalresponseReversalResponseV02> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<ReversalresponseReversalResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<ReversalResponseReversalResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<ReversalResponseReversalResponseV02> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isFalse();
         assertThat(responseActual.getRetryAfter()).isEqualTo(TEST_RETRY_AFTER);
@@ -460,17 +460,17 @@ class TransactionApiClientImplTest {
         // setup
         ApiResponse<ReversalResponseV02List> response =
                 new ApiResponse<>(HttpStatus.SC_PARTIAL_CONTENT, testGetPartialResponseHeaders, reversalList);
-        when(transactionApiApi.transactionApiGetReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+        when(transactionApiApi.getReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
 
-        ReversalResponseV02Item expectedItem1 = reversalList.getItems().get(0);
-        ReversalResponseV02Item expectedItem2 = reversalList.getItems().get(1);
+        ReversalResponseV02Status expectedItem1 = reversalList.getItems().get(0);
+        ReversalResponseV02Status expectedItem2 = reversalList.getItems().get(1);
 
         // call
-        BatchResponse<ReversalresponseReversalResponseV02> responseActual = transactionApiClient.getReversalResponses();
+        BatchResponse<ReversalResponseReversalResponseV02> responseActual = transactionApiClient.getReversalResponses();
 
         // verify
-        ResponseItem<ReversalresponseReversalResponseV02> responseActualItem1 = responseActual.getItems().get(0);
-        ResponseItem<ReversalresponseReversalResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+        ResponseStatus<ReversalResponseReversalResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<ReversalResponseReversalResponseV02> responseActualItem2 = responseActual.getItems().get(1);
 
         assertThat(responseActual.isHasMore()).isTrue();
         assertThat(responseActual.getRetryAfter()).isEqualTo(Duration.ZERO);
@@ -493,11 +493,11 @@ class TransactionApiClientImplTest {
     @Test
     void givenTooEarlyStatusCode_whenGetReversalResponses_thenVerifyTooEarlyResponse(CapturedOutput output) throws ApiException {
         // setup
-        when(transactionApiApi.transactionApiGetReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT))
+        when(transactionApiApi.getReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT))
                 .thenThrow(new ApiException(HTTP_STATUS_TOO_EARLY, testGetResponseHeaders, null));
 
         // call
-        BatchResponse<ReversalresponseReversalResponseV02> responseActual = transactionApiClient.getReversalResponses();
+        BatchResponse<ReversalResponseReversalResponseV02> responseActual = transactionApiClient.getReversalResponses();
 
         // verify
         assertThat(responseActual.getItems()).isEqualTo(Collections.EMPTY_LIST);
@@ -510,7 +510,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenGetAuthorisationResponses_thenThrowTransactionApiException() throws ApiException {
         // setup
-        doThrow(testApiException).when(transactionApiApi).transactionApiGetAuthorisationResponsesWithHttpInfo(TEST_BATCH_LIMIT);
+        doThrow(testApiException).when(transactionApiApi).getAuthorisationResponsesWithHttpInfo(TEST_BATCH_LIMIT);
 
         // call
         Exception e = assertThrows(TransactionApiException.class, () ->
@@ -524,7 +524,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenGetFinancialAdvResponses_thenThrowTransactionApiException() throws ApiException {
         // setup
-        doThrow(testApiException).when(transactionApiApi).transactionApiGetFinancialAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT);
+        doThrow(testApiException).when(transactionApiApi).getFinancialAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT);
 
         // call
         Exception e = assertThrows(TransactionApiException.class, () -> transactionApiClient.getFinancialAdviceResponses());
@@ -537,7 +537,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenGetInquiryResponses_thenThrowTransactionApiException() throws ApiException {
         // setup
-        doThrow(testApiException).when(transactionApiApi).transactionApiGetInquiryResponsesWithHttpInfo(TEST_BATCH_LIMIT);
+        doThrow(testApiException).when(transactionApiApi).getInquiryResponsesWithHttpInfo(TEST_BATCH_LIMIT);
 
         // call
         Exception e = assertThrows(TransactionApiException.class, () -> transactionApiClient.getInquiryResponses());
@@ -550,7 +550,7 @@ class TransactionApiClientImplTest {
     @Test
     void givenException_whenGetReversalResponses_thenThrowTransactionApiException() throws ApiException {
         // setup
-        doThrow(testApiException).when(transactionApiApi).transactionApiGetReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT);
+        doThrow(testApiException).when(transactionApiApi).getReversalResponsesWithHttpInfo(TEST_BATCH_LIMIT);
 
         // call
         Exception e = assertThrows(TransactionApiException.class, () -> transactionApiClient.getReversalResponses());
@@ -564,7 +564,7 @@ class TransactionApiClientImplTest {
     void givenMissingCorrelationIdHeader_whenSubmitAuthorisationRequest_thenVerifyOutput() throws ApiException {
         // setup
         ApiResponse<Void> apiResponseWithNoCorrId = new ApiResponse<>(HttpStatus.SC_OK, Collections.emptyMap());
-        when(transactionApiApi.transactionApiProcessAuthorisationRequestWithHttpInfo(testAuthInitiation))
+        when(transactionApiApi.processAuthorisationRequestWithHttpInfo(testAuthInitiation))
                 .thenReturn(apiResponseWithNoCorrId);
 
         // call

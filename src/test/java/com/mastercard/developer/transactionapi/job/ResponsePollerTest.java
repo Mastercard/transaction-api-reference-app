@@ -16,7 +16,7 @@ import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.AuthorisationresponseAuthorisationResponseV02;
+import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -60,7 +60,7 @@ class ResponsePollerTest {
 
     private final ResponsePoller.LastPollResults results = new ResponsePoller.LastPollResults();
 
-    private final BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> batchBuilderOkay =
+    private final BatchResponse.BatchResponseBuilder<AuthorisationResponseAuthorisationResponseV02> batchBuilderOkay =
             generateBatchBuilder(TEST_CORRELATION_ID, HttpStatus.SC_OK);
 
 
@@ -237,10 +237,10 @@ class ResponsePollerTest {
         results.hasMore = true;
         results.retryAfter = Duration.ZERO;
 
-        BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> batchBuilderNotOkay =
+        BatchResponse.BatchResponseBuilder<AuthorisationResponseAuthorisationResponseV02> batchBuilderNotOkay =
                 generateBatchBuilder(TEST_CORRELATION_ID, HttpStatus.SC_BAD_REQUEST);
 
-        BatchResponse<AuthorisationresponseAuthorisationResponseV02> batchResponse = batchBuilderNotOkay
+        BatchResponse<AuthorisationResponseAuthorisationResponseV02> batchResponse = batchBuilderNotOkay
                 .hasMore(false)
                 .retryAfter(TEST_NEW_RETRY_AFTER)
                 .build();
@@ -261,7 +261,7 @@ class ResponsePollerTest {
         results.hasMore = true;
         results.retryAfter = Duration.ZERO;
 
-        BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> batchBuilderNotOkay =
+        BatchResponse.BatchResponseBuilder<AuthorisationResponseAuthorisationResponseV02> batchBuilderNotOkay =
                 generateBatchBuilder(TEST_CORRELATION_ID, HttpStatus.SC_BAD_REQUEST);
 
         doReturn(batchBuilderNotOkay
@@ -282,7 +282,7 @@ class ResponsePollerTest {
         results.hasMore = true;
         results.retryAfter = Duration.ZERO;
 
-        BatchResponse.BatchResponseBuilder<AuthorisationresponseAuthorisationResponseV02> batchBuilderFailure =
+        BatchResponse.BatchResponseBuilder<AuthorisationResponseAuthorisationResponseV02> batchBuilderFailure =
                 generateBatchBuilderWithErrors(TEST_CORRELATION_ID, HttpStatus.SC_BAD_REQUEST);
 
         doReturn(batchBuilderFailure
