@@ -1,11 +1,11 @@
 package com.mastercard.developer.transactionapi.client.impl;
 
 import com.mastercard.developer.transactionapi.client.TransactionApiClient;
-import com.mastercard.developer.transactionapi.client.model.AuthorisationResponseItem;
+import com.mastercard.developer.transactionapi.client.model.AuthorisationResponseStatus;
 import com.mastercard.developer.transactionapi.client.model.BatchResponse;
-import com.mastercard.developer.transactionapi.client.model.FinancialAdviceResponseItem;
-import com.mastercard.developer.transactionapi.client.model.InquiryResponseItem;
-import com.mastercard.developer.transactionapi.client.model.ReversalResponseItem;
+import com.mastercard.developer.transactionapi.client.model.FinancialAdviceResponseStatus;
+import com.mastercard.developer.transactionapi.client.model.InquiryResponseStatus;
+import com.mastercard.developer.transactionapi.client.model.ReversalResponseStatus;
 import com.mastercard.developer.transactionapi.exception.MissingHeaderException;
 import com.mastercard.developer.transactionapi.exception.TransactionApiException;
 import lombok.RequiredArgsConstructor;
@@ -15,17 +15,17 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.ApiResponse;
 import org.openapitools.client.api.TransactionApiApi;
 import org.openapitools.client.model.AuthorisationResponseV02List;
-import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
-import org.openapitools.client.model.AuthorisationresponseAuthorisationResponseV02;
 import org.openapitools.client.model.FinancialAdviceResponseV02List;
-import org.openapitools.client.model.FinancialinitiationFinancialInitiationV02;
-import org.openapitools.client.model.FinancialresponseFinancialResponseV02;
+import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.openapitools.client.model.InquiryResponseV01List;
-import org.openapitools.client.model.InquiryinitiationInquiryInitiationV01;
-import org.openapitools.client.model.InquiryresponseInquiryResponseV01;
+import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
+import org.openapitools.client.model.FinancialResponseFinancialResponseV02;
+import org.openapitools.client.model.InquiryResponseInquiryResponseV01;
+import org.openapitools.client.model.ReversalResponseReversalResponseV02;
 import org.openapitools.client.model.ReversalResponseV02List;
-import org.openapitools.client.model.ReversalinitiationReversalInitiationV02;
-import org.openapitools.client.model.ReversalresponseReversalResponseV02;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -64,10 +64,10 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return Correlation ID of the accepted request
      */
     @Override
-    public String submitAuthorisationRequest(AuthorisationinitiationAuthorisationInitiationV02 authorisationRequest) throws TransactionApiException {
+    public String submitAuthorisationRequest(AuthorisationInitiationAuthorisationInitiationV02 authorisationRequest) throws TransactionApiException {
         try {
             log.info("Calling Transaction API processAuthorisationRequest");
-            ApiResponse<Void> response = transactionApiApi.transactionApiProcessAuthorisationRequestWithHttpInfo(authorisationRequest);
+            ApiResponse<Void> response = transactionApiApi.processAuthorisationRequestWithHttpInfo(authorisationRequest);
             log.info("Completed Transaction API processAuthorisationRequest");
             return getCorrelationId(response);
         } catch (Exception e) {
@@ -85,10 +85,10 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return Correlation ID of the accepted request
      */
     @Override
-    public String submitReversalRequest(ReversalinitiationReversalInitiationV02 reversalRequest) throws TransactionApiException {
+    public String submitReversalRequest(ReversalInitiationReversalInitiationV02 reversalRequest) throws TransactionApiException {
         try {
             log.info("Calling Transaction API processReversalRequest");
-            ApiResponse<Void> response = transactionApiApi.transactionApiProcessReversalRequestWithHttpInfo(reversalRequest);
+            ApiResponse<Void> response = transactionApiApi.processReversalRequestWithHttpInfo(reversalRequest);
             log.info("Completed Transaction API processReversalRequest");
             return getCorrelationId(response);
         } catch (Exception e) {
@@ -106,10 +106,10 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return Correlation ID of the accepted request
      */
     @Override
-    public String submitInquiryRequest(InquiryinitiationInquiryInitiationV01 inquiryRequest) throws TransactionApiException {
+    public String submitInquiryRequest(InquiryInitiationInquiryInitiationV01 inquiryRequest) throws TransactionApiException {
         try {
             log.info("Calling Transaction API processInquiryRequest");
-            ApiResponse<Void> response = transactionApiApi.transactionApiProcessInquiryRequestWithHttpInfo(inquiryRequest);
+            ApiResponse<Void> response = transactionApiApi.processInquiryRequestWithHttpInfo(inquiryRequest);
             log.info("Completed Transaction API processInquiryRequest");
             return getCorrelationId(response);
         } catch (Exception e) {
@@ -127,10 +127,10 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return Correlation ID of the accepted request
      */
     @Override
-    public String submitFinancialAdviceRequest(FinancialinitiationFinancialInitiationV02 financialAdviceRequest) throws TransactionApiException {
+    public String submitFinancialAdviceRequest(FinancialInitiationFinancialInitiationV02 financialAdviceRequest) throws TransactionApiException {
         try {
             log.info("Calling Transaction API processFinancialAdviceRequest");
-            ApiResponse<Void> response = transactionApiApi.transactionApiProcessFinancialAdviceRequestWithHttpInfo(financialAdviceRequest);
+            ApiResponse<Void> response = transactionApiApi.processFinancialAdviceRequestWithHttpInfo(financialAdviceRequest);
             log.info("Completed Transaction API processFinancialAdviceRequest");
             return getCorrelationId(response);
         } catch (Exception e) {
@@ -148,14 +148,14 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return response batch
      */
     @Override
-    public BatchResponse<AuthorisationresponseAuthorisationResponseV02> getAuthorisationResponses() throws TransactionApiException {
+    public BatchResponse<AuthorisationResponseAuthorisationResponseV02> getAuthorisationResponses() throws TransactionApiException {
         try {
             log.info("Calling Transaction API getAuthorisationResponses");
             ApiResponse<AuthorisationResponseV02List> response = handleTooEarly(() ->
-                    transactionApiApi.transactionApiGetAuthorisationResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
+                    transactionApiApi.getAuthorisationResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
 
-            BatchResponse<AuthorisationresponseAuthorisationResponseV02> batchResponse = BatchResponse.<AuthorisationresponseAuthorisationResponseV02>builder()
-                    .items(wrapItems(response, AuthorisationResponseV02List::getItems, AuthorisationResponseItem::new))
+            BatchResponse<AuthorisationResponseAuthorisationResponseV02> batchResponse = BatchResponse.<AuthorisationResponseAuthorisationResponseV02>builder()
+                    .items(wrapItems(response, AuthorisationResponseV02List::getItems, AuthorisationResponseStatus::new))
                     .hasMore(response.getStatusCode() == HttpStatus.SC_PARTIAL_CONTENT)
                     .retryAfter(getRetryAfter(response))
                     .build();
@@ -175,14 +175,14 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return response batch
      */
     @Override
-    public BatchResponse<ReversalresponseReversalResponseV02> getReversalResponses() throws TransactionApiException {
+    public BatchResponse<ReversalResponseReversalResponseV02> getReversalResponses() throws TransactionApiException {
         try {
             log.info("Calling Transaction API getReversalResponses");
             ApiResponse<ReversalResponseV02List> response = handleTooEarly(() ->
-                    transactionApiApi.transactionApiGetReversalResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
+                    transactionApiApi.getReversalResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
 
-            BatchResponse<ReversalresponseReversalResponseV02> batchResponse = BatchResponse.<ReversalresponseReversalResponseV02>builder()
-                    .items(wrapItems(response, ReversalResponseV02List::getItems, ReversalResponseItem::new))
+            BatchResponse<ReversalResponseReversalResponseV02> batchResponse = BatchResponse.<ReversalResponseReversalResponseV02>builder()
+                    .items(wrapItems(response, ReversalResponseV02List::getItems, ReversalResponseStatus::new))
                     .hasMore(response.getStatusCode() == HttpStatus.SC_PARTIAL_CONTENT)
                     .retryAfter(getRetryAfter(response))
                     .build();
@@ -202,14 +202,14 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return response batch
      */
     @Override
-    public BatchResponse<InquiryresponseInquiryResponseV01> getInquiryResponses() throws TransactionApiException {
+    public BatchResponse<InquiryResponseInquiryResponseV01> getInquiryResponses() throws TransactionApiException {
         try {
             log.info("Calling Transaction API getInquiryResponses");
             ApiResponse<InquiryResponseV01List> response = handleTooEarly(() ->
-                    transactionApiApi.transactionApiGetInquiryResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
+                    transactionApiApi.getInquiryResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
 
-            BatchResponse<InquiryresponseInquiryResponseV01> batchResponse = BatchResponse.<InquiryresponseInquiryResponseV01>builder()
-                    .items(wrapItems(response, InquiryResponseV01List::getItems, InquiryResponseItem::new))
+            BatchResponse<InquiryResponseInquiryResponseV01> batchResponse = BatchResponse.<InquiryResponseInquiryResponseV01>builder()
+                    .items(wrapItems(response, InquiryResponseV01List::getItems, InquiryResponseStatus::new))
                     .hasMore(response.getStatusCode() == HttpStatus.SC_PARTIAL_CONTENT)
                     .retryAfter(getRetryAfter(response))
                     .build();
@@ -229,14 +229,14 @@ public class TransactionApiClientImpl implements TransactionApiClient {
      * @return response batch
      */
     @Override
-    public BatchResponse<FinancialresponseFinancialResponseV02> getFinancialAdviceResponses() throws TransactionApiException {
+    public BatchResponse<FinancialResponseFinancialResponseV02> getFinancialAdviceResponses() throws TransactionApiException {
         try {
             log.info("Calling Transaction API getFinancialAdviceResponses");
             ApiResponse<FinancialAdviceResponseV02List> response = handleTooEarly(() ->
-                    transactionApiApi.transactionApiGetFinancialAdviceResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
+                    transactionApiApi.getFinancialAdviceResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
 
-            BatchResponse<FinancialresponseFinancialResponseV02> batchResponse = BatchResponse.<FinancialresponseFinancialResponseV02>builder()
-                    .items(wrapItems(response, FinancialAdviceResponseV02List::getItems, FinancialAdviceResponseItem::new))
+            BatchResponse<FinancialResponseFinancialResponseV02> batchResponse = BatchResponse.<FinancialResponseFinancialResponseV02>builder()
+                    .items(wrapItems(response, FinancialAdviceResponseV02List::getItems, FinancialAdviceResponseStatus::new))
                     .hasMore(response.getStatusCode() == HttpStatus.SC_PARTIAL_CONTENT)
                     .retryAfter(getRetryAfter(response))
                     .build();

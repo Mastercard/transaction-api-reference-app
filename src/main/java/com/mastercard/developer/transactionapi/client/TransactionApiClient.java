@@ -2,14 +2,14 @@ package com.mastercard.developer.transactionapi.client;
 
 import com.mastercard.developer.transactionapi.client.model.BatchResponse;
 import com.mastercard.developer.transactionapi.exception.TransactionApiException;
-import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
-import org.openapitools.client.model.AuthorisationresponseAuthorisationResponseV02;
-import org.openapitools.client.model.FinancialinitiationFinancialInitiationV02;
-import org.openapitools.client.model.FinancialresponseFinancialResponseV02;
-import org.openapitools.client.model.InquiryinitiationInquiryInitiationV01;
-import org.openapitools.client.model.InquiryresponseInquiryResponseV01;
-import org.openapitools.client.model.ReversalinitiationReversalInitiationV02;
-import org.openapitools.client.model.ReversalresponseReversalResponseV02;
+import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
+import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
+import org.openapitools.client.model.FinancialResponseFinancialResponseV02;
+import org.openapitools.client.model.InquiryResponseInquiryResponseV01;
+import org.openapitools.client.model.ReversalResponseReversalResponseV02;
 
 /**
  * REST client for the Transaction API.
@@ -24,7 +24,7 @@ public interface TransactionApiClient {
      * @param authorisationRequest  authorisation request
      * @return Correlation ID of the accepted request
      */
-    String submitAuthorisationRequest(AuthorisationinitiationAuthorisationInitiationV02 authorisationRequest) throws TransactionApiException;
+    String submitAuthorisationRequest(AuthorisationInitiationAuthorisationInitiationV02 authorisationRequest) throws TransactionApiException;
 
     /**
      * Submits the reversal request for processing.
@@ -34,7 +34,7 @@ public interface TransactionApiClient {
      * @param reversalRequest  reversal request
      * @return Correlation ID of the accepted request
      */
-    String submitReversalRequest(ReversalinitiationReversalInitiationV02 reversalRequest) throws TransactionApiException;
+    String submitReversalRequest(ReversalInitiationReversalInitiationV02 reversalRequest) throws TransactionApiException;
 
     /**
      * Submits the inquiry request for processing.
@@ -44,7 +44,7 @@ public interface TransactionApiClient {
      * @param inquiryRequest inquiry request
      * @return Correlation ID of the accepted request
      */
-    String submitInquiryRequest(InquiryinitiationInquiryInitiationV01 inquiryRequest) throws TransactionApiException;
+    String submitInquiryRequest(InquiryInitiationInquiryInitiationV01 inquiryRequest) throws TransactionApiException;
 
     /**
      * Submits the financial advice for processing.
@@ -54,7 +54,7 @@ public interface TransactionApiClient {
      * @param financialAdviceRequest  financial advice
      * @return Correlation ID of the accepted request
      */
-    String submitFinancialAdviceRequest(FinancialinitiationFinancialInitiationV02 financialAdviceRequest) throws TransactionApiException;
+    String submitFinancialAdviceRequest(FinancialInitiationFinancialInitiationV02 financialAdviceRequest) throws TransactionApiException;
 
     /**
      * Polls for available authorisation responses
@@ -63,7 +63,7 @@ public interface TransactionApiClient {
      *
      * @return response batch
      */
-    BatchResponse<AuthorisationresponseAuthorisationResponseV02> getAuthorisationResponses() throws TransactionApiException;
+    BatchResponse<AuthorisationResponseAuthorisationResponseV02> getAuthorisationResponses() throws TransactionApiException;
 
     /**
      * Polls for available reversal responses
@@ -72,7 +72,7 @@ public interface TransactionApiClient {
      *
      * @return response batch
      */
-    BatchResponse<ReversalresponseReversalResponseV02> getReversalResponses() throws TransactionApiException;
+    BatchResponse<ReversalResponseReversalResponseV02> getReversalResponses() throws TransactionApiException;
 
     /**
      * Polls for available inquiry responses
@@ -81,7 +81,7 @@ public interface TransactionApiClient {
      *
      * @return response batch
      */
-    BatchResponse<InquiryresponseInquiryResponseV01> getInquiryResponses() throws TransactionApiException;
+    BatchResponse<InquiryResponseInquiryResponseV01> getInquiryResponses() throws TransactionApiException;
 
     /**
      * Polls for available financial advice responses
@@ -90,6 +90,6 @@ public interface TransactionApiClient {
      *
      * @return response batch
      */
-    BatchResponse<FinancialresponseFinancialResponseV02> getFinancialAdviceResponses() throws TransactionApiException;
+    BatchResponse<FinancialResponseFinancialResponseV02> getFinancialAdviceResponses() throws TransactionApiException;
 
 }

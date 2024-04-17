@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.client.JSON;
-import org.openapitools.client.model.ReversalinitiationReversalInitiationV02;
+import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
@@ -38,7 +38,7 @@ class ReversalRequestSubmitterTest {
     @Mock
     private TransactionApiProperties transactionApiProperties;
 
-    private ReversalinitiationReversalInitiationV02 testRequest = TestRequestResponseGenerator.getTestReversalInitiationV02();
+    private ReversalInitiationReversalInitiationV02 testRequest = TestRequestResponseGenerator.getTestReversalInitiationV02();
 
     @BeforeEach
     void setup() {

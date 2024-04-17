@@ -7,7 +7,7 @@ import com.mastercard.developer.transactionapi.enums.FlowType;
 import com.mastercard.developer.transactionapi.example.RequestExampleGenerator;
 import com.mastercard.developer.transactionapi.utils.ClientUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.openapitools.client.model.AuthorisationinitiationAuthorisationInitiationV02;
+import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +26,7 @@ public class AuthorisationRequestSubmitter extends RequestSubmitter {
      */
     @Override
     protected void submitRequest() {
-        AuthorisationinitiationAuthorisationInitiationV02 request = getRequestExampleGenerator().buildAuthorisationRequest();
+        AuthorisationInitiationAuthorisationInitiationV02 request = getRequestExampleGenerator().buildAuthorisationRequest();
 
         String correlationId = getTransactionApiClient().submitAuthorisationRequest(request);
 

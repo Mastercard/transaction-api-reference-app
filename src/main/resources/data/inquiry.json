@@ -1,128 +1,128 @@
 {
-    "hdr": {
-        "msgFctn": "REQU",
-        "prtcolVrsn": "00.00.00",
-        "creDtTm": "2023-07-17T10:30:50.837Z",
-        "initgPty": {
-            "id": "001069"
-        }
-    },
-    "body": {
-        "envt": {
-            "acqrr": {
-                "id": "001069"
-            },
-            "sndr": {
-                "id": "208013"
-            },
-            "accptr": {
-                "id": "y01lGUHkynD7QE",
-                "nmAndLctn": "Cambridge City West US",
-                "adr": {
-                    "twnNm": "North SLittle",
-                    "ctry": "USA"
-                }
-            },
-            "termnl": {
-                "termnlId": {
-                    "id": "48687053",
-                    "ctry": "USA"
-                },
-                "cpblties": {
-                    "crdhldrVrfctnCpblty": [
-                        {
-                            "cpblty": "UNSP"
-                        }
-                    ]
-                },
-                "offPrmissInd": false
-            },
-            "card": {
-                "pan": "5460126200000037",
-                "xpryDt": "2702"
-            }
-        },
-        "cntxt": {
-            "ptOfSvcCntxt": {
-                "attnddInd": true,
-                "cardDataNtryMd": "KEEN",
-                "spclConds": [
-                    {
-                        "id": "pos_terminal_attendance",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_terminal_location",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_cardholder_present",
-                        "val": "2"
-                    },
-                    {
-                        "id": "pos_card_presence",
-                        "val": "1"
-                    },
-                    {
-                        "id": "pos_card_capture_capabilities",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_transaction_status",
-                        "val": "8"
-                    },
-                    {
-                        "id": "pos_transaction_security",
-                        "val": "0"
-                    },
-                    {
-                        "id": "cat_level",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_card_input_capability",
-                        "val": "6"
-                    },
-                    {
-                        "id": "pos_auth_life_cycle",
-                        "val": "00"
-                    },
-                    {
-                        "id": "pos_country_code",
-                        "val": "566"
-                    },
-                    {
-                        "id": "pos_postal_code",
-                        "val": "10032"
-                    }
-                ]
-            },
-            "txCntxt": {
-                "mrchntCtgyCd": "5311",
-                "mrchntCtgySpcfcData": "T"
-            }
-        },
-        "tx": {
-            "txTp": "00",
-            "txId": {
-                "lclDtTm": "2023-07-17T10:30:50.837Z",
-                "trnsmssnDtTm": "2023-07-17T10:30:50.837Z",
-                "sysTracAudtNb": "103050",
-                "rtrvlRefNb": "BcMB"
-            },
-            "addtlAmts": [
-                {
-                    "tp": "OTHP",
-                    "othrTp": "transaction_amount",
-                    "amt": {
-                        "amt": "0.00",
-                        "ccy": "840"
-                    }
-                }
-            ],
-            "acctFr": {
-                "acctTp": "00"
-            }
-        }
+  "hdr": {
+    "msgFctn": "REQU",
+    "prtcolVrsn": "00.00.00",
+    "creDtTm": "2024-05-29T16:44:51Z",
+    "initgPty": {
+      "id": "001069"
     }
+  },
+  "body": {
+    "envt": {
+      "acqrr": {
+        "id": "001069"
+      },
+      "sndr": {
+        "id": "123456"
+      },
+      "accptr": {
+        "id": "0011011001001",
+        "nmAndLctn": "Cambridge City West US",
+        "adr": {
+          "twnNm": "North SLittle",
+          "ctry": "USA"
+        }
+      },
+      "termnl": {
+        "offPrmissInd": true,
+        "termnlId": {
+          "id": "11598287",
+          "ctry": "840"
+        },
+        "cpblties": {
+          "crdhldrVrfctnCpblty": [
+            {
+              "cpblty": "UNSP"
+            }
+          ]
+        }
+      },
+      "card": {
+        "pan": "5460126200000037",
+        "xpryDt": "2702"
+      }
+    },
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "cardDataNtryMd": "KEEN",
+        "spclConds": [
+          {
+            "id": "pos_terminal_attendance",
+            "val": "0"
+          },
+          {
+            "id": "pos_terminal_location",
+            "val": "0"
+          },
+          {
+            "id": "pos_cardholder_present",
+            "val": "2"
+          },
+          {
+            "id": "pos_card_presence",
+            "val": "1"
+          },
+          {
+            "id": "pos_card_capture_capabilities",
+            "val": "0"
+          },
+          {
+            "id": "pos_transaction_status",
+            "val": "8"
+          },
+          {
+            "id": "pos_transaction_security",
+            "val": "0"
+          },
+          {
+            "id": "cat_level",
+            "val": "0"
+          },
+          {
+            "id": "pos_card_input_capability",
+            "val": "6"
+          },
+          {
+            "id": "pos_auth_life_cycle",
+            "val": "00"
+          },
+          {
+            "id": "pos_country_code",
+            "val": "566"
+          },
+          {
+            "id": "pos_postal_code",
+            "val": "10032"
+          }
+        ]
+      },
+      "txCntxt": {
+        "mrchntCtgyCd": "5311",
+        "mrchntCtgySpcfcData": "T"
+      }
+    },
+    "tx": {
+      "txTp": "00",
+      "txId": {
+        "trnsmssnDtTm": "2024-04-12T15:24:16.545Z",
+        "lclDtTm": "2024-04-12T15:24:16.545Z",
+        "sysTracAudtNb": "164451",
+        "rtrvlRefNb": "080000100027"
+      },
+      "addtlAmts": [
+        {
+          "tp": "OTHP",
+          "othrTp": "transaction_amount",
+          "amt": {
+            "amt": "0.00",
+            "ccy": "840"
+          }
+        }
+      ],
+      "acctFr": {
+        "acctTp": "00",
+        "acctId": "DFLT"
+      }
+    }
+  }
 }

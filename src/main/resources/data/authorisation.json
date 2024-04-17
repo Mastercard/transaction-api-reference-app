@@ -1,125 +1,124 @@
 {
-    "hdr": {
-        "msgFctn": "REQU",
-        "prtcolVrsn": "00.00.00",
-        "creDtTm": "2023-07-14T14:01:33.904Z",
-        "initgPty": {
-            "id": "001069"
-        }
-    },
-    "body": {
-        "envt": {
-            "acqrr": {
-                "id": "001069"
-            },
-            "sndr": {
-                "id": "208013"
-            },
-            "accptr": {
-                "id": "ygre8PdAevic",
-                "nmAndLctn": "BurrelsRathnew",
-                "adr": {
-                    "twnNm": "Rathnew",
-                    "ctry": "USA"
-                }
-            },
-            "termnl": {
-                "termnlId": {
-                    "id": "123456",
-                    "ctry": "USA"
-                },
-                "cpblties": {
-                    "crdhldrVrfctnCpblty": [
-                        {
-                            "cpblty": "UNSP"
-                        }
-                    ]
-                }
-            },
-            "card": {
-                "pan": "5460126200000037",
-                "xpryDt": "2304"
-            }
-        },
-        "cntxt": {
-            "ptOfSvcCntxt": {
-                "cardDataNtryMd": "KEEN",
-                "spclConds": [
-                    {
-                        "id": "pos_terminal_attendance",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_terminal_location",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_cardholder_present",
-                        "val": "2"
-                    },
-                    {
-                        "id": "pos_card_presence",
-                        "val": "1"
-                    },
-                    {
-                        "id": "pos_card_capture_capabilities",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_transaction_status",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_transaction_security",
-                        "val": "0"
-                    },
-                    {
-                        "id": "cat_level",
-                        "val": "0"
-                    },
-                    {
-                        "id": "pos_card_input_capability",
-                        "val": "6"
-                    },
-                    {
-                        "id": "pos_auth_life_cycle",
-                        "val": "00"
-                    },
-                    {
-                        "id": "pos_country_code",
-                        "val": "566"
-                    },
-                    {
-                        "id": "pos_postal_code",
-                        "val": "63017"
-                    }
-                ]
-            },
-            "txCntxt": {
-                "mrchntCtgyCd": "5311",
-                "mrchntCtgySpcfcData": "T"
-            }
-        },
-        "tx": {
-            "txTp": "00",
-            "txId": {
-                "lclDtTm": "2023-07-14T14:01:33.904Z",
-                "trnsmssnDtTm": "2023-07-14T14:01:33.904Z",
-                "sysTracAudtNb": "140133",
-                "rtrvlRefNb": "al0O8C1385"
-            },
-            "txAmts": {
-                "txAmt": {
-                    "amt": "100.00",
-                    "ccy": "978"
-                }
-            },
-            "acctFr": {
-                "acctTp": "00"
-            },
-            "acctTo": {
-                "acctTp": "00"
-            }
-        }
+  "hdr": {
+    "msgFctn": "REQU",
+    "prtcolVrsn": "00.00.00",
+    "creDtTm": "2023-07-25T04:15:26.490Z",
+    "initgPty": {
+      "id": "860987"
     }
+  },
+  "body": {
+    "envt": {
+      "acqrr": {
+        "id": "860987"
+      },
+      "sndr": {
+        "id": "123456"
+      },
+      "accptr": {
+          "id": "R-5912-MEX",
+          "nmAndLctn": "DRUG STORE, PHARMACIES",
+          "adr": {
+            "twnNm": "5912 DRUG DRI",
+            "ctry": "MEX"
+        }
+      },
+      "termnl": {
+        "termnlId": {
+          "id": "840"
+        },
+        "cpblties": {
+          "crdhldrVrfctnCpblty": [
+            {
+              "cpblty": "UNSP"
+            }
+          ]
+        }
+      },
+      "card": {
+        "pan": "5460126200000037",
+        "xpryDt": "2304"
+      }
+    },
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "cardDataNtryMd": "KEEN",
+        "spclConds": [
+          {
+            "id": "pos_terminal_attendance",
+            "val": "0"
+          },
+          {
+            "id": "pos_terminal_location",
+            "val": "0"
+          },
+          {
+            "id": "pos_cardholder_present",
+            "val": "2"
+          },
+          {
+            "id": "pos_card_presence",
+            "val": "1"
+          },
+          {
+            "id": "pos_card_capture_capabilities",
+            "val": "0"
+          },
+          {
+            "id": "pos_transaction_status",
+            "val": "0"
+          },
+          {
+            "id": "pos_transaction_security",
+            "val": "0"
+          },
+          {
+            "id": "cat_level",
+            "val": "0"
+          },
+          {
+            "id": "pos_card_input_capability",
+            "val": "6"
+          },
+          {
+            "id": "pos_auth_life_cycle",
+            "val": "00"
+          },
+          {
+            "id": "pos_country_code",
+            "val": "566"
+          },
+          {
+            "id": "pos_postal_code",
+            "val": "63017"
+          }
+        ]
+      },
+      "txCntxt": {
+        "mrchntCtgyCd": "5311",
+        "mrchntCtgySpcfcData": "T"
+      }
+    },
+    "tx": {
+      "txTp": "00",
+      "txId": {
+        "lclDtTm": "2023-07-25T04:15:26.490Z",
+        "trnsmssnDtTm": "2023-07-25T04:15:26.490Z",
+        "sysTracAudtNb": "041526",
+        "rtrvlRefNb": "IgQArR99"
+      },
+      "txAmts": {
+        "txAmt": {
+          "amt": "100.00",
+          "ccy": "840"
+        }
+      },
+      "acctFr": {
+        "acctTp": "00"
+      },
+      "acctTo": {
+        "acctTp": "00"
+      }
+    }
+  }
 }

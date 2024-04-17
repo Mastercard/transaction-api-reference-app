@@ -8,13 +8,13 @@ import java.util.List;
 
 /**
  * Common holder class for all batch responses.
- * @param <P>  response item payload type
+ * @param <P>  response status payload type
  */
 @Data
 @Builder
 public class BatchResponse<P> {
 
-    private List<ResponseItem<P>> items;
+    private List<ResponseStatus<P>> items;
 
     private boolean hasMore;
     private Duration retryAfter;

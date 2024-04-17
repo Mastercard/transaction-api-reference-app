@@ -7,7 +7,7 @@ import com.mastercard.developer.transactionapi.enums.FlowType;
 import com.mastercard.developer.transactionapi.example.RequestExampleGenerator;
 import com.mastercard.developer.transactionapi.utils.ClientUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.openapitools.client.model.ReversalinitiationReversalInitiationV02;
+import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +26,7 @@ public class ReversalRequestSubmitter extends RequestSubmitter {
      */
     @Override
     protected void submitRequest() {
-        ReversalinitiationReversalInitiationV02 request = getRequestExampleGenerator().buildReversalRequest();
+        ReversalInitiationReversalInitiationV02 request = getRequestExampleGenerator().buildReversalRequest();
         String correlationId = getTransactionApiClient().submitReversalRequest(request);
 
         log.info("Submitted reversal request with correlationId={}: {}", correlationId, ClientUtils.convertPayloadForLogging(request.toJson(), getTransactionApiProperties().isPayloadLoggingEnabled()));

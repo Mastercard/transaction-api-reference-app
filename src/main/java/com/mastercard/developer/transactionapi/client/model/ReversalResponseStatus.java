@@ -2,18 +2,18 @@ package com.mastercard.developer.transactionapi.client.model;
 
 import lombok.RequiredArgsConstructor;
 import org.openapitools.client.model.Error;
-import org.openapitools.client.model.InquiryResponseV01Item;
-import org.openapitools.client.model.InquiryresponseInquiryResponseV01;
+import org.openapitools.client.model.ReversalResponseReversalResponseV02;
+import org.openapitools.client.model.ReversalResponseV02Status;
 
 import java.util.List;
 
 /**
- * Adapter class for an Inquiry response item.
+ * Adapter class for a Reversal response status.
  */
 @RequiredArgsConstructor
-public class InquiryResponseItem implements ResponseItem<InquiryresponseInquiryResponseV01> {
+public class ReversalResponseStatus implements ResponseStatus<ReversalResponseReversalResponseV02> {
 
-    private final InquiryResponseV01Item responseItem;
+    private final ReversalResponseV02Status responseItem;
 
     @Override
     public String getCorrelationId() {
@@ -26,7 +26,7 @@ public class InquiryResponseItem implements ResponseItem<InquiryresponseInquiryR
     }
 
     @Override
-    public InquiryresponseInquiryResponseV01 getPayload() {
+    public ReversalResponseReversalResponseV02 getPayload() {
         return responseItem.getPayload();
     }
 
