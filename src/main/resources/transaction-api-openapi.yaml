@@ -52,12 +52,6 @@ paths:
       - $ref: '#/components/parameters/Limit'
     post:
       operationId: processAuthorisationRequest
-      parameters:
-        - in: header
-          name: x-mc-correlation-id
-          schema:
-            type: string
-          description: Unique Correlation ID of the request
       requestBody:
         $ref: '#/components/requestBodies/AuthorisationInitiationAuthorisationInitiationV02'
       responses:
@@ -178,12 +172,6 @@ paths:
       - $ref: '#/components/parameters/Limit'
     post:
       operationId: processFinancialRequest
-      parameters:
-        - in: header
-          name: x-mc-correlation-id
-          schema:
-            type: string
-          description: Unique Correlation ID of the request
       requestBody:
         $ref: '#/components/requestBodies/FinancialRequestInitiationFinancialInitiationV02'
       responses:
@@ -243,12 +231,6 @@ paths:
       - $ref: '#/components/parameters/Limit'
     post:
       operationId: processFinancialReversalAdvice
-      parameters:
-        - in: header
-          name: x-mc-correlation-id
-          schema:
-            type: string
-          description: Unique Correlation ID of the request
       requestBody:
         $ref: '#/components/requestBodies/ReversalFinancialAdviceInitiationReversalInitiationV02'
       responses:
@@ -312,12 +294,6 @@ paths:
       - $ref: '#/components/parameters/Limit'
     post:
       operationId: processInquiryRequest
-      parameters:
-        - in: header
-          name: x-mc-correlation-id
-          schema:
-            type: string
-          description: Unique Correlation ID of the request
       requestBody:
         $ref: '#/components/requestBodies/InquiryInitiationInquiryInitiationV01'
       responses:
@@ -383,12 +359,6 @@ paths:
       - $ref: '#/components/parameters/Limit'
     post:
       operationId: processReversalRequest
-      parameters:
-        - in: header
-          name: x-mc-correlation-id
-          schema:
-            type: string
-          description: Unique Correlation ID of the request
       requestBody:
         $ref: '#/components/requestBodies/ReversalInitiationReversalInitiationV02'
       responses:
@@ -446,6 +416,13 @@ components:
           type: integer
           description: http status for this response
           example: 200
+        payload:
+          $ref: '#/components/schemas/AuthorisationResponseAuthorisationResponseV02'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+          description: errors processed during request (if available)
         state:
           type: string
           description: |-
@@ -454,13 +431,6 @@ components:
              - IN_PROGRESS: Transaction is in progress, the response is not available yet.
              - READY_FOR_BATCH_GET: Response is ready to be retrieved via the batch GET.
           example: COMPLETED
-        payload:
-          $ref: '#/components/schemas/AuthorisationResponseAuthorisationResponseV02'
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-          description: errors processed during request (if available)
       required:
       - correlationId
       - httpStatus
@@ -525,6 +495,13 @@ components:
           type: integer
           description: http status for this response
           example: 200
+        payload:
+          $ref: '#/components/schemas/FinancialResponseFinancialResponseV02'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+          description: errors processed during request (if available)
         state:
           type: string
           description: |-
@@ -533,13 +510,6 @@ components:
              - IN_PROGRESS: Transaction is in progress, the response is not available yet.
              - READY_FOR_BATCH_GET: Response is ready to be retrieved via the batch GET.
           example: COMPLETED
-        payload:
-          $ref: '#/components/schemas/FinancialResponseFinancialResponseV02'
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-          description: errors processed during request (if available)
       required:
       - correlationId
       - httpStatus
@@ -563,6 +533,13 @@ components:
           type: integer
           description: http status for this response
           example: 200
+        payload:
+          $ref: '#/components/schemas/FinancialRequestResponseFinancialResponseV02'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+          description: errors processed during request (if available)
         state:
           type: string
           description: |-
@@ -571,13 +548,6 @@ components:
              - IN_PROGRESS: Transaction is in progress, the response is not available yet.
              - READY_FOR_BATCH_GET: Response is ready to be retrieved via the batch GET.
           example: COMPLETED
-        payload:
-          $ref: '#/components/schemas/FinancialRequestResponseFinancialResponseV02'
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-          description: errors processed during request (if available)
       required:
       - correlationId
       - httpStatus
@@ -601,6 +571,13 @@ components:
           type: integer
           description: http status for this response
           example: 200
+        payload:
+          $ref: '#/components/schemas/ReversalFinancialAdviceResponseReversalResponseV02'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+          description: errors processed during request (if available)
         state:
           type: string
           description: |-
@@ -609,13 +586,6 @@ components:
              - IN_PROGRESS: Transaction is in progress, the response is not available yet.
              - READY_FOR_BATCH_GET: Response is ready to be retrieved via the batch GET.
           example: COMPLETED
-        payload:
-          $ref: '#/components/schemas/ReversalFinancialAdviceResponseReversalResponseV02'
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-          description: errors processed during request (if available)
       required:
       - correlationId
       - httpStatus
@@ -639,6 +609,13 @@ components:
           type: integer
           description: http status for this response
           example: 200
+        payload:
+          $ref: '#/components/schemas/InquiryResponseInquiryResponseV01'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+          description: errors processed during request (if available)
         state:
           type: string
           description: |-
@@ -647,13 +624,6 @@ components:
              - IN_PROGRESS: Transaction is in progress, the response is not available yet.
              - READY_FOR_BATCH_GET: Response is ready to be retrieved via the batch GET.
           example: COMPLETED
-        payload:
-          $ref: '#/components/schemas/InquiryResponseInquiryResponseV01'
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-          description: errors processed during request (if available)
       required:
       - correlationId
       - httpStatus
@@ -677,6 +647,13 @@ components:
           type: integer
           description: http status for this response
           example: 200
+        payload:
+          $ref: '#/components/schemas/ReversalResponseReversalResponseV02'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+          description: errors processed during request (if available)
         state:
           type: string
           description: |-
@@ -685,13 +662,6 @@ components:
              - IN_PROGRESS: Transaction is in progress, the response is not available yet.
              - READY_FOR_BATCH_GET: Response is ready to be retrieved via the batch GET.
           example: COMPLETED
-        payload:
-          $ref: '#/components/schemas/ReversalResponseReversalResponseV02'
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-          description: errors processed during request (if available)
       required:
       - correlationId
       - httpStatus

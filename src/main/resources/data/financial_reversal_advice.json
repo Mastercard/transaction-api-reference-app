@@ -1,0 +1,313 @@
+{
+    "hdr": {
+        "msgFctn": "ADVC",
+        "prtcolVrsn": "CN4A",
+        "creDtTm": "2024-08-06T13:54:27.000Z",
+        "initgPty": {
+            "id": "931031"
+        }
+    },
+    "body": {
+        "envt": {
+            "acqrr": {
+                "id": "931031"
+            },
+            "sndr": {
+                "id": "931031"
+            },
+            "accptr": {
+                "id": "R-5271-FRA     ",
+                "nmAndLctn": "MOBILE HOME DEALERS   ",
+                "adr": {
+                    "adrLine1": "5271 MOBILE HOME COURT",
+                    "pstlCd": "10123     ",
+                    "twnNm": "PARIS        ",
+                    "ctrySubDvsnMjr": "FRA",
+                    "ctry": "FRA"
+                },
+                "addtlData": [
+                    {
+                        "tp": "acceptor_street_address",
+                        "val": "5271 MOBILE HOME COURT"
+                    },
+                    {
+                        "tp": "acceptor_country_subdivision_code",
+                        "val": "FRA"
+                    }
+                ]
+            },
+            "card": {
+                "pan": "5420009510000187"
+            }
+        },
+        "cntxt": {
+            "ptOfSvcCntxt": {
+                "cardDataNtryMd": "OPTC",
+                "spclConds": [
+                    {
+                        "id": "pin_entry_mode",
+                        "val": "0"
+                    },
+                    {
+                        "id": "partial_approval_supported_ind",
+                        "val": "0"
+                    },
+                    {
+                        "id": "purchase_amount_only",
+                        "val": "0"
+                    },
+                    {
+                        "id": "realtime_substantiation_ind",
+                        "val": "0"
+                    },
+                    {
+                        "id": "merchant_transaction_fraud_scoring",
+                        "val": "0"
+                    },
+                    {
+                        "id": "final_auth_ind",
+                        "val": "1"
+                    },
+                    {
+                        "id": "pos_terminal_attendance",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_terminal_location",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_cardholder_present",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_card_presence",
+                        "val": "1"
+                    },
+                    {
+                        "id": "pos_card_capture_capabilities",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_transaction_status",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_transaction_security",
+                        "val": "0"
+                    },
+                    {
+                        "id": "cat_level",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_card_input_capability",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_auth_life_cycle",
+                        "val": "00"
+                    },
+                    {
+                        "id": "pos_country_code",
+                        "val": "250"
+                    },
+                    {
+                        "id": "pos_postal_code",
+                        "val": "10123     "
+                    }
+                ]
+            },
+            "txCntxt": {
+                "mrchntCtgyCd": "5271",
+                "sttlmSvc": {
+                    "sttlmSvcApld": {
+                        "tp": "intracurrency",
+                        "id": "3487348734"
+                    }
+                }
+            }
+        },
+        "tx": {
+            "txTp": "00",
+            "spclPrgrmmQlfctn": [
+                {
+                    "dtl": [
+                        {
+                            "nm": "cardholder_merchant_init_tx_ind",
+                            "val": "C101"
+                        },
+                        {
+                            "nm": "message_format_version_code_acq",
+                            "val": "A"
+                        }
+                    ]
+                }
+            ],
+            "txId": {
+                "lifeCyclTracIdData": {
+                    "id": "MCC68HCGA0622  "
+                },
+                "lclDtTm": "2024-07-29T11:57:13.000Z",
+                "trnsmssnDtTm": "2024-08-06T13:54:27.000Z",
+                "sysTracAudtNb": "001384",
+                "rtrvlRefNb": "547634879854",
+                "acqrrRefNb": "52223184211000000000009",
+                "orgnlDataElmts": {
+                    "msgClss": "FINL",
+                    "acqrrId": "00000931031",
+                    "sndrId": "00000931031",
+                    "trnsmssnDtTm": "2024-07-29T16:57:13.000Z",
+                    "sysTracAudtNb": "001338"
+                }
+            },
+            "txAmts": {
+                "txAmt": {
+                    "amt": "100.45",
+                    "ccy": "978"
+                },
+                "dtldAmt": [
+                    {
+                        "tp": "SRCH",
+                        "amt": {
+                            "amt": ".44",
+                            "sgn": false
+                        }
+                    }
+                ],
+                "orgnlTxAmts": {
+                    "txAmt": {
+                        "amt": "20.00"
+                    },
+                    "crdhldrBllgAmt": {
+                        "amt": "0.00"
+                    },
+                    "rcncltnAmt": {
+                        "amt": "0.00"
+                    }
+                }
+            },
+            "addtlFees": [
+                {
+                    "tp": "INTC",
+                    "amt": {
+                        "amt": "3487348734.78",
+                        "ccy": "840"
+                    }
+                },
+                {
+                    "tp": "OTHP",
+                    "othrTp": "interchange_reconciliation_fee",
+                    "amt": {
+                        "amt": "3487348734.78",
+                        "ccy": "840"
+                    }
+                }
+            ],
+            "acctFr": {
+                "acctTp": "00"
+            },
+            "acctTo": {
+                "acctTp": "00"
+            },
+            "addtlData": [
+                {
+                    "tp": "cardholder_verification_method",
+                    "val": "P"
+                },
+                {
+                    "tp": "card_expiry_date",
+                    "val": "2512"
+                },
+                {
+                    "tp": "mpos_acceptance_device_type",
+                    "val": "0"
+                },
+                {
+                    "tp": "additional_terminal_capability_ind",
+                    "val": "10"
+                },
+                {
+                    "tp": "message_reversal_indicator",
+                    "val": "R"
+                },
+                {
+                    "tp": "message_reversal_original_date",
+                    "val": "240729"
+                },
+                {
+                    "tp": "submitted_currency_exp_currency_code",
+                    "val": "978"
+                },
+                {
+                    "tp": "submitted_currency_exponent",
+                    "val": "2"
+                },
+                {
+                    "tp": "interchange_rate_designator",
+                    "val": "75"
+                },
+                {
+                    "tp": "sett_service_transfer_agent_id_code",
+                    "val": "34873487347"
+                },
+                {
+                    "tp": "sett_service_transfer_agent_account",
+                    "val": "3487348734783487348734784567            "
+                },
+                {
+                    "tp": "settlement_forex_rate_class",
+                    "val": "F"
+                },
+                {
+                    "tp": "settlement_indicator",
+                    "val": "M"
+                },
+                {
+                    "tp": "test_case_traceability_identifiers",
+                    "val": "T310107528TEST 123456784598762534"
+                },
+                {
+                    "tp": "pds_1000",
+                    "val": "348734873478"
+                },
+                {
+                    "tp": "pds_1001",
+                    "val": "348734873478"
+                },
+                {
+                    "tp": "txn_orig_inst_id",
+                    "val": "931031"
+                },
+                {
+                    "tp": "interchange_fee_settlement_indicator",
+                    "val": "00"
+                },
+                {
+                    "tp": "card_program_identifier",
+                    "val": "   "
+                },
+                {
+                    "tp": "business_service_arrangement_type",
+                    "val": " "
+                },
+                {
+                    "tp": "business_service_arrangement_id",
+                    "val": "      "
+                },
+                {
+                    "tp": "tcc",
+                    "val": "R"
+                }
+            ]
+        },
+        "prcgRslt": {
+            "apprvlData": {
+                "apprvlCd": "327560"
+            },
+            "rsltData": {
+                "rsltDtls": "00"
+            }
+        }
+    }
+}

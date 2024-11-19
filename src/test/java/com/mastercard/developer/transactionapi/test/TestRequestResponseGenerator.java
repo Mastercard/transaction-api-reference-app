@@ -2,6 +2,7 @@ package com.mastercard.developer.transactionapi.test;
 
 import com.mastercard.developer.transactionapi.client.model.AuthorisationResponseStatus;
 import com.mastercard.developer.transactionapi.client.model.BatchResponse;
+import com.mastercard.developer.transactionapi.client.model.FinancialRequestResponseStatus;
 import com.mastercard.developer.transactionapi.client.model.ResponseStatus;
 import com.mastercard.developer.transactionapi.example.RequestExampleGenerator;
 import org.openapitools.client.model.AuthorisationResponseV02Status;
@@ -11,7 +12,19 @@ import org.openapitools.client.model.FinancialAdviceResponseV02Status;
 import org.openapitools.client.model.FinancialAdviceResponseV02List;
 import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestResponseFinancialResponse1;
+import org.openapitools.client.model.FinancialRequestResponseFinancialResponseV02;
+import org.openapitools.client.model.FinancialRequestResponseHeader42;
+import org.openapitools.client.model.FinancialRequestResponseV02List;
+import org.openapitools.client.model.FinancialRequestResponseV02Status;
+import org.openapitools.client.model.FinancialReversalAdviceResponseV02List;
+import org.openapitools.client.model.FinancialReversalAdviceResponseV02Status;
 import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalFinancialAdviceInitiationReversalInitiationV02;
+import org.openapitools.client.model.ReversalFinancialAdviceResponseHeader42;
+import org.openapitools.client.model.ReversalFinancialAdviceResponseReversalResponse2;
+import org.openapitools.client.model.ReversalFinancialAdviceResponseReversalResponseV02;
 import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.openapitools.client.model.InquiryResponseV01Status;
 import org.openapitools.client.model.InquiryResponseV01List;
@@ -54,6 +67,18 @@ public class  TestRequestResponseGenerator {
                 .hdr(new FinancialResponseHeader42());
     }
 
+    public static FinancialRequestResponseFinancialResponseV02 getResponseFinancialReqResponseItem() {
+        return new FinancialRequestResponseFinancialResponseV02()
+                .body(new FinancialRequestResponseFinancialResponse1())
+                .hdr(new FinancialRequestResponseHeader42());
+    }
+
+    public static ReversalFinancialAdviceResponseReversalResponseV02 getResponseFinancialRevAdvResponseItem() {
+        return new ReversalFinancialAdviceResponseReversalResponseV02()
+                .body(new ReversalFinancialAdviceResponseReversalResponse2())
+                .hdr(new ReversalFinancialAdviceResponseHeader42());
+    }
+
     public static InquiryResponseInquiryResponseV01 getResponseInquiryResponseItem() {
         return new InquiryResponseInquiryResponseV01()
                 .body(new InquiryResponseInquiryResponse1())
@@ -83,6 +108,20 @@ public class  TestRequestResponseGenerator {
 
     private static FinancialAdviceResponseV02Status getFinancialAdvResponseV02(FinancialResponseFinancialResponseV02 resp, String corrId, int httpStatus) {
         return new FinancialAdviceResponseV02Status()
+                .correlationId(corrId)
+                .payload(resp)
+                .httpStatus(httpStatus);
+    }
+
+    private static FinancialRequestResponseV02Status getFinancialReqResponseV02(FinancialRequestResponseFinancialResponseV02 resp, String corrId, int httpStatus) {
+        return new FinancialRequestResponseV02Status()
+                .correlationId(corrId)
+                .payload(resp)
+                .httpStatus(httpStatus);
+    }
+
+    private static FinancialReversalAdviceResponseV02Status getFinancialRevAdvResponseV02(ReversalFinancialAdviceResponseReversalResponseV02 resp, String corrId, int httpStatus) {
+        return new FinancialReversalAdviceResponseV02Status()
                 .correlationId(corrId)
                 .payload(resp)
                 .httpStatus(httpStatus);
@@ -166,6 +205,26 @@ public class  TestRequestResponseGenerator {
         return new FinancialAdviceResponseV02List().items(buildFinancialAdvList(httpStatus));
     }
 
+    private static List<FinancialRequestResponseV02Status> buildFinancialReqList(int httpStatus) {
+        return Arrays.asList(
+                getFinancialReqResponseV02(getResponseFinancialReqResponseItem(), TEST_CORRELATION_ID_1, httpStatus),
+                getFinancialReqResponseV02(getResponseFinancialReqResponseItem(), TEST_CORRELATION_ID_2, httpStatus));
+    }
+
+    public static FinancialRequestResponseV02List getFinancialReqResponseList(int httpStatus) {
+        return new FinancialRequestResponseV02List().items(buildFinancialReqList(httpStatus));
+    }
+
+    private static List<FinancialReversalAdviceResponseV02Status> buildFinancialRevAdvList(int httpStatus) {
+        return Arrays.asList(
+                getFinancialRevAdvResponseV02(getResponseFinancialRevAdvResponseItem(), TEST_CORRELATION_ID_1, httpStatus),
+                getFinancialRevAdvResponseV02(getResponseFinancialRevAdvResponseItem(), TEST_CORRELATION_ID_2, httpStatus));
+    }
+
+    public static FinancialReversalAdviceResponseV02List getFinancialRevAdvResponseList(int httpStatus) {
+        return new FinancialReversalAdviceResponseV02List().items(buildFinancialRevAdvList(httpStatus));
+    }
+
     private static List<InquiryResponseV01Status> buildInquiryList(int httpStatus) {
         return Arrays.asList(
                 getInquiryResponseV02(getResponseInquiryResponseItem(), TEST_CORRELATION_ID_1, httpStatus),
@@ -200,6 +259,14 @@ public class  TestRequestResponseGenerator {
 
     public static FinancialInitiationFinancialInitiationV02 getTestFinancialInitiationV02() {
         return requestExampleGenerator.buildFinancialAdviceRequest();
+    }
+
+    public static FinancialRequestInitiationFinancialInitiationV02 getTestFinancialRequestInitiationV02() {
+        return requestExampleGenerator.buildFinancialRequest();
+    }
+
+    public static ReversalFinancialAdviceInitiationReversalInitiationV02 getTestFinancialReversalAdviceInitiationV02() {
+        return requestExampleGenerator.buildFinancialReversalAdvice();
     }
 
 }

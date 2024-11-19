@@ -4,6 +4,8 @@ import com.mastercard.developer.transactionapi.client.TransactionApiClient;
 import com.mastercard.developer.transactionapi.client.model.AuthorisationResponseStatus;
 import com.mastercard.developer.transactionapi.client.model.BatchResponse;
 import com.mastercard.developer.transactionapi.client.model.FinancialAdviceResponseStatus;
+import com.mastercard.developer.transactionapi.client.model.FinancialRequestResponseStatus;
+import com.mastercard.developer.transactionapi.client.model.FinancialReversalAdviceResponseStatus;
 import com.mastercard.developer.transactionapi.client.model.InquiryResponseStatus;
 import com.mastercard.developer.transactionapi.client.model.ReversalResponseStatus;
 import com.mastercard.developer.transactionapi.exception.MissingHeaderException;
@@ -18,7 +20,13 @@ import org.openapitools.client.model.AuthorisationResponseV02List;
 import org.openapitools.client.model.FinancialAdviceResponseV02List;
 import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestResponseFinancialResponseV02;
+import org.openapitools.client.model.FinancialRequestResponseV02List;
+import org.openapitools.client.model.FinancialReversalAdviceResponseV02List;
 import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalFinancialAdviceInitiationReversalInitiationV02;
+import org.openapitools.client.model.ReversalFinancialAdviceResponseReversalResponseV02;
 import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.openapitools.client.model.InquiryResponseV01List;
 import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
@@ -139,6 +147,48 @@ public class TransactionApiClientImpl implements TransactionApiClient {
         }
     }
 
+    /**
+     * Submits the financial request for processing.
+     * URL: /cain-financial-requests
+     * Method: POST
+     *
+     * @param financialRequest  financial request
+     * @return Correlation ID of the accepted request
+     */
+    @Override
+    public String submitFinancialRequest(FinancialRequestInitiationFinancialInitiationV02 financialRequest) throws TransactionApiException {
+        try {
+            log.info("Calling Transaction API processFinancialRequest");
+            ApiResponse<Void> response = transactionApiApi.processFinancialRequestWithHttpInfo(financialRequest);
+            log.info("Completed Transaction API processFinancialRequest");
+            return getCorrelationId(response);
+        } catch (Exception e) {
+            log.error("Transaction API processFinancialRequest failed: {}", e.getMessage(), e);
+            throw new TransactionApiException("Failed to call processFinancialRequest", e);
+        }
+    }
+
+    /**
+     * Submits the financial reversal advice for processing.
+     * URL: /cain-financial-reversal-advices
+     * Method: POST
+     *
+     * @param financialReversalAdviceRequest  financial reversal advice
+     * @return Correlation ID of the accepted request
+     */
+    @Override
+    public String submitFinancialReversalAdvice(ReversalFinancialAdviceInitiationReversalInitiationV02 financialReversalAdviceRequest) throws TransactionApiException {
+        try {
+            log.info("Calling Transaction API processFinancialReversalAdviceRequest");
+            ApiResponse<Void> response = transactionApiApi.processFinancialReversalAdviceWithHttpInfo(financialReversalAdviceRequest);
+            log.info("Completed Transaction API processFinancialReversalAdvice");
+            return getCorrelationId(response);
+        } catch (Exception e) {
+            log.error("Transaction API processFinancialReversalAdvice failed: {}", e.getMessage(), e);
+            throw new TransactionApiException("Failed to call processFinancialReversalAdviceRequest", e);
+        }
+    }
+
 
     /**
      * Polls for available authorisation responses
@@ -245,6 +295,60 @@ public class TransactionApiClientImpl implements TransactionApiClient {
         } catch (Exception e) {
             log.error("Transaction API getFinancialAdviceResponses failed: {}", e.getMessage(), e);
             throw new TransactionApiException("Failed to call getFinancialAdviceResponses", e);
+        }
+    }
+
+    /**
+     * Polls for available financial responses
+     * URL: /cain-financial-requests
+     * Method: GET
+     *
+     * @return response batch
+     */
+    @Override
+    public BatchResponse<FinancialRequestResponseFinancialResponseV02> getFinancialRequestResponses() throws TransactionApiException {
+        try {
+            log.info("Calling Transaction API getFinancialRequestResponses");
+            ApiResponse<FinancialRequestResponseV02List> response = handleTooEarly(() ->
+                    transactionApiApi.getFinancialRequestResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
+
+            BatchResponse<FinancialRequestResponseFinancialResponseV02> batchResponse = BatchResponse.<FinancialRequestResponseFinancialResponseV02>builder()
+                    .items(wrapItems(response, FinancialRequestResponseV02List::getItems, FinancialRequestResponseStatus::new))
+                    .hasMore(response.getStatusCode() == HttpStatus.SC_PARTIAL_CONTENT)
+                    .retryAfter(getRetryAfter(response))
+                    .build();
+            log.info("Completed Transaction API getFinancialRequestResponses, httpStatus={}, itemsCount={}", response.getStatusCode(), batchResponse.getItems().size());
+            return batchResponse;
+        } catch (Exception e) {
+            log.error("Transaction API getFinancialRequestResponses failed: {}", e.getMessage(), e);
+            throw new TransactionApiException("Failed to call getFinancialRequestResponses", e);
+        }
+    }
+
+    /**
+     * Polls for available financial reversal advice
+     * URL: /cain-financial-reversal-advices
+     * Method: GET
+     *
+     * @return response batch
+     */
+    @Override
+    public BatchResponse<ReversalFinancialAdviceResponseReversalResponseV02> getFinancialReversalAdviceResponses() throws TransactionApiException {
+        try {
+            log.info("Calling Transaction API getFinancialReversalAdviceResponses");
+            ApiResponse<FinancialReversalAdviceResponseV02List> response = handleTooEarly(() ->
+                    transactionApiApi.getFinancialReversalAdviceResponsesWithHttpInfo(RESPONSE_BATCH_LIMIT));
+
+            BatchResponse<ReversalFinancialAdviceResponseReversalResponseV02> batchResponse = BatchResponse.<ReversalFinancialAdviceResponseReversalResponseV02>builder()
+                    .items(wrapItems(response, FinancialReversalAdviceResponseV02List::getItems, FinancialReversalAdviceResponseStatus::new))
+                    .hasMore(response.getStatusCode() == HttpStatus.SC_PARTIAL_CONTENT)
+                    .retryAfter(getRetryAfter(response))
+                    .build();
+            log.info("Completed Transaction API getFinancialReversalAdviceResponses, httpStatus={}, itemsCount={}", response.getStatusCode(), batchResponse.getItems().size());
+            return batchResponse;
+        } catch (Exception e) {
+            log.error("Transaction API getFinancialReversalAdviceResponses failed: {}", e.getMessage(), e);
+            throw new TransactionApiException("Failed to call getFinancialReversalAdviceResponses", e);
         }
     }
 
