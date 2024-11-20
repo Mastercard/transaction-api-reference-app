@@ -29,6 +29,8 @@ public class TestConstants {
     public static final String TEST_API_EXCEPTION_MESSAGE_INQ = "Failed to call processInquiryRequest";
     public static final String TEST_API_EXCEPTION_MESSAGE_FIN = "Failed to call processFinancialAdviceRequest";
     public static final String TEST_API_EXCEPTION_MESSAGE_REV = "Failed to call processReversalRequest";
+    public static final String TEST_API_EXCEPTION_MESSAGE_FINREQ = "Failed to call processFinancialRequest";
+    public static final String TEST_API_EXCEPTION_MESSAGE_FINREV = "Failed to call processFinancialReversalAdviceRequest";
 
     public static final Throwable TEST_TRANSACTION_API_EXCEPTION_INQ_CAUSE = new TransactionApiException(TEST_API_EXCEPTION_MESSAGE_AUTH, new ApiException());
 

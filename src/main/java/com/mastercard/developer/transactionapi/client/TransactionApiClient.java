@@ -4,7 +4,11 @@ import com.mastercard.developer.transactionapi.client.model.BatchResponse;
 import com.mastercard.developer.transactionapi.exception.TransactionApiException;
 import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestResponseFinancialResponseV02;
 import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalFinancialAdviceInitiationReversalInitiationV02;
+import org.openapitools.client.model.ReversalFinancialAdviceResponseReversalResponseV02;
 import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
 import org.openapitools.client.model.FinancialResponseFinancialResponseV02;
@@ -57,6 +61,26 @@ public interface TransactionApiClient {
     String submitFinancialAdviceRequest(FinancialInitiationFinancialInitiationV02 financialAdviceRequest) throws TransactionApiException;
 
     /**
+     * Submits the financial request for processing.
+     * URL: /cain-financial-requests
+     * Method: POST
+     *
+     * @param financialRequest  financial request
+     * @return Correlation ID of the accepted request
+     */
+    String submitFinancialRequest(FinancialRequestInitiationFinancialInitiationV02 financialRequest) throws TransactionApiException;
+
+    /**
+     * Submits the financial reversal advice for processing.
+     * URL: /cain-financial-reversal-advices
+     * Method: POST
+     *
+     * @param financialReversalAdviceRequest  financial reversal advice
+     * @return Correlation ID of the accepted request
+     */
+    String submitFinancialReversalAdvice(ReversalFinancialAdviceInitiationReversalInitiationV02 financialReversalAdviceRequest) throws TransactionApiException;
+
+    /**
      * Polls for available authorisation responses
      * URL: /cain-authorisation-requests
      * Method: GET
@@ -92,4 +116,21 @@ public interface TransactionApiClient {
      */
     BatchResponse<FinancialResponseFinancialResponseV02> getFinancialAdviceResponses() throws TransactionApiException;
 
+    /**
+     * Polls for available financial responses
+     * URL: /cain-financial-requests
+     * Method: GET
+     *
+     * @return response batch
+     */
+    BatchResponse<FinancialRequestResponseFinancialResponseV02> getFinancialRequestResponses() throws TransactionApiException;
+
+    /**
+     * Polls for available financial reversal advice
+     * URL: /cain-financial-reversal-advices
+     * Method: GET
+     *
+     * @return response batch
+     */
+    BatchResponse<ReversalFinancialAdviceResponseReversalResponseV02> getFinancialReversalAdviceResponses() throws TransactionApiException;
 }

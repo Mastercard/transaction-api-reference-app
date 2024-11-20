@@ -1,0 +1,196 @@
+{
+    "hdr": {
+        "msgFctn": "REQU",
+        "prtcolVrsn": "CN4A",
+        "initgPty": {
+            "id": "931325"
+        }
+    },
+    "body": {
+        "envt": {
+            "acqrr": {
+                "id": "931325"
+            },
+            "sndr": {
+                "id": "931325"
+            },
+            "accptr": {
+                "id": "R-5651-CHE     ",
+                "nmAndLctn": "FAMILY CLOTHING STORES",
+                "adr": {
+                    "adrLine1": "5651 FAMILY FAIRWAY",
+                    "pstlCd": "48146-1234",
+                    "twnNm": "GENEVA",
+                    "ctrySubDvsnMjr": "CHE",
+                    "ctry": "CHE"
+                },
+                "addtlData": [
+                    {
+                        "tp": "acceptor_street_address",
+                        "val": "5651 FAMILY FAIRWAY"
+                    }
+                ]
+            },
+            "termnl": {
+                "cpblties": {
+                    "crdhldrVrfctnCpblty": [
+                        {
+                            "cpblty": "UNSP"
+                        }
+                    ]
+                }
+            },
+            "card": {
+                "pan": "5186009200534010"
+            }
+        },
+        "cntxt": {
+            "ptOfSvcCntxt": {
+                "prtlApprvlSpprtd": false,
+                "cardDataNtryMd": "OTHP",
+                "othrCardDataNtryMd": "ecom_dsrp_emv",
+                "spclConds": [
+                    {
+                        "id": "pos_terminal_attendance",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_terminal_location",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_cardholder_present",
+                        "val": "5"
+                    },
+                    {
+                        "id": "pos_card_presence",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_card_capture_capabilities",
+                        "val": "1"
+                    },
+                    {
+                        "id": "pos_transaction_status",
+                        "val": "0"
+                    },
+                    {
+                        "id": "pos_transaction_security",
+                        "val": "0"
+                    },
+                    {
+                        "id": "cat_level",
+                        "val": "6"
+                    },
+                    {
+                        "id": "pos_card_input_capability",
+                        "val": "8"
+                    },
+                    {
+                        "id": "pos_auth_life_cycle",
+                        "val": "00"
+                    },
+                    {
+                        "id": "pos_country_code",
+                        "val": "756"
+                    },
+                    {
+                        "id": "pos_postal_code",
+                        "val": "48146-1234"
+                    },
+                    {
+                        "id": "purchase_amount_only",
+                        "val": "0"
+                    },
+                    {
+                        "id": "realtime_substantiation_ind",
+                        "val": "0"
+                    },
+                    {
+                        "id": "merchant_transaction_fraud_scoring",
+                        "val": "0"
+                    }
+                ]
+            },
+            "txCntxt": {
+                "mrchntCtgyCd": "5651",
+                "fnlAuthstnInd": true,
+                "cardPrgrmm": {
+                    "cardPrgrmmApld": {
+                        "id": "not_specified"
+                    }
+                },
+                "mrchntCtgySpcfcData": " "
+            }
+        },
+        "tx": {
+            "txTp": "00",
+            "txId": {
+                "lclDtTm": "2024-07-17T05:31:25.000Z",
+                "trnsmssnDtTm": "2024-07-17T10:31:25.000Z",
+                "sysTracAudtNb": "000151",
+                "acqrrRefNb": "55005474199000000000007"
+            },
+            "txAmts": {
+                "txAmt": {
+                    "amt": "100.03",
+                    "ccy": "756"
+                },
+                "dtldAmt": [
+                    {
+                        "tp": "SRCH",
+                        "amt": {
+                            "amt": ".2",
+                            "sgn": false
+                        }
+                    }
+                ]
+            },
+            "acctFr": {
+                "acctTp": "00"
+            },
+            "acctTo": {
+                "acctTp": "00"
+            },
+            "addtlData": [
+                {
+                    "tp": "settlement_indicator",
+                    "val": "M"
+                },
+                {
+                    "tp": "test_case_traceability_identifiers",
+                    "val": "T3052588"
+                },
+                {
+                    "tp": "submitted_ccy_exp_ccy_code",
+                    "val": "756"
+                },
+                {
+                    "tp": "submitted_ccy_exp",
+                    "val": "2"
+                },
+                {
+                    "tp": "txn_orig_inst_id",
+                    "val": "931325"
+                },
+                {
+                    "tp": "card_program_identifier",
+                    "val": "   "
+                },
+                {
+                    "tp": "business_service_arrangement_type",
+                    "val": " "
+                },
+                {
+                    "tp": "business_service_arrangement_id",
+                    "val": "      "
+                },
+                {
+                    "tp": "interchange_rate_designator",
+                    "val": "YG"
+                }
+            ]
+        },
+        "iccRltdData": "82025C00950500000000009A032407179C01005F2A0207569F03060000000000009F02060000000100009F1008050000A00000DAC19F1A0207569F2701009F33030000009F34030000009F3501009F360220FD9F3704141C086F"
+    }
+}

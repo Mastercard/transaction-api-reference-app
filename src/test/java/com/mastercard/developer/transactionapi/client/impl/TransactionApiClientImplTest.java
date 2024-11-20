@@ -18,7 +18,15 @@ import org.openapitools.client.model.FinancialAdviceResponseV02Status;
 import org.openapitools.client.model.FinancialAdviceResponseV02List;
 import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestResponseFinancialResponseV02;
+import org.openapitools.client.model.FinancialRequestResponseV02List;
+import org.openapitools.client.model.FinancialRequestResponseV02Status;
+import org.openapitools.client.model.FinancialReversalAdviceResponseV02List;
+import org.openapitools.client.model.FinancialReversalAdviceResponseV02Status;
 import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalFinancialAdviceInitiationReversalInitiationV02;
+import org.openapitools.client.model.ReversalFinancialAdviceResponseReversalResponseV02;
 import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.openapitools.client.model.InquiryResponseV01Status;
 import org.openapitools.client.model.InquiryResponseV01List;
@@ -42,6 +50,8 @@ import static com.mastercard.developer.transactionapi.test.TestConstants.HTTP_ST
 import static com.mastercard.developer.transactionapi.test.TestConstants.RETRY_AFTER_MS_HEADER;
 import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_API_EXCEPTION_MESSAGE_AUTH;
 import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_API_EXCEPTION_MESSAGE_FIN;
+import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_API_EXCEPTION_MESSAGE_FINREQ;
+import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_API_EXCEPTION_MESSAGE_FINREV;
 import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_API_EXCEPTION_MESSAGE_INQ;
 import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_API_EXCEPTION_MESSAGE_REV;
 import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_BATCH_LIMIT;
@@ -50,10 +60,14 @@ import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_RE
 import static com.mastercard.developer.transactionapi.test.TestConstants.TEST_RETRY_AFTER_MS;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getAuthorisationResponseList;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getFinancialAdvResponseList;
+import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getFinancialReqResponseList;
+import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getFinancialRevAdvResponseList;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getInquiryResponseList;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getReversalResponseList;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getTestAuthorisationInitiationV02;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getTestFinancialInitiationV02;
+import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getTestFinancialRequestInitiationV02;
+import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getTestFinancialReversalAdviceInitiationV02;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getTestInquiryInitiationV01;
 import static com.mastercard.developer.transactionapi.test.TestRequestResponseGenerator.getTestReversalInitiationV02;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -91,11 +105,15 @@ class TransactionApiClientImplTest {
     private final ReversalInitiationReversalInitiationV02 testRevInitiation = getTestReversalInitiationV02();
     private final InquiryInitiationInquiryInitiationV01 testInqInitiation = getTestInquiryInitiationV01();
     private final FinancialInitiationFinancialInitiationV02 testFinAdvInitiation = getTestFinancialInitiationV02();
+    private final FinancialRequestInitiationFinancialInitiationV02 testFinReqInitiation = getTestFinancialRequestInitiationV02();
+    private final ReversalFinancialAdviceInitiationReversalInitiationV02 testFinRevAdvInitiation = getTestFinancialReversalAdviceInitiationV02();
 
     private final AuthorisationResponseV02List authList = getAuthorisationResponseList(HttpStatus.SC_OK);
     private final FinancialAdviceResponseV02List financialAdvList = getFinancialAdvResponseList(HttpStatus.SC_OK);
     private final InquiryResponseV01List inquiryList = getInquiryResponseList(HttpStatus.SC_OK);
     private final ReversalResponseV02List reversalList = getReversalResponseList(HttpStatus.SC_OK);
+    private final FinancialRequestResponseV02List finReqResList = getFinancialReqResponseList(HttpStatus.SC_OK);
+    private final FinancialReversalAdviceResponseV02List finRevAdvList = getFinancialRevAdvResponseList(HttpStatus.SC_OK);
 
     @Test
     void givenHappyPath_whenSubmitAuthorisationRequest_thenReturnCorrId() throws ApiException {
@@ -206,6 +224,62 @@ class TransactionApiClientImplTest {
 
         // verify
         assertThat(e.getMessage()).isEqualTo(TEST_API_EXCEPTION_MESSAGE_FIN);
+        assertThat(e.getCause()).isSameAs(testApiException);
+    }
+
+    @Test
+    void givenHappyPath_whenSubmitFinancialRequest_thenReturnCorrId() throws ApiException {
+        // setup
+        when(transactionApiApi.processFinancialRequestWithHttpInfo(testFinReqInitiation))
+                .thenReturn(testPostApiResponse);
+
+        // call
+        String resultCorrId = transactionApiClient.submitFinancialRequest(testFinReqInitiation);
+
+        // verify
+        assertThat(resultCorrId).isEqualTo(TEST_CORRELATION_ID);
+    }
+
+    @Test
+    void givenException_whenSubmitFinancialRequest_thenThrowException() throws ApiException {
+        // setup
+        when(transactionApiApi.processFinancialRequestWithHttpInfo(testFinReqInitiation))
+                .thenThrow(testApiException);
+
+        // call
+        Exception e = assertThrows(TransactionApiException.class, () ->
+                transactionApiClient.submitFinancialRequest(testFinReqInitiation));
+
+        // verify
+        assertThat(e.getMessage()).isEqualTo(TEST_API_EXCEPTION_MESSAGE_FINREQ);
+        assertThat(e.getCause()).isSameAs(testApiException);
+    }
+
+    @Test
+    void givenHappyPath_whenSubmitFinancialReversalAdvice_thenReturnCorrId() throws ApiException {
+        // setup
+        when(transactionApiApi.processFinancialReversalAdviceWithHttpInfo(testFinRevAdvInitiation))
+                .thenReturn(testPostApiResponse);
+
+        // call
+        String resultCorrId = transactionApiClient.submitFinancialReversalAdvice(testFinRevAdvInitiation);
+
+        // verify
+        assertThat(resultCorrId).isEqualTo(TEST_CORRELATION_ID);
+    }
+
+    @Test
+    void givenException_whenSubmitFinancialReversalAdvice_thenThrowException() throws ApiException {
+        // setup
+        when(transactionApiApi.processFinancialReversalAdviceWithHttpInfo(testFinRevAdvInitiation))
+                .thenThrow(testApiException);
+
+        // call
+        Exception e = assertThrows(TransactionApiException.class, () ->
+                transactionApiClient.submitFinancialReversalAdvice(testFinRevAdvInitiation));
+
+        // verify
+        assertThat(e.getMessage()).isEqualTo(TEST_API_EXCEPTION_MESSAGE_FINREV);
         assertThat(e.getCause()).isSameAs(testApiException);
     }
 
@@ -348,6 +422,146 @@ class TransactionApiClientImplTest {
         assertThat(responseActualItem2.getErrors()).isEqualTo(expectedItem2.getErrors());
 
         assertThat(output.getAll()).contains("Completed Transaction API getFinancialAdviceResponses, httpStatus=206, itemsCount=2");
+    }
+
+    @Test
+    void givenHappyPath_whenGetFinancialReqResponses_thenReturnBatchResponse(CapturedOutput output) throws ApiException {
+        // setup
+        ApiResponse<FinancialRequestResponseV02List> response =
+                new ApiResponse<>(HttpStatus.SC_OK, testGetResponseHeaders, finReqResList);
+        when(transactionApiApi.getFinancialRequestResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+
+        FinancialRequestResponseV02Status expectedItem1 = finReqResList.getItems().get(0);
+        FinancialRequestResponseV02Status expectedItem2 = finReqResList.getItems().get(1);
+
+        // call
+        BatchResponse<FinancialRequestResponseFinancialResponseV02> responseActual = transactionApiClient.getFinancialRequestResponses();
+
+        // verify
+        ResponseStatus<FinancialRequestResponseFinancialResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<FinancialRequestResponseFinancialResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+
+        assertThat(responseActual.isHasMore()).isFalse();
+        assertThat(responseActual.getRetryAfter()).isEqualTo(TEST_RETRY_AFTER);
+
+        assertThat(responseActualItem1.getCorrelationId()).isEqualTo(expectedItem1.getCorrelationId());
+        assertThat(responseActualItem2.getCorrelationId()).isEqualTo(expectedItem2.getCorrelationId());
+
+        assertThat(responseActualItem1.getHttpStatus()).isEqualTo(expectedItem1.getHttpStatus());
+        assertThat(responseActualItem2.getHttpStatus()).isEqualTo(expectedItem2.getHttpStatus());
+
+        assertThat(responseActualItem1.getPayload()).isEqualTo(expectedItem1.getPayload());
+        assertThat(responseActualItem2.getPayload()).isEqualTo(expectedItem2.getPayload());
+
+        assertThat(responseActualItem1.getErrors()).isEqualTo(expectedItem1.getErrors());
+        assertThat(responseActualItem2.getErrors()).isEqualTo(expectedItem2.getErrors());
+
+        assertThat(output.getAll()).contains("Completed Transaction API getFinancialRequestResponses, httpStatus=200, itemsCount=2");
+    }
+
+    @Test
+    void givenPartialContent_whenGetFinancialReqResponses_thenReturnBatchResponse(CapturedOutput output) throws ApiException {
+        // setup
+        ApiResponse<FinancialRequestResponseV02List> response =
+                new ApiResponse<>(HttpStatus.SC_PARTIAL_CONTENT, testGetPartialResponseHeaders, finReqResList);
+        when(transactionApiApi.getFinancialRequestResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+
+        FinancialRequestResponseV02Status expectedItem1 = finReqResList.getItems().get(0);
+        FinancialRequestResponseV02Status expectedItem2 = finReqResList.getItems().get(1);
+
+        // call
+        BatchResponse<FinancialRequestResponseFinancialResponseV02> responseActual = transactionApiClient.getFinancialRequestResponses();
+
+        // verify
+        ResponseStatus<FinancialRequestResponseFinancialResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<FinancialRequestResponseFinancialResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+
+        assertThat(responseActual.isHasMore()).isTrue();
+        assertThat(responseActual.getRetryAfter()).isEqualTo(Duration.ZERO);
+
+        assertThat(responseActualItem1.getCorrelationId()).isEqualTo(expectedItem1.getCorrelationId());
+        assertThat(responseActualItem2.getCorrelationId()).isEqualTo(expectedItem2.getCorrelationId());
+
+        assertThat(responseActualItem1.getHttpStatus()).isEqualTo(expectedItem1.getHttpStatus());
+        assertThat(responseActualItem2.getHttpStatus()).isEqualTo(expectedItem2.getHttpStatus());
+
+        assertThat(responseActualItem1.getPayload()).isEqualTo(expectedItem1.getPayload());
+        assertThat(responseActualItem2.getPayload()).isEqualTo(expectedItem2.getPayload());
+
+        assertThat(responseActualItem1.getErrors()).isEqualTo(expectedItem1.getErrors());
+        assertThat(responseActualItem2.getErrors()).isEqualTo(expectedItem2.getErrors());
+
+        assertThat(output.getAll()).contains("Completed Transaction API getFinancialRequestResponses, httpStatus=206, itemsCount=2");
+    }
+
+    @Test
+    void givenHappyPath_whenGetFinancialReversalAdvResponses_thenReturnBatchResponse(CapturedOutput output) throws ApiException {
+        // setup
+        ApiResponse<FinancialReversalAdviceResponseV02List> response =
+                new ApiResponse<>(HttpStatus.SC_OK, testGetResponseHeaders, finRevAdvList);
+        when(transactionApiApi.getFinancialReversalAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+
+        FinancialReversalAdviceResponseV02Status expectedItem1 = finRevAdvList.getItems().get(0);
+        FinancialReversalAdviceResponseV02Status expectedItem2 = finRevAdvList.getItems().get(1);
+
+        // call
+        BatchResponse<ReversalFinancialAdviceResponseReversalResponseV02> responseActual = transactionApiClient.getFinancialReversalAdviceResponses();
+
+        // verify
+        ResponseStatus<ReversalFinancialAdviceResponseReversalResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<ReversalFinancialAdviceResponseReversalResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+
+        assertThat(responseActual.isHasMore()).isFalse();
+        assertThat(responseActual.getRetryAfter()).isEqualTo(TEST_RETRY_AFTER);
+
+        assertThat(responseActualItem1.getCorrelationId()).isEqualTo(expectedItem1.getCorrelationId());
+        assertThat(responseActualItem2.getCorrelationId()).isEqualTo(expectedItem2.getCorrelationId());
+
+        assertThat(responseActualItem1.getHttpStatus()).isEqualTo(expectedItem1.getHttpStatus());
+        assertThat(responseActualItem2.getHttpStatus()).isEqualTo(expectedItem2.getHttpStatus());
+
+        assertThat(responseActualItem1.getPayload()).isEqualTo(expectedItem1.getPayload());
+        assertThat(responseActualItem2.getPayload()).isEqualTo(expectedItem2.getPayload());
+
+        assertThat(responseActualItem1.getErrors()).isEqualTo(expectedItem1.getErrors());
+        assertThat(responseActualItem2.getErrors()).isEqualTo(expectedItem2.getErrors());
+
+        assertThat(output.getAll()).contains("Completed Transaction API getFinancialReversalAdviceResponses, httpStatus=200, itemsCount=2");
+    }
+
+    @Test
+    void givenPartialContent_whenGetFinancialReversalAdvResponses_thenReturnBatchResponse(CapturedOutput output) throws ApiException {
+        // setup
+        ApiResponse<FinancialReversalAdviceResponseV02List> response =
+                new ApiResponse<>(HttpStatus.SC_PARTIAL_CONTENT, testGetPartialResponseHeaders, finRevAdvList);
+        when(transactionApiApi.getFinancialReversalAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT)).thenReturn(response);
+
+        FinancialReversalAdviceResponseV02Status expectedItem1 = finRevAdvList.getItems().get(0);
+        FinancialReversalAdviceResponseV02Status expectedItem2 = finRevAdvList.getItems().get(1);
+
+        // call
+        BatchResponse<ReversalFinancialAdviceResponseReversalResponseV02> responseActual = transactionApiClient.getFinancialReversalAdviceResponses();
+
+        // verify
+        ResponseStatus<ReversalFinancialAdviceResponseReversalResponseV02> responseActualItem1 = responseActual.getItems().get(0);
+        ResponseStatus<ReversalFinancialAdviceResponseReversalResponseV02> responseActualItem2 = responseActual.getItems().get(1);
+
+        assertThat(responseActual.isHasMore()).isTrue();
+        assertThat(responseActual.getRetryAfter()).isEqualTo(Duration.ZERO);
+
+        assertThat(responseActualItem1.getCorrelationId()).isEqualTo(expectedItem1.getCorrelationId());
+        assertThat(responseActualItem2.getCorrelationId()).isEqualTo(expectedItem2.getCorrelationId());
+
+        assertThat(responseActualItem1.getHttpStatus()).isEqualTo(expectedItem1.getHttpStatus());
+        assertThat(responseActualItem2.getHttpStatus()).isEqualTo(expectedItem2.getHttpStatus());
+
+        assertThat(responseActualItem1.getPayload()).isEqualTo(expectedItem1.getPayload());
+        assertThat(responseActualItem2.getPayload()).isEqualTo(expectedItem2.getPayload());
+
+        assertThat(responseActualItem1.getErrors()).isEqualTo(expectedItem1.getErrors());
+        assertThat(responseActualItem2.getErrors()).isEqualTo(expectedItem2.getErrors());
+
+        assertThat(output.getAll()).contains("Completed Transaction API getFinancialReversalAdviceResponses, httpStatus=206, itemsCount=2");
     }
 
     @Test
@@ -531,6 +745,32 @@ class TransactionApiClientImplTest {
 
         // verify
         assertThat(e.getMessage()).contains("Failed to call getFinancialAdviceResponses");
+        assertThat(e.getCause()).isSameAs(testApiException);
+    }
+
+    @Test
+    void givenException_whenGetFinancialReqResponses_thenThrowTransactionApiException() throws ApiException {
+        // setup
+        doThrow(testApiException).when(transactionApiApi).getFinancialRequestResponsesWithHttpInfo(TEST_BATCH_LIMIT);
+
+        // call
+        Exception e = assertThrows(TransactionApiException.class, () -> transactionApiClient.getFinancialRequestResponses());
+
+        // verify
+        assertThat(e.getMessage()).contains("Failed to call getFinancialRequestResponses");
+        assertThat(e.getCause()).isSameAs(testApiException);
+    }
+
+    @Test
+    void givenException_whenGetFinancialReversalAdvResponses_thenThrowTransactionApiException() throws ApiException {
+        // setup
+        doThrow(testApiException).when(transactionApiApi).getFinancialReversalAdviceResponsesWithHttpInfo(TEST_BATCH_LIMIT);
+
+        // call
+        Exception e = assertThrows(TransactionApiException.class, () -> transactionApiClient.getFinancialReversalAdviceResponses());
+
+        // verify
+        assertThat(e.getMessage()).contains("Failed to call getFinancialReversalAdviceResponses");
         assertThat(e.getCause()).isSameAs(testApiException);
     }
 

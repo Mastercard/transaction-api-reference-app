@@ -3,7 +3,9 @@ package com.mastercard.developer.transactionapi.example;
 import com.google.gson.Gson;
 import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
+import org.openapitools.client.model.FinancialRequestInitiationFinancialInitiationV02;
 import org.openapitools.client.model.InquiryInitiationInquiryInitiationV01;
+import org.openapitools.client.model.ReversalFinancialAdviceInitiationReversalInitiationV02;
 import org.openapitools.client.model.ReversalInitiationReversalInitiationV02;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class RequestExampleGenerator {
     public static final String REVERSAL_JSON = "reversal.json";
     public static final String INQUIRY_JSON = "inquiry.json";
     public static final String FINANCIAL_ADVICE_JSON = "financial_advice.json";
+    public static final String FINANCIAL_REQUEST_JSON = "financial_request.json";
+    public static final String FINANCIAL_REVERSAL_ADVICE_JSON = "financial_reversal_advice.json";
 
     private final Clock clock = Clock.systemUTC();
     private final Random random = new Random();     // NOSONAR used for test data only
@@ -84,6 +88,38 @@ public class RequestExampleGenerator {
      */
     public FinancialInitiationFinancialInitiationV02 buildFinancialAdviceRequest() {
         FinancialInitiationFinancialInitiationV02 request = loadInitiationRequest(FINANCIAL_ADVICE_JSON, FinancialInitiationFinancialInitiationV02.class);
+        String now = clock.instant().truncatedTo(ChronoUnit.MILLIS).toString();
+        // the below fields must be uinque in each request
+        request.getBody().getTx().getTxId().setLclDtTm(now);
+        request.getBody().getTx().getTxId().setSysTracAudtNb(nextSysTracAudtNb());
+        return request;
+
+    }
+
+    /**
+     * Creates a sample FinancialRequestInitiationFinancialInitiationV02 request.
+     *
+     * @return An instance of FinancialRequestInitiationFinancialInitiationV02
+     * @implNote The required field values used in this tutorial are dummy values and for demo purposes only, please change to valid values before running this application.
+     */
+    public FinancialRequestInitiationFinancialInitiationV02 buildFinancialRequest() {
+        FinancialRequestInitiationFinancialInitiationV02 request = loadInitiationRequest(FINANCIAL_REQUEST_JSON, FinancialRequestInitiationFinancialInitiationV02.class);
+        String now = clock.instant().truncatedTo(ChronoUnit.MILLIS).toString();
+        // the below fields must be uinque in each request
+        request.getBody().getTx().getTxId().setLclDtTm(now);
+        request.getBody().getTx().getTxId().setSysTracAudtNb(nextSysTracAudtNb());
+        return request;
+
+    }
+
+    /**
+     * Creates a sample ReversalFinancialAdviceInitiationReversalInitiationV02 request.
+     *
+     * @return An instance of ReversalFinancialAdviceInitiationReversalInitiationV02
+     * @implNote The required field values used in this tutorial are dummy values and for demo purposes only, please change to valid values before running this application.
+     */
+    public ReversalFinancialAdviceInitiationReversalInitiationV02 buildFinancialReversalAdvice() {
+        ReversalFinancialAdviceInitiationReversalInitiationV02 request = loadInitiationRequest(FINANCIAL_REVERSAL_ADVICE_JSON, ReversalFinancialAdviceInitiationReversalInitiationV02.class);
         String now = clock.instant().truncatedTo(ChronoUnit.MILLIS).toString();
         // the below fields must be uinque in each request
         request.getBody().getTx().getTxId().setLclDtTm(now);
