@@ -50,7 +50,7 @@ The client authentication side of the MTLS protocol involves a client certificat
 ### Client Certificates and Environments <a name="client-certificates-and-environments"></a>
 There are two different types of MTLS client certificates, depending on the stage of your project:
 
-1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (mtf.api.mastercard.com)
+1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (mtf.api.mastercard.net)
 2. Production MLTS certificates, which allow an application to access the Production environment (api.mastercard.net)
 *Domain/Server URL may vary depending on the API. Please check the API Reference section of the service documentation for the correct server URL.*
 
@@ -111,7 +111,7 @@ When the project builds successfully you can then run the following command to s
 ```bash
 java -jar target/transaction-api-reference-application-2.0.0.jar
 ```
-*** Note: the default environment is - `https://mtf.asn.api.gateway.mastercard.com/transaction-api` ***
+*** Note: the default environment is - `https://mtf.api.mastercard.net/transaction-api` ***
 
 See also:
 * [OpenAPI Generator (Plugin for Maven)](https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin)
