@@ -50,8 +50,8 @@ The client authentication side of the MTLS protocol involves a client certificat
 ### Client Certificates and Environments <a name="client-certificates-and-environments"></a>
 There are two different types of MTLS client certificates, depending on the stage of your project:
 
-1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (mtf.asn.api.gateway.mastercard.com)
-2. Production MLTS certificates, which allow an application to access the Production environment (asn.api.gateway.mastercard.com)
+1. Sandbox MTLS certificates, which give access to an API sandbox that mimics a live Production environment (mtf.api.mastercard.com)
+2. Production MLTS certificates, which allow an application to access the Production environment (api.mastercard.net)
 *Domain/Server URL may vary depending on the API. Please check the API Reference section of the service documentation for the correct server URL.*
 
 ### Creating and Renewing Client Certificate <a name="creating-and-renewing-client-certificate"></a>
