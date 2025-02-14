@@ -2,6 +2,7 @@ package com.mastercard.developer.transactionapi.client;
 
 import com.mastercard.developer.transactionapi.client.model.BatchResponse;
 import com.mastercard.developer.transactionapi.exception.TransactionApiException;
+import org.openapitools.client.ApiResponse;
 import org.openapitools.client.model.AuthorisationInitiationAuthorisationInitiationV02;
 import org.openapitools.client.model.FinancialInitiationFinancialInitiationV02;
 import org.openapitools.client.model.FinancialRequestInitiationFinancialInitiationV02;
@@ -25,60 +26,77 @@ public interface TransactionApiClient {
      * URL: /cain-authorisation-requests
      * Method: POST
      *
-     * @param authorisationRequest  authorisation request
-     * @return Correlation ID of the accepted request
+     * @param customerContextKey   transaction identifier
+     * @param authorisationRequest authorisation request
+     * @return ApiResponse with response payload for request
      */
-    String submitAuthorisationRequest(AuthorisationInitiationAuthorisationInitiationV02 authorisationRequest) throws TransactionApiException;
+    ApiResponse<AuthorisationResponseAuthorisationResponseV02> submitAuthorisationRequest(String customerContextKey, AuthorisationInitiationAuthorisationInitiationV02 authorisationRequest) throws TransactionApiException;
 
     /**
      * Submits the reversal request for processing.
      * URL: /cain-reversal-requests
      * Method: POST
      *
-     * @param reversalRequest  reversal request
-     * @return Correlation ID of the accepted request
+     * @param customerContextKey transaction identifier
+     * @param reversalRequest    reversal request
+     * @return ApiResponse with response payload for request
      */
-    String submitReversalRequest(ReversalInitiationReversalInitiationV02 reversalRequest) throws TransactionApiException;
+    ApiResponse<ReversalResponseReversalResponseV02> submitReversalRequest(String customerContextKey, ReversalInitiationReversalInitiationV02 reversalRequest) throws TransactionApiException;
 
     /**
      * Submits the inquiry request for processing.
      * URL: /cain-inquiry-requests
      * Method: POST
      *
-     * @param inquiryRequest inquiry request
-     * @return Correlation ID of the accepted request
+     * @param customerContextKey transaction identifier
+     * @param inquiryRequest     inquiry request
+     * @return ApiResponse with response payload for request
      */
-    String submitInquiryRequest(InquiryInitiationInquiryInitiationV01 inquiryRequest) throws TransactionApiException;
+    ApiResponse<InquiryResponseInquiryResponseV01> submitInquiryRequest(String customerContextKey, InquiryInitiationInquiryInitiationV01 inquiryRequest) throws TransactionApiException;
 
     /**
      * Submits the financial advice for processing.
      * URL: /cain-financial-advices
      * Method: POST
      *
-     * @param financialAdviceRequest  financial advice
-     * @return Correlation ID of the accepted request
+     * @param customerContextKey     transaction identifier
+     * @param financialAdviceRequest financial advice
+     * @return ApiResponse with response payload for request
      */
-    String submitFinancialAdviceRequest(FinancialInitiationFinancialInitiationV02 financialAdviceRequest) throws TransactionApiException;
+    ApiResponse<FinancialResponseFinancialResponseV02> submitFinancialAdviceRequest(String customerContextKey, FinancialInitiationFinancialInitiationV02 financialAdviceRequest) throws TransactionApiException;
 
     /**
      * Submits the financial request for processing.
      * URL: /cain-financial-requests
      * Method: POST
      *
-     * @param financialRequest  financial request
-     * @return Correlation ID of the accepted request
+     * @param customerContextKey transaction identifier
+     * @param financialRequest   financial request
+     * @return ApiResponse with response payload for request
      */
-    String submitFinancialRequest(FinancialRequestInitiationFinancialInitiationV02 financialRequest) throws TransactionApiException;
+    ApiResponse<FinancialRequestResponseFinancialResponseV02> submitFinancialRequest(String customerContextKey, FinancialRequestInitiationFinancialInitiationV02 financialRequest) throws TransactionApiException;
 
     /**
      * Submits the financial reversal advice for processing.
      * URL: /cain-financial-reversal-advices
      * Method: POST
      *
-     * @param financialReversalAdviceRequest  financial reversal advice
-     * @return Correlation ID of the accepted request
+     * @param customerContextKey             transaction identifier
+     * @param financialReversalAdviceRequest financial reversal advice
+     * @return ApiResponse with response payload for request
      */
-    String submitFinancialReversalAdvice(ReversalFinancialAdviceInitiationReversalInitiationV02 financialReversalAdviceRequest) throws TransactionApiException;
+    ApiResponse<ReversalFinancialAdviceResponseReversalResponseV02> submitFinancialReversalAdvice(String customerContextKey, ReversalFinancialAdviceInitiationReversalInitiationV02 financialReversalAdviceRequest) throws TransactionApiException;
+
+    /**
+     * Submits the authorisation advice request for processing.
+     * URL: /cain-authorisation-advices
+     * Method: POST
+     *
+     * @param customerContextKey   transaction identifier
+     * @param authorisationAdviceRequest authorisation request
+     * @return ApiResponse with response payload for request
+     */
+    ApiResponse<AuthorisationResponseAuthorisationResponseV02> submitAuthorisationAdviceRequest(String customerContextKey, AuthorisationInitiationAuthorisationInitiationV02 authorisationAdviceRequest) throws TransactionApiException;
 
     /**
      * Polls for available authorisation responses
@@ -133,4 +151,13 @@ public interface TransactionApiClient {
      * @return response batch
      */
     BatchResponse<ReversalFinancialAdviceResponseReversalResponseV02> getFinancialReversalAdviceResponses() throws TransactionApiException;
+
+    /**
+     * Polls for available authorisation advice responses
+     * URL: /cain-authorisation-advices
+     * Method: GET
+     *
+     * @return response batch
+     */
+    BatchResponse<AuthorisationResponseAuthorisationResponseV02> getAuthorisationAdviceResponses() throws TransactionApiException;
 }

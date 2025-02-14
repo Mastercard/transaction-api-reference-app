@@ -2,7 +2,7 @@
   "hdr": {
     "msgFctn": "REQU",
     "prtcolVrsn": "00.00.00",
-    "creDtTm": "2024-05-29T16:44:51Z",
+    "creDtTm": "2025-01-29T16:44:51Z",
     "initgPty": {
       "id": "001069"
     }
@@ -104,8 +104,8 @@
     "tx": {
       "txTp": "00",
       "txId": {
-        "trnsmssnDtTm": "2024-04-12T15:24:16.545Z",
-        "lclDtTm": "2024-04-12T15:24:16.545Z",
+        "trnsmssnDtTm": "2025-01-12T15:24:16.545Z",
+        "lclDtTm": "2025-01-12T15:24:16.545Z",
         "sysTracAudtNb": "164451",
         "rtrvlRefNb": "080000100027"
       },

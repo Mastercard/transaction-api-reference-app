@@ -126,6 +126,86 @@ class RequestContextManagerTest {
         assertThat(requestContextManager.haveAnyOngoingRequests()).isTrue();
     }
 
+    @Test
+    void givenFilledCacheAuthAdvice_whenHaveOngoingRequests_returnTrue() {
+        // setup
+        requestContextManager.onRequestSent(FlowType.AUTHORISATION_ADVICE, TEST_CORRELATION_ID, testRequest);
+
+        // call
+        boolean result = requestContextManager.haveOngoingRequests(FlowType.AUTHORISATION_ADVICE);
+
+        // verify
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void givenEmptyCacheAuthAdvice_whenHaveOngoingRequests_returnFalse() {
+        // call
+        boolean result = requestContextManager.haveOngoingRequests(FlowType.AUTHORISATION_ADVICE);
+
+        // verify
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    void givenFilledCacheAuthAdvice_whenHaveAnyOngoingRequests_returnTrue() {
+        // setup
+        requestContextManager.onRequestSent(FlowType.AUTHORISATION_ADVICE, TEST_CORRELATION_ID, testRequest);
+
+        // call
+        boolean result = requestContextManager.haveAnyOngoingRequests();
+
+        // verify
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void givenEmptyCacheAuthAdvice_whenHaveAnyOngoingRequests_returnFalse() {
+        // call
+        boolean result = requestContextManager.haveAnyOngoingRequests();
+
+        // verify
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    void givenFilledCacheAuthAdvice_whenOnResponseReceived_verifyCacheEntryIsInvalidated() {
+        // setup
+        requestContextManager.onRequestSent(FlowType.AUTHORISATION_ADVICE, TEST_CORRELATION_ID, testRequest);
+
+        // call
+        requestContextManager.onResponseReceived(FlowType.AUTHORISATION_ADVICE, TEST_CORRELATION_ID);
+
+        // verify
+        assertThat(requestContextManager.haveAnyOngoingRequests()).isFalse();
+
+    }
+
+    @Test
+    void givenFilledCacheAuthAdvice_whenOnResponseReceivedForIncorrectCorrId_verifyCacheEntryIsNotInvalidated() {
+        // setup
+        requestContextManager.onRequestSent(FlowType.AUTHORISATION_ADVICE, TEST_CORRELATION_ID, testRequest);
+
+        // call
+        requestContextManager.onResponseReceived(FlowType.AUTHORISATION_ADVICE, incorrectTestCorrId);
+
+        // verify
+        assertThat(requestContextManager.haveAnyOngoingRequests()).isTrue();
+
+    }
+
+    @Test
+    void givenFilledAuthAdviceCache_whenOnResponseReceivedForIncorrectFlow_verifyCacheEntryIsNotInvalidated() {
+        // setup
+        requestContextManager.onRequestSent(FlowType.AUTHORISATION_ADVICE, TEST_CORRELATION_ID, testRequest);
+
+        // call
+        requestContextManager.onResponseReceived(FlowType.REVERSAL, TEST_CORRELATION_ID);
+
+        // verify
+        assertThat(requestContextManager.haveAnyOngoingRequests()).isTrue();
+    }
+
 
     @Test
     void givenFilledCacheInq_whenHaveOngoingRequests_returnTrue() {

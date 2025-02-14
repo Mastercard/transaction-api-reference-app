@@ -6,6 +6,7 @@ import org.openapitools.client.model.Error;
 import org.openapitools.client.model.AuthorisationResponseAuthorisationResponseV02;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Adapter class for an Authorisation response status.
@@ -21,6 +22,11 @@ public class AuthorisationResponseStatus implements ResponseStatus<Authorisation
     }
 
     @Override
+    public String getCustomerContextKey() {
+        return responseItem.getCustomerContextKey();
+    }
+
+    @Override
     public int getHttpStatus() {
         return responseItem.getHttpStatus();
     }
@@ -33,5 +39,12 @@ public class AuthorisationResponseStatus implements ResponseStatus<Authorisation
     @Override
     public List<Error> getErrors() {
         return responseItem.getErrors();
+    }
+
+    public String getPayloadAsJson() {
+        return Optional.ofNullable(responseItem)
+                .map(AuthorisationResponseV02Status::getPayload)
+                .map(AuthorisationResponseAuthorisationResponseV02::toJson)
+                .orElse(null);
     }
 }

@@ -1,7 +1,7 @@
 package com.mastercard.developer.transactionapi;
 
 import com.mastercard.developer.transactionapi.context.RequestContextManager;
-import com.mastercard.developer.transactionapi.job.RequestSubmitter;
+import com.mastercard.developer.transactionapi.job.submitter.RequestSubmitter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +18,7 @@ public class Application implements CommandLineRunner {
 
     private static final int REQUEST_COUNT = 5;
 
-    private final List<RequestSubmitter> requestSubmitters;
+    private final List<RequestSubmitter<?,?>> requestSubmitters;
     private final RequestContextManager requestContextManager;
 
     public static void main(String... args) { // NOSONAR not a threat
@@ -29,7 +29,7 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // For the purposes of this demo, submit several requests of each type
-        for (RequestSubmitter requestSubmitter : requestSubmitters) {
+        for (RequestSubmitter<?,?> requestSubmitter : requestSubmitters) {
             requestSubmitter.submitRequests(REQUEST_COUNT);
         }
         // and wait till all responses are received

@@ -2,7 +2,7 @@
     "hdr": {
         "msgFctn": "ADVC",
         "prtcolVrsn": "CN4A",
-        "creDtTm": "2024-08-06T13:54:27.000Z",
+        "creDtTm": "2025-01-06T13:54:27.000Z",
         "initgPty": {
             "id": "931031"
         }
@@ -148,8 +148,8 @@
                 "lifeCyclTracIdData": {
                     "id": "MCC68HCGA0622  "
                 },
-                "lclDtTm": "2024-07-29T11:57:13.000Z",
-                "trnsmssnDtTm": "2024-08-06T13:54:27.000Z",
+                "lclDtTm": "2024-12-29T11:57:13.000Z",
+                "trnsmssnDtTm": "2025-01-06T13:54:27.000Z",
                 "sysTracAudtNb": "001384",
                 "rtrvlRefNb": "547634879854",
                 "acqrrRefNb": "52223184211000000000009",
@@ -157,7 +157,7 @@
                     "msgClss": "FINL",
                     "acqrrId": "00000931031",
                     "sndrId": "00000931031",
-                    "trnsmssnDtTm": "2024-07-29T16:57:13.000Z",
+                    "trnsmssnDtTm": "2024-12-29T16:57:13.000Z",
                     "sysTracAudtNb": "001338"
                 }
             },

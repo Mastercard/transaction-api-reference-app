@@ -31,7 +31,7 @@
 This is a reference application to demonstrate how the Mastercard Transaction API for Acquirers can be used for the supported operations. Please see here for details on the API: [Mastercard Developers](https://developer.mastercard.com/transaction-api-for-acquirers/documentation/). To call this API, a valid _Client Certificate_ file must be acquired and access provisioned as explained later in this documentation.
 
 ### Compatibility <a name="compatibility"></a>
-* [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
+* [Java 11](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
 
 ## Usage <a name="usage"></a>
 ### Prerequisites <a name="prerequisites"></a>
