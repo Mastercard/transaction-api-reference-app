@@ -1,0 +1,124 @@
+{
+  "hdr": {
+    "msgFctn": "ADVC",
+    "prtcolVrsn": "00.00.00",
+    "creDtTm": "2025-01-25T04:15:26.490Z",
+    "initgPty": {
+      "id": "860987"
+    }
+  },
+  "body": {
+    "envt": {
+      "acqrr": {
+        "id": "860987"
+      },
+      "sndr": {
+        "id": "123456"
+      },
+      "accptr": {
+          "id": "R-5912-MEX",
+          "nmAndLctn": "DRUG STORE, PHARMACIES",
+          "adr": {
+            "twnNm": "5912 DRUG DRI",
+            "ctry": "MEX"
+        }
+      },
+      "termnl": {
+        "termnlId": {
+          "id": "840"
+        },
+        "cpblties": {
+          "crdhldrVrfctnCpblty": [
+            {
+              "cpblty": "UNSP"
+            }
+          ]
+        }
+      },
+      "card": {
+        "pan": "5460126200000037",
+        "xpryDt": "2304"
+      }
+    },
+    "cntxt": {
+      "ptOfSvcCntxt": {
+        "cardDataNtryMd": "KEEN",
+        "spclConds": [
+          {
+            "id": "pos_terminal_attendance",
+            "val": "0"
+          },
+          {
+            "id": "pos_terminal_location",
+            "val": "0"
+          },
+          {
+            "id": "pos_cardholder_present",
+            "val": "2"
+          },
+          {
+            "id": "pos_card_presence",
+            "val": "1"
+          },
+          {
+            "id": "pos_card_capture_capabilities",
+            "val": "0"
+          },
+          {
+            "id": "pos_transaction_status",
+            "val": "0"
+          },
+          {
+            "id": "pos_transaction_security",
+            "val": "0"
+          },
+          {
+            "id": "cat_level",
+            "val": "0"
+          },
+          {
+            "id": "pos_card_input_capability",
+            "val": "6"
+          },
+          {
+            "id": "pos_auth_life_cycle",
+            "val": "00"
+          },
+          {
+            "id": "pos_country_code",
+            "val": "566"
+          },
+          {
+            "id": "pos_postal_code",
+            "val": "63017"
+          }
+        ]
+      },
+      "txCntxt": {
+        "mrchntCtgyCd": "5311",
+        "mrchntCtgySpcfcData": "T"
+      }
+    },
+    "tx": {
+      "txTp": "00",
+      "txId": {
+        "lclDtTm": "2025-01-25T04:15:26.490Z",
+        "trnsmssnDtTm": "2025-01-25T04:15:26.490Z",
+        "sysTracAudtNb": "041526",
+        "rtrvlRefNb": "IgQArR99"
+      },
+      "txAmts": {
+        "txAmt": {
+          "amt": "100.00",
+          "ccy": "840"
+        }
+      },
+      "acctFr": {
+        "acctTp": "00"
+      },
+      "acctTo": {
+        "acctTp": "00"
+      }
+    }
+  }
+}

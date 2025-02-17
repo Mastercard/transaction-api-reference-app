@@ -1,7 +1,7 @@
 package com.mastercard.developer.transactionapi.config;
 
 import com.mastercard.developer.transactionapi.enums.FlowType;
-import com.mastercard.developer.transactionapi.job.ResponsePoller;
+import com.mastercard.developer.transactionapi.job.poller.ResponsePoller;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

@@ -1,9 +1,9 @@
 {
   "hdr": {
-    "btchMgmtInf": {
-      "msgSeqNb": "00000004"
-    },
-    "msgFctn": "ADVC"
+    "msgFctn": "ADVC",
+    "initgPty": {
+      "id": "540146"
+    }
   },
   "body": {
     "cntxt": {
@@ -11,7 +11,7 @@
         "spclConds": [
           {
             "val": "0",
-            "id": "cardholder_auth_capability"
+            "id": "cardholder_authentication_capability"
           },
           {
             "val": "9",
@@ -127,11 +127,11 @@
         },
         {
           "val": "152",
-          "tp": "submitted_currency_exp_currency_code"
+          "tp": "submitted_ccy_exp_ccy_code"
         },
         {
           "val": "0",
-          "tp": "submitted_currency_exponent"
+          "tp": "submitted_ccy_exp"
         },
         {
           "val": "4",
@@ -191,9 +191,9 @@
       },
       "txId": {
         "sysTracAudtNb": "157472",
-        "trnsmssnDtTm": "2024-03-27T05:20:54.000Z",
+        "trnsmssnDtTm": "2025-01-27T05:20:54.000Z",
         "acqrrRefNb": "55418014087000000826690",
-        "lclDtTm": "2024-03-27T00:20:54.000Z",
+        "lclDtTm": "2025-01-27T00:20:54.000Z",
         "lifeCyclTracIdData": {
           "id": "MCC74HLPQ0622  "
         }

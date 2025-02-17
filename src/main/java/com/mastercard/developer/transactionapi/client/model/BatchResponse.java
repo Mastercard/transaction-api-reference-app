@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Common holder class for all batch responses.
- * @param <P>  response status payload type
+ * @param <P> response payload type
  */
 @Data
 @Builder

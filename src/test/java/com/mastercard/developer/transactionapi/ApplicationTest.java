@@ -1,7 +1,7 @@
 package com.mastercard.developer.transactionapi;
 
 import com.mastercard.developer.transactionapi.context.RequestContextManager;
-import com.mastercard.developer.transactionapi.job.RequestSubmitter;
+import com.mastercard.developer.transactionapi.job.submitter.RequestSubmitter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -16,14 +16,14 @@ import static org.mockito.Mockito.verify;
 class ApplicationTest {
 
     @Mock
-    private RequestSubmitter mockRequestSubmitter;
+    private RequestSubmitter<?,?> mockRequestSubmitter;
     @Mock
     private RequestContextManager mockRequestContextManager;
 
     @Test
     void main() {
         // setup
-        List<RequestSubmitter> requestSubmitters = Collections.singletonList(mockRequestSubmitter);
+        List<RequestSubmitter<?,?>> requestSubmitters = Collections.singletonList(mockRequestSubmitter);
 
         // call
         Application application = new Application(requestSubmitters, mockRequestContextManager);

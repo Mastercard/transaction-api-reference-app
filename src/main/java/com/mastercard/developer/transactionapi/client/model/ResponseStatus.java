@@ -13,9 +13,13 @@ public interface ResponseStatus<P> {
 
     String getCorrelationId();
 
+    String getCustomerContextKey();
+
     int getHttpStatus();
 
     P getPayload();
 
     List<Error> getErrors();
+
+    String getPayloadAsJson();
 }

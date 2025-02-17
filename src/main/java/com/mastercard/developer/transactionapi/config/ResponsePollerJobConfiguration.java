@@ -1,7 +1,7 @@
 package com.mastercard.developer.transactionapi.config;
 
 import com.mastercard.developer.transactionapi.enums.FlowType;
-import com.mastercard.developer.transactionapi.job.ResponsePoller;
+import com.mastercard.developer.transactionapi.job.poller.ResponsePoller;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;

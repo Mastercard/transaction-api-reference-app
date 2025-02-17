@@ -63,15 +63,15 @@ public class RequestContextManager {
     /**
      * Called when a new request is sent.
      */
-    public <R> void onRequestSent(FlowType flowType, String correlationId, R request) {
-        cacheMap.get(flowType).put(correlationId, request);
+    public <R> void onRequestSent(FlowType flowType, String customerContextKey, R request) {
+        cacheMap.get(flowType).put(customerContextKey, request);
     }
 
     /**
      * Called when a new response is received.
      */
-    public void onResponseReceived(FlowType flowType, String correlationId) {
-        cacheMap.get(flowType).invalidate(correlationId);
+    public void onResponseReceived(FlowType flowType, String customerContextKey) {
+        cacheMap.get(flowType).invalidate(customerContextKey);
     }
 
     /**

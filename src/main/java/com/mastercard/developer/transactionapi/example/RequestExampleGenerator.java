@@ -28,6 +28,7 @@ public class RequestExampleGenerator {
     public static final String FINANCIAL_ADVICE_JSON = "financial_advice.json";
     public static final String FINANCIAL_REQUEST_JSON = "financial_request.json";
     public static final String FINANCIAL_REVERSAL_ADVICE_JSON = "financial_reversal_advice.json";
+    public static final String AUTHORISATION_ADVICE_JSON = "authorisation_advice.json";
 
     private final Clock clock = Clock.systemUTC();
     private final Random random = new Random();     // NOSONAR used for test data only
@@ -126,6 +127,22 @@ public class RequestExampleGenerator {
         request.getBody().getTx().getTxId().setSysTracAudtNb(nextSysTracAudtNb());
         return request;
 
+    }
+
+    /**
+     * Creates a sample AuthorisationInitiationV02 request.
+     *
+     * @return An instance of AuthorisationInitiationV02
+     * @implNote The required field values used in this tutorial are dummy values and for demo purposes only, please change to valid values before running this application.
+     */
+    public AuthorisationInitiationAuthorisationInitiationV02 buildAuthorisationAdviceRequest() {
+        AuthorisationInitiationAuthorisationInitiationV02 request = loadInitiationRequest(AUTHORISATION_ADVICE_JSON, AuthorisationInitiationAuthorisationInitiationV02.class);
+        String now = clock.instant().truncatedTo(ChronoUnit.MILLIS).toString();
+        // the below fields must be uinque in each request
+        request.getBody().getTx().getTxId().setLclDtTm(now);
+        request.getBody().getTx().getTxId().setTrnsmssnDtTm(now);
+        request.getBody().getTx().getTxId().setSysTracAudtNb(nextSysTracAudtNb());
+        return request;
     }
 
     private <T> T loadInitiationRequest(String fileName, Class<T> type) {
